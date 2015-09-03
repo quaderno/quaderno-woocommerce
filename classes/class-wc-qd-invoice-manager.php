@@ -28,6 +28,7 @@ class WC_QD_Invoice_Manager {
 			'issue_date' => date('Y-m-d'),
 			'currency' => $order->order_currency,
 			'po_number' => $order->id,
+			'tag_list' => 'woocommerce',
 			'notes' => $order->order_comments
 		));
 
