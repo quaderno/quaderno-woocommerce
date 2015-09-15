@@ -87,7 +87,7 @@ class WC_QD_Invoice_Manager {
 			$new_item = new QuadernoItem(array(
 				'description' => $item['name'],
 				'quantity' => $order->get_item_count($item),
-				'unit_price' => round($order->get_line_subtotal($item) * $exchange_rate, 2),
+				'unit_price' => round($order->get_item_subtotal($item) * $exchange_rate, 2),
 				'tax_1_name' => $tax->name,
 				'tax_1_rate' => $tax->rate
 			));
