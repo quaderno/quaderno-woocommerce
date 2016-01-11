@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: woocommerce, quaderno, woocommerce quaderno, vat, eu vat, vatmoss, vat moss, european vat, eu tax, european tax, billing, invoices, receipts
 Requires at least: 3.7
 Tested up to: 4.4
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,6 +26,7 @@ Quaderno for WooCommerce automatically sends beautiful invoices and receipts tha
 * Manage your own invoices together with invoices from WooCommerce in one place.
 
 **Setup in less than 5 minutes**. Easy and quick!
+
 1. Download & Activate this plugin
 2. Sign up for a Quaderno account
 3. Paste your API key in your site
@@ -65,6 +66,9 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.4.2 =
+* Fix: issue when postal code contains whitespaces
 
 = 1.4.0 =
 * Refactoring code

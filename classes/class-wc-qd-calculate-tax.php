@@ -48,13 +48,13 @@ class WC_QD_Calculate_Tax {
 	public static function calculate( $transaction_type, $country, $postal_code = '', $vat_number = '' ) {
 		$params = array( 
 			'country' => $country,
-			'postal_code' => $postal_code,
-			'vat_number' => $vat_number,
-			'transaction_type' => $transaction_type
+			'postal_code' => urlencode($postal_code),
+			'vat_number' => urlencode($vat_number),
+			'transaction_type' => urlencode($transaction_type)
 		);
 
 		$slug = 'tax_' . md5( implode( $params ) );
-		
+
 		if ( false === ( $tax = get_transient( $slug ) ) ) {
 			$tax = QuadernoTax::calculate( $params );
 			set_transient( $slug, $tax, WEEK_IN_SECONDS );
