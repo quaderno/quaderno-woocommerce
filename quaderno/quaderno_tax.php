@@ -21,5 +21,13 @@ class QuadernoTax extends QuadernoModel {
 		return $request->get_response_body();
 	}
 
+	public static function validate($params) {
+		$return = false;
+		$request = new QuadernoRequest();
+		$request->validate('taxes', $params);
+		$response = $request->get_response_body();
+		return $response->valid;
+	}
+
 }
 ?>

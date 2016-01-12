@@ -65,7 +65,7 @@ class WC_QD_Invoice_Manager {
 				'region' => $order->billing_region,
 				'country' => $order->billing_country,
 				'email' => $order->billing_email,
-				'tax_id' => get_post_meta( $order->id, WC_QD_Vat_Number_Field::META_KEY, true ),
+				'vat_number' => get_post_meta( $order->id, WC_QD_Vat_Number_Field::META_KEY, true ),
 				'processor' => 'woocommerce',
 				'processor_id' => $order->get_user_id()
 			));
@@ -88,7 +88,11 @@ class WC_QD_Invoice_Manager {
 				$virtual_products = true;
 			}
 		
-			$tax = WC_QD_Calculate_Tax::calculate( $transaction_type, $contact->country, $contact->postal_code, $contact->tax_id );
+			$tax = WC_QD_Calculate_Tax::calculate( $transaction_type, $contact->country, $contact->postal_code, $contact->vat_number );
+			if ( $tax->rate == 0 ) {
+				$tax->name = NULL;
+			}
+
 			$new_item = new QuadernoDocumentItem(array(
 				'description' => $item['name'],
 				'quantity' => $order->get_item_count($item),
@@ -130,7 +134,7 @@ class WC_QD_Invoice_Manager {
 	 *
 	 * @param $order_id
 	 */
-	function get_payment_method( $order_id ) {
+	public function get_payment_method( $order_id ) {
 		$payment_id = get_post_meta( $order_id, '_payment_method', true );
 		$method = '';
 		switch( $payment_id ) {

@@ -65,7 +65,7 @@ class WC_QD_Credit_Manager {
 				'region' => $order->billing_region,
 				'country' => $order->billing_country,
 				'email' => $order->billing_email,
-				'tax_id' => get_post_meta( $order->id, WC_QD_Vat_Number_Field::META_KEY, true )
+				'vat_number' => get_post_meta( $order->id, WC_QD_Vat_Number_Field::META_KEY, true )
 			));
 
 			if ( $contact->save() ){
@@ -81,7 +81,10 @@ class WC_QD_Credit_Manager {
 		$items = $order->get_items();
 		$first_item = array_shift($items);
 		$transaction_type = WC_QD_Calculate_Tax::get_transaction_type( $first_item['product_id'] );
-		$tax = WC_QD_Calculate_Tax::calculate( $transaction_type, $contact->country, $contact->postal_code, $contact->tax_id );
+		$tax = WC_QD_Calculate_Tax::calculate( $transaction_type, $contact->country, $contact->postal_code, $contact->vat_number );
+		if ( $tax->rate == 0 ) {
+			$tax->name = NULL;
+		}
 
 		// Add item
 		$refunded_amount = -round($refund->get_total() * $exchange_rate, 2);
@@ -99,7 +102,7 @@ class WC_QD_Credit_Manager {
 		$payment = new QuadernoPayment(array(
 			'date' => date('Y-m-d'),
 			'amount' => $refunded_amount,
-			'payment_method' => get_payment_method($order->id)
+			'payment_method' => self::get_payment_method($order->id)
 		));
 		$credit->addPayment( $payment );
 
@@ -115,7 +118,7 @@ class WC_QD_Credit_Manager {
 	 *
 	 * @param $order_id
 	 */
-	function get_payment_method( $order_id ) {
+	public function get_payment_method( $order_id ) {
 		$payment_id = get_post_meta( $order_id, '_payment_method', true );
 		$method = '';
 		switch( $payment_id ) {

@@ -16,6 +16,7 @@ class WC_QD_Vat_Number_Field {
 	public function setup() {
 		add_action( 'woocommerce_after_checkout_billing_form', array( $this, 'print_field' ) );
 		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'save_field' ) );
+		add_action( 'woocommerce_checkout_process', array( $this, 'validate_field' ), 1 );
 		add_action( 'woocommerce_admin_order_data_after_billing_address', array( $this, 'display_field' ), 10, 1 );
 	}
 
@@ -26,8 +27,9 @@ class WC_QD_Vat_Number_Field {
 	 */
 	public function print_field() {
 		woocommerce_form_field( 'vat_number', array(
-			'label'       => __( 'VAT Number', 'woocommerce-quaderno' ),
-			'class'       => array( 'update_totals_on_change' )
+			'type'   => 'text',
+			'label'  => __( 'VAT Number', 'woocommerce-quaderno' ),
+			'class'  => array( 'update_totals_on_change' )
 		), '' );
 	}
 
@@ -43,6 +45,31 @@ class WC_QD_Vat_Number_Field {
 
 			// Reset the customer VAT exempt state
 			WC()->customer->set_is_vat_exempt( false );
+		}
+	}
+
+	/**
+	 * Validate the VAT field
+	 *
+	 * @since 1.4
+	 */
+	public function validate_field() {
+		if ( ! empty( $_POST['vat_number'] ) ) {
+			$params = array(
+				'vat_number' => $_POST['vat_number'],
+				'country' => $_POST['billing_country']
+			);
+
+			$slug = 'vat_number_' . md5( implode( $params ) );
+
+			if ( false === ( $valid_number = get_transient( $slug ) ) ) {
+				$valid_number = (int) QuadernoTax::validate( $params );
+				set_transient( $slug, $valid_number, 4 * WEEK_IN_SECONDS );
+			}
+
+			if ( $valid_number != 1 ) {
+				wc_add_notice( __( '<strong>VAT Number</strong> is not valid' ), 'error' );
+			}
 		}
 	}
 

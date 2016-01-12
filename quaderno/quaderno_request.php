@@ -144,6 +144,13 @@ class QuadernoRequest {
 		return $this->exec();
 	}
 
+	public function validate($model, $params) {
+		$this->request_methods = array( $model );
+		$this->request_endpoint = 'validate';
+		$this->request_body = $params;
+		return $this->exec();
+	}
+
 	public function deliver($model, $id) {
 		$this->request_methods = array( $model, $id );
 		$this->request_endpoint = 'deliver';
