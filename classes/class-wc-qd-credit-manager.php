@@ -99,7 +99,7 @@ class WC_QD_Credit_Manager {
 		$payment = new QuadernoPayment(array(
 			'date' => date('Y-m-d'),
 			'amount' => $refunded_amount,
-			'payment_method' => 'credit_card'
+			'payment_method' => get_payment_method($order->id)
 		));
 		$credit->addPayment( $payment );
 
@@ -108,6 +108,33 @@ class WC_QD_Credit_Manager {
 
 			if ( 'yes' === WC_QD_Integration::$autosend_invoices ) $credit->deliver();
 		}
+	}
+
+	/**
+	 * Get payment method for Quaderno
+	 *
+	 * @param $order_id
+	 */
+	function get_payment_method( $order_id ) {
+		$payment_id = get_post_meta( $order_id, '_payment_method', true );
+		$method = '';
+		switch( $payment_id ) {
+			case 'bacs':
+				$method = 'wire_transfer';
+				break;
+			case 'cheque':
+				$method = 'check';
+				break;
+			case 'cod':
+				$method = 'cash';
+				break;
+			case 'paypal':
+				$method = 'paypal';
+				break;
+			default:
+				$method = 'credit_card';
+		}
+		return $method;
 	}
 
 }
