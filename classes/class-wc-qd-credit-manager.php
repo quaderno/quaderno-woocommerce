@@ -30,7 +30,7 @@ class WC_QD_Credit_Manager {
 		$credit = new QuadernoCredit(array(
 			'issue_date' => date('Y-m-d'),
 			'currency' => $refund->order_currency,
-			'po_number' => $order->id,
+			'po_number' => get_post_meta( $order->id, '_order_number_formatted', true ) ?: $order->id,
 			'processor' => 'woocommerce',
 			'processor_id' => $order->id
 		));

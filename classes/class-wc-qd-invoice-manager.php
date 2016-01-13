@@ -29,7 +29,7 @@ class WC_QD_Invoice_Manager {
 		$invoice = new QuadernoInvoice(array(
 			'issue_date' => date('Y-m-d'),
 			'currency' => $order->order_currency,
-			'po_number' => $order->id,
+			'po_number' => get_post_meta( $order->id, '_order_number_formatted', true ) ?: $order->id,
 			'notes' => $order->order_comments,
 			'processor' => 'woocommerce',
 			'processor_id' => $order->id
@@ -108,7 +108,7 @@ class WC_QD_Invoice_Manager {
 		$payment = new QuadernoPayment(array(
 			'date' => date('Y-m-d'),
 			'amount' => round($order->get_total() * $exchange_rate, 2),
-			'payment_method' => self::get_payment_method($order_id)
+			'payment_method' => self::get_payment_method($order->id)
 		));
 		$invoice->addPayment( $payment );
 
