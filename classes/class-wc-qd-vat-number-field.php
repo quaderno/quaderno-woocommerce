@@ -33,9 +33,10 @@ class WC_QD_Vat_Number_Field {
 			'class'  => array( 'update_totals_on_change' )
 		), '' );
 
+		$countries = new WC_Countries();
 		woocommerce_form_field( 'base_location', array(
 			'type'   => 'hidden',
-			'default' => WC_Countries::get_base_country()
+			'default' => $countries->get_base_country()
 		));
 	}
 

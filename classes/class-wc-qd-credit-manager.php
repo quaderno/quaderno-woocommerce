@@ -7,7 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_QD_Credit_Manager {
 
 	public function setup() {
-		// Create credit
 		add_action( 'woocommerce_refund_created', array( $this, 'create_credit' ), 10, 2 );
 	}
 

@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_QD_Invoice_Manager {
 
 	public function setup() {
-		// Create invoice
+  	add_action( 'woocommerce_payment_complete', array( $this, 'create_invoice' ), 10, 1 );
 		add_action( 'woocommerce_order_status_completed', array( $this, 'create_invoice' ), 10, 1 );
 	}
 
@@ -96,7 +96,7 @@ class WC_QD_Invoice_Manager {
 			$new_item = new QuadernoDocumentItem(array(
 				'description' => $item['name'],
 				'quantity' => $order->get_item_count($item),
-				'unit_price' => round($order->get_item_subtotal($item) * $exchange_rate, 2),
+				'total_amount' => round($order->get_line_total($item, true) * $exchange_rate, 2),
 				'tax_1_name' => $tax->name,
 				'tax_1_rate' => $tax->rate,
 				'tax_1_country' => $tax->country
