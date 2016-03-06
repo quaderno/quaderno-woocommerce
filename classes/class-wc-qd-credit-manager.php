@@ -77,12 +77,12 @@ class WC_QD_Credit_Manager {
 		$exchange_rate = get_post_meta( $order->id, '_woocs_order_rate', true ) ?: 1;
 
 		// Calculate taxes
-		$items = $order->get_items();
-		$first_item = array_shift($items);
-		$transaction_type = WC_QD_Calculate_Tax::get_transaction_type( $first_item['product_id'] );
-		$tax = WC_QD_Calculate_Tax::calculate( $transaction_type, $contact->country, $contact->postal_code, $contact->vat_number );
-		if ( $tax->rate == 0 ) {
-			$tax->name = NULL;
+		$taxes = $order->get_taxes();
+		$tax = array_shift($taxes);
+		if ( isset( $tax ) ) {
+			list($tax_name, $tax_rate) = explode( '|', $tax['name'] );
+		} else {
+			list($tax_name, $tax_rate) = array( NULL, 0 );
 		}
 
 		// Add item
@@ -91,9 +91,9 @@ class WC_QD_Credit_Manager {
 			'description' => 'Refund invoice #' . get_post_meta( $order->id, '_quaderno_invoice_number', true ),
 			'quantity' => 1,
 			'total_amount' => $refunded_amount,
-			'tax_1_name' => $tax->name,
-			'tax_1_rate' => $tax->rate,
-			'tax_1_country' => $tax->country
+			'tax_1_name' => $tax_name,
+			'tax_1_rate' => $tax_rate,
+			'tax_1_country' => $order->billing_country
 		));
 		$credit->addItem( $new_item );
 

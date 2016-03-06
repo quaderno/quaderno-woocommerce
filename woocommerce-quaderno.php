@@ -4,7 +4,7 @@
  * Plugin Name: WooCommerce Quaderno
  * Plugin URI: https://wordpress.org/plugins/woocommerce-quaderno/
  * Description: Automatically send customizable invoices and receipts with every order in your WooCommerce store.
- * Version: 1.5.3
+ * Version: 1.6.0
  * Author: Quaderno
  * Author URI: https://quaderno.io/
  * License: GPL v3
@@ -44,7 +44,6 @@ if ( ! function_exists( 'woothemes_queue_update' ) ) {
  */
 class WooCommerce_Quaderno {
 
-	const VERSION = '1.4.0';
 	const QUADERNO_URL = 'https://quadernoapp.com';
 
 	/**

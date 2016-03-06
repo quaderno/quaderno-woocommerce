@@ -29,7 +29,6 @@ class WC_QD_Tax_Manager {
 		add_filter( 'woocommerce_product_tax_class', array( $this, 'override_product_tax_class' ), 10, 2 );
 
 		// Override the tax rate
-		// add_filter( 'woocommerce_matched_rates', array( $this, 'override_tax_rate' ), 10, 2 );
 		add_filter( 'woocommerce_find_rates', array( $this, 'override_tax_rate' ), 10, 2 );
 
 		// Override the rate code
@@ -38,6 +37,8 @@ class WC_QD_Tax_Manager {
 		// Override the rate label
 		add_filter( 'woocommerce_rate_label', array( $this, 'override_rate_label'), 10, 2 );
 
+		// Stop base taxes being taken off when dealing with out of base locations
+		add_filter( 'woocommerce_adjust_non_base_location_prices', '__return_false' );
 	}
 
 	/**
@@ -79,7 +80,6 @@ class WC_QD_Tax_Manager {
 	 * @return bool
 	 */
 	public function add_tax_rate( $product_type, $rate, $label ) {
-
 		$clean_slug = $this->clean_tax_class( $product_type );
 
 		if ( ! isset( $this->tax_rates[ $clean_slug ] ) ) {
@@ -107,7 +107,6 @@ class WC_QD_Tax_Manager {
 	 * @return string
 	 */
 	public function override_product_tax_class( $tax_class, $product ) {
-
 		// Get the correct ID
 		$id = ( ( 'variation' === $product->product_type ) ? $product->variation_id : $product->id );
 
@@ -128,7 +127,6 @@ class WC_QD_Tax_Manager {
 	 * @return array Correct tax rates
 	 */
 	public function override_tax_rate( $matched_tax_rates, $args ) {
-
 		// Check if we got a Quaderno rate for this tax class
 		if ( isset( $this->tax_rates[ $args['tax_class'] ] ) ) {
 			$matched_tax_rates = $this->tax_rates[ $args['tax_class'] ];

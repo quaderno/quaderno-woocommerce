@@ -78,28 +78,26 @@ class WC_QD_Invoice_Manager {
 
 		// Calculate exchange rate
 		$exchange_rate = get_post_meta( $order->id, '_woocs_order_rate', true ) ?: 1;
+		
+		// Calculate taxes
+		$taxes = $order->get_taxes();
+		$tax = array_shift($taxes);
+		if ( isset( $tax ) ) {
+			list($tax_name, $tax_rate) = explode( '|', $tax['name'] );
+		} else {
+			list($tax_name, $tax_rate) = array( NULL, 0 );
+		}
 
 		// Add items
-		$virtual_products = false;
 		$items = $order->get_items();
 		foreach ( $items as $item ) {
-			$transaction_type = WC_QD_Calculate_Tax::get_transaction_type( $item['product_id'] );
-			if ( $transaction_type != 'standard' ) {
-				$virtual_products = true;
-			}
-		
-			$tax = WC_QD_Calculate_Tax::calculate( $transaction_type, $contact->country, $contact->postal_code, $contact->vat_number );
-			if ( $tax->rate == 0 ) {
-				$tax->name = NULL;
-			}
-
 			$new_item = new QuadernoDocumentItem(array(
 				'description' => $item['name'],
 				'quantity' => $order->get_item_count($item),
 				'total_amount' => round($order->get_line_total($item, true) * $exchange_rate, 2),
-				'tax_1_name' => $tax->name,
-				'tax_1_rate' => $tax->rate,
-				'tax_1_country' => $tax->country
+				'tax_1_name' => $tax_name,
+				'tax_1_rate' => $tax_rate,
+				'tax_1_country' => $order->billing_country
 			));
 			$invoice->addItem( $new_item );
 		}
@@ -116,7 +114,7 @@ class WC_QD_Invoice_Manager {
 			add_post_meta( $order->id, '_quaderno_invoice', $invoice->id );
 			add_post_meta( $order->id, '_quaderno_invoice_number', $invoice->number );
 
-			if ( true === $virtual_products ) {
+			if ( true === in_array( $tax['rate_id'], array('quaderno_eservice', 'quaderno_ebook') ) ) {
 				$evidence = new QuadernoEvidence(array(
 					'document_id' => $invoice->id,
 					'billing_country' => $order->billing_country,
