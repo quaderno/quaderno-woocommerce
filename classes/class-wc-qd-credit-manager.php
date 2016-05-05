@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) { 
+if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
@@ -26,18 +26,19 @@ class WC_QD_Credit_Manager {
 			return;
 		}
 
-		$credit = new QuadernoCredit(array(
+		$credit_params = array(
 			'issue_date' => date('Y-m-d'),
 			'currency' => $refund->order_currency,
 			'po_number' => get_post_meta( $order->id, '_order_number_formatted', true ) ?: $order->id,
 			'processor' => 'woocommerce',
-			'processor_id' => $order->id
-		));
+			'processor_id' => $order->id,
+			'payment_method' => self::get_payment_method($order->id)
+		);
 
 		// Add the contact
 		$contact_id = get_user_meta( $order->get_user_id(), '_quaderno_contact', true );
 		if ( !empty( $contact_id ) ) {
-			$contact = QuadernoContact::find( $contact_id );
+			$credit_params['contact_id'] = $contact_id;
 		}
 		else {
 			if ( !empty( $order->billing_company ) ) {
@@ -52,7 +53,7 @@ class WC_QD_Credit_Manager {
 				$contact_name = '';
 			}
 
-			$contact = new QuadernoContact(array(
+			$credit_params['contact'] = array(
 				'kind' => $kind,
 				'first_name' => $first_name,
 				'last_name' => $last_name,
@@ -61,17 +62,15 @@ class WC_QD_Credit_Manager {
 				'street_line_2' => $order->billing_address_2,
 				'city' => $order->billing_city,
 				'postal_code' => $order->billing_postcode,
-				'region' => $order->billing_region,
+				'region' => $order->billing_state,
 				'country' => $order->billing_country,
 				'email' => $order->billing_email,
 				'vat_number' => get_post_meta( $order->id, WC_QD_Vat_Number_Field::META_KEY, true )
-			));
-
-			if ( $contact->save() ){
-				add_user_meta( $order->get_user_id(), '_quaderno_contact', $contact->id, true );
-			}
+			);
 		}
-		$credit->addContact($contact);
+		
+		//Let's create the credit note
+		$credit = new QuadernoCredit($credit_params);
 
 		// Calculate exchange rate
 		$exchange_rate = get_post_meta( $order->id, '_woocs_order_rate', true ) ?: 1;
@@ -97,16 +96,9 @@ class WC_QD_Credit_Manager {
 		));
 		$credit->addItem( $new_item );
 
-		// Add the payment
-		$payment = new QuadernoPayment(array(
-			'date' => date('Y-m-d'),
-			'amount' => $refunded_amount,
-			'payment_method' => self::get_payment_method($order->id)
-		));
-		$credit->addPayment( $payment );
-
 		if ( $credit->save() ) {
 			add_post_meta( $refund->id, '_quaderno_credit', $refund->id );
+			add_user_meta( $order->get_user_id(), '_quaderno_contact', $refund->contact_id, true );
 
 			if ( 'yes' === WC_QD_Integration::$autosend_invoices ) $credit->deliver();
 		}

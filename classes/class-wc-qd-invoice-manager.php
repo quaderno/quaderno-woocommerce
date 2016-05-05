@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) { 
+if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
@@ -26,19 +26,20 @@ class WC_QD_Invoice_Manager {
 			return;
 		}
 
-		$invoice = new QuadernoInvoice(array(
+		$invoice_params = array(
 			'issue_date' => date('Y-m-d'),
 			'currency' => $order->order_currency,
 			'po_number' => get_post_meta( $order->id, '_order_number_formatted', true ) ?: $order->id,
 			'notes' => $order->order_comments,
 			'processor' => 'woocommerce',
-			'processor_id' => $order->id
-		));
+			'processor_id' => $order->id,
+			'payment_method' => self::get_payment_method($order->id)
+		);
 
 		// Add the contact
 		$contact_id = get_user_meta( $order->get_user_id(), '_quaderno_contact', true );
 		if ( !empty( $contact_id ) ) {
-			$contact = QuadernoContact::find( $contact_id );
+			$invoice_params['contact_id'] = $contact_id;
 		}
 		else {
 			if ( !empty( $order->billing_company ) ) {
@@ -53,7 +54,7 @@ class WC_QD_Invoice_Manager {
 				$contact_name = '';
 			}
 
-			$contact = new QuadernoContact(array(
+			$invoice_params['contact'] = array(
 				'kind' => $kind,
 				'first_name' => $first_name,
 				'last_name' => $last_name,
@@ -62,23 +63,25 @@ class WC_QD_Invoice_Manager {
 				'street_line_2' => $order->billing_address_2,
 				'city' => $order->billing_city,
 				'postal_code' => $order->billing_postcode,
-				'region' => $order->billing_region,
+				'region' => $order->billing_state,
 				'country' => $order->billing_country,
 				'email' => $order->billing_email,
 				'vat_number' => get_post_meta( $order->id, WC_QD_Vat_Number_Field::META_KEY, true ),
 				'processor' => 'woocommerce',
 				'processor_id' => $order->get_user_id()
-			));
-
-			if ( $contact->save() ){
-				add_user_meta( $order->get_user_id(), '_quaderno_contact', $contact->id, true );
-			}
+			);
 		}
-		$invoice->addContact( $contact );
+
+		// Let's create the receipt or the invoice
+		if ( $order->get_total() < intval( WC_QD_Integration::$receipts_threshold )) {
+		  $invoice = new QuadernoReceipt($invoice_params);
+		} else {
+		  $invoice = new QuadernoInvoice($invoice_params);
+		}
 
 		// Calculate exchange rate
 		$exchange_rate = get_post_meta( $order->id, '_woocs_order_rate', true ) ?: 1;
-		
+
 		// Calculate taxes
 		$taxes = $order->get_taxes();
 		$tax = array_shift($taxes);
@@ -102,17 +105,10 @@ class WC_QD_Invoice_Manager {
 			$invoice->addItem( $new_item );
 		}
 
-		// Add the payment
-		$payment = new QuadernoPayment(array(
-			'date' => date('Y-m-d'),
-			'amount' => round($order->get_total() * $exchange_rate, 2),
-			'payment_method' => self::get_payment_method($order->id)
-		));
-		$invoice->addPayment( $payment );
-
 		if ( $invoice->save() ) {
 			add_post_meta( $order->id, '_quaderno_invoice', $invoice->id );
 			add_post_meta( $order->id, '_quaderno_invoice_number', $invoice->number );
+			add_user_meta( $order->get_user_id(), '_quaderno_contact', $invoice->contact_id, true );
 
 			if ( true === in_array( $tax['rate_id'], array('quaderno_eservice', 'quaderno_ebook') ) ) {
 				$evidence = new QuadernoEvidence(array(

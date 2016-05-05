@@ -8,6 +8,7 @@ class WC_QD_Integration extends WC_Integration {
 
 	public static $api_token = null;
 	public static $api_url = null;
+	public static $receipts_threshold = 0;
 	public static $autosend_invoices = null;
 
 	/**
@@ -26,6 +27,7 @@ class WC_QD_Integration extends WC_Integration {
 
 		self::$api_token = $this->get_option( 'api_token' );
 		self::$api_url  = $this->get_option( 'api_url' );
+		self::$receipts_threshold  = $this->get_option( 'receipts_threshold' );
 		self::$autosend_invoices  = $this->get_option( 'autosend_invoices' );
 
 		// Hooks
@@ -52,9 +54,15 @@ class WC_QD_Integration extends WC_Integration {
 				'description' => __( 'Get this URL from your Quaderno account.', 'woocommerce-quaderno' ),
 				'type'        => 'text'
 			),
+			'receipts_threshold'  => array(
+				'title'       => __( 'Receipts threshold', 'woocommerce-quaderno' ),
+				'description' => __( 'All purchases under this threshold will generate a sales receipt, instead of an invoice.', 'woocommerce-quaderno' ),
+				'type'        => 'text'
+			),
 			'autosend_invoices' => array(
-				'title'       => __( 'Autosend Invoices', 'woocommerce-quaderno' ),
-				'description' => __( 'Send invoices to the customers automatically when the order status is changed to complete.', 'woocommerce-quaderno' ),
+				'title'       => __( 'Delivery', 'woocommerce-quaderno' ),
+				'label'       => __( 'Autosend sales receipts and invoices', 'woocommerce-quaderno' ),
+				'description' => __( 'Check this to automatically send your sales receipts and invoices.', 'woocommerce-quaderno' ),
 				'type'        => 'checkbox'
 			)
 		);
