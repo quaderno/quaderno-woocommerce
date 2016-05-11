@@ -4,21 +4,21 @@
  * Plugin Name: WooCommerce Quaderno
  * Plugin URI: https://wordpress.org/plugins/woocommerce-quaderno/
  * Description: Automatically send customizable invoices and receipts with every order in your WooCommerce store.
- * Version: 1.7.0
+ * Version: 1.7.1
  * Author: Quaderno
  * Author URI: https://quaderno.io/
  * License: GPL v3
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -26,7 +26,7 @@
 /**
  * Prevent data leaks
  */
-if ( ! defined( 'ABSPATH' ) ) { 
+if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
@@ -130,30 +130,30 @@ class WooCommerce_Quaderno {
 
 		// Setup the autoloader
 		self::setup_autoloader();
-		
+
 		// The VAT number Field
 		$vat_number_field = new WC_QD_Vat_Number_Field();
 		$vat_number_field->setup();
-		
+
 		// Setup the Checkout VAT stuff
 		$checkout_vat = new WC_QD_Checkout_Vat();
 		$checkout_vat->setup();
-		
+
 		// Setup Invoice manager
 		$invoice_manager = new WC_QD_Invoice_Manager();
 		$invoice_manager->setup();
-		
+
 		// Setup Credit manager
 		$credit_manager = new WC_QD_Credit_Manager();
 		$credit_manager->setup();
-		
+
 		// Admin only classes
 		if ( is_admin() ) {
 
 			// The admin E-Book Field
 			$admin_ebook = new WC_QD_Admin_Ebook();
 			$admin_ebook->setup();
-			
+
 			// Filter plugin links
 			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_links' ) );
 		}
@@ -198,7 +198,7 @@ class WooCommerce_Quaderno {
 	public function enqueue_scripts() {
 		if ( is_checkout() ) {
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-			
+
 			wp_enqueue_script(
 				'wc_qd_checkout_js',
 				plugins_url( '/assets/js/checkout' . $suffix . '.js', WooCommerce_Quaderno::get_plugin_file() ),
@@ -207,7 +207,7 @@ class WooCommerce_Quaderno {
 
 		}
 	}
-	
+
 }
 
 // The 'main' function
@@ -216,4 +216,3 @@ function __woocommerce_quaderno_main() {
 }
 
 add_action( 'plugins_loaded', '__woocommerce_quaderno_main' );
-

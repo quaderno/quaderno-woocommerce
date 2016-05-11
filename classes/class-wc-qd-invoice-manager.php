@@ -32,7 +32,7 @@ class WC_QD_Invoice_Manager {
 			'po_number' => get_post_meta( $order->id, '_order_number_formatted', true ) ?: $order->id,
 			'notes' => $order->order_comments,
 			'processor' => 'woocommerce',
-			'processor_id' => $order->id,
+			'processor_id' => $order->get_transaction_id() ?: $order->id,
 			'payment_method' => self::get_payment_method($order->id)
 		);
 

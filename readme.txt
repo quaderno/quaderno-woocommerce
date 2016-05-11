@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: woocommerce, quaderno, woocommerce quaderno, vat, eu vat, vatmoss, vat moss, european vat, eu tax, european tax, billing, invoices, receipts
 Requires at least: 3.7
 Tested up to: 4.5
-Stable tag: 1.7.0
+Stable tag: 1.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,7 +20,7 @@ Quaderno for WooCommerce automatically sends beautiful invoices and receipts tha
 * **Send credit notes** for WooCoomerce refunds as well.
 * **Comply with local rules** in US, Canada, Australia, New Zealand, Singapore, and the European Union.
 * **Comply with EU VAT rules** for digital goods & services.
-* Send invoices in **multiple currencies and languages**. 
+* Send invoices in **multiple currencies and languages**.
 * **Customize your invoices** with your logo and business details.
 * **Download and print** multiple invoices as PDF documents in bulk.
 * Manage your own invoices together with invoices from WooCommerce in one place.
@@ -69,6 +69,7 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 
 = 1.7.0 =
 * Send sales receipts
+* Track transaction ID
 
 = 1.6.0 =
 * Improve invoices and credits generation

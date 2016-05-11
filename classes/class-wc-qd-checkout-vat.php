@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) { 
+if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
@@ -35,7 +35,7 @@ class WC_QD_Checkout_Vat {
 
 			// Create tax manager object
 			$tax_manager = new WC_QD_Tax_Manager();
-			
+
 			foreach ( $items as $key => $item ) {
 				// Don't modify tax rates for default products
 				if ( 'standard' == $item['product_type'] ) {
@@ -117,10 +117,10 @@ class WC_QD_Checkout_Vat {
 				if ( 'standard' == $transaction_type ) {
 					continue;
 				}
-				
+
 				// Calculate taxes
 				$tax = WC_QD_Calculate_Tax::calculate($transaction_type, $country);
-				
+
 				$tax_manager->add_product_tax_class( $item_id, $transaction_type );
 				$tax_manager->add_tax_rate( $transaction_type, $tax->rate, $tax->name );
 				$items['order_item_tax_class'][ $item_id ] = $tax_manager->clean_tax_class( $transaction_type );
@@ -140,7 +140,8 @@ class WC_QD_Checkout_Vat {
 	public function set_default_customer_location( $default ) {
 		$ip = isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR'];
 
-		$ip_data = json_decode( file_get_contents( "http://www.geoplugin.net/json.gp?ip=" . $ip ) );
+    $context = stream_context_create( array( "http" => array( "header" => "User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36" )));
+		$ip_data = json_decode( file_get_contents( "http://www.geoplugin.net/json.gp?ip=" . $ip, false, $context ) );
 		if ( $ip_data && $ip_data->geoplugin_countryCode != null ) {
 			return $ip_data->geoplugin_countryCode;
 		}
