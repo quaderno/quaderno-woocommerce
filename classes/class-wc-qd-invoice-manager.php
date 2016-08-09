@@ -67,6 +67,7 @@ class WC_QD_Invoice_Manager {
 				'country' => $order->billing_country,
 				'email' => $order->billing_email,
 				'vat_number' => get_post_meta( $order->id, WC_QD_Vat_Number_Field::META_KEY, true ),
+				'tax_id' => get_post_meta( $order->id, WC_QD_Tax_Id_Field::META_KEY, true ),
 				'processor' => 'woocommerce',
 				'processor_id' => $order->get_user_id()
 			);

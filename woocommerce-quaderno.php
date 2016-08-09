@@ -4,7 +4,7 @@
  * Plugin Name: WooCommerce Quaderno
  * Plugin URI: https://wordpress.org/plugins/woocommerce-quaderno/
  * Description: Automatically send customizable invoices and receipts with every order in your WooCommerce store.
- * Version: 1.7.1
+ * Version: 1.8.0
  * Author: Quaderno
  * Author URI: https://quaderno.io/
  * License: GPL v3
@@ -134,6 +134,10 @@ class WooCommerce_Quaderno {
 		// The VAT number Field
 		$vat_number_field = new WC_QD_Vat_Number_Field();
 		$vat_number_field->setup();
+
+		// The Tax ID Field
+		$tax_id_field = new WC_QD_Tax_Id_Field();
+		$tax_id_field->setup();
 
 		// Setup the Checkout VAT stuff
 		$checkout_vat = new WC_QD_Checkout_Vat();

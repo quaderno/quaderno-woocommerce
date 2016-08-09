@@ -93,7 +93,7 @@ class WC_QD_Vat_Number_Field {
 	}
 
 	/**
-	 * Outputs a checkout/address form field.
+	 * Outputs a hidden form field.
 	 *
 	 * @param string $field
 	 * @param string $key
