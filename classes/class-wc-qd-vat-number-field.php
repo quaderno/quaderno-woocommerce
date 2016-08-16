@@ -29,7 +29,7 @@ class WC_QD_Vat_Number_Field {
 	public function print_field() {
 		woocommerce_form_field( 'vat_number', array(
 			'type'   => 'text',
-			'label'  => __( 'VAT Number', 'woocommerce-quaderno' ),
+			'label'  => __( 'VAT number', 'woocommerce-quaderno' ),
 			'class'  => array( 'update_totals_on_change' )
 		), '' );
 
@@ -75,7 +75,7 @@ class WC_QD_Vat_Number_Field {
 			}
 
 			if ( $valid_number != 1 ) {
-				wc_add_notice( __( '<strong>VAT Number</strong> is not valid' ), 'error' );
+				wc_add_notice( __( '<strong>VAT number</strong> is not valid' ), 'error' );
 			}
 		}
 	}

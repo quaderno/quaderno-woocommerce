@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: woocommerce, quaderno, woocommerce quaderno, vat, eu vat, vatmoss, vat moss, european vat, eu tax, european tax, billing, invoices, receipts
 Requires at least: 3.7
 Tested up to: 4.5
-Stable tag: 1.8.0
+Stable tag: 1.8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,9 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 
 == Changelog ==
 
+= 1.8.1 =
+* Translations to German, Dutch, and French
+
 = 1.8.0 =
 * Collect Tax ID for customers in Spain, Belgium, Germany, and Italy
 
@@ -123,3 +126,14 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 
 = 1.0.0 =
 * First version
+
+== Translations ==
+
+* English - default, always included
+* Spanish: Español - siempre incluido
+* German: Deutsch - translated by [Alex Gahr](http://alexgahr.com)
+* French: Français - translated by [Sébastien Jacobs](https://twitter.com/innovatiementor)
+* Dutch: Nederlands - translated by [Sébastien Jacobs](https://twitter.com/innovatiementor)
+
+*Note:* This plugin is fully localized. This is very important for all users worldwide. So please contribute your language to the plugin to make it even more useful. For translating we recommend the ["Poedit Editor"](http://www.poedit.net/).
+

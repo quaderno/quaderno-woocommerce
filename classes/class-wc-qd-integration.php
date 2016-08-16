@@ -16,7 +16,7 @@ class WC_QD_Integration extends WC_Integration {
 	 */
 	public function __construct() {
 		$this->id                 = 'quaderno';
-		$this->method_title       = __( 'Quaderno', 'woocommerce-quaderno' );
+		$this->method_title       = 'Quaderno';
 		$this->method_description = __( sprintf( 'Automatically send customizable invoices and receipts with every order in your store. Comply with local rules in US, Canada, Australia, New Zealand, Singapore, and the European Union.%sNote: You need a %sQuaderno account%s for this extension to work.', '<br>', '<a href="' . WooCommerce_Quaderno::QUADERNO_URL . '/signup" target="_blank">', '</a>' ), 'woocommerce-quaderno' );
 
 		// Load admin form
