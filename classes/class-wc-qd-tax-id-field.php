@@ -21,7 +21,7 @@ class WC_QD_Tax_Id_Field {
 	}
 
 	/**
-	 * Print the VAT field
+	 * Print the Tax ID field
 	 *
 	 * @since 1.8
 	 */
@@ -33,29 +33,30 @@ class WC_QD_Tax_Id_Field {
 	}
 
 	/**
-	 * Save the VAT number to the order
+	 * Save the Tax ID number to the order
 	 *
 	 * @param $order_id
 	 */
 	public function save_field( $order_id ) {
 		if ( ! empty( $_POST['tax_id'] ) ) {
-			// Save the VAT number
+			// Save the Tax ID number
 			update_post_meta( $order_id, self::META_KEY, sanitize_text_field( $_POST['tax_id'] ) );
 		}
 	}
 
 	/**
-	 * Validate the VAT field
+	 * Validate the Tax ID field
 	 *
 	 * @since 1.8
 	 */
 	public function validate_field() {
-		if (  ! empty( $_POST['billing_company'] ) && empty( $_POST['tax_id'] ) ) {
+	  $countries = ['BE', 'DE', 'ES', 'IT'];
+		if (  in_array( $_POST['billing_country'], $countries ) && !empty( $_POST['billing_company'] ) && empty( $_POST['tax_id'] ) ) {
 			wc_add_notice( __( '<strong>Tax ID</strong> is a required field for companies' ), 'error' );
 		}
 	}
 	/**
-	 * Display the VAT field in the backend
+	 * Display the Tax ID field in the backend
 	 *
 	 * @param $order
 	 */

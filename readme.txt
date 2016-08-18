@@ -67,6 +67,9 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 
 == Changelog ==
 
+= 1.8.2 =
+* Fix: Validate Tax ID only for certain countries
+
 = 1.8.1 =
 * Translations to German, Dutch, and French
 
@@ -132,8 +135,8 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 * English - default, always included
 * Spanish: Español - siempre incluido
 * German: Deutsch - translated by [Alex Gahr](http://alexgahr.com)
-* French: Français - translated by [Sébastien Jacobs](https://twitter.com/innovatiementor)
-* Dutch: Nederlands - translated by [Sébastien Jacobs](https://twitter.com/innovatiementor)
+* French: Français - translated by [Sébastien Jacobs](http://xando.be)
+* Dutch: Nederlands - translated by [Sébastien Jacobs](http://xando.be)
 
 *Note:* This plugin is fully localized. This is very important for all users worldwide. So please contribute your language to the plugin to make it even more useful. For translating we recommend the ["Poedit Editor"](http://www.poedit.net/).
 
