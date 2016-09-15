@@ -138,10 +138,18 @@ class WC_QD_Checkout_Vat {
 	 * @param string
 	 */
 	public function set_default_customer_location( $default ) {
-		$ip = isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR'];
+		$ip_address = isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR'];
 
-    $context = stream_context_create( array( "http" => array( "header" => "User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36" )));
-		$ip_data = json_decode( file_get_contents( "http://www.geoplugin.net/json.gp?ip=" . $ip, false, $context ) );
+		// create curl resource
+    $ch = curl_init();
+    curl_setopt( $ch, CURLOPT_URL, "http://www.geoplugin.net/json.gp?ip=" . $ip_address );
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
+    curl_setopt( $ch, CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.A.B.C Safari/525.13' );
+    $output = curl_exec( $ch );
+    curl_close( $ch );
+
+		// decode data
+		$ip_data = json_decode( $output );
 		if ( $ip_data && $ip_data->geoplugin_countryCode != null ) {
 			return $ip_data->geoplugin_countryCode;
 		}
