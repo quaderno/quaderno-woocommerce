@@ -37,6 +37,9 @@ class WC_QD_Invoice_Manager {
 		);
 
 		// Add the contact
+		$vat_number = get_post_meta( $order->id, WC_QD_Vat_Number_Field::META_KEY, true );
+		$tax_id = get_post_meta( $order->id, WC_QD_Tax_Id_Field::META_KEY, true );
+
 		$contact_id = get_user_meta( $order->get_user_id(), '_quaderno_contact', true );
 		if ( !empty( $contact_id ) ) {
 			$invoice_params['contact_id'] = $contact_id;
@@ -66,15 +69,15 @@ class WC_QD_Invoice_Manager {
 				'region' => $order->billing_state,
 				'country' => $order->billing_country,
 				'email' => $order->billing_email,
-				'vat_number' => get_post_meta( $order->id, WC_QD_Vat_Number_Field::META_KEY, true ),
-				'tax_id' => get_post_meta( $order->id, WC_QD_Tax_Id_Field::META_KEY, true ),
+				'vat_number' => $vat_number,
+				'tax_id' => $tax_id,
 				'processor' => 'woocommerce',
 				'processor_id' => $order->get_user_id()
 			);
 		}
 
 		// Let's create the receipt or the invoice
-		if ( $order->get_total() < intval( WC_QD_Integration::$receipts_threshold )) {
+		if ( $order->get_total() < intval( WC_QD_Integration::$receipts_threshold ) && empty( $vat_number ) && empty( $tax_id ) ) {
 		  $invoice = new QuadernoReceipt($invoice_params);
 		} else {
 		  $invoice = new QuadernoInvoice($invoice_params);
