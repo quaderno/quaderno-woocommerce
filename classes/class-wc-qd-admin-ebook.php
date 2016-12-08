@@ -31,8 +31,8 @@ class WC_QD_Admin_Ebook {
 		$options['ebook'] = array(
 			'id'            => '_ebook',
 			'wrapper_class' => 'show_if_simple',
-			'label'         => __( 'E-Book', 'woocommerce-quaderno' ),
-			'description'   => __( 'E-books are always virtual products but may have different tax rules.', 'woocommerce-quaderno' ),
+			'label'         => esc_html__( 'E-Book', 'woocommerce-quaderno' ),
+			'description'   => esc_html__( 'E-books are always virtual products but may have different tax rules.', 'woocommerce-quaderno' ),
 			'default'       => 'no'
 		);
 

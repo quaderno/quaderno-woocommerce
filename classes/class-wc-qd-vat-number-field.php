@@ -29,7 +29,7 @@ class WC_QD_Vat_Number_Field {
 	public function print_field() {
 		woocommerce_form_field( 'vat_number', array(
 			'type'   => 'text',
-			'label'  => __( 'VAT number', 'woocommerce-quaderno' ),
+			'label'  => esc_html__( 'VAT number', 'woocommerce-quaderno' ),
 			'class'  => array( 'update_totals_on_change' )
 		), '' );
 
@@ -75,7 +75,7 @@ class WC_QD_Vat_Number_Field {
 			}
 
 			if ( $valid_number != 1 ) {
-				wc_add_notice( __( '<strong>VAT number</strong> is not valid' ), 'error' );
+				wc_add_notice( esc_html__( '<strong>VAT number</strong> is not valid' ), 'error' );
 			}
 		}
 	}
@@ -88,7 +88,7 @@ class WC_QD_Vat_Number_Field {
 	public function display_field( $order ) {
 		$vat_number = get_post_meta( $order->id, self::META_KEY, true );
 		if ( '' != $vat_number ) {
-			echo '<p><strong style="display:block;">' . __( 'VAT number', 'woocommerce-quaderno' ) . ':</strong> ' . $vat_number . '</p>';
+			echo '<p><strong style="display:block;">' . esc_html__( 'VAT number', 'woocommerce-quaderno' ) . ':</strong> ' . $vat_number . '</p>';
 		}
 	}
 
