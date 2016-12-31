@@ -1,16 +1,15 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2016-08-16 16:05+0300\n"
-"PO-Revision-Date: 2016-05-05 20:38-0000\n"
-"Last-Translator: hello@quaderno.io\n"
+"POT-Creation-Date: 2016-12-31 14:06-0000\n"
+"PO-Revision-Date: 2016-12-31 14:06-0000\n"
+"Last-Translator:  <hello@quaderno.io>\n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.6.9\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__\n"
@@ -76,12 +75,16 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
+#: ../classes/class-wc-qd-invoice-manager.php:123
+msgid "Shipping"
+msgstr ""
+
 #: ../classes/class-wc-qd-tax-id-field.php:31
-#: ../classes/class-wc-qd-tax-id-field.php:65
+#: ../classes/class-wc-qd-tax-id-field.php:66
 msgid "Tax ID"
 msgstr ""
 
-#: ../classes/class-wc-qd-tax-id-field.php:54
+#: ../classes/class-wc-qd-tax-id-field.php:55
 msgid "<strong>Tax ID</strong> is a required field for companies"
 msgstr ""
 

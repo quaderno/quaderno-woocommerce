@@ -90,23 +90,44 @@ class WC_QD_Invoice_Manager {
 		$taxes = $order->get_taxes();
 		$tax = array_shift($taxes);
 		if ( isset( $tax ) ) {
-			list($tax_name, $tax_rate) = explode( '|', $tax['name'] );
-		} else {
-			list($tax_name, $tax_rate) = array( NULL, 0 );
+			$tax_info = explode( '|', $tax['name'] );
 		}
+		$tax_name = isset( $tax_info[0] ) ? $tax_info[0] : NULL;
+		$tax_rate = isset( $tax_info[1] ) ? $tax_info[1] : 0;
 
 		// Add items
 		$items = $order->get_items();
 		foreach ( $items as $item ) {
 			$new_item = new QuadernoDocumentItem(array(
 				'description' => $item['name'],
-				'quantity' => $order->get_item_count($item),
+				'quantity' => $item['qty'],
 				'total_amount' => round($order->get_line_total($item, true) * $exchange_rate, 2),
 				'tax_1_name' => $tax_name,
 				'tax_1_rate' => $tax_rate,
 				'tax_1_country' => $order->billing_country
 			));
 			$invoice->addItem( $new_item );
+		}
+
+		// Add shipping
+		if ( $order->order_shipping > 0 ) {
+			// Calculate shipping tax
+			$shipping_tax = $order->get_shipping_tax();
+			if ( isset( $shipping_tax ) ) {
+				$tax_info = explode( '|', $shipping_tax['name'] );
+			}
+			$tax_name = isset( $tax_info[0] ) ? $tax_info[0] : NULL;
+			$tax_rate = isset( $tax_info[1] ) ? $tax_info[1] : 0;
+
+			$shipping = new QuadernoDocumentItem(array(
+				'description' => esc_html__('Shipping', 'woocommerce-quaderno' ),
+				'quantity' => 1,
+				'total_amount' => round($order->order_shipping * $exchange_rate, 2),
+				'tax_1_name' => $tax_name,
+				'tax_1_rate' => $tax_rate,
+				'tax_1_country' => $order->billing_country
+			));
+			$invoice->addItem( $shipping );
 		}
 
 		if ( $invoice->save() ) {

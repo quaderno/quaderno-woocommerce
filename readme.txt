@@ -68,28 +68,30 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 == Changelog ==
 
 = 1.8 =
-* Collect Tax ID for customers in Spain, Belgium, Germany, and Italy
-* Translations to German, Dutch, and French
+* New: Collect Tax ID for customers in Spain, Belgium, Germany, and Italy
+* New: Translations to German, Dutch, and French
 * WordPress 4.7 compatibility
+* New: Register shipping costs
+* Fix: Unit price is not correct when ordering more than 1 product
 
 = 1.7 =
-* Send sales receipts
-* Track transaction ID
+* New: Send sales receipts
+* New: Track transaction ID
 
 = 1.6 =
-* Improve invoices and credits generation
-* Stop base taxes being taken off when dealing with out of base locations
+* Improvement: Invoices and credits generation
+* New: Stop base taxes being taken off when dealing with out of base locations
 
 = 1.5.2 =
 * Fix: javascript was not updated
 
 = 1.5.1 =
-* Hide VAT Number field when customer is based in the store country
+* Improvement: Hide VAT Number field when customer is based in the store country
 
 = 1.5.0 =
-* Validate EU VAT Numbers
-* Compatibility with Sequential Order Numbers Pro
-* Track different payment methods on Quaderno
+* New: Validate EU VAT Numbers
+* New: Compatibility with Sequential Order Numbers Pro
+* New: Track different payment methods on Quaderno
 
 = 1.4.2 =
 * Fix: issue when postal code contains whitespaces
@@ -97,31 +99,31 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 = 1.4.0 =
 * Refactoring code
 * Fix: issue in sending documents
-* Update descriptions
+* Improvement: Update descriptions
 
 = 1.3.2 =
 * Minor fixes to improve security
 
 = 1.3.1 =
-* Use wp_remote_request instead of curl
+* Improvement: Use wp_remote_request instead of curl
 
 = 1.3.0 =
-* Send credit notes for WooCommerce refunds
+* New: Send credit notes for WooCommerce refunds
 
 = 1.2.3 =
-* Fix unit price calculation
+* Fix: Unit price calculation
 
 = 1.2.0 =
-* Tag invoices from WooCommerce
+* New: Tag invoices from WooCommerce
 
 = 1.1.1 =
-* Fix typo and test on Wordpress 4.3
+* Fix: Typo and test on Wordpress 4.3
 
 = 1.1.0 =
-* Integration with WooCommerce Currency Switcher
+* New: Integration with WooCommerce Currency Switcher
 
 = 1.0.1 =
-* Show generic tax name when no taxes apply
+* New: Show generic tax name when no taxes apply
 
 = 1.0.0 =
 * First version
