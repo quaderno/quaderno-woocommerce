@@ -79,11 +79,8 @@ class WC_QD_Credit_Manager {
 		// Calculate taxes
 		$taxes = $order->get_taxes();
 		$tax = array_shift($taxes);
-		if ( isset( $tax ) ) {
-			list($tax_name, $tax_rate) = explode( '|', $tax['name'] );
-		} else {
-			list($tax_name, $tax_rate) = array( NULL, 0 );
-		}
+		$tax_name = WC_Tax::get_rate_label( $tax['rate_id'] ) ?: NULL;
+		$tax_rate = floatval( WC_Tax::get_rate_percent( $tax['rate_id'] )) ?: 0;
 
 		// Add item
 		$refunded_amount = -round($refund->get_total() * $exchange_rate, 2);

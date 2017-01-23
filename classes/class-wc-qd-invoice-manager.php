@@ -89,11 +89,8 @@ class WC_QD_Invoice_Manager {
 		// Calculate taxes
 		$taxes = $order->get_taxes();
 		$tax = array_shift($taxes);
-		if ( isset( $tax ) ) {
-			$tax_info = explode( '|', $tax['name'] );
-		}
-		$tax_name = isset( $tax_info[0] ) ? $tax_info[0] : NULL;
-		$tax_rate = isset( $tax_info[1] ) ? $tax_info[1] : 0;
+		$tax_name = WC_Tax::get_rate_label( $tax['rate_id'] ) ?: NULL;
+		$tax_rate = floatval( WC_Tax::get_rate_percent( $tax['rate_id'] )) ?: 0;
 
 		// Add items
 		$items = $order->get_items();
