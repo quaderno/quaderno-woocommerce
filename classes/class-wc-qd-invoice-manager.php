@@ -89,8 +89,13 @@ class WC_QD_Invoice_Manager {
 		// Calculate taxes
 		$taxes = $order->get_taxes();
 		$tax = array_shift($taxes);
-		$tax_name = WC_Tax::get_rate_label( $tax['rate_id'] ) ?: NULL;
-		$tax_rate = floatval( WC_Tax::get_rate_percent( $tax['rate_id'] )) ?: 0;
+		if ( !isset( $tax ) ) {
+			list($tax_name, $tax_rate) = array( NULL, 0 );
+		} else if ( in_array( $tax['rate_id'], array('quaderno_eservice', 'quaderno_ebook') ) ) {
+			list($tax_name, $tax_rate) = explode( '|', $tax['name'] );
+		} else {
+			list($tax_name, $tax_rate) = array( WC_Tax::get_rate_label( $tax['rate_id'] ), floatval( WC_Tax::get_rate_percent( $tax['rate_id'] )) );
+		}
 
 		// Add items
 		$items = $order->get_items();
