@@ -86,50 +86,44 @@ class WC_QD_Invoice_Manager {
 		// Calculate exchange rate
 		$exchange_rate = get_post_meta( $order->id, '_woocs_order_rate', true ) ?: 1;
 
-		// Calculate taxes
-		$taxes = $order->get_taxes();
-		$tax = array_shift($taxes);
-		if ( !isset( $tax ) ) {
-			list($tax_name, $tax_rate) = array( NULL, 0 );
-		} else if ( in_array( $tax['rate_id'], array('quaderno_eservice', 'quaderno_ebook') ) ) {
-			list($tax_name, $tax_rate) = explode( '|', $tax['name'] );
-		} else {
-			list($tax_name, $tax_rate) = array( WC_Tax::get_rate_label( $tax['rate_id'] ), floatval( WC_Tax::get_rate_percent( $tax['rate_id'] )) );
-		}
-
-		// Add items
+		// Add line items
+		$digital_products = false;
 		$items = $order->get_items();
 		foreach ( $items as $item ) {
+			$line_tax_data = maybe_unserialize( $item['line_tax_data'] );
+			$rate_id = key( $line_tax_data['total'] );
+			if ( true == in_array( $rate_id, array('quaderno_eservice', 'quaderno_ebook') )) {
+				$digital_products = true;
+			}
+			$tax = self::get_tax( $rate_id, $order->billing_country );
+
 			$new_item = new QuadernoDocumentItem(array(
 				'description' => $item['name'],
 				'quantity' => $item['qty'],
 				'total_amount' => round($order->get_line_total($item, true) * $exchange_rate, 2),
-				'tax_1_name' => $tax_name,
-				'tax_1_rate' => $tax_rate,
+				'tax_1_name' => $tax['name'],
+				'tax_1_rate' => $tax['rate'],
 				'tax_1_country' => $order->billing_country
 			));
 			$invoice->addItem( $new_item );
 		}
 
-		// Add shipping
-		if ( $order->order_shipping > 0 ) {
-			// Calculate shipping tax
-			$shipping_tax = $order->get_shipping_tax();
-			if ( isset( $shipping_tax ) ) {
-				$tax_info = explode( '|', $shipping_tax['name'] );
-			}
-			$tax_name = isset( $tax_info[0] ) ? $tax_info[0] : NULL;
-			$tax_rate = isset( $tax_info[1] ) ? $tax_info[1] : 0;
+		// Add shipping items
+		$items = $order->get_items('shipping');
+		foreach ( $items as $shipping ) {
+			$shipping_tax_data = maybe_unserialize( $shipping['taxes'] );
+			$rate_id = key( $shipping_tax_data );
+			$tax = self::get_tax( $rate_id );
 
-			$shipping = new QuadernoDocumentItem(array(
+			$new_item = new QuadernoDocumentItem(array(
 				'description' => esc_html__('Shipping', 'woocommerce-quaderno' ),
 				'quantity' => 1,
-				'total_amount' => round($order->order_shipping * $exchange_rate, 2),
-				'tax_1_name' => $tax_name,
-				'tax_1_rate' => $tax_rate,
+				'unit_price' => round( $order->order_shipping * $exchange_rate, 2),
+				'tax_1_name' => $tax['name'],
+				'tax_1_rate' => $tax['rate'],
 				'tax_1_country' => $order->billing_country
 			));
-			$invoice->addItem( $shipping );
+			$invoice->addItem( $new_item );
 		}
 
 		if ( $invoice->save() ) {
@@ -137,7 +131,7 @@ class WC_QD_Invoice_Manager {
 			add_post_meta( $order->id, '_quaderno_invoice_number', $invoice->number );
 			add_user_meta( $order->get_user_id(), '_quaderno_contact', $invoice->contact_id, true );
 
-			if ( true === in_array( $tax['rate_id'], array('quaderno_eservice', 'quaderno_ebook') ) ) {
+			if ( true === $digital_products ) {
 				$evidence = new QuadernoEvidence(array(
 					'document_id' => $invoice->id,
 					'billing_country' => $order->billing_country,
@@ -175,6 +169,19 @@ class WC_QD_Invoice_Manager {
 				$method = 'credit_card';
 		}
 		return $method;
+	}
+	
+	public function get_tax( $rate_id, $country = '' ) {
+		if ( !isset( $rate_id ) ) {
+			list($tax_name, $tax_rate) = array( NULL, 0 );
+		} else if ( in_array( $rate_id, array('quaderno_eservice', 'quaderno_ebook') ) ) {
+			$tax = WC_QD_Calculate_Tax::calculate( str_replace( 'quaderno_', '', $rate_id ), $country );
+			list($tax_name, $tax_rate) = array( $tax->name, $tax->rate );
+		} else {
+			list($tax_name, $tax_rate) = array( WC_Tax::get_rate_label( $rate_id ), floatval( WC_Tax::get_rate_percent( $rate_id )));
+		}
+		
+		return array( 'name' => $tax_name, 'rate' => $tax_rate );
 	}
 
 }
