@@ -22,7 +22,7 @@ class WC_QD_Credit_Manager {
 
 		// Return if an credit has already been issued for this refund
 		$credit_id = get_post_meta( $refund->id, '_quaderno_credit', true );
-		if ( !empty( $credit_id ) ) {
+		if ( !empty( $credit_id ) || $order->get_total() == 0 ) {
 			return;
 		}
 
