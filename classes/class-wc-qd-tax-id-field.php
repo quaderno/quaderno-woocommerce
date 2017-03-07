@@ -50,11 +50,12 @@ class WC_QD_Tax_Id_Field {
 	 * @since 1.8
 	 */
 	public function validate_field() {
-	  $countries = ['BE', 'DE', 'ES', 'IT'];
+	  $countries = array('BE', 'DE', 'ES', 'IT');
 		if (  in_array( $_POST['billing_country'], $countries ) && !empty( $_POST['billing_company'] ) && empty( $_POST['tax_id'] ) ) {
 			wc_add_notice( esc_html__( '<strong>Tax ID</strong> is a required field for companies' ), 'error' );
 		}
 	}
+
 	/**
 	 * Display the Tax ID field in the backend
 	 *
