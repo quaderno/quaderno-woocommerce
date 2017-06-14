@@ -3,8 +3,8 @@ Author URI: http://quaderno.io
 Contributors: polimorfico
 Tags: woocommerce, quaderno, woocommerce quaderno, vat, eu vat, vatmoss, vat moss, european vat, eu tax, european tax, billing, invoices, receipts
 Requires at least: 3.7
-Tested up to: 4.7
-Stable tag: 1.8.11
+Tested up to: 4.8
+Stable tag: 1.8.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,12 +70,13 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 = 1.8 =
 * New: Collect Tax ID for customers in Spain, Belgium, Germany, and Italy
 * New: Translations to German, Dutch, and French
-* WordPress 4.7 compatibility
+* New: WordPress 4.7 compatibility
 * New: Register shipping costs
 * Fix: Unit price is not correct when ordering more than 1 product
 * New: Manage tax rates for physical products and shipping
 * New: Do not issue invoices for free orders
 * Fix: Syntax error for PHP version under 5.4
+* New: WordPress 4.8 compatibility
 
 = 1.7 =
 * New: Send sales receipts
