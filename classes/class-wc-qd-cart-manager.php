@@ -33,7 +33,7 @@ class WC_QD_Cart_Manager {
 
 		if ( count( $cart ) > 0 ) {
 			foreach ( $cart as $cart_key => $cart_item ) {
-				$id = ( ( 'variation' === $cart_item['data']->product_type ) ? $cart_item['variation_id'] : $cart_item['product_id'] );
+				$id = ( ( 'variation' === $cart_item['data']->get_type() ) ? $cart_item['variation_id'] : $cart_item['product_id'] );
 
 				// Get the transaction type
 				$transaction_type = WC_QD_Calculate_Tax::get_transaction_type( $cart_item['product_id'] );

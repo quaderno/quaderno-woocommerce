@@ -46,7 +46,7 @@ class WC_QD_Calculate_Tax {
 	 * @return Tax
 	 */
 	public static function calculate( $transaction_type, $country, $postal_code = '', $vat_number = '' ) {
-		$params = array( 
+		$params = array(
 			'country' => $country,
 			'postal_code' => urlencode($postal_code),
 			'vat_number' => urlencode($vat_number),

@@ -46,7 +46,7 @@ class QuadernoRequest {
 
 		// Add the request body if this is a GET request
 		if ( 'GET' == $this->http_method && ! is_null( $this->request_body ) && is_array( $this->request_body ) && count( $this->request_body ) > 0 ) {
-			$url .= '?' . build_query( $this->request_body );
+			$url .= '?' . build_query($this->request_body);
 		}
 
 		return $url;
@@ -64,7 +64,7 @@ class QuadernoRequest {
   	);
 
   	// Add the request body if we've got one
-  	if ( !is_null( $this->request_body ) && is_array( $this->request_body ) && count( $this->request_body ) > 0 ) {
+  	if ( 'GET' != $this->http_method && !is_null( $this->request_body ) && is_array( $this->request_body ) && count( $this->request_body ) > 0 ) {
   		$args['body'] = json_encode( $this->request_body );
   	}
 

@@ -86,7 +86,7 @@ class WC_QD_Vat_Number_Field {
 	 * @param $order
 	 */
 	public function display_field( $order ) {
-		$vat_number = get_post_meta( $order->id, self::META_KEY, true );
+		$vat_number = get_post_meta( $order->get_id(), self::META_KEY, true );
 		if ( '' != $vat_number ) {
 			echo '<p><strong style="display:block;">' . esc_html__( 'VAT number', 'woocommerce-quaderno' ) . ':</strong> ' . $vat_number . '</p>';
 		}

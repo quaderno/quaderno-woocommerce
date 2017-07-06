@@ -26,7 +26,7 @@ class WC_QD_Tax_Manager {
 	private function setup() {
 
 		// Override the product tax class
-		add_filter( 'woocommerce_product_tax_class', array( $this, 'override_product_tax_class' ), 10, 2 );
+		add_filter( 'woocommerce_product_get_tax_class', array( $this, 'override_product_tax_class' ), 10, 2 );
 
 		// Override the tax rate
 		add_filter( 'woocommerce_find_rates', array( $this, 'override_tax_rate' ), 10, 2 );
@@ -108,7 +108,7 @@ class WC_QD_Tax_Manager {
 	 */
 	public function override_product_tax_class( $tax_class, $product ) {
 		// Get the correct ID
-		$id = ( ( 'variation' === $product->product_type ) ? $product->variation_id : $product->id );
+		$id = ( ( 'variation' === $product->get_type() ) ? $product->variation_id : $product->get_id() );
 
 		// Check if we got a Quaderno class for this product
 		if ( isset( $this->product_to_tax_class[ $id ] ) ) {

@@ -62,7 +62,7 @@ class WC_QD_Tax_Id_Field {
 	 * @param $order
 	 */
 	public function display_field( $order ) {
-		$tax_id = get_post_meta( $order->id, self::META_KEY, true );
+		$tax_id = get_post_meta( $order->get_id(), self::META_KEY, true );
 		if ( '' != $tax_id ) {
 			echo '<p><strong style="display:block;">' . esc_html__( 'Tax ID', 'woocommerce-quaderno' ) . ':</strong> ' . $tax_id . '</p>';
 		}
