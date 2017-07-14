@@ -22,9 +22,9 @@ class WC_QD_Invoice_Manager {
 
 		// Return if an invoice has already been issued for this order or the order is free
 		$invoice_id = get_post_meta( $order_id, '_quaderno_invoice', true );
-		/*if ( !empty( $invoice_id ) || $order->get_total() == 0 ) {
+		if ( !empty( $invoice_id ) || $order->get_total() == 0 ) {
 			return;
-		}*/
+		}
 
 		$invoice_params = array(
 			'issue_date' => date('Y-m-d'),
