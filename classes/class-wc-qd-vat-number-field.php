@@ -62,20 +62,10 @@ class WC_QD_Vat_Number_Field {
 	 */
 	public function validate_field() {
 		if ( ! empty( $_POST['vat_number'] ) ) {
-			$params = array(
-				'vat_number' => $_POST['vat_number'],
-				'country' => $_POST['billing_country']
-			);
+		  $valid_number = $this::is_valid( $_POST['vat_number'], $_POST['billing_country'] );
 
-			$slug = 'vat_number_' . md5( implode( $params ) );
-
-			if ( false === ( $valid_number = get_transient( $slug ) ) ) {
-				$valid_number = (int) QuadernoTax::validate( $params );
-				set_transient( $slug, $valid_number, 4 * WEEK_IN_SECONDS );
-			}
-
-			if ( $valid_number != 1 ) {
-				wc_add_notice( esc_html__( '<strong>VAT number</strong> is not valid' ), 'error' );
+			if ( false === $valid_number ) {
+				wc_add_notice( sprintf( esc_html__( '%s is not valid.', 'woocommerce-quaderno' ), '<strong>' . esc_html__( 'VAT number', 'woocommerce-quaderno' ) . '</strong>' ), 'error' );
 			}
 		}
 	}
@@ -124,6 +114,32 @@ class WC_QD_Vat_Number_Field {
 		$field .= '<input type="hidden" class="input-text ' . esc_attr( implode( ' ', $args['input_class'] ) ) .'" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" value="' . esc_attr( $value ) . '" ' . implode( ' ', $custom_attributes ) . ' /></p>';
 
 		return $field;
+	}
+
+	/**
+	 * Validate a VAT number
+	 *
+	 * @param string $vat_number
+	 * @param string $country
+	 *
+	 * @return boolean
+	 *
+	 * @since 1.9
+	 */
+	public function is_valid( $vat_number, $country ){
+	  $params = array(
+			'vat_number' => $vat_number,
+			'country' => $country
+		);
+
+		$slug = 'vat_number_' . md5( implode( $params ) );
+
+		if ( false === ( $valid_number = get_transient( $slug ) ) ) {
+			$valid_number = (int) QuadernoTax::validate( $params );
+			set_transient( $slug, $valid_number, 4 * WEEK_IN_SECONDS );
+		}
+
+		return $valid_number == 1;
 	}
 
 }

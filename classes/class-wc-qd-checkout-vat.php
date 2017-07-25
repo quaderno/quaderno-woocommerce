@@ -65,6 +65,13 @@ class WC_QD_Checkout_Vat {
 		$billing_postcode = sanitize_text_field( $post_arr['billing_postcode'] );
 		$vat_number = sanitize_text_field( $post_arr['vat_number'] );
 
+    // Check if the customer is VAT exempted
+		if ( false === WC_QD_Vat_Number_Field::is_valid( $vat_number, $billing_country ) ) {
+			WC()->customer->set_is_vat_exempt( false );
+		} else {
+			WC()->customer->set_is_vat_exempt( true );
+		}
+
 		// The cart manager
 		$cart_manager = new WC_QD_Cart_Manager($billing_country, $billing_postcode, $vat_number);
 
@@ -138,17 +145,10 @@ class WC_QD_Checkout_Vat {
 	 * @param string
 	 */
 	public function set_default_customer_location( $default ) {
-		$ip_address = isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR'];
-
-		$response = wp_remote_get( "http://www.geoplugin.net/json.gp?ip=" . $ip_address );
-		if( is_array($response) ) {
-
-  		$ip_data = json_decode( $response['body'] );
-  		if ( $ip_data && $ip_data->geoplugin_countryCode != null ) {
-  			return $ip_data->geoplugin_countryCode;
-      }
-
-    }
+	  $geoip = WC_Geolocation::geolocate_ip();
+	  if( is_array( $geoip ) ) {
+	    $default = $geoip['country'];
+	  }
 
 		return $default;
 	}
