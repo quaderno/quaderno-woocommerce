@@ -118,7 +118,7 @@ class WC_QD_Invoice_Manager {
 			$new_item = new QuadernoDocumentItem(array(
 				'description' => esc_html__('Shipping', 'woocommerce-quaderno' ),
 				'quantity' => 1,
-				'unit_price' => round( $order->get_order_shipping() * $exchange_rate, 2),
+				'unit_price' => round( $order->get_shipping_total() * $exchange_rate, 2),
 				'tax_1_name' => $tax['name'],
 				'tax_1_rate' => $tax['rate'],
 				'tax_1_country' => $order->get_billing_country()
