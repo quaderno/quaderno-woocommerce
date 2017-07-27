@@ -27,16 +27,17 @@ class WC_QD_Vat_Number_Field {
 	 * @since 1.0
 	 */
 	public function print_field() {
+	  global $woocommerce;
+
 		woocommerce_form_field( 'vat_number', array(
 			'type'   => 'text',
 			'label'  => esc_html__( 'VAT number', 'woocommerce-quaderno' ),
 			'class'  => array( 'update_totals_on_change' )
 		), '' );
 
-		$countries = new WC_Countries();
 		woocommerce_form_field( 'base_location', array(
 			'type'   => 'hidden',
-			'default' => $countries->get_base_country()
+			'default' => $woocommerce->countries->get_base_country()
 		));
 	}
 
@@ -126,7 +127,7 @@ class WC_QD_Vat_Number_Field {
 	 *
 	 * @since 1.9
 	 */
-	public function is_valid( $vat_number, $country ){
+	public static function is_valid( $vat_number, $country ){
 	  $params = array(
 			'vat_number' => $vat_number,
 			'country' => $country

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2017-07-25 11:46+0200\n"
-"PO-Revision-Date: 2017-07-25 11:49+0200\n"
+"POT-Creation-Date: 2017-07-27 10:55+0200\n"
+"PO-Revision-Date: 2017-07-27 10:55+0200\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: Quaderno <hello@quaderno.io>\n"
 "Language: es_ES\n"
@@ -86,21 +86,23 @@ msgid "Shipping"
 msgstr "Gastos de envío"
 
 #: ../classes/class-wc-qd-tax-id-field.php:31
-#: ../classes/class-wc-qd-tax-id-field.php:67
+#: ../classes/class-wc-qd-tax-id-field.php:61
+#: ../classes/class-wc-qd-tax-id-field.php:73
 msgid "Tax ID"
 msgstr "NIF"
 
-#: ../classes/class-wc-qd-tax-id-field.php:55
-msgid "<strong>Tax ID</strong> is a required field for companies"
-msgstr "El <strong>NIF</strong> es obligatorio para empresas"
+#: ../classes/class-wc-qd-tax-id-field.php:61
+#, php-format
+msgid "%s is a required field."
+msgstr ""
 
-#: ../classes/class-wc-qd-vat-number-field.php:32
-#: ../classes/class-wc-qd-vat-number-field.php:68
-#: ../classes/class-wc-qd-vat-number-field.php:81
+#: ../classes/class-wc-qd-vat-number-field.php:34
+#: ../classes/class-wc-qd-vat-number-field.php:69
+#: ../classes/class-wc-qd-vat-number-field.php:82
 msgid "VAT number"
 msgstr "Número de IVA"
 
-#: ../classes/class-wc-qd-vat-number-field.php:68
+#: ../classes/class-wc-qd-vat-number-field.php:69
 #, php-format
 msgid "%s is not valid."
 msgstr "%s no es válido."
@@ -129,6 +131,9 @@ msgstr ""
 #: ../woocommerce-quaderno.php:179
 msgid "Sign Up"
 msgstr "Regístrate"
+
+#~ msgid "<strong>Tax ID</strong> is a required field for companies"
+#~ msgstr "El <strong>NIF</strong> es obligatorio para empresas"
 
 #~ msgid "<strong>VAT number</strong> is not valid"
 #~ msgstr "<strong>El número de IVA</strong> no es válido"

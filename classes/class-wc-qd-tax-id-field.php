@@ -50,9 +50,15 @@ class WC_QD_Tax_Id_Field {
 	 * @since 1.8
 	 */
 	public function validate_field() {
+	  global $woocommerce;
+
 	  $countries = array('BE', 'DE', 'ES', 'IT');
-		if (  in_array( $_POST['billing_country'], $countries ) && !empty( $_POST['billing_company'] ) && empty( $_POST['tax_id'] ) ) {
-			wc_add_notice( esc_html__( '<strong>Tax ID</strong> is a required field for companies' ), 'error' );
+	  $billing_country = $_POST['billing_country'];
+	  $base_country = $woocommerce->countries->get_base_country();
+	  $total_amount = $woocommerce->cart->cart_contents_total + $woocommerce->cart->tax_total;
+
+		if (  $total_amount >= floatval( WC_QD_Integration::$receipts_threshold ) && $billing_country == $base_country && in_array( $billing_country, $countries ) && empty( $_POST['tax_id'] ) ) {
+		  wc_add_notice( sprintf( __( '%s is a required field.', 'woocommerce' ), '<strong>' . esc_html__( 'Tax ID', 'woocommerce-quaderno' ) . '</strong>' ), 'error' );
 		}
 	}
 
