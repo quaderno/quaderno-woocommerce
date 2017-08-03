@@ -76,12 +76,8 @@ class WC_QD_Invoice_Manager {
 			);
 		}
 
-		// Let's create the receipt or the invoice
-		if ( $order->get_billing_country() == WC_Countries::get_base_country() && $order->get_total() < floatval( WC_QD_Integration::$receipts_threshold ) && empty( $vat_number ) && empty( $tax_id ) ) {
-		  $invoice = new QuadernoReceipt($invoice_params);
-		} else {
-		  $invoice = new QuadernoInvoice($invoice_params);
-		}
+		// Let's create the invoice
+		$invoice = new QuadernoIncome($invoice_params);
 
 		// Calculate exchange rate
 		$exchange_rate = get_post_meta( $order_id, '_woocs_order_rate', true ) ?: 1;
