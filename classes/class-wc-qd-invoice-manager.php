@@ -108,7 +108,8 @@ class WC_QD_Invoice_Manager {
 		$items = $order->get_items('shipping');
 		foreach ( $items as $shipping ) {
 			$shipping_tax_data = maybe_unserialize( $shipping['taxes'] );
-			$rate_id = key( $shipping_tax_data );
+			$rate_id = key( reset( $shipping_tax_data ));
+
 			$tax = self::get_tax( $rate_id );
 
 			$new_item = new QuadernoDocumentItem(array(
