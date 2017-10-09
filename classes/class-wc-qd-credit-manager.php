@@ -65,6 +65,7 @@ class WC_QD_Credit_Manager {
 				'region' => $order->get_billing_state(),
 				'country' => $order->get_billing_country(),
 				'email' => $order->get_billing_email(),
+				'phone_1' => $order->get_billing_phone(),
 				'vat_number' => get_post_meta( $order->get_id(), WC_QD_Vat_Number_Field::META_KEY, true ),
   			'tax_id' => get_post_meta( $order->get_id(), WC_QD_Tax_Id_Field::META_KEY, true )
 			);
