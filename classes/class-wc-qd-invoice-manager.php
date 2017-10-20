@@ -94,10 +94,15 @@ class WC_QD_Invoice_Manager {
 			}
 			$tax = self::get_tax( $rate_id, $order->get_billing_country() );
 
+			$subtotal = $order->get_line_subtotal($item, true);
+			$total = $order->get_line_total($item, true);
+			$discount_rate = round( ( $subtotal -  $total ) / $subtotal * 100, 0 );
+
 			$new_item = new QuadernoDocumentItem(array(
 				'description' => $item['name'],
 				'quantity' => $item['qty'],
-				'total_amount' => round($order->get_line_total($item, true) * $exchange_rate, 2),
+				'total_amount' => round( $total * $exchange_rate, wc_get_price_decimals() ),
+				'discount_rate' => $discount_rate,
 				'tax_1_name' => $tax['name'],
 				'tax_1_rate' => $tax['rate'],
 				'tax_1_country' => $order->get_billing_country()
