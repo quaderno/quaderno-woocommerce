@@ -130,6 +130,26 @@ class WC_QD_Invoice_Manager {
 			$invoice->addItem( $new_item );
 		}
 
+		// Add fees
+		$items = $order->get_items('fee');
+		foreach ( $items as $fee ) {
+			$fee_tax_data = maybe_unserialize( $fee['line_tax_data'] );
+			$rate_id = key( reset( $fee_tax_data ));
+
+			$tax = self::get_tax( $rate_id );
+			$fee_total = $fee['total'] + $fee['total_tax'];
+
+			$new_item = new QuadernoDocumentItem(array(
+				'description' => esc_html__('Fee', 'woocommerce-quaderno' ),
+				'quantity' => 1,
+				'total_amount' => round( $fee_total * $exchange_rate, 2),
+				'tax_1_name' => $tax['name'],
+				'tax_1_rate' => $tax['rate'],
+				'tax_1_country' => $order->get_billing_country()
+			));
+			$invoice->addItem( $new_item );
+		}
+
 		if ( $invoice->save() ) {
 			add_post_meta( $order_id, '_quaderno_invoice', $invoice->id );
 			add_post_meta( $order_id, '_quaderno_invoice_number', $invoice->number );
