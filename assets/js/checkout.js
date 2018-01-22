@@ -1,7 +1,7 @@
 jQuery(document).ready( function ( $ ) {
   'use strict';
 	var eu_countries = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB'];
-	var tax_id_countries = ['BE', 'DE', 'ES', 'IT']
+	var tax_id_countries = ['BE', 'DE', 'ES', 'IT', 'SK']
 
 	$('#billing_country').change(function() {
 	  // show vat number if buyer is in the EU
