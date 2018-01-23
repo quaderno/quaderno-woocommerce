@@ -52,7 +52,7 @@ class WC_QD_Tax_Id_Field {
 	public function validate_field() {
 	  global $woocommerce;
 
-	  $countries = array('BE', 'DE', 'ES', 'IT', 'SK');
+	  $countries = array('BE', 'DE', 'ES', 'IT');
 	  $billing_country = $_POST['billing_country'];
 	  $base_country = $woocommerce->countries->get_base_country();
 	  $total_amount = $woocommerce->cart->cart_contents_total + $woocommerce->cart->tax_total;

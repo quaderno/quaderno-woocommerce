@@ -14,14 +14,10 @@ jQuery(document).ready( function ( $ ) {
 
     // show tax id field if vendor and buyer are in the same country
 	  if ( $(this).val() == $('#base_location').val() && $.inArray($(this).val(), tax_id_countries) != -1 ) {
-	    $('#tax_id_field').addClass('validate-required').show();
-	    if ( $('#tax_id_field label abbr').length == 0 ) {
-		    $('#tax_id_field label').append(' <abbr class="required" title="required">*</abbr>');
-	    }
+	    $('#tax_id_field').show();
 	  } else {
-	    $('#tax_id_field label abbr').remove();
-	    $('#tax_id_field').removeClass('validate-required').hide();
 	    $('#tax_id').val('');
+	    $('#tax_id_field').hide();
 	  }
 	});
 

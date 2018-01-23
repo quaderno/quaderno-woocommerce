@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2018-01-05 13:19-0000\n"
-"PO-Revision-Date: 2018-01-05 13:23-0000\n"
+"POT-Creation-Date: 2018-01-23 21:08-0000\n"
+"PO-Revision-Date: 2018-01-23 21:08-0000\n"
 "Last-Translator:  <hello@quaderno.io>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -94,7 +94,7 @@ msgstr "Kosten"
 #: ../classes/class-wc-qd-tax-id-field.php:61
 #: ../classes/class-wc-qd-tax-id-field.php:73
 msgid "Tax ID"
-msgstr "BTW-Nummer"
+msgstr "Fiscaal nummer"
 
 #: ../classes/class-wc-qd-tax-id-field.php:61
 #, php-format
