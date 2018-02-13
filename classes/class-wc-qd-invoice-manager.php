@@ -189,8 +189,11 @@ class WC_QD_Invoice_Manager {
 			case 'paypal':
 				$method = 'paypal';
 				break;
-			default:
+			case 'stripe':
 				$method = 'credit_card';
+				break;
+			default:
+				$method = 'other';
 		}
 		return $method;
 	}
