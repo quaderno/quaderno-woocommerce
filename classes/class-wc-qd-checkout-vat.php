@@ -37,6 +37,7 @@ class WC_QD_Checkout_Vat {
 			$tax_manager = new WC_QD_Tax_Manager();
 
 			foreach ( $items as $key => $item ) {
+
 				// Don't modify tax rates for default products
 				if ( 'standard' == $item['product_type'] ) {
 					continue;

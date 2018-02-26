@@ -15,8 +15,9 @@ class WC_QD_Calculate_Tax {
 	 */
 	public static function get_transaction_type( $product_id ) {
 		$type = 'standard';
+		$product_types = array( 'product', 'product_variation' );
 
-		if ( 'product' === get_post_type( $product_id ) ) {
+		if ( in_array( get_post_type( $product_id ), $product_types ) ) {
 			$product = wc_get_product( $product_id );
 
 			// Check if this is a virtual product

@@ -36,7 +36,7 @@ class WC_QD_Cart_Manager {
 				$id = ( ( 'variation' === $cart_item['data']->get_type() ) ? $cart_item['variation_id'] : $cart_item['product_id'] );
 
 				// Get the transaction type
-				$transaction_type = WC_QD_Calculate_Tax::get_transaction_type( $cart_item['product_id'] );
+				$transaction_type = WC_QD_Calculate_Tax::get_transaction_type( $id );
 
 				// Calculate taxes
 				$tax = WC_QD_Calculate_Tax::calculate( $transaction_type, $this->country, $this->postal_code, $this->vat_number );

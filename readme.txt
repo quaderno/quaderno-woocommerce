@@ -2,9 +2,9 @@
 Author URI: http://quaderno.io
 Contributors: polimorfico
 Tags: woocommerce, quaderno, woocommerce quaderno, vat, eu vat, vatmoss, vat moss, european vat, eu tax, european tax, billing, invoices, receipts
-Requires at least: 3.7
+Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 1.10.3
+Stable tag: 1.11.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,10 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.10 =
+* New: Use translations from wordpress.org
+* New: Admins can show/hide the Tax ID field
 
 = 1.10 =
 * New: Support for WooCommerce Payment Gateway Based Fees

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2018-01-05 13:15-0000\n"
-"PO-Revision-Date: 2018-01-05 13:16-0000\n"
+"POT-Creation-Date: 2018-02-26 16:29-0000\n"
+"PO-Revision-Date: 2018-02-26 16:29-0000\n"
 "Last-Translator:  <hello@quaderno.io>\n"
 "Language-Team: Quaderno <hello@quaderno.io>\n"
 "Language: es_ES\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Los e-books también son productos virtuales pero pueden tener impuestos "
 "diferentes"
 
-#: ../classes/class-wc-qd-calculate-tax.php:63
+#: ../classes/class-wc-qd-calculate-tax.php:64
 msgid "Taxes"
 msgstr "Impuestos"
 
@@ -47,15 +47,15 @@ msgid "Get this URL from your Quaderno account."
 msgstr "Consigue esta URL en tu cuenta de Quaderno"
 
 #: ../classes/class-wc-qd-integration.php:58
-msgid "Receipts threshold"
-msgstr "Límite recibos"
+#: ../classes/class-wc-qd-tax-id-field.php:32
+#: ../classes/class-wc-qd-tax-id-field.php:62
+#: ../classes/class-wc-qd-tax-id-field.php:74
+msgid "Tax ID"
+msgstr "NIF"
 
 #: ../classes/class-wc-qd-integration.php:59
-msgid ""
-"All purchases under this threshold will generate a sales receipt, instead of "
-"an invoice."
-msgstr ""
-"Todas la ventas por debajo de este límite generarán una factura simplificada"
+msgid "Ask for Tax ID when the customer is located in my country"
+msgstr "Solicitar NIF cuando el cliente esté en mi país"
 
 #: ../classes/class-wc-qd-integration.php:63
 msgid "Delivery"
@@ -89,13 +89,7 @@ msgstr "Gastos de envío"
 msgid "Fee"
 msgstr "Comisiones"
 
-#: ../classes/class-wc-qd-tax-id-field.php:31
-#: ../classes/class-wc-qd-tax-id-field.php:61
-#: ../classes/class-wc-qd-tax-id-field.php:73
-msgid "Tax ID"
-msgstr "NIF"
-
-#: ../classes/class-wc-qd-tax-id-field.php:61
+#: ../classes/class-wc-qd-tax-id-field.php:62
 #, php-format
 msgid "%s is a required field."
 msgstr "%s es un campo obligatorio."
@@ -121,7 +115,7 @@ msgid ""
 "Please install and activate %sWooCommerce%s in order for the WooCommerce "
 "Quaderno extension to work!"
 msgstr ""
-"Po favor instala %sWooCommerce%s para poder usar la extensión de Quaderno "
+"Por favor instala %sWooCommerce%s para poder usar la extensión de Quaderno "
 "para WooCommerce"
 
 #: ../woocommerce-quaderno.php:115
@@ -132,9 +126,19 @@ msgstr ""
 "Por favor actualiza tu instalación de WooCommerce a la <strong>versión 2.2.9 "
 "o superior</strong> para poder usar este plugin"
 
-#: ../woocommerce-quaderno.php:179
+#: ../woocommerce-quaderno.php:176
 msgid "Sign Up"
 msgstr "Regístrate"
+
+#~ msgid "Receipts threshold"
+#~ msgstr "Límite recibos"
+
+#~ msgid ""
+#~ "All purchases under this threshold will generate a sales receipt, instead "
+#~ "of an invoice."
+#~ msgstr ""
+#~ "Todas la ventas por debajo de este límite generarán una factura "
+#~ "simplificada"
 
 #~ msgid "<strong>Tax ID</strong> is a required field for companies"
 #~ msgstr "El <strong>NIF</strong> es obligatorio para empresas"

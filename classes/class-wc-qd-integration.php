@@ -8,7 +8,7 @@ class WC_QD_Integration extends WC_Integration {
 
 	public static $api_token = null;
 	public static $api_url = null;
-	public static $receipts_threshold = 0;
+	public static $show_tax_id = null;
 	public static $autosend_invoices = null;
 
 	/**
@@ -17,7 +17,7 @@ class WC_QD_Integration extends WC_Integration {
 	public function __construct() {
 		$this->id                 = 'quaderno';
 		$this->method_title       = 'Quaderno';
-		$this->method_description = __( sprintf( 'Automatically send customizable invoices and receipts with every order in your store. Comply with local rules in US, Canada, Australia, New Zealand, Singapore, and the European Union.%sNote: You need a %sQuaderno account%s for this extension to work.', '<br>', '<a href="' . WooCommerce_Quaderno::QUADERNO_URL . '/signup" target="_blank">', '</a>' ), 'woocommerce-quaderno' );
+		$this->method_description = __( sprintf( 'Automatically send customizable invoices and receipts with every order in your store. %sNote: You need a %sQuaderno account%s for this extension to work.', '<br>', '<a href="' . WooCommerce_Quaderno::QUADERNO_URL . '/signup" target="_blank">', '</a>' ), 'woocommerce-quaderno' );
 
 		// Load admin form
 		$this->init_form_fields();
@@ -27,7 +27,7 @@ class WC_QD_Integration extends WC_Integration {
 
 		self::$api_token = $this->get_option( 'api_token' );
 		self::$api_url  = $this->get_option( 'api_url' );
-		self::$receipts_threshold  = $this->get_option( 'receipts_threshold' );
+		self::$show_tax_id  = $this->get_option( 'show_tax_id' );
 		self::$autosend_invoices  = $this->get_option( 'autosend_invoices' );
 
 		// Hooks
@@ -54,10 +54,10 @@ class WC_QD_Integration extends WC_Integration {
 				'description' => __( 'Get this URL from your Quaderno account.', 'woocommerce-quaderno' ),
 				'type'        => 'text'
 			),
-			'receipts_threshold'  => array(
-				'title'       => __( 'Receipts threshold', 'woocommerce-quaderno' ),
-				'description' => __( 'All purchases under this threshold will generate a sales receipt, instead of an invoice.', 'woocommerce-quaderno' ),
-				'type'        => 'text'
+			'show_tax_id'  	=> array(
+				'title'       => __( 'Tax ID', 'woocommerce-quaderno' ),
+				'label' 			=> __( 'Ask for Tax ID when the customer is located in my country', 'woocommerce-quaderno' ),
+				'type'        => 'checkbox'
 			),
 			'autosend_invoices' => array(
 				'title'       => __( 'Delivery', 'woocommerce-quaderno' ),
