@@ -12,7 +12,7 @@ jQuery(document).ready( function ( $ ) {
 	  }
 
     // show tax id field if vendor and buyer are in the same country
-	  if ( $('#tax_id_field').lenght > 0 && $(this).val() == $('#base_location').val() ) {
+	  if ( $('#tax_id_field').length > 0 && $(this).val() == $('#base_location').val() ) {
 	    $('#tax_id_field').show();
 	  } else {
 	    $('#tax_id').val('');
