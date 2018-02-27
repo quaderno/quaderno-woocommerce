@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2018-02-26 16:31-0000\n"
-"PO-Revision-Date: 2018-02-26 16:31-0000\n"
+"POT-Creation-Date: 2018-02-27 14:36-0000\n"
+"PO-Revision-Date: 2018-02-27 14:36-0000\n"
 "Last-Translator:  <hello@quaderno.io>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -54,25 +54,31 @@ msgstr ""
 msgid "Ask for Tax ID when the customer is located in my country"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:63
-msgid "Delivery"
+#: ../classes/class-wc-qd-integration.php:60
+msgid ""
+"Additional tax number that is mandatory in some countries. This is not the "
+"EU VAT number."
 msgstr ""
 
 #: ../classes/class-wc-qd-integration.php:64
-msgid "Autosend sales receipts and invoices"
+msgid "Delivery"
 msgstr ""
 
 #: ../classes/class-wc-qd-integration.php:65
+msgid "Autosend sales receipts and invoices"
+msgstr ""
+
+#: ../classes/class-wc-qd-integration.php:66
 msgid "Check this to automatically send your sales receipts and invoices."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:80
+#: ../classes/class-wc-qd-integration.php:81
 msgid ""
 "<strong>Quaderno</strong> is almost ready &#8211; Please configure your API "
 "keys to start creating automatic invoices."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:84
+#: ../classes/class-wc-qd-integration.php:85
 msgid "Settings"
 msgstr ""
 
@@ -117,6 +123,6 @@ msgid ""
 "order for the WooCommerce Quaderno extension to work!"
 msgstr ""
 
-#: ../woocommerce-quaderno.php:176
+#: ../woocommerce-quaderno.php:179
 msgid "Sign Up"
 msgstr ""

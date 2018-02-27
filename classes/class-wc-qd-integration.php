@@ -57,6 +57,7 @@ class WC_QD_Integration extends WC_Integration {
 			'show_tax_id'  	=> array(
 				'title'       => __( 'Tax ID', 'woocommerce-quaderno' ),
 				'label' 			=> __( 'Ask for Tax ID when the customer is located in my country', 'woocommerce-quaderno' ),
+				'description' => __( 'Additional tax number that is mandatory in some countries. This is not the EU VAT number.', 'woocommerce-quaderno' ),
 				'type'        => 'checkbox'
 			),
 			'autosend_invoices' => array(

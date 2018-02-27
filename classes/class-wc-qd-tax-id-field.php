@@ -58,7 +58,7 @@ class WC_QD_Tax_Id_Field {
 	  $billing_country = $_POST['billing_country'];
 	  $base_country = $woocommerce->countries->get_base_country();
 
-		if ( 'yes' === WC_QD_Integration::$show_tax_id && $billing_country == $base_country ) {
+		if ( 'yes' === WC_QD_Integration::$show_tax_id && $billing_country == $base_country && empty( $_POST['tax_id'] ) ) {
 		  wc_add_notice( sprintf( __( '%s is a required field.', 'woocommerce' ), '<strong>' . esc_html__( 'Tax ID', 'woocommerce-quaderno' ) . '</strong>' ), 'error' );
 		}
 	}

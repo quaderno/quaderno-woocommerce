@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2018-02-26 16:29-0000\n"
-"PO-Revision-Date: 2018-02-26 16:29-0000\n"
+"POT-Creation-Date: 2018-02-27 14:36-0000\n"
+"PO-Revision-Date: 2018-02-27 14:37-0000\n"
 "Last-Translator:  <hello@quaderno.io>\n"
 "Language-Team: Quaderno <hello@quaderno.io>\n"
 "Language: es_ES\n"
@@ -57,19 +57,27 @@ msgstr "NIF"
 msgid "Ask for Tax ID when the customer is located in my country"
 msgstr "Solicitar NIF cuando el cliente esté en mi país"
 
-#: ../classes/class-wc-qd-integration.php:63
+#: ../classes/class-wc-qd-integration.php:60
+msgid ""
+"Additional tax number that is mandatory in some countries. This is not the "
+"EU VAT number."
+msgstr ""
+"Número fiscal que es obligatorio en algunos países. No se trata del número "
+"de operador intracomunitario.\t"
+
+#: ../classes/class-wc-qd-integration.php:64
 msgid "Delivery"
 msgstr "Envío"
 
-#: ../classes/class-wc-qd-integration.php:64
+#: ../classes/class-wc-qd-integration.php:65
 msgid "Autosend sales receipts and invoices"
 msgstr "Enviar automáticamente las facturas"
 
-#: ../classes/class-wc-qd-integration.php:65
+#: ../classes/class-wc-qd-integration.php:66
 msgid "Check this to automatically send your sales receipts and invoices."
 msgstr "Selecciona esta opción para enviar automáticamente tus facturas"
 
-#: ../classes/class-wc-qd-integration.php:80
+#: ../classes/class-wc-qd-integration.php:81
 msgid ""
 "<strong>Quaderno</strong> is almost ready &#8211; Please configure your API "
 "keys to start creating automatic invoices."
@@ -77,7 +85,7 @@ msgstr ""
 "<strong>Quaderno</strong> está casi listo &#8211; Por favor configura tus "
 "claves API para empezar a crear facturas automáticas."
 
-#: ../classes/class-wc-qd-integration.php:84
+#: ../classes/class-wc-qd-integration.php:85
 msgid "Settings"
 msgstr "Configuración"
 
@@ -126,7 +134,7 @@ msgstr ""
 "Por favor actualiza tu instalación de WooCommerce a la <strong>versión 2.2.9 "
 "o superior</strong> para poder usar este plugin"
 
-#: ../woocommerce-quaderno.php:176
+#: ../woocommerce-quaderno.php:179
 msgid "Sign Up"
 msgstr "Regístrate"
 
