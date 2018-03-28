@@ -12,27 +12,26 @@ Quaderno replaces and improves the default WooCommerce receipts. Setup in less t
 
 == Description ==
 
-Quaderno for WooCommerce automatically sends beautiful invoices and receipts that comply with local rules in US, Canada, Australia, New Zealand, Singapore, and the European Union.
+Quaderno for WooCommerce takes taxes off your plate by automatically calculating tax on every sale and following up with beautiful invoices or receipts, no matter where your customer is located. Transactions and invoices processed through Quaderno always comply with ever-changing local tax rules, including in the US, Canada, Australia, New Zealand, Singapore, and the European Union.
 
-= What you would experience =
+https://www.youtube.com/watch?v=ghbzHW6VQO8
 
-* Automatically send **beautiful invoices and receipts** with every order in your store.
-* **Send credit notes** for WooCoomerce refunds as well.
-* **Comply with local rules** in US, Canada, Australia, New Zealand, Singapore, and the European Union.
-* **Comply with EU VAT rules** for digital goods & services.
-* Send invoices in **multiple currencies and languages**.
-* **Customize your invoices** with your logo and business details.
-* **Download and print** multiple invoices as PDF documents in bulk.
-* Manage your own invoices together with invoices from WooCommerce in one place.
+= What you get =
 
-**Setup in less than 5 minutes**. Easy and quick!
+* **Automatic invoices, receipts, and credit notes** with every order in your store, in **multiple languages and currencies**.
+* **Comply with local tax laws** in countries around the world, including the EU VAT rules for digital goods & services.
+* **100% customizable invoices** to reflect your brand or add a personal touch.
+* **Manage all your invoices and revenue sources** in one easy-to-use dashboard.
+* **Real-time reports of your revenue**. Track profits, losses, and patterns in the data to identify where your business is going strong and where it may need some TLC.
 
-1. Download & Activate this plugin
-2. Sign up for a Quaderno account
-3. Paste your API key in your site
-4. Add your personal branding to your Quaderno invoices
+**Setup in less than 5 minutes**. Fast and easy!
 
-**Please Note:** this plugin requires a [WooCommerce](http://www.woothemes.com/woocommerce/) and [Quaderno](https://quaderno.io) accounts.
+1. Download & activate this plugin
+2. [Sign up](https://quaderno.io/integrations/woocommerce/) for a Quaderno account
+3. Paste your API key in your WooCommerce site
+4. Brand your Quaderno invoices with custom design
+
+**Note:** this plugin requires both a [WooCommerce](http://www.woothemes.com/woocommerce/) and [Quaderno](https://quaderno.io/integrations/woocommerce/) account.
 
 == Installation ==
 
