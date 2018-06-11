@@ -1,10 +1,10 @@
 === WooCommerce Quaderno ===
-Author URI: http://quaderno.io
+Author URI: https://quaderno.io
 Contributors: polimorfico
 Tags: woocommerce, quaderno, woocommerce quaderno, vat, eu vat, vatmoss, vat moss, european vat, eu tax, european tax, billing, invoices, receipts
 Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 1.11.2
+Stable tag: 1.11.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,10 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.11.4 - June 11, 2018 =
+* New: Support WooCommerce 3.4.2
+* New: Ask for plugin review
 
 = 1.11 =
 * New: Use translations from wordpress.org
