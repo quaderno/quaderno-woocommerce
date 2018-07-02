@@ -84,13 +84,11 @@ class WC_QD_Checkout_Vat {
 	 * Update taxes in the checkout processing process
 	 */
 	public function update_taxes_on_check_process() {
-		// The billing data
-		$billing_country = isset( $_POST['billing_country'] ) ? sanitize_text_field( $_POST['billing_country'] ) : '';
-		$billing_postcode = isset( $_POST['billing_postcode'] ) ? sanitize_text_field( $_POST['billing_postcode'] ) : '';
+		// Get the VAT number if exists
 		$vat_number = isset( $_POST['vat_number'] ) ? sanitize_text_field( $_POST['vat_number'] ) : '';
 
 		// The cart manager
-		$cart_manager = new WC_QD_Cart_Manager($billing_country, $billing_postcode, $vat_number);
+		$cart_manager = new WC_QD_Cart_Manager(WC()->customer->get_billing_country(), WC()->customer->get_billing_postcode(), $vat_number);
 
 		// Update the taxes in cart based on cart items
 		$this->update_taxes_in_cart( $cart_manager->get_items_from_cart() );

@@ -16,7 +16,7 @@ class WC_QD_Vat_Number_Field {
 	public function setup() {
 		add_action( 'woocommerce_after_checkout_billing_form', array( $this, 'print_field' ) );
 		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'save_field' ) );
-		add_action( 'woocommerce_checkout_process', array( $this, 'validate_field' ), 1 );
+		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_field' ), 1 );
 		add_action( 'woocommerce_admin_order_data_after_billing_address', array( $this, 'display_field' ), 10, 1 );
 		add_filter( 'woocommerce_form_field_hidden', array( $this, 'wc_form_hidden_field' ), 10, 4 );
 	}
@@ -63,7 +63,7 @@ class WC_QD_Vat_Number_Field {
 	 */
 	public function validate_field() {
 		if ( ! empty( $_POST['vat_number'] ) ) {
-		  $valid_number = $this::is_valid( $_POST['vat_number'], $_POST['billing_country'] );
+		  $valid_number = $this::is_valid( $_POST['vat_number'], WC()->customer->get_billing_country() );
 
 			if ( false === $valid_number ) {
 				wc_add_notice( sprintf( esc_html__( '%s is not valid.', 'woocommerce-quaderno' ), '<strong>' . esc_html__( 'VAT number', 'woocommerce-quaderno' ) . '</strong>' ), 'error' );
