@@ -4,7 +4,7 @@
  * Plugin Name: WooCommerce Quaderno
  * Plugin URI: https://wordpress.org/plugins/woocommerce-quaderno/
  * Description: Automatically send customizable tax invoices and receipts with every order in your WooCommerce store.
- * Version: 1.11.4
+ * Version: 1.11.5
  * Author: Quaderno
  * Author URI: https://quaderno.io/
  * WC requires at least: 3.2.0
@@ -47,6 +47,20 @@ if ( ! function_exists( 'woothemes_queue_update' ) ) {
 class WooCommerce_Quaderno {
 
 	const QUADERNO_URL = 'https://quadernoapp.com';
+	private static $instance = null;
+
+	/**
+	 * Get the plugin instance
+	 *
+	 * @since 1.11.5
+	 */
+	public static function get_instance() {
+ 		if ( null == self::$instance ) {
+      self::$instance = new self;
+    }
+ 
+    return self::$instance;
+  }
 
 	/**
 	 * Get the plugin file
@@ -62,25 +76,11 @@ class WooCommerce_Quaderno {
 	}
 
 	/**
-	 * A static method that will setup the autoloader
-	 *
-	 * @static
-	 * @since  1.0
-	 * @access private
-	 */
-	private static function setup_autoloader() {
-		require_once( plugin_dir_path( self::get_plugin_file() ) . '/quaderno/quaderno_load.php' );
-		require_once( plugin_dir_path( self::get_plugin_file() ) . '/classes/class-wc-qd-autoloader.php' );
-		$autoloader = new WC_QD_Autoloader();
-		spl_autoload_register( array( $autoloader, 'load' ) );
-	}
-
-	/**
 	 * Constructor
 	 *
 	 * @since  1.0
 	 */
-	public function __construct() {
+	private function __construct() {
 		// Check if WC is activated
 		if ( ! WC_Dependencies::woocommerce_active_check() ) {
 			add_action( 'admin_notices', array( $this, 'notice_activate_wc' ) );
@@ -117,6 +117,20 @@ class WooCommerce_Quaderno {
 			<p><?php _e( 'Please update WooCommerce to <strong>version 2.2.9 or higher</strong> in order for the WooCommerce Quaderno extension to work!', 'woocommerce-quaderno' ); ?></p>
 		</div>
 	<?php
+	}
+
+	/**
+	 * A static method that will setup the autoloader
+	 *
+	 * @static
+	 * @since  1.0
+	 * @access private
+	 */
+	private static function setup_autoloader() {
+		require_once( plugin_dir_path( self::get_plugin_file() ) . '/quaderno/quaderno_load.php' );
+		require_once( plugin_dir_path( self::get_plugin_file() ) . '/classes/class-wc-qd-autoloader.php' );
+		$autoloader = new WC_QD_Autoloader();
+		spl_autoload_register( array( $autoloader, 'load' ) );
 	}
 
 	/**
@@ -239,7 +253,7 @@ class WooCommerce_Quaderno {
 
 // The 'main' function
 function __woocommerce_quaderno_main() {
-	new WooCommerce_Quaderno();
+	WooCommerce_Quaderno::get_instance();
 }
 
 add_action( 'plugins_loaded', '__woocommerce_quaderno_main' );
