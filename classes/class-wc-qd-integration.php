@@ -93,7 +93,7 @@ class WC_QD_Integration extends WC_Integration {
 	public function review_notice() {
 		global $wpdb;
 
-		$post_count = $wpdb->get_var( "SELECT count(*) FROM wp_postmeta WHERE meta_key = '_quaderno_invoice'" );
+		$post_count = $wpdb->get_var( "SELECT count(*) FROM " . $wpdb->prefix . "wp_postmeta WHERE meta_key = '_quaderno_invoice'" );
 		$user_id = get_current_user_id();
 
 		if ( get_user_meta( $user_id, 'quaderno_review_dismissed' ) || $post_count < 5 ) {
