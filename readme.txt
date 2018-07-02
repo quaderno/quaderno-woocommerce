@@ -69,7 +69,7 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 = 1.11.5 - July 2, 2018 =
 * Fix: use table preffix to show the review notice
 * New: improve tax id validation
-* New: use singleton pattern for WooCommerce_Quaderno
+* New: use singleton pattern for class WooCommerce_Quaderno
 
 = 1.11.4 - June 11, 2018 =
 * New: Support WooCommerce 3.4.2
