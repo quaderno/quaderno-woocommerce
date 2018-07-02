@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: woocommerce, quaderno, woocommerce quaderno, vat, eu vat, vatmoss, vat moss, european vat, eu tax, european tax, billing, invoices, receipts
 Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 1.11.5
+Stable tag: 1.11.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,10 +66,12 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 
 == Changelog ==
 
+= 1.11.6 - July 2, 2018 =
+* New: use singleton pattern with class WooCommerce_Quaderno
+
 = 1.11.5 - July 2, 2018 =
 * Fix: use table preffix to show the review notice
 * New: improve tax id validation
-* New: use singleton pattern with class WooCommerce_Quaderno
 
 = 1.11.4 - June 11, 2018 =
 * New: Support WooCommerce 3.4.2
