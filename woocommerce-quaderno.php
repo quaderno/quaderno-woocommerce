@@ -4,11 +4,7 @@
  * Plugin Name: WooCommerce Quaderno
  * Plugin URI: https://wordpress.org/plugins/woocommerce-quaderno/
  * Description: Automatically send customizable tax invoices and receipts with every order in your WooCommerce store.
-<<<<<<< HEAD
- * Version: 1.11.6
-=======
  * Version: 1.11.7
->>>>>>> Translate review notice
  * Author: Quaderno
  * Author URI: https://quaderno.io/
  * WC requires at least: 3.2.0
