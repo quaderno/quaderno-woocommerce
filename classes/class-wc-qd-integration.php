@@ -93,7 +93,7 @@ class WC_QD_Integration extends WC_Integration {
 	public function review_notice() {
 		global $wpdb;
 
-		$post_count = $wpdb->get_var( "SELECT count(*) FROM " . $wpdb->prefix . "wp_postmeta WHERE meta_key = '_quaderno_invoice'" );
+		$post_count = $wpdb->get_var( "SELECT count(*) FROM " . $wpdb->prefix . "postmeta WHERE meta_key = '_quaderno_invoice'" );
 		$user_id = get_current_user_id();
 
 		if ( get_user_meta( $user_id, 'quaderno_review_dismissed' ) || $post_count < 5 ) {
@@ -101,16 +101,13 @@ class WC_QD_Integration extends WC_Integration {
 		}
 		?>
 		<div class="notice notice-info">
-    	<p>
-    		Awesome, you've been using <strong>Quaderno for WooCommerce</strong> for a while. 
-    		<br>Could you please do me a BIG favor and give a <strong>5-star rating</strong> on WordPress? Just to help us spread the word and boost our motivation.
-    		<br><br>Your help is much appreciated. Thank you very much,<br> ~Carlos Hernandez, Founder
-    	</p>
-        <ul>
-            <li><a href="https://wordpress.org/support/plugin/woocommerce-quaderno/reviews/?filter=5#new-post" target="_blank">Ok, you deserve it</a></li>
-            <li><a href="?review-dismissed">Nope, maybe later</a></li>
-            <li><a href="?review-dismissed">I already did it</a></li>
-        </ul>
+    	<p><?php _e( "Awesome, you've been using <strong>Quaderno for WooCommerce</strong> for a while.<br>Could you please do me a BIG favor and give a <strong>5-star rating</strong> on WordPress? Just to help us spread the word and boost our motivation.<br><br>Your help is much appreciated. Thank you very much,<br> ~Carlos Hernandez, Founder", 'woocommerce-quaderno' ); ?>
+      </p>
+      <ul>
+          <li><a href="https://wordpress.org/support/plugin/woocommerce-quaderno/reviews/?filter=5#new-post" target="_blank"><?php _e( 'Ok, you deserve it', 'woocommerce-quaderno' ); ?></a></li>
+          <li><a href="?review-dismissed"><?php _e( 'Nope, maybe later', 'woocommerce-quaderno' ); ?></a></li>
+          <li><a href="?review-dismissed"><?php _e( 'I already did it', 'woocommerce-quaderno' ); ?></a></li>
+      </ul>
     </div>
 	<?php
 	}
