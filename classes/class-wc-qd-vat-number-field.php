@@ -19,6 +19,12 @@ class WC_QD_Vat_Number_Field {
 		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_field' ), 1 );
 		add_action( 'woocommerce_admin_order_data_after_billing_address', array( $this, 'display_field' ), 10, 1 );
 		add_filter( 'woocommerce_form_field_hidden', array( $this, 'wc_form_hidden_field' ), 10, 4 );
+
+    add_action( 'show_user_profile', array( $this, 'add_customer_meta_fields'), 30, 1 ); 
+    add_action( 'edit_user_profile', array( $this, 'add_customer_meta_fields'), 30, 1 ); 
+
+    add_action( 'personal_options_update', array( $this, 'save_customer_meta_fields'), 30, 1 ); 
+    add_action( 'edit_user_profile_update', array( $this, 'save_customer_meta_fields'), 30, 1 ); 
 	}
 
 	/**
@@ -28,12 +34,13 @@ class WC_QD_Vat_Number_Field {
 	 */
 	public function print_field() {
 	  global $woocommerce;
+    $user_vat_number = get_user_meta( get_current_user_id(), '_quaderno_vat_number', true );
 
 		woocommerce_form_field( 'vat_number', array(
 			'type'   => 'text',
 			'label'  => esc_html__( 'VAT number', 'woocommerce-quaderno' ),
 			'class'  => array( 'update_totals_on_change' )
-		), '' );
+		), $user_vat_number );
 
 		woocommerce_form_field( 'base_location', array(
 			'type'   => 'hidden',
@@ -143,4 +150,39 @@ class WC_QD_Vat_Number_Field {
 		return $valid_number == 1;
 	}
 
+  /**
+   * Add custom fields to admin area
+   *
+   * @since 1.12
+   */
+  public function add_customer_meta_fields( $user ) {
+    ?>    
+    <h2><?php _e( 'Additional Information', 'woocommerce-quaderno' ); ?></h2>
+    <table class="form-table" id="woocommerce-quaderno-meta">
+      <tbody>
+        <tr>
+          <th>
+            <label for="vat_number"><?php echo esc_html__( 'VAT number', 'woocommerce-quaderno' ) ?></label>
+          </th>
+          <td>
+            <input type="text" name="vat_number" id="vat_number" value="<?php echo esc_attr( get_the_author_meta( '_quaderno_vat_number', $user->ID ) ); ?>" class="regular-text" />
+          </td>
+        </tr>
+        <?php do_action('woocommerce_quaderno_meta_fields', $user ) ?>
+      </tbody>
+    </table>
+    <?php
+  }
+
+  /**
+   * Save custom fields from admin area
+   *
+   * @since 1.12
+   */
+  public function save_customer_meta_fields( $user_id ) {
+    if ( !current_user_can( 'edit_user', $user_id ) ) { 
+      return false; 
+    }
+    update_user_meta( $user_id, '_quaderno_vat_number', $_POST['vat_number'] );
+  }
 }

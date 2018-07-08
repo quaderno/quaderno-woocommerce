@@ -18,6 +18,12 @@ class WC_QD_Tax_Id_Field {
 		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'save_field' ) );
 		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_field' ), 1 );
 		add_action( 'woocommerce_admin_order_data_after_billing_address', array( $this, 'display_field' ), 10, 1 );
+
+    add_action( 'woocommerce_quaderno_meta_fields', array( $this, 'add_customer_meta_fields'), 30, 1 ); 
+    add_action( 'woocommerce_quaderno_meta_fields', array( $this, 'add_customer_meta_fields'), 30, 1 ); 
+
+    add_action( 'personal_options_update', array( $this, 'save_customer_meta_fields'), 30, 1 ); 
+    add_action( 'edit_user_profile_update', array( $this, 'save_customer_meta_fields'), 30, 1 ); 
 	}
 
 	/**
@@ -27,11 +33,13 @@ class WC_QD_Tax_Id_Field {
 	 */
 	public function print_field() {
 		if ( 'yes' === WC_QD_Integration::$show_tax_id ){
+      $user_tax_id = get_user_meta( get_current_user_id(), '_quaderno_tax_id', true );
+
 			woocommerce_form_field( 'tax_id', array(
 				'type'   => 'text',
 				'label'  => esc_html__( 'Tax ID', 'woocommerce-quaderno' ),
 				'required' => true
-			), '' );			
+			), $user_tax_id );			
 		}
 	}
 
@@ -74,5 +82,37 @@ class WC_QD_Tax_Id_Field {
 			echo '<p><strong style="display:block;">' . esc_html__( 'Tax ID', 'woocommerce-quaderno' ) . ':</strong> ' . $tax_id . '</p>';
 		}
 	}
+
+  /**
+   * Add custom fields to admin area
+   *
+   * @since 1.12
+   */
+  public function add_customer_meta_fields( $user ) {
+    if ( 'yes' === WC_QD_Integration::$show_tax_id ) {
+    ?>    
+    <tr>
+      <th>
+        <label for="tax_id"><?php echo esc_html__( 'Tax ID', 'woocommerce-quaderno' ) ?></label>
+      </th>
+      <td>
+        <input type="text" name="tax_id" id="tax_id" value="<?php echo esc_attr( get_the_author_meta( '_quaderno_tax_id', $user->ID ) ); ?>" class="regular-text" />
+      </td>
+    </tr>
+    <?php
+    } 
+  }
+
+  /**
+   * Save custom fields from admin area
+   *
+   * @since 1.12
+   */
+  public function save_customer_meta_fields( $user_id ) {
+    if ( !current_user_can( 'edit_user', $user_id ) ) { 
+      return false; 
+    }
+    update_user_meta( $user_id, '_quaderno_tax_id', $_POST['tax_id'] );
+  }
 
 }
