@@ -36,14 +36,14 @@ class WC_QD_Cart_Manager {
 				$id = ( ( 'variation' === $cart_item['data']->get_type() ) ? $cart_item['variation_id'] : $cart_item['product_id'] );
 
 				// Get the transaction type
-				$transaction_type = WC_QD_Calculate_Tax::get_transaction_type( $id );
+				$tax_class = WC_QD_Calculate_Tax::get_tax_class( $id );
 
 				// Calculate taxes
-				$tax = WC_QD_Calculate_Tax::calculate( $transaction_type, $this->country, $this->postal_code, $this->vat_number );
+				$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $this->country, $this->postal_code, $this->vat_number );
 
 				$items[ $cart_key ] = array(
 					'id' => $id,
-					'product_type' => $transaction_type,
+					'product_type' => $tax_class,
 					'tax_name' => $tax->name,
 					'tax_rate' => $tax->rate
 				);

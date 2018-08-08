@@ -37,12 +37,6 @@ class WC_QD_Checkout_Vat {
 			$tax_manager = new WC_QD_Tax_Manager();
 
 			foreach ( $items as $key => $item ) {
-
-				// Don't modify tax rates for default products
-				if ( 'standard' == $item['product_type'] ) {
-					continue;
-				}
-
 				// Add the new product class for this product
 				$tax_manager->add_product_tax_class( $item['id'], $item['product_type'] );
 
@@ -117,19 +111,14 @@ class WC_QD_Checkout_Vat {
 				$product_id = $order->get_item_meta( $item_id, '_product_id', true );
 
 				// Get the transaction type
-				$transaction_type = WC_QD_Calculate_Tax::get_transaction_type( $product_id );
-
-				// Don't modify tax rates for default products
-				if ( 'standard' == $transaction_type ) {
-					continue;
-				}
+				$tax_class = WC_QD_Calculate_Tax::get_tax_class( $product_id );
 
 				// Calculate taxes
-				$tax = WC_QD_Calculate_Tax::calculate($transaction_type, $country);
+				$tax = WC_QD_Calculate_Tax::calculate($tax_class, $country);
 
-				$tax_manager->add_product_tax_class( $item_id, $transaction_type );
-				$tax_manager->add_tax_rate( $transaction_type, $tax->rate, $tax->name );
-				$items['order_item_tax_class'][ $item_id ] = $tax_manager->clean_tax_class( $transaction_type );
+				$tax_manager->add_product_tax_class( $item_id, $tax_class );
+				$tax_manager->add_tax_rate( $tax_class, $tax->rate, $tax->name );
+				$items['order_item_tax_class'][ $item_id ] = $tax_manager->clean_tax_class( $tax_class );
 			}
 
 		}
