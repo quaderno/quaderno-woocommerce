@@ -71,9 +71,7 @@ class WC_QD_Invoice_Manager {
 				'email' => $order->get_billing_email(),
 				'phone_1' => $order->get_billing_phone(),
 				'vat_number' => $vat_number,
-				'tax_id' => $tax_id,
-				'processor' => 'woocommerce',
-				'processor_id' => $order->get_user_id()
+				'tax_id' => $tax_id
 			);
 		}
 
