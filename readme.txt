@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: woocommerce, quaderno, woocommerce quaderno, vat, eu vat, vatmoss, vat moss, european vat, eu tax, european tax, billing, invoices, receipts
 Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 1.14.0
+Stable tag: 1.14.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,9 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.14.1 - August 16, 2018 =
+* Fix: Shipping based taxes are wrong
 
 = 1.14.0 - August 8, 2018 =
 * New: Calculate tax for non-digital products

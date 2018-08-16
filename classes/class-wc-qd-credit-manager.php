@@ -82,10 +82,20 @@ class WC_QD_Credit_Manager {
 		$tax = array_shift($taxes);
 		if ( !isset( $tax ) ) {
 			list($tax_name, $tax_rate) = array( NULL, 0 );
-		} else if ( in_array( $tax['rate_id'], array('quaderno_eservice', 'quaderno_ebook') ) ) {
+		} else if ( in_array( $tax['rate_id'], array('quaderno_', 'quaderno_eservice', 'quaderno_ebook') ) ) {
 			list($tax_name, $tax_rate) = explode( '|', $tax['name'] );
 		} else {
 			list($tax_name, $tax_rate) = array( WC_Tax::get_rate_label( $tax['rate_id'] ), floatval( WC_Tax::get_rate_percent( $tax['rate_id'] )) );
+		}
+
+		// Calculate tax country
+		$tax_based_on = get_option( 'woocommerce_tax_based_on' );
+		if ( 'base' === $tax_based_on ) {
+			$country  = WC()->countries->get_base_country();
+		} elseif ( 'billing' === $tax_based_on ) {
+			$country  = $order->get_billing_country();
+		} else {
+			$country  = $order->get_shipping_country();
 		}
 
 		// Add item
@@ -96,7 +106,7 @@ class WC_QD_Credit_Manager {
 			'total_amount' => $refunded_amount,
 			'tax_1_name' => $tax_name,
 			'tax_1_rate' => $tax_rate,
-			'tax_1_country' => $order->get_billing_country()
+			'tax_1_country' => $country
 		));
 		$credit->addItem( $new_item );
 

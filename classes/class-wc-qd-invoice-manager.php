@@ -81,6 +81,9 @@ class WC_QD_Invoice_Manager {
 		// Calculate exchange rate
 		$exchange_rate = get_post_meta( $order_id, '_woocs_order_rate', true ) ?: 1;
 
+		// Get tax location
+		$location = $this->get_tax_location($order);
+
 		// Add line items
 		$digital_products = false;
 		$items = $order->get_items();
@@ -90,7 +93,7 @@ class WC_QD_Invoice_Manager {
 			if ( true == in_array( $rate_id, array('quaderno_eservice', 'quaderno_ebook') )) {
 				$digital_products = true;
 			}
-			$tax = self::get_tax( $rate_id, $order->get_billing_country() );
+			$tax = self::get_tax( $rate_id, $location['country'], $location['postcode'], $vat_number );
 
 			$subtotal = $order->get_line_subtotal($item, true);
 			$total = $order->get_line_total($item, true);
@@ -103,7 +106,7 @@ class WC_QD_Invoice_Manager {
 				'discount_rate' => $discount_rate,
 				'tax_1_name' => $tax['name'],
 				'tax_1_rate' => $tax['rate'],
-				'tax_1_country' => $order->get_billing_country()
+				'tax_1_country' => $tax['country']
 			));
 			$invoice->addItem( $new_item );
 		}
@@ -114,7 +117,7 @@ class WC_QD_Invoice_Manager {
 			$shipping_tax_data = maybe_unserialize( $shipping['taxes'] );
 			$rate_id = key( reset( $shipping_tax_data ));
 
-			$tax = self::get_tax( $rate_id, $order->get_billing_country() );
+			$tax = self::get_tax( $rate_id, $location['country'], $location['postcode'], $vat_number );
 			$shipping_total = $shipping['total'] + $shipping['total_tax'];
 
 			$new_item = new QuadernoDocumentItem(array(
@@ -123,7 +126,7 @@ class WC_QD_Invoice_Manager {
 				'total_amount' => round( $shipping_total * $exchange_rate, 2),
 				'tax_1_name' => $tax['name'],
 				'tax_1_rate' => $tax['rate'],
-				'tax_1_country' => $order->get_billing_country()
+				'tax_1_country' => $tax['country']
 			));
 			$invoice->addItem( $new_item );
 		}
@@ -134,7 +137,7 @@ class WC_QD_Invoice_Manager {
 			$fee_tax_data = maybe_unserialize( $fee['line_tax_data'] );
 			$rate_id = key( reset( $fee_tax_data ));
 
-			$tax = self::get_tax( $rate_id, $order->get_billing_country() );
+			$tax = self::get_tax( $rate_id, $location['country'], $location['postcode'], $vat_number );
 			$fee_total = $fee['total'] + $fee['total_tax'];
 
 			$new_item = new QuadernoDocumentItem(array(
@@ -143,7 +146,7 @@ class WC_QD_Invoice_Manager {
 				'total_amount' => round( $fee_total * $exchange_rate, 2),
 				'tax_1_name' => $tax['name'],
 				'tax_1_rate' => $tax['rate'],
-				'tax_1_country' => $order->get_billing_country()
+				'tax_1_country' => $tax['country']
 			));
 			$invoice->addItem( $new_item );
 		}
@@ -200,15 +203,41 @@ class WC_QD_Invoice_Manager {
 		return $method;
 	}
 	
-	public function get_tax( $rate_id, $country = '' ) {
+	public function get_tax( $rate_id, $country = '', $postcode = '', $vat_number = '' ) {
 		if ( !isset( $rate_id ) ) {
 			list($tax_name, $tax_rate) = array( NULL, 0 );
 		} else {
-			$tax = WC_QD_Calculate_Tax::calculate( str_replace( 'quaderno_', '', $rate_id ), $country );
+			$tax = WC_QD_Calculate_Tax::calculate( str_replace( 'quaderno_', '', $rate_id ), $country, $postcode, $vat_number );
 			list($tax_name, $tax_rate) = array( $tax->name, $tax->rate );
 		} 
 		
-		return array( 'name' => $tax_name, 'rate' => $tax_rate );
+		return array( 'name' => $tax_name, 'rate' => $tax_rate, 'country' => $country );
+	}
+
+	public function get_tax_location( $order ) {
+		$tax_based_on = get_option( 'woocommerce_tax_based_on' );
+
+		if ( 'shipping' === $tax_based_on && ! $order->get_shipping_country() ) {
+			$tax_based_on = 'billing';
+		}
+
+		if ( 'base' === $tax_based_on ) {
+			$country  = WC()->countries->get_base_country();
+			$postcode = WC()->countries->get_base_postcode();
+		} elseif ( 'billing' === $tax_based_on ) {
+			$country  = $order->get_billing_country();
+			$postcode = $order->get_billing_postcode();
+		} else {
+			$country  = $order->get_shipping_country();
+			$postcode = $order->get_shipping_postcode();
+		}
+
+		$result = array(
+			'country'  => $country,
+			'postcode' => $postcode
+		);
+
+		return $result;
 	}
 
 }

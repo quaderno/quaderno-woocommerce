@@ -55,20 +55,33 @@ class WC_QD_Checkout_Vat {
 		// Parse the string
 		parse_str( $post_data, $post_arr );
 
-		// The billing data
-		$billing_country = sanitize_text_field( $post_arr['billing_country'] );
-		$billing_postcode = sanitize_text_field( $post_arr['billing_postcode'] );
-		$vat_number = sanitize_text_field( $post_arr['vat_number'] );
+		$tax_based_on = get_option( 'woocommerce_tax_based_on' );
+		if ( 'shipping' === $tax_based_on && ! isset($post_arr['ship_to_different_address']) ) {
+			$tax_based_on = 'billing';
+		}
+
+		// Tax location
+		if ( 'base' === $tax_based_on ) {
+			$country  = WC()->countries->get_base_country();
+			$postcode = WC()->countries->get_base_postcode();
+		} elseif ( 'billing' === $tax_based_on ) {
+			$country  = sanitize_text_field( $post_arr['billing_country'] );
+			$postcode = sanitize_text_field( $post_arr['billing_postcode'] );
+		} else {
+			$country  = sanitize_text_field( $post_arr['shipping_country'] );
+			$postcode = sanitize_text_field( $post_arr['shipping_postcode'] );
+		}
+		$vat_number = sanitize_text_field( 'billing' === $tax_based_on ? $post_arr['vat_number'] : '' );
 
     // Check if the customer is VAT exempted
-		if ( false === WC_QD_Vat_Number_Field::is_valid( $vat_number, $billing_country ) ) {
+		if ( false === WC_QD_Vat_Number_Field::is_valid( $vat_number, $country ) ) {
 			WC()->customer->set_is_vat_exempt( false );
 		} else {
 			WC()->customer->set_is_vat_exempt( true );
 		}
 
 		// The cart manager
-		$cart_manager = new WC_QD_Cart_Manager($billing_country, $billing_postcode, $vat_number);
+		$cart_manager = new WC_QD_Cart_Manager($country, $postcode, $vat_number);
 
 		// Update the taxes in cart based on cart items
 		$this->update_taxes_in_cart( $cart_manager->get_items_from_cart() );
@@ -78,11 +91,26 @@ class WC_QD_Checkout_Vat {
 	 * Update taxes in the checkout processing process
 	 */
 	public function update_taxes_on_check_process() {
-		// Get the VAT number if exists
-		$vat_number = isset( $_POST['vat_number'] ) ? sanitize_text_field( $_POST['vat_number'] ) : '';
+		$tax_based_on = get_option( 'woocommerce_tax_based_on' );
+		if ( 'shipping' === $tax_based_on && ! isset( $_POST['ship_to_different_address'] )) {
+			$tax_based_on = 'billing';
+		}
+
+		// Tax location
+		if ( 'base' === $tax_based_on ) {
+			$country  = WC()->countries->get_base_country();
+			$postcode = WC()->countries->get_base_postcode();
+		} elseif ( 'billing' === $tax_based_on ) {
+			$country  = sanitize_text_field( $_POST['billing_country'] );
+			$postcode = sanitize_text_field( $_POST['billing_postcode'] );
+		} else {
+			$country  = sanitize_text_field( $_POST['shipping_country'] );
+			$postcode = sanitize_text_field( $_POST['shipping_postcode'] );
+		}
+		$vat_number = sanitize_text_field( 'billing' === $tax_based_on ? $_POST['vat_number'] : '' );
 
 		// The cart manager
-		$cart_manager = new WC_QD_Cart_Manager(WC()->customer->get_billing_country(), WC()->customer->get_billing_postcode(), $vat_number);
+		$cart_manager = new WC_QD_Cart_Manager($country, $postcode, $vat_number);
 
 		// Update the taxes in cart based on cart items
 		$this->update_taxes_in_cart( $cart_manager->get_items_from_cart() );
