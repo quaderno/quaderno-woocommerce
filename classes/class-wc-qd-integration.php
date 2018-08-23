@@ -96,7 +96,7 @@ class WC_QD_Integration extends WC_Integration {
 		$post_count = $wpdb->get_var( "SELECT count(*) FROM " . $wpdb->prefix . "postmeta WHERE meta_key = '_quaderno_invoice'" );
 		$user_id = get_current_user_id();
 
-		if ( get_user_meta( $user_id, 'quaderno_review_dismissed' ) || $post_count < 5 ) {
+		if ( !current_user_can( 'manage_options' ) || get_user_meta( $user_id, 'quaderno_review_dismissed' ) || $post_count < 5 ) {
 			return;
 		}
 		?>
