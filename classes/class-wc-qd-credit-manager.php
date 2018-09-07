@@ -77,12 +77,12 @@ class WC_QD_Credit_Manager {
 		// Calculate exchange rate
 		$exchange_rate = get_post_meta( $order->get_id(), '_woocs_order_rate', true ) ?: 1;
 
-		// Calculate taxes
+		// Calculate tax name & rate
 		$taxes = $order->get_taxes();
 		$tax = array_shift($taxes);
 		if ( !isset( $tax ) ) {
 			list($tax_name, $tax_rate) = array( NULL, 0 );
-		} else if ( in_array( $tax['rate_id'], array('quaderno_', 'quaderno_eservice', 'quaderno_ebook') ) ) {
+		} else if ( empty( WC_Tax::get_rate_code( $tax['rate_id'] ))) {
 			list($tax_name, $tax_rate) = explode( '|', $tax['name'] );
 		} else {
 			list($tax_name, $tax_rate) = array( WC_Tax::get_rate_label( $tax['rate_id'] ), floatval( WC_Tax::get_rate_percent( $tax['rate_id'] )) );
@@ -91,11 +91,15 @@ class WC_QD_Credit_Manager {
 		// Calculate tax country
 		$tax_based_on = get_option( 'woocommerce_tax_based_on' );
 		if ( 'base' === $tax_based_on ) {
-			$country  = WC()->countries->get_base_country();
-		} elseif ( 'billing' === $tax_based_on ) {
-			$country  = $order->get_billing_country();
+			$tax_country  = WC()->countries->get_base_country();
+		} else if ( 'billing' === $tax_based_on ) {
+			$tax_country  = $order->get_billing_country();
 		} else {
-			$country  = $order->get_shipping_country();
+			$tax_country  = $order->get_shipping_country();
+		}
+
+		if ( empty( $tax_country )) {
+			$tax_country = $order->get_billing_country();
 		}
 
 		// Add item
@@ -104,9 +108,9 @@ class WC_QD_Credit_Manager {
 			'description' => 'Refund invoice #' . get_post_meta( $order->get_id(), '_quaderno_invoice_number', true ),
 			'quantity' => 1,
 			'total_amount' => $refunded_amount,
-			'tax_1_name' => $tax_name,
+			'tax_1_name' => $tax['label'],
 			'tax_1_rate' => $tax_rate,
-			'tax_1_country' => $country
+			'tax_1_country' => $tax_country
 		));
 		$credit->addItem( $new_item );
 

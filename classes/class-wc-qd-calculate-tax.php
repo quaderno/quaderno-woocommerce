@@ -39,7 +39,7 @@ class WC_QD_Calculate_Tax {
 	/**
 	 * Get the product type
 	 *
-	 * @param String $transaction_type
+	 * @param String $tax_class
 	 * @param String $country
 	 * @param String $postal_code
 	 * @param String $vat_number
@@ -60,21 +60,16 @@ class WC_QD_Calculate_Tax {
 		$params = array(
 			'country' => $country,
 			'postal_code' => urlencode($postal_code),
-			'postcode' => urlencode($postal_code),
 			'vat_number' => urlencode($vat_number),
 			'transaction_type' => urlencode($transaction_type),
-			'tax_class' => urlencode($tax_class)
 		);
 
 		$slug = 'tax_' . md5( implode( $params ) );
 
 		// Calculate taxes if they're not cached
 		if ( false === ( $tax = get_transient( $slug ) ) ) {
-			$wc_tax = new WC_Tax();
-			$wc_rates = $wc_tax->find_rates( $params );
-			$wc_rate = reset( $wc_rates );
-
-			if ( $wc_rate ) {
+			$wc_rate = self::get_wc_rate( $tax_class, $country, $postal_code );
+			if ( !empty( $wc_rate ) ) {
 				$tax = new stdClass();
 				$tax->name = $wc_rate['label'];
 				$tax->rate = $wc_rate['rate'];
@@ -84,12 +79,33 @@ class WC_QD_Calculate_Tax {
 				$tax = QuadernoTax::calculate( $params );				
 			}
 
-			set_transient( $slug, $tax, WEEK_IN_SECONDS );
+			set_transient( $slug, $tax, DAY_IN_SECONDS );
 		}
 
 		if( is_null($tax->name) ) $tax->name = __( 'Taxes', 'woocommerce-quaderno' );
 
 		return $tax;
+	}
+
+	/**
+	 * Get the WooCommerce default rate
+	 *
+	 * @param String $tax_class
+	 * @param String $country
+	 * @param String $postal_code
+	 *
+	 * @return WC_Tax
+	 */
+	public static function get_wc_rate( $tax_class, $country, $postal_code = '' ) {
+		$wc_tax = new WC_Tax();
+		$params = array(
+			'country' => $country,
+			'postcode' => urlencode($postal_code),
+			'tax_class' => urlencode($tax_class)
+		);
+
+		$wc_rates = $wc_tax->find_rates( $params );
+		return reset( $wc_rates );
 	}
 
 }

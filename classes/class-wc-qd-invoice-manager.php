@@ -33,7 +33,7 @@ class WC_QD_Invoice_Manager {
 			'notes' => $order->get_customer_note(),
 			'processor' => 'woocommerce',
 			'processor_id' => $order->get_transaction_id() ?: $order_id,
-			'payment_method' => self::get_payment_method($order_id)
+			'payment_method' => $this->get_payment_method($order_id)
 		);
 
 		// Add the contact
@@ -88,12 +88,13 @@ class WC_QD_Invoice_Manager {
 		$digital_products = false;
 		$items = $order->get_items();
 		foreach ( $items as $item ) {
-			$line_tax_data = maybe_unserialize( $item['line_tax_data'] );
-			$rate_id = key( $line_tax_data['total'] );
-			if ( true == in_array( $rate_id, array('quaderno_eservice', 'quaderno_ebook') )) {
+			$tax_class = WC_QD_Calculate_Tax::get_tax_class( $item['product_id'] );
+			
+			if ( true == in_array( $tax_class, array('eservice', 'ebook') )) {
 				$digital_products = true;
 			}
-			$tax = self::get_tax( $rate_id, $location['country'], $location['postcode'], $vat_number );
+			
+			$tax = $this->get_tax( $tax_class, $location['country'], $location['postcode'], $vat_number );
 
 			$subtotal = $order->get_line_subtotal($item, true);
 			$total = $order->get_line_total($item, true);
@@ -104,29 +105,27 @@ class WC_QD_Invoice_Manager {
 				'quantity' => $item['qty'],
 				'total_amount' => round( $total * $exchange_rate, wc_get_price_decimals() ),
 				'discount_rate' => $discount_rate,
-				'tax_1_name' => $tax['name'],
-				'tax_1_rate' => $tax['rate'],
-				'tax_1_country' => $tax['country']
+				'tax_1_name' => $tax->name,
+				'tax_1_rate' => $tax->rate,
+				'tax_1_country' => $tax->country
 			));
 			$invoice->addItem( $new_item );
 		}
 
 		// Add shipping items
-		$items = $order->get_items('shipping');
-		foreach ( $items as $shipping ) {
-			$shipping_tax_data = maybe_unserialize( $shipping['taxes'] );
-			$rate_id = key( reset( $shipping_tax_data ));
-
-			$tax = self::get_tax( $rate_id, $location['country'], $location['postcode'], $vat_number );
-			$shipping_total = $shipping['total'] + $shipping['total_tax'];
+		$shipping_total = $order->get_shipping_total();
+		if ( $shipping_total > 0 ) {
+			$shipping_tax = $order->get_shipping_tax();
+			$shipping_total += $shipping_tax;
+			$tax = $this->get_tax( '', $location['country'], $location['postcode'], $vat_number );
 
 			$new_item = new QuadernoDocumentItem(array(
 				'description' => esc_html__('Shipping', 'woocommerce-quaderno' ),
 				'quantity' => 1,
 				'total_amount' => round( $shipping_total * $exchange_rate, 2),
-				'tax_1_name' => $tax['name'],
-				'tax_1_rate' => $tax['rate'],
-				'tax_1_country' => $tax['country']
+				'tax_1_name' => $tax->name,
+				'tax_1_rate' => $tax->rate,
+				'tax_1_country' => $tax->country
 			));
 			$invoice->addItem( $new_item );
 		}
@@ -134,19 +133,16 @@ class WC_QD_Invoice_Manager {
 		// Add fees
 		$items = $order->get_items('fee');
 		foreach ( $items as $fee ) {
-			$fee_tax_data = maybe_unserialize( $fee['line_tax_data'] );
-			$rate_id = key( reset( $fee_tax_data ));
-
-			$tax = self::get_tax( $rate_id, $location['country'], $location['postcode'], $vat_number );
+			$tax = $this->get_tax( '', $location['country'], $location['postcode'], $vat_number );
 			$fee_total = $fee['total'] + $fee['total_tax'];
 
 			$new_item = new QuadernoDocumentItem(array(
 				'description' => esc_html__('Fee', 'woocommerce-quaderno' ),
 				'quantity' => 1,
 				'total_amount' => round( $fee_total * $exchange_rate, 2),
-				'tax_1_name' => $tax['name'],
-				'tax_1_rate' => $tax['rate'],
-				'tax_1_country' => $tax['country']
+				'tax_1_name' => $tax->name,
+				'tax_1_rate' => $tax->rate,
+				'tax_1_country' => $tax->country
 			));
 			$invoice->addItem( $new_item );
 		}
@@ -203,15 +199,9 @@ class WC_QD_Invoice_Manager {
 		return $method;
 	}
 	
-	public function get_tax( $rate_id, $country = '', $postcode = '', $vat_number = '' ) {
-		if ( !isset( $rate_id ) ) {
-			list($tax_name, $tax_rate) = array( NULL, 0 );
-		} else {
-			$tax = WC_QD_Calculate_Tax::calculate( str_replace( 'quaderno_', '', $rate_id ), $country, $postcode, $vat_number );
-			list($tax_name, $tax_rate) = array( $tax->name, $tax->rate );
-		} 
-		
-		return array( 'name' => $tax_name, 'rate' => $tax_rate, 'country' => $country );
+	public function get_tax( $tax_class, $country = '', $postcode = '', $vat_number = '' ) {
+		$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $country, $postcode, $vat_number );		
+		return $tax;
 	}
 
 	public function get_tax_location( $order ) {

@@ -24,9 +24,11 @@ class WC_QD_Tax_Manager {
 	 * Setup the hooks and filters
 	 */
 	private function setup() {
-
 		// Override the product tax class
 		add_filter( 'woocommerce_product_get_tax_class', array( $this, 'override_product_tax_class' ), 10, 2 );
+		add_filter( 'woocommerce_product_variation_get_tax_class', array( $this, 'override_product_tax_class' ), 10, 2 );
+		add_action( 'woocommerce_checkout_create_order_line_item', array( $this, 'modify_tax_rate_id' ), 10, 4 );
+		add_action( 'woocommerce_checkout_create_order_tax_item', array( $this, 'modify_tax_item' ), 10, 3 );
 
 		// Override the tax rate
 		add_filter( 'woocommerce_find_rates', array( $this, 'override_tax_rate' ), 10, 2 );
@@ -39,6 +41,60 @@ class WC_QD_Tax_Manager {
 
 		// Stop base taxes being taken off when dealing with out of base locations
 		add_filter( 'woocommerce_adjust_non_base_location_prices', '__return_false' );
+	}
+
+	/**
+	 * Creates a hash rate id which is unique but repeatable.
+	 *
+	 * @since 1.14.4
+	 * @return string
+	 */
+	private function create_unique_rate_id( $rate_id ) {
+		if ( isset( $this->tax_rates[ $rate_id ] ) ) {
+			$rate  = $this->tax_rates[ $rate_id ][ $rate_id ]['rate'];
+			$label = $this->tax_rates[ $rate_id ][ $rate_id ]['label'];
+
+			return (string) hexdec( substr( md5( strtolower( $label . '-' . $rate ) ), 0, 15 ) );
+		}
+
+		return (string) hexdec( substr( md5( strtolower( $rate_id ) ), 0, 15 ) );
+	}
+
+	/**
+	 * Modifies the tax lines to use uniquely generated number as rate id as strings are not valid since WC30.
+	 *
+	 * @since 1.14.4
+	 */
+	public function modify_tax_rate_id( $item, $cart_item_key, $values, $order ) {
+		$rebuilt_tax = array();
+
+		foreach ( $values['line_tax_data'] as $key => $value ) {
+			foreach ( $value as $k => $v ) {
+				if ( preg_match( '/quaderno/', $k ) ) {
+					$rate_id = $this->create_unique_rate_id( $k );
+					$rebuilt_tax[ $key ][ $rate_id ] = $v;
+
+					if ( ! isset( $this->unique_rate_id[ $k ] ) ) {
+						$this->unique_rate_id[ $k ] = $rate_id;
+					}
+				} else {
+					$rebuilt_tax[ $key ][ $k ] = $v;
+				}
+			}
+		} 
+
+		$item->set_props( array( 'taxes' => $rebuilt_tax ) );
+	}
+
+	/**
+	 * Modifies the tax item tax rate id so it can match the tax line item.
+	 *
+	 * @since 1.14.4
+	 */
+	public function modify_tax_item( $item, $tax_rate_id, $order ) {
+		if ( isset( $this->unique_rate_id[ $tax_rate_id ] ) ) {
+			$item->set_props( array( 'rate_id' => $this->unique_rate_id[ $tax_rate_id ] ) );
+		}
 	}
 
 	/**
@@ -144,7 +200,6 @@ class WC_QD_Tax_Manager {
 	 * @return String $code_string
 	 */
 	public function override_rate_code( $code_string, $key ) {
-
 		if ( isset( $this->tax_rates[ $key ] ) ) {
 			$code_string = strtoupper( $this->tax_rates[ $key ][ $key ]['label'] . '|' . $this->tax_rates[ $key ][ $key ]['rate'] );
 		}
@@ -160,7 +215,6 @@ class WC_QD_Tax_Manager {
 	 * @return mixed
 	 */
 	public function override_rate_label( $rate_name, $key ) {
-
 		if ( isset( $this->tax_rates[ $key ] ) ) {
 			$rate_name = $this->tax_rates[ $key ][ $key ]['label'];
 		}
