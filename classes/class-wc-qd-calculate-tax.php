@@ -68,15 +68,13 @@ class WC_QD_Calculate_Tax {
 
 		// Calculate taxes if they're not cached
 		if ( false === ( $tax = get_transient( $slug ) ) ) {
+			$tax = QuadernoTax::calculate( $params );				
+
 			$wc_rate = self::get_wc_rate( $tax_class, $country, $postal_code );
 			if ( !empty( $wc_rate ) ) {
-				$tax = new stdClass();
 				$tax->name = $wc_rate['label'];
 				$tax->rate = $wc_rate['rate'];
 				$tax->country = $country;
-			}
-			else {
-				$tax = QuadernoTax::calculate( $params );				
 			}
 
 			set_transient( $slug, $tax, DAY_IN_SECONDS );

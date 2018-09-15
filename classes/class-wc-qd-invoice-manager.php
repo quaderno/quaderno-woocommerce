@@ -89,12 +89,11 @@ class WC_QD_Invoice_Manager {
 		$items = $order->get_items();
 		foreach ( $items as $item ) {
 			$tax_class = WC_QD_Calculate_Tax::get_tax_class( $item['product_id'] );
-			
+			$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $location['country'], $location['postcode'], $vat_number );
+
 			if ( true == in_array( $tax_class, array('eservice', 'ebook') )) {
 				$digital_products = true;
 			}
-			
-			$tax = $this->get_tax( $tax_class, $location['country'], $location['postcode'], $vat_number );
 
 			$subtotal = $order->get_line_subtotal($item, true);
 			$total = $order->get_line_total($item, true);
@@ -107,7 +106,10 @@ class WC_QD_Invoice_Manager {
 				'discount_rate' => $discount_rate,
 				'tax_1_name' => $tax->name,
 				'tax_1_rate' => $tax->rate,
-				'tax_1_country' => $tax->country
+				'tax_1_county' => $tax->county,
+				'tax_1_region' => $tax->region,
+				'tax_1_country' => $tax->country,
+				'tax_1_transaction_type' => $tax->transaction_type
 			));
 			$invoice->addItem( $new_item );
 		}
@@ -115,9 +117,9 @@ class WC_QD_Invoice_Manager {
 		// Add shipping items
 		$shipping_total = $order->get_shipping_total();
 		if ( $shipping_total > 0 ) {
+			$tax = WC_QD_Calculate_Tax::calculate( '', $location['country'], $location['postcode'], $vat_number );
 			$shipping_tax = $order->get_shipping_tax();
 			$shipping_total += $shipping_tax;
-			$tax = $this->get_tax( '', $location['country'], $location['postcode'], $vat_number );
 
 			$new_item = new QuadernoDocumentItem(array(
 				'description' => esc_html__('Shipping', 'woocommerce-quaderno' ),
@@ -125,7 +127,10 @@ class WC_QD_Invoice_Manager {
 				'total_amount' => round( $shipping_total * $exchange_rate, 2),
 				'tax_1_name' => $tax->name,
 				'tax_1_rate' => $tax->rate,
-				'tax_1_country' => $tax->country
+				'tax_1_county' => $tax->county,
+				'tax_1_region' => $tax->region,
+				'tax_1_country' => $tax->country,
+				'tax_1_transaction_type' => $tax->transaction_type
 			));
 			$invoice->addItem( $new_item );
 		}
@@ -133,7 +138,7 @@ class WC_QD_Invoice_Manager {
 		// Add fees
 		$items = $order->get_items('fee');
 		foreach ( $items as $fee ) {
-			$tax = $this->get_tax( '', $location['country'], $location['postcode'], $vat_number );
+			$tax = WC_QD_Calculate_Tax::calculate( '', $location['country'], $location['postcode'], $vat_number );
 			$fee_total = $fee['total'] + $fee['total_tax'];
 
 			$new_item = new QuadernoDocumentItem(array(
@@ -142,7 +147,10 @@ class WC_QD_Invoice_Manager {
 				'total_amount' => round( $fee_total * $exchange_rate, 2),
 				'tax_1_name' => $tax->name,
 				'tax_1_rate' => $tax->rate,
-				'tax_1_country' => $tax->country
+				'tax_1_county' => $tax->county,
+				'tax_1_region' => $tax->region,
+				'tax_1_country' => $tax->country,
+				'tax_1_transaction_type' => $tax->transaction_type
 			));
 			$invoice->addItem( $new_item );
 		}
@@ -199,11 +207,6 @@ class WC_QD_Invoice_Manager {
 		return $method;
 	}
 	
-	public function get_tax( $tax_class, $country = '', $postcode = '', $vat_number = '' ) {
-		$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $country, $postcode, $vat_number );		
-		return $tax;
-	}
-
 	public function get_tax_location( $order ) {
 		$tax_based_on = get_option( 'woocommerce_tax_based_on' );
 
