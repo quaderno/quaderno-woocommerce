@@ -46,7 +46,6 @@ class WC_QD_Cart_Manager {
 					'product_type' => $tax_class,
 					'tax_name' => $tax->name,
 					'tax_rate' => $tax->rate );
-				
 			}
 		}
 

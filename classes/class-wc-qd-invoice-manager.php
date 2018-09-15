@@ -57,6 +57,11 @@ class WC_QD_Invoice_Manager {
 				$contact_name = '';
 			}
 
+			$state = $order->get_billing_state();
+			$country = $order->get_billing_country();
+			$states = WC()->countries->get_states( $country );
+			$full_state = ( !in_array( $country, array('US', 'CA') ) && isset( $states[ $state ] ) ) ? $states[ $state ] : $state;
+
 			$invoice_params['contact'] = array(
 				'kind' => $kind,
 				'first_name' => $first_name,
@@ -66,8 +71,8 @@ class WC_QD_Invoice_Manager {
 				'street_line_2' => $order->get_billing_address_2(),
 				'city' => $order->get_billing_city(),
 				'postal_code' => $order->get_billing_postcode(),
-				'region' => $order->get_billing_state(),
-				'country' => $order->get_billing_country(),
+				'region' => $full_state,
+				'country' => $country,
 				'email' => $order->get_billing_email(),
 				'phone_1' => $order->get_billing_phone(),
 				'vat_number' => $vat_number,
@@ -135,7 +140,7 @@ class WC_QD_Invoice_Manager {
 			$invoice->addItem( $new_item );
 		}
 
-		// Add fees
+		// Add fee items
 		$items = $order->get_items('fee');
 		foreach ( $items as $fee ) {
 			$tax = WC_QD_Calculate_Tax::calculate( '', $location['country'], $location['postcode'], $vat_number );

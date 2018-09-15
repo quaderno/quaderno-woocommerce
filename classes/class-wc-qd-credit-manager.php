@@ -26,50 +26,23 @@ class WC_QD_Credit_Manager {
 			return;
 		}
 
+		// Get the original invoice
+		$invoice_id = get_post_meta( $order->get_id(), '_quaderno_invoice', true );
+		if ( empty( $invoice_id ) ) {
+			return; 
+		}
+
+		$invoice = QuadernoInvoice::find( $invoice_id );
+
 		$credit_params = array(
 			'issue_date' => date('Y-m-d'),
+			'contact_id' => $invoice->contact->id,
 			'currency' => $refund->get_currency(),
 			'po_number' => get_post_meta( $order->get_id(), '_order_number_formatted', true ) ?: $order->get_id(),
 			'processor' => 'woocommerce',
 			'processor_id' => $order->get_id(),
 			'payment_method' => self::get_payment_method($order->get_id())
 		);
-
-		// Add the contact
-		$contact_id = get_user_meta( $order->get_user_id(), '_quaderno_contact', true );
-		if ( !empty( $contact_id ) ) {
-			$credit_params['contact_id'] = $contact_id;
-		}
-		else {
-			if ( !empty( $order->get_billing_company() ) ) {
-				$kind = 'company';
-				$first_name = $order->get_billing_company();
-				$last_name = '';
-				$contact_name = $order->get_billing_first_name() . ' ' . $order->get_billing_last_name();
-			} else {
-				$kind = 'person';
-				$first_name = $order->get_billing_first_name();
-				$last_name = $order->get_billing_last_name();
-				$contact_name = '';
-			}
-
-			$credit_params['contact'] = array(
-				'kind' => $kind,
-				'first_name' => $first_name,
-				'last_name' => $last_name,
-				'contact_name' => $contact_name,
-				'street_line_1' => $order->get_billing_address_1(),
-				'street_line_2' => $order->get_billing_address_2(),
-				'city' => $order->get_billing_city(),
-				'postal_code' => $order->get_billing_postcode(),
-				'region' => $order->get_billing_state(),
-				'country' => $order->get_billing_country(),
-				'email' => $order->get_billing_email(),
-				'phone_1' => $order->get_billing_phone(),
-				'vat_number' => get_post_meta( $order->get_id(), WC_QD_Vat_Number_Field::META_KEY, true ),
-  			'tax_id' => get_post_meta( $order->get_id(), WC_QD_Tax_Id_Field::META_KEY, true )
-			);
-		}
 		
 		//Let's create the credit note
 		$credit = new QuadernoCredit($credit_params);
@@ -77,40 +50,21 @@ class WC_QD_Credit_Manager {
 		// Calculate exchange rate
 		$exchange_rate = get_post_meta( $order->get_id(), '_woocs_order_rate', true ) ?: 1;
 
-		// Calculate tax name & rate
-		$taxes = $order->get_taxes();
-		$tax = array_shift($taxes);
-		if ( !isset( $tax ) ) {
-			list($tax_name, $tax_rate) = array( NULL, 0 );
-		} else if ( empty( WC_Tax::get_rate_code( $tax['rate_id'] ))) {
-			list($tax_name, $tax_rate) = explode( '|', $tax['name'] );
-		} else {
-			list($tax_name, $tax_rate) = array( WC_Tax::get_rate_label( $tax['rate_id'] ), floatval( WC_Tax::get_rate_percent( $tax['rate_id'] )) );
-		}
-
-		// Calculate tax country
-		$tax_based_on = get_option( 'woocommerce_tax_based_on' );
-		if ( 'base' === $tax_based_on ) {
-			$tax_country  = WC()->countries->get_base_country();
-		} else if ( 'billing' === $tax_based_on ) {
-			$tax_country  = $order->get_billing_country();
-		} else {
-			$tax_country  = $order->get_shipping_country();
-		}
-
-		if ( empty( $tax_country )) {
-			$tax_country = $order->get_billing_country();
-		}
+		// Get the first invoice item to calculate taxes
+		$item = $invoice->items[0];
 
 		// Add item
 		$refunded_amount = -round($refund->get_total() * $exchange_rate, 2);
 		$new_item = new QuadernoDocumentItem(array(
-			'description' => 'Refund invoice #' . get_post_meta( $order->get_id(), '_quaderno_invoice_number', true ),
+			'description' => 'Refund invoice #' . $invoice->number,
 			'quantity' => 1,
 			'total_amount' => $refunded_amount,
-			'tax_1_name' => $tax['label'],
-			'tax_1_rate' => $tax_rate,
-			'tax_1_country' => $tax_country
+			'tax_1_name' => $item->tax_1_name,
+			'tax_1_rate' => $item->tax_1_rate,
+			'tax_1_county' => $item->tax_1_county,
+			'tax_1_region' => $item->tax_1_region,
+			'tax_1_country' => $item->tax_1_country,
+			'tax_1_transaction_type' => $item->tax_1_transaction_type
 		));
 		$credit->addItem( $new_item );
 
