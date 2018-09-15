@@ -101,7 +101,7 @@ class WC_QD_Integration extends WC_Integration {
 		}
 		?>
 		<div class="notice notice-info">
-    	<p><?php _e( "Awesome, you've been using <strong>Quaderno for WooCommerce</strong> for a while.<br>Could you please do me a BIG favor and give a <strong>5-star rating</strong> on WordPress? Just to help us spread the word and boost our motivation.<br><br>Your help is much appreciated. Thank you very much,<br> ~Carlos Hernandez, Founder", 'woocommerce-quaderno' ); ?>
+    	<p><?php _e( "Awesome, you've been using <strong>Quaderno for WooCommerce</strong> for a while.<br>Could you please do me a BIG favor and give a <strong>5-star rating</strong> on WordPress? Just to help us spread the word and boost our motivation.<br><br>Thank you,<br>Carlos Hernandez, Founder", 'woocommerce-quaderno' ); ?>
       </p>
       <ul>
           <li><a href="https://wordpress.org/support/plugin/woocommerce-quaderno/reviews/?filter=5#new-post" target="_blank"><?php _e( 'Ok, you deserve it', 'woocommerce-quaderno' ); ?></a></li>
