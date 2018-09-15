@@ -26,8 +26,9 @@ class WC_QD_Tax_Manager {
 	private function setup() {
 		// Override the product tax class
 		add_filter( 'woocommerce_product_get_tax_class', array( $this, 'override_product_tax_class' ), 10, 2 );
-		add_filter( 'woocommerce_product_variation_get_tax_class', array( $this, 'override_product_tax_class' ), 10, 2 );
 		add_action( 'woocommerce_checkout_create_order_line_item', array( $this, 'modify_tax_rate_id' ), 10, 4 );
+		add_action( 'woocommerce_checkout_create_order_fee_item', array( $this, 'modify_extra_item' ), 10, 4 );
+		add_action( 'woocommerce_checkout_create_order_shipping_item', array( $this, 'modify_extra_item' ), 10, 4 );
 		add_action( 'woocommerce_checkout_create_order_tax_item', array( $this, 'modify_tax_item' ), 10, 3 );
 
 		// Override the tax rate
@@ -87,6 +88,28 @@ class WC_QD_Tax_Manager {
 	}
 
 	/**
+	 * Modifies the fee and shipping taxes to use uniquely generated number as rate id as strings are not valid since WC30.
+	 *
+	 * @since 1.14.5
+	 */
+	public function modify_extra_item( $item, $key, $value, $order ) {
+		$rebuilt_tax = array();
+
+		foreach ( $item['taxes'] as $key => $value ) {
+			foreach ( $value as $k => $v ) {
+				if ( preg_match( '/quaderno/', $k ) ) {
+					$rate_id = $this->create_unique_rate_id( $k );
+					$rebuilt_tax[ $key ][ $rate_id ] = $v;
+				} else {
+					$rebuilt_tax[ $key ][ $k ] = $v;
+				}
+			}
+		}
+
+		$item->set_props( array( 'taxes' => $rebuilt_tax ) );
+	}
+
+	/**
 	 * Modifies the tax item tax rate id so it can match the tax line item.
 	 *
 	 * @since 1.14.4
@@ -112,13 +135,13 @@ class WC_QD_Tax_Manager {
 	 * Map a tax class to a product ID
 	 *
 	 * @param int $product_id
-	 * @param String $product_type
+	 * @param String $tax_class
 	 *
 	 * @return bool
 	 */
-	public function add_product_tax_class( $product_id, $product_type ) {
+	public function add_product_tax_class( $product_id, $tax_class ) {
 		if ( ! isset( $this->product_to_tax_class[ $product_id ] ) ) {
-			$this->product_to_tax_class[ $product_id ] = $this->clean_tax_class( $product_type );
+			$this->product_to_tax_class[ $product_id ] = $this->clean_tax_class( $tax_class );
 
 			return true;
 		}
@@ -129,14 +152,14 @@ class WC_QD_Tax_Manager {
 	/**
 	 * Add a new tax rate
 	 *
-	 * @param String $product_type
+	 * @param String $tax_class
 	 * @param float $rate
 	 * @param String $label
 	 *
 	 * @return bool
 	 */
-	public function add_tax_rate( $product_type, $rate, $label ) {
-		$clean_slug = $this->clean_tax_class( $product_type );
+	public function add_tax_rate( $tax_class, $rate, $label ) {
+		$clean_slug = $this->clean_tax_class( $tax_class );
 
 		if ( ! isset( $this->tax_rates[ $clean_slug ] ) ) {
 			$this->tax_rates[ $clean_slug ] = array(

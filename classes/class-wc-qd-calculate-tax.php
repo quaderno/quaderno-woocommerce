@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_QD_Calculate_Tax {
 
 	/**
-	 * Get the transaction type
+	 * Get the tax class
 	 *
 	 * @param int $product_id
 	 *

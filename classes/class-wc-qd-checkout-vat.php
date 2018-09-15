@@ -37,11 +37,6 @@ class WC_QD_Checkout_Vat {
 			$tax_manager = new WC_QD_Tax_Manager();
 
 			foreach ( $items as $key => $item ) {
-				// Don't modify tax rates for default tax classes
-				if ( !in_array( $item['product_type'], array('standard', 'eservice', 'ebook') ) ) {
-					continue;
-				}
-
 				// Add the new product class for this product
 				$tax_manager->add_product_tax_class( $item['id'], $item['product_type'] );
 
@@ -145,11 +140,6 @@ class WC_QD_Checkout_Vat {
 
 				// Get the transaction type
 				$tax_class = WC_QD_Calculate_Tax::get_tax_class( $product_id );
-
-				// Don't modify tax rates for default tax classes
-				if ( !in_array( $tax_class, array('standard', 'eservice', 'ebook') ) ) {
-					continue;
-				}
 
 				// Calculate taxes
 				$tax = WC_QD_Calculate_Tax::calculate($tax_class, $country);
