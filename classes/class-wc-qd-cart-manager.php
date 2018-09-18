@@ -9,8 +9,9 @@ class WC_QD_Cart_Manager {
 	private $country;
 	private $vat_number;
 	
-	public function __construct($country, $postal_code, $vat_number) {
+	public function __construct($country, $region, $postal_code, $vat_number) {
 		$this->country = $country;
+		$this->region = $region;
 		$this->postal_code = $postal_code;
 		$this->vat_number = $vat_number;
 	}
@@ -39,7 +40,7 @@ class WC_QD_Cart_Manager {
 				$tax_class = WC_QD_Calculate_Tax::get_tax_class( $id );
 
 				// Calculate taxes
-				$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $this->country, $this->postal_code, $this->vat_number );
+				$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $this->country, $this->region, $this->postal_code, $this->vat_number );
 
 				$items[ $cart_key ] = array(
 					'id' => $id,

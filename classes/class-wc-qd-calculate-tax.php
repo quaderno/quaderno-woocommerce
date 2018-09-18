@@ -46,7 +46,7 @@ class WC_QD_Calculate_Tax {
 	 *
 	 * @return Tax
 	 */
-	public static function calculate( $tax_class, $country, $postal_code = '', $vat_number = '' ) {
+	public static function calculate( $tax_class, $country, $region = '', $postal_code = '', $vat_number = '' ) {
 		switch ( $tax_class ) {
 			case 'eservice':
 			case 'ebook':
@@ -59,6 +59,7 @@ class WC_QD_Calculate_Tax {
 
 		$params = array(
 			'country' => $country,
+			'region' => urlencode($region),
 			'postal_code' => urlencode($postal_code),
 			'vat_number' => urlencode($vat_number),
 			'transaction_type' => urlencode($transaction_type),
@@ -70,7 +71,7 @@ class WC_QD_Calculate_Tax {
 		if ( false === ( $tax = get_transient( $slug ) ) ) {
 			$tax = QuadernoTax::calculate( $params );				
 
-			$wc_rate = self::get_wc_rate( $tax_class, $country, $postal_code );
+			$wc_rate = self::get_wc_rate( $tax_class, $country, $region, $postal_code );
 			if ( !empty( $wc_rate ) ) {
 				$tax->name = $wc_rate['label'];
 				$tax->rate = $wc_rate['rate'];
@@ -94,14 +95,14 @@ class WC_QD_Calculate_Tax {
 	 *
 	 * @return WC_Tax
 	 */
-	public static function get_wc_rate( $tax_class, $country, $postal_code = '' ) {
+	public static function get_wc_rate( $tax_class, $country, $region = '', $postal_code = '' ) {
 		$wc_tax = new WC_Tax();
 		$params = array(
 			'country' => $country,
+			'state' => $region,
 			'postcode' => urlencode($postal_code),
 			'tax_class' => urlencode($tax_class)
 		);
-
 		$wc_rates = $wc_tax->find_rates( $params );
 		return reset( $wc_rates );
 	}

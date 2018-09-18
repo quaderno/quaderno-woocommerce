@@ -20,6 +20,10 @@ jQuery(document).ready( function ( $ ) {
 	  }
 	});
 
+	$('#billing_state').change(function () {
+	  $('body').trigger('update_checkout');
+	});
+
 	$('#billing_postcode').change(function () {
 	  $('body').trigger('update_checkout');
 	});

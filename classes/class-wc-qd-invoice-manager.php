@@ -94,7 +94,7 @@ class WC_QD_Invoice_Manager {
 		$items = $order->get_items();
 		foreach ( $items as $item ) {
 			$tax_class = WC_QD_Calculate_Tax::get_tax_class( $item['product_id'] );
-			$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $location['country'], $location['postcode'], $vat_number );
+			$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $location['country'], $location['state'], $location['postcode'], $vat_number );
 
 			if ( true == in_array( $tax_class, array('eservice', 'ebook') )) {
 				$digital_products = true;
@@ -122,7 +122,7 @@ class WC_QD_Invoice_Manager {
 		// Add shipping items
 		$shipping_total = $order->get_shipping_total();
 		if ( $shipping_total > 0 ) {
-			$tax = WC_QD_Calculate_Tax::calculate( '', $location['country'], $location['postcode'], $vat_number );
+			$tax = WC_QD_Calculate_Tax::calculate( '', $location['country'], $location['state'], $location['postcode'], $vat_number );
 			$shipping_tax = $order->get_shipping_tax();
 			$shipping_total += $shipping_tax;
 
@@ -143,7 +143,7 @@ class WC_QD_Invoice_Manager {
 		// Add fee items
 		$items = $order->get_items('fee');
 		foreach ( $items as $fee ) {
-			$tax = WC_QD_Calculate_Tax::calculate( '', $location['country'], $location['postcode'], $vat_number );
+			$tax = WC_QD_Calculate_Tax::calculate( '', $location['country'], $location['state'], $location['postcode'], $vat_number );
 			$fee_total = $fee['total'] + $fee['total_tax'];
 
 			$new_item = new QuadernoDocumentItem(array(
@@ -221,17 +221,21 @@ class WC_QD_Invoice_Manager {
 
 		if ( 'base' === $tax_based_on ) {
 			$country  = WC()->countries->get_base_country();
+			$state  = WC()->countries->get_base_state();
 			$postcode = WC()->countries->get_base_postcode();
 		} elseif ( 'billing' === $tax_based_on ) {
 			$country  = $order->get_billing_country();
+			$state = $order->get_billing_state();
 			$postcode = $order->get_billing_postcode();
 		} else {
 			$country  = $order->get_shipping_country();
+			$state  = $order->get_shipping_state();
 			$postcode = $order->get_shipping_postcode();
 		}
 
 		$result = array(
 			'country'  => $country,
+			'state' => $state,
 			'postcode' => $postcode
 		);
 
