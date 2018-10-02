@@ -63,6 +63,7 @@ class WC_QD_Calculate_Tax {
 			'postal_code' => urlencode($postal_code),
 			'vat_number' => urlencode($vat_number),
 			'transaction_type' => urlencode($transaction_type),
+			'tax_class' => $tax_class
 		);
 
 		$slug = 'tax_' . md5( implode( $params ) );
