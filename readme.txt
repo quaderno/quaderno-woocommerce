@@ -3,8 +3,8 @@ Author URI: https://quaderno.io
 Contributors: polimorfico
 Tags: woocommerce, quaderno, woocommerce quaderno, vat, eu vat, vatmoss, vat moss, european vat, eu tax, european tax, billing, invoices, receipts
 Requires at least: 4.6
-Tested up to: 4.9
-Stable tag: 1.15.2
+Tested up to: 5.0
+Stable tag: 1.15.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,9 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.15.3 - October 24, 2018 =
+* Improvement: Add reverse charge note when VAT number is present
 
 = 1.15.2 - October 2, 2018 =
 * Fix: Cannot mixed different tax classes in the same cart
