@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2018-09-14 19:10+0100\n"
-"PO-Revision-Date: 2018-09-14 19:11+0100\n"
+"POT-Creation-Date: 2018-10-24 13:30+0100\n"
+"PO-Revision-Date: 2018-10-24 13:36+0100\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: Quaderno <hello@quaderno.io>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: ../classes/class-wc-qd-admin-ebook.php:34
 msgid "E-Book"
-msgstr "e-book"
+msgstr "E-book"
 
 #: ../classes/class-wc-qd-admin-ebook.php:35
 msgid "E-books are always virtual products but may have different tax rules."
@@ -26,7 +26,7 @@ msgstr ""
 "Los e-books también son productos virtuales pero pueden tener impuestos "
 "diferentes."
 
-#: ../classes/class-wc-qd-calculate-tax.php:84
+#: ../classes/class-wc-qd-calculate-tax.php:85
 msgid "Taxes"
 msgstr "Impuestos"
 
@@ -114,11 +114,17 @@ msgstr "No, quizás más tarde"
 msgid "I already did it"
 msgstr "Ya lo hice"
 
-#: ../classes/class-wc-qd-invoice-manager.php:130
+#: ../classes/class-wc-qd-invoice-manager.php:45
+msgid "EU VAT reverse charged"
+msgstr ""
+"Operación con inversión del sujeto pasivo conforme al artículo 84.1.2 de la "
+"Ley 37/1992"
+
+#: ../classes/class-wc-qd-invoice-manager.php:135
 msgid "Shipping"
 msgstr "Gastos de envío"
 
-#: ../classes/class-wc-qd-invoice-manager.php:150
+#: ../classes/class-wc-qd-invoice-manager.php:155
 msgid "Fee"
 msgstr "Comisiones"
 
@@ -126,7 +132,7 @@ msgstr "Comisiones"
 #: ../classes/class-wc-qd-order-manager.php:51
 #: ../classes/class-wc-qd-order-manager.php:66
 msgid "View Invoice"
-msgstr ""
+msgstr "Ver factura"
 
 #: ../classes/class-wc-qd-tax-id-field.php:70
 #, php-format
@@ -147,7 +153,7 @@ msgstr "%s no es válido."
 
 #: ../classes/class-wc-qd-vat-number-field.php:160
 msgid "Additional Information"
-msgstr ""
+msgstr "Información adicional"
 
 #: ../quaderno/quaderno_json.php:55 ../quaderno/quaderno_request.php:78
 msgid "There was a problem connecting to the API."

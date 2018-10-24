@@ -40,6 +40,11 @@ class WC_QD_Invoice_Manager {
 		$vat_number = get_post_meta( $order_id, WC_QD_Vat_Number_Field::META_KEY, true );
 		$tax_id = get_post_meta( $order_id, WC_QD_Tax_Id_Field::META_KEY, true );
 
+		// Add the reverse charged note
+		if ( !empty($vat_number) ) {
+			$invoice_params['notes'] = esc_html__('EU VAT reverse charged', 'woocommerce-quaderno' );
+		}
+
 		$contact_id = get_user_meta( $order->get_user_id(), '_quaderno_contact', true );
 		if ( !empty( $contact_id ) ) {
 			$invoice_params['contact_id'] = $contact_id;
