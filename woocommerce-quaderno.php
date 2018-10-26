@@ -8,7 +8,7 @@
  * Author: Quaderno
  * Author URI: https://quaderno.io/
  * WC requires at least: 3.2.0
- * WC tested up to: 3.4.4
+ * WC tested up to: 3.5.0
  * License: GPL v3
  *
  * This program is free software: you can redistribute it and/or modify
