@@ -19,6 +19,7 @@ jQuery(document).ready( function ( $ ) {
 	    $('#tax_id_field').hide();
 	  }
 	});
+	$('#billing_country').trigger('change');
 
 	$('#billing_state').change(function () {
 	  $('body').trigger('update_checkout');
