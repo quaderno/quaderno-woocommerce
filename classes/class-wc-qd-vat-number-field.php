@@ -135,6 +135,7 @@ class WC_QD_Vat_Number_Field {
 	 * @since 1.9
 	 */
 	public static function is_valid( $vat_number, $country ){
+    global $woocommerce;
 	  $params = array(
 			'vat_number' => $vat_number,
 			'country' => $country
@@ -147,7 +148,7 @@ class WC_QD_Vat_Number_Field {
 			set_transient( $slug, $valid_number, 4 * WEEK_IN_SECONDS );
 		}
 
-		return $valid_number == 1;
+		return $valid_number == 1 && $country != $woocommerce->countries->get_base_country();
 	}
 
   /**
