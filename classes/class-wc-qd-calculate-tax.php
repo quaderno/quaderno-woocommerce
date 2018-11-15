@@ -66,7 +66,7 @@ class WC_QD_Calculate_Tax {
 			'tax_class' => $tax_class
 		);
 
-		$slug = 'tax_' . md5( implode( $params ) );
+		$slug = 'quaderno_tax_' . md5( implode( $params ) );
 
 		// Calculate taxes if they're not cached
 		if ( false === ( $tax = get_transient( $slug ) ) ) {
