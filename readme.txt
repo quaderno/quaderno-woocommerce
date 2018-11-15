@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: woocommerce, quaderno, woocommerce quaderno, vat, eu vat, vatmoss, vat moss, european vat, eu tax, european tax, billing, invoices, receipts
 Requires at least: 4.6
 Tested up to: 5.0
-Stable tag: 1.15.4
+Stable tag: 1.15.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,9 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.15.5 - November 15, 2018 =
+* Improvement: delete transients when plugin is deactivated
 
 = 1.15.4 - November 2, 2018 =
 * Fix: VAT number is displayed when customer lives in the shop country
