@@ -57,7 +57,7 @@ class WC_QD_Invoice_Manager {
 				$contact_name = $order->get_billing_first_name() . ' ' . $order->get_billing_last_name();
 			} else {
 				$kind = 'person';
-				$first_name = $order->get_billing_first_name();
+				$first_name = empty( $order->get_billing_first_name() ) ? esc_html__('WooCommerce customer', 'woocommerce-quaderno' ) : $order->get_billing_first_name();
 				$last_name = $order->get_billing_last_name();
 				$contact_name = '';
 			}
