@@ -66,9 +66,6 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 
 == Changelog ==
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 = 1.15.6 - December 12, 2018 =
 * Improvement: use a default name when customer's first name is not present
 
@@ -78,18 +75,6 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 = 1.15.4 - November 2, 2018 =
 * Fix: VAT number is displayed when customer lives in the shop country
 
-=======
->>>>>>> Add reverse charge note when VAT number is present
-=======
-=======
-= 1.15.5 - November 15, 2018 =
-* Improvement: delete transients when plugin is deactivated
-
->>>>>>> Delete transients when plugin is deactivated
-= 1.15.4 - November 2, 2018 =
-* Fix: VAT number is displayed when customer lives in the shop country
-
->>>>>>> Fix: VAT number is displayed when customer lives in the shop country
 = 1.15.3 - October 24, 2018 =
 * Improvement: Add reverse charge note when VAT number is present
 
