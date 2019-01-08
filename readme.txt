@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: woocommerce, quaderno, woocommerce quaderno, vat, eu vat, vatmoss, vat moss, european vat, eu tax, european tax, billing, invoices, receipts
 Requires at least: 4.6
 Tested up to: 5.0
-Stable tag: 1.15.6
+Stable tag: 1.15.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,9 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.15.7 - January 8, 2019 =
+* Improvement: simplify settings
 
 = 1.15.6 - December 12, 2018 =
 * Improvement: use a default name when customer's first name is not present

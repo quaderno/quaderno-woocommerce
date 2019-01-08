@@ -49,12 +49,12 @@ class WC_QD_Integration extends WC_Integration {
 		$this->form_fields = array(
 			'api_token' => array(
 				'title'       => __( 'Private key', 'woocommerce-quaderno' ),
-				'description' => __( 'Get this token from your Quaderno account.', 'woocommerce-quaderno' ),
+				'description' => '<a href="https://quadernoapp.com/settings/api/" target="_blank">' . __( 'Get your Quaderno private key', 'woocommerce-quaderno' ) . '</a>',
 				'type'        => 'text'
 			),
 			'api_url'  => array(
 				'title'       => __( 'API URL', 'woocommerce-quaderno' ),
-				'description' => __( 'Get this URL from your Quaderno account.', 'woocommerce-quaderno' ),
+				'description' => '<a href="https://quadernoapp.com/settings/api/" target="_blank">' . __( 'Get your Quaderno API URL', 'woocommerce-quaderno' ) . '</a>',
 				'type'        => 'text'
 			),
 			'show_tax_id'  	=> array(
@@ -66,7 +66,7 @@ class WC_QD_Integration extends WC_Integration {
 			'autosend_invoices' => array(
 				'title'       => __( 'Delivery', 'woocommerce-quaderno' ),
 				'label'       => __( 'Autosend sales receipts and invoices', 'woocommerce-quaderno' ),
-				'description' => __( 'Check this to automatically send your sales receipts and invoices.', 'woocommerce-quaderno' ),
+				'description' => __( 'Check this to automatically send your sales receipts and invoices', 'woocommerce-quaderno' ),
 				'type'        => 'checkbox'
 			)
 		);
