@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2018-10-24 13:30+0100\n"
+"POT-Creation-Date: 2019-01-08 23:31+0000\n"
 "PO-Revision-Date: 2018-07-03 20:09-0000\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: \n"
@@ -33,7 +33,7 @@ msgid "Private key"
 msgstr ""
 
 #: ../classes/class-wc-qd-integration.php:52
-msgid "Get this token from your Quaderno account."
+msgid "Get your Quaderno private key"
 msgstr ""
 
 #: ../classes/class-wc-qd-integration.php:56
@@ -41,7 +41,7 @@ msgid "API URL"
 msgstr ""
 
 #: ../classes/class-wc-qd-integration.php:57
-msgid "Get this URL from your Quaderno account."
+msgid "Get your Quaderno API URL"
 msgstr ""
 
 #: ../classes/class-wc-qd-integration.php:61
@@ -71,7 +71,7 @@ msgid "Autosend sales receipts and invoices"
 msgstr ""
 
 #: ../classes/class-wc-qd-integration.php:69
-msgid "Check this to automatically send your sales receipts and invoices."
+msgid "Check this to automatically send your sales receipts and invoices"
 msgstr ""
 
 #: ../classes/class-wc-qd-integration.php:84
@@ -80,7 +80,7 @@ msgid ""
 "keys to start creating automatic invoices."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:88
+#: ../classes/class-wc-qd-integration.php:88 ../woocommerce-quaderno.php:199
 msgid "Settings"
 msgstr ""
 
@@ -108,6 +108,10 @@ msgstr ""
 msgid "EU VAT reverse charged"
 msgstr ""
 
+#: ../classes/class-wc-qd-invoice-manager.php:60
+msgid "WooCommerce customer"
+msgstr ""
+
 #: ../classes/class-wc-qd-invoice-manager.php:135
 msgid "Shipping"
 msgstr ""
@@ -130,7 +134,7 @@ msgstr ""
 #: ../classes/class-wc-qd-vat-number-field.php:41
 #: ../classes/class-wc-qd-vat-number-field.php:76
 #: ../classes/class-wc-qd-vat-number-field.php:89
-#: ../classes/class-wc-qd-vat-number-field.php:165
+#: ../classes/class-wc-qd-vat-number-field.php:166
 msgid "VAT number"
 msgstr ""
 
@@ -139,7 +143,7 @@ msgstr ""
 msgid "%s is not valid."
 msgstr ""
 
-#: ../classes/class-wc-qd-vat-number-field.php:160
+#: ../classes/class-wc-qd-vat-number-field.php:161
 msgid "Additional Information"
 msgstr ""
 
@@ -158,8 +162,4 @@ msgstr ""
 msgid ""
 "Please update WooCommerce to <strong>version 2.2.9 or higher</strong> in "
 "order for the WooCommerce Quaderno extension to work!"
-msgstr ""
-
-#: ../woocommerce-quaderno.php:199
-msgid "Sign Up"
 msgstr ""

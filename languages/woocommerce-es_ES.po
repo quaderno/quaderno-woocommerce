@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2018-10-24 13:30+0100\n"
-"PO-Revision-Date: 2018-10-24 13:36+0100\n"
+"POT-Creation-Date: 2019-01-08 23:31+0000\n"
+"PO-Revision-Date: 2019-01-08 23:32+0000\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: Quaderno <hello@quaderno.io>\n"
 "Language: es_ES\n"
@@ -35,16 +35,16 @@ msgid "Private key"
 msgstr "Clave privada"
 
 #: ../classes/class-wc-qd-integration.php:52
-msgid "Get this token from your Quaderno account."
-msgstr "Consigue esta clave en tu cuenta de Quaderno."
+msgid "Get your Quaderno private key"
+msgstr "Obtén tu clave privada en Quaderno"
 
 #: ../classes/class-wc-qd-integration.php:56
 msgid "API URL"
 msgstr "API URL"
 
 #: ../classes/class-wc-qd-integration.php:57
-msgid "Get this URL from your Quaderno account."
-msgstr "Consigue esta URL en tu cuenta de Quaderno."
+msgid "Get your Quaderno API URL"
+msgstr "Obtén tu API URL en Quaderno"
 
 #: ../classes/class-wc-qd-integration.php:61
 #: ../classes/class-wc-qd-tax-id-field.php:40
@@ -75,7 +75,7 @@ msgid "Autosend sales receipts and invoices"
 msgstr "Enviar automáticamente las facturas"
 
 #: ../classes/class-wc-qd-integration.php:69
-msgid "Check this to automatically send your sales receipts and invoices."
+msgid "Check this to automatically send your sales receipts and invoices"
 msgstr "Selecciona esta opción para enviar automáticamente tus facturas."
 
 #: ../classes/class-wc-qd-integration.php:84
@@ -86,7 +86,7 @@ msgstr ""
 "<strong>Quaderno</strong> está casi listo &#8211; Por favor configura tus "
 "claves API para empezar a crear facturas automáticas."
 
-#: ../classes/class-wc-qd-integration.php:88
+#: ../classes/class-wc-qd-integration.php:88 ../woocommerce-quaderno.php:199
 msgid "Settings"
 msgstr "Configuración"
 
@@ -120,6 +120,10 @@ msgstr ""
 "Operación con inversión del sujeto pasivo conforme al artículo 84.1.2 de la "
 "Ley 37/1992"
 
+#: ../classes/class-wc-qd-invoice-manager.php:60
+msgid "WooCommerce customer"
+msgstr "Cliente WooCommerce"
+
 #: ../classes/class-wc-qd-invoice-manager.php:135
 msgid "Shipping"
 msgstr "Gastos de envío"
@@ -142,7 +146,7 @@ msgstr "%s es un campo obligatorio."
 #: ../classes/class-wc-qd-vat-number-field.php:41
 #: ../classes/class-wc-qd-vat-number-field.php:76
 #: ../classes/class-wc-qd-vat-number-field.php:89
-#: ../classes/class-wc-qd-vat-number-field.php:165
+#: ../classes/class-wc-qd-vat-number-field.php:166
 msgid "VAT number"
 msgstr "Número de IVA"
 
@@ -151,7 +155,7 @@ msgstr "Número de IVA"
 msgid "%s is not valid."
 msgstr "%s no es válido."
 
-#: ../classes/class-wc-qd-vat-number-field.php:160
+#: ../classes/class-wc-qd-vat-number-field.php:161
 msgid "Additional Information"
 msgstr "Información adicional"
 
@@ -176,9 +180,14 @@ msgstr ""
 "Por favor actualiza tu instalación de WooCommerce a la <strong>versión 2.2.9 "
 "o superior</strong> para poder usar este plugin."
 
-#: ../woocommerce-quaderno.php:199
-msgid "Sign Up"
-msgstr "Regístrate"
+#~ msgid "Get this token from your Quaderno account."
+#~ msgstr "Consigue esta clave en tu cuenta de Quaderno."
+
+#~ msgid "Get this URL from your Quaderno account."
+#~ msgstr "Consigue esta URL en tu cuenta de Quaderno."
+
+#~ msgid "Sign Up"
+#~ msgstr "Regístrate"
 
 #~ msgid "Receipts threshold"
 #~ msgstr "Límite recibos"
