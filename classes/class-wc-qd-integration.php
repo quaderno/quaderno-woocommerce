@@ -17,7 +17,7 @@ class WC_QD_Integration extends WC_Integration {
 	public function __construct() {
 		$this->id                 = 'quaderno';
 		$this->method_title       = 'Quaderno';
-		$this->method_description = __( sprintf( 'Automatically send customizable invoices and receipts with every order in your store. %sNote: You need a %sQuaderno account%s for this extension to work.', '<br>', '<a href="' . WooCommerce_Quaderno::QUADERNO_URL . '/signup" target="_blank">', '</a>' ), 'woocommerce-quaderno' );
+		$this->method_description = __( 'Automatically calculate tax rates & create instant tax reports for your WooCommerce store. <br>Note: You need a <a href="https://quadernoapp.com/signup?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">Quaderno account</a> for this extension to work.', 'woocommerce-quaderno' );
 
 		// Load admin form
 		$this->init_form_fields();
@@ -49,12 +49,12 @@ class WC_QD_Integration extends WC_Integration {
 		$this->form_fields = array(
 			'api_token' => array(
 				'title'       => __( 'Private key', 'woocommerce-quaderno' ),
-				'description' => '<a href="https://quadernoapp.com/settings/api/" target="_blank">' . __( 'Get your Quaderno private key', 'woocommerce-quaderno' ) . '</a>',
+				'description' => '<a href="https://quadernoapp.com/settings/api/?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">' . __( 'Get your Quaderno private key', 'woocommerce-quaderno' ) . '</a>',
 				'type'        => 'text'
 			),
 			'api_url'  => array(
 				'title'       => __( 'API URL', 'woocommerce-quaderno' ),
-				'description' => '<a href="https://quadernoapp.com/settings/api/" target="_blank">' . __( 'Get your Quaderno API URL', 'woocommerce-quaderno' ) . '</a>',
+				'description' => '<a href="https://quadernoapp.com/settings/api/?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">' . __( 'Get your Quaderno API URL', 'woocommerce-quaderno' ) . '</a>',
 				'type'        => 'text'
 			),
 			'show_tax_id'  	=> array(

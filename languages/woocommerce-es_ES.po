@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2019-01-19 12:16+0000\n"
-"PO-Revision-Date: 2019-01-19 12:16+0000\n"
+"POT-Creation-Date: 2019-01-19 12:22+0000\n"
+"PO-Revision-Date: 2019-01-19 12:22+0000\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: Quaderno <hello@quaderno.io>\n"
 "Language: es_ES\n"
@@ -29,6 +29,18 @@ msgstr ""
 #: ../classes/class-wc-qd-calculate-tax.php:85
 msgid "Taxes"
 msgstr "Impuestos"
+
+#: ../classes/class-wc-qd-integration.php:20
+msgid ""
+"Automatically calculate tax rates & create instant tax reports for your "
+"WooCommerce store. <br>Note: You need a <a href=\"https://quadernoapp.com/"
+"signup?utm_source=wordpress&utm_campaign=woocommerce\" target=\"_blank"
+"\">Quaderno account</a> for this extension to work."
+msgstr ""
+"Calcula impuestos automáticamente y crea informes de impuestos al instante "
+"para tu tienda WooCommerce. <br>Nota: Necesitas una <a href=\"https://"
+"quadernoapp.com/signup?utm_source=wordpress&utm_campaign=woocommerce\" "
+"target=\"_blank\">cuenta Quaderno</a> para que esta extensión funcione."
 
 #: ../classes/class-wc-qd-integration.php:51
 msgid "Private key"
@@ -86,7 +98,7 @@ msgstr ""
 "<strong>Quaderno</strong> está casi listo &#8211; Por favor configura tus "
 "claves API para empezar a crear facturas automáticas."
 
-#: ../classes/class-wc-qd-integration.php:88 ../woocommerce-quaderno.php:199
+#: ../classes/class-wc-qd-integration.php:88 ../woocommerce-quaderno.php:198
 msgid "Settings"
 msgstr "Configuración"
 
@@ -163,7 +175,7 @@ msgstr "Información adicional"
 msgid "There was a problem connecting to the API."
 msgstr "Hubo un problema al conectar con la API."
 
-#: ../woocommerce-quaderno.php:103
+#: ../woocommerce-quaderno.php:102
 #, php-format
 msgid ""
 "Please install and activate %sWooCommerce%s in order for the WooCommerce "
@@ -172,7 +184,7 @@ msgstr ""
 "Por favor instala %sWooCommerce%s para poder usar la extensión de Quaderno "
 "para WooCommerce."
 
-#: ../woocommerce-quaderno.php:117
+#: ../woocommerce-quaderno.php:116
 msgid ""
 "Please update WooCommerce to <strong>version 2.2.9 or higher</strong> in "
 "order for the WooCommerce Quaderno extension to work!"
