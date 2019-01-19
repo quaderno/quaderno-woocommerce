@@ -3,10 +3,10 @@
 /**
  * Plugin Name: WooCommerce Quaderno
  * Plugin URI: https://wordpress.org/plugins/woocommerce-quaderno/
- * Description: Automatically send customizable tax invoices and receipts with every order in your WooCommerce store.
+ * Description:  Automatically calculate tax rates & create instant tax reports for your WooCommerce store.
  * Version: 1.15.7
  * Author: Quaderno
- * Author URI: https://quaderno.io/
+ * Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce
  * WC requires at least: 3.2.0
  * WC tested up to: 3.5.0
  * License: GPL v3
@@ -46,7 +46,6 @@ if ( ! function_exists( 'woothemes_queue_update' ) ) {
  */
 class WooCommerce_Quaderno {
 
-	const QUADERNO_URL = 'https://quadernoapp.com';
 	private static $instance = null;
 
 	/**

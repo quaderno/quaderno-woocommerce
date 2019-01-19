@@ -1,14 +1,14 @@
 === WooCommerce Quaderno ===
-Author URI: https://quaderno.io
+Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce
 Contributors: polimorfico
-Tags: woocommerce, quaderno, woocommerce quaderno, vat, eu vat, vatmoss, vat moss, european vat, eu tax, european tax, billing, invoices, receipts
+Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
 Tested up to: 5.0
 Stable tag: 1.15.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Quaderno replaces and improves the default WooCommerce receipts. Setup in less than 5 minutes.
+Automatically calculate tax rates & create instant tax reports for your WooCommerce store. Setup in less than 5 minutes.
 
 == Description ==
 
@@ -18,20 +18,20 @@ https://www.youtube.com/watch?v=mGs6SVOr7fU
 
 = What you get =
 
-* **Automatic invoices, receipts, and credit notes** with every order in your store, in **multiple languages and currencies**.
 * **Comply with local tax laws** in countries around the world, including the EU VAT rules for digital goods & services.
-* **100% customizable invoices** to reflect your brand or add a personal touch.
-* **Manage all your invoices and revenue sources** in one easy-to-use dashboard.
-* **Real-time reports of your revenue**. Track profits, losses, and patterns in the data to identify where your business is going strong and where it may need some TLC.
+* **Get notified any time you surpass a tax threshold**, or when a tax rate changes anywhere you sell your products or services. 
+* **Get all the information you need for your tax returns**, at a glance, in mere seconds.
+* **Automatic receipts, invoices, and credit notes** with every order in your store, in **multiple languages and currencies**.
+* **Manage all your revenue sources** in one easy-to-use dashboard.
 
 **Setup in less than 5 minutes**. Fast and easy!
 
 1. Download & activate this plugin
-2. [Sign up](https://quaderno.io/integrations/woocommerce/) for a Quaderno account
+2. [Sign up](https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce) for a Quaderno account
 3. Paste your API key in your WooCommerce site
-4. Brand your Quaderno invoices with custom design
+4. That's all!
 
-**Note:** this plugin requires both a [WooCommerce](https://woocommerce.com) and [Quaderno](https://quaderno.io/integrations/woocommerce/) account.
+**Note:** this plugin requires a [Quaderno](https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce) account.
 
 == Installation ==
 
