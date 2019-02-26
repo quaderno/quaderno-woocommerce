@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "POT-Creation-Date: 2019-01-19 12:22+0000\n"
-"PO-Revision-Date: 2019-02-26 13:53+0000\n"
+"PO-Revision-Date: 2019-02-26 13:54+0000\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: Quaderno <hello@quaderno.io>\n"
 "Language: es_ES\n"
@@ -88,7 +88,7 @@ msgstr "Enviar automáticamente las facturas"
 
 #: ../classes/class-wc-qd-integration.php:69
 msgid "Check this to automatically send your sales receipts and invoices"
-msgstr "Selecciona esta opción para enviar automáticamente tus facturas."
+msgstr "Selecciona esta opción para enviar automáticamente tus facturas"
 
 #: ../classes/class-wc-qd-integration.php:84
 msgid ""
@@ -182,7 +182,7 @@ msgid ""
 "Quaderno extension to work!"
 msgstr ""
 "Por favor instala %sWooCommerce%s para poder usar la extensión de Quaderno "
-"para WooCommerce."
+"para WooCommerce"
 
 #: ../woocommerce-quaderno.php:116
 msgid ""
@@ -190,7 +190,7 @@ msgid ""
 "order for the WooCommerce Quaderno extension to work!"
 msgstr ""
 "Por favor actualiza tu instalación de WooCommerce a la <strong>versión 2.2.9 "
-"o superior</strong> para poder usar este plugin."
+"o superior</strong> para poder usar este plugin"
 
 #~ msgid "Get this token from your Quaderno account."
 #~ msgstr "Consigue esta clave en tu cuenta de Quaderno."
