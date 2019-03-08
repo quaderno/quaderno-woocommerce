@@ -56,6 +56,7 @@ class WC_QD_Credit_Manager {
 		// Add item
 		$refunded_amount = -round($refund->get_total() * $exchange_rate, 2);
 		$new_item = new QuadernoDocumentItem(array(
+			'reference' => $item->reference,
 			'description' => 'Refund invoice #' . $invoice->number,
 			'quantity' => 1,
 			'total_amount' => $refunded_amount,

@@ -98,7 +98,7 @@ class WC_QD_Invoice_Manager {
 		$digital_products = false;
 		$items = $order->get_items();
 		foreach ( $items as $item ) {
-			$tax_class = WC_QD_Calculate_Tax::get_tax_class( $item['product_id'] );
+			$tax_class = WC_QD_Calculate_Tax::get_tax_class( $item->get_product_id() );
 			$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $location['country'], $location['state'], $location['postcode'], $vat_number );
 
 			if ( true == in_array( $tax_class, array('eservice', 'ebook') )) {
@@ -109,9 +109,12 @@ class WC_QD_Invoice_Manager {
 			$total = $order->get_line_total($item, true);
 			$discount_rate = $subtotal == 0  ? 0 : round( ( $subtotal -  $total ) / $subtotal * 100, 0 );
 
+			$product = wc_get_product( $item->get_product_id() );
+
 			$new_item = new QuadernoDocumentItem(array(
-				'description' => $item['name'],
-				'quantity' => $item['qty'],
+				'reference' => $product->get_sku(),
+				'description' => $item->get_name(),
+				'quantity' => $item->get_quantity(),
 				'total_amount' => round( $total * $exchange_rate, wc_get_price_decimals() ),
 				'discount_rate' => $discount_rate,
 				'tax_1_name' => $tax->name,
