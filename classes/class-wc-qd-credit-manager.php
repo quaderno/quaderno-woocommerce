@@ -42,7 +42,8 @@ class WC_QD_Credit_Manager {
 			'tag_list' => implode( ',', $invoice->tag_list ),
 			'processor' => 'woocommerce',
 			'processor_id' => $order->get_id(),
-			'payment_method' => self::get_payment_method($order->get_id())
+			'payment_method' => self::get_payment_method($order->get_id()),
+			'document_id' => $invoice_id
 		);
 		
 		//Let's create the credit note
@@ -70,7 +71,6 @@ class WC_QD_Credit_Manager {
 		));
 		$credit->addItem( $new_item );
 
-write_log($credit);
 		if ( $credit->save() ) {
 			add_post_meta( $refund_id, '_quaderno_credit', $credit->id );
 			add_user_meta( $order->get_user_id(), '_quaderno_contact', $credit->contact_id, true );
