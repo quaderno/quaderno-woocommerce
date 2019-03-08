@@ -66,6 +66,7 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 
 == Changelog ==
 
+<<<<<<< HEAD
 = 1.15.8 - February 26, 2019 =
 * Tested with WordPress 5.1
 
@@ -81,6 +82,8 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 = 1.15.4 - November 2, 2018 =
 * Fix: VAT number is displayed when customer lives in the shop country
 
+=======
+>>>>>>> Add reverse charge note when VAT number is present
 = 1.15.3 - October 24, 2018 =
 * Improvement: Add reverse charge note when VAT number is present
 

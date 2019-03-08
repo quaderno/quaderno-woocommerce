@@ -132,10 +132,13 @@ msgstr ""
 "Operación con inversión del sujeto pasivo conforme al artículo 84.1.2 de la "
 "Ley 37/1992"
 
+<<<<<<< HEAD
 #: ../classes/class-wc-qd-invoice-manager.php:60
 msgid "WooCommerce customer"
 msgstr "Cliente WooCommerce"
 
+=======
+>>>>>>> Add reverse charge note when VAT number is present
 #: ../classes/class-wc-qd-invoice-manager.php:135
 msgid "Shipping"
 msgstr "Gastos de envío"
