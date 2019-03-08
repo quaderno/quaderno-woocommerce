@@ -116,13 +116,10 @@ msgstr ""
 msgid "EU VAT reverse charged"
 msgstr ""
 
-<<<<<<< HEAD
 #: ../classes/class-wc-qd-invoice-manager.php:60
 msgid "WooCommerce customer"
 msgstr ""
 
-=======
->>>>>>> Add reverse charge note when VAT number is present
 #: ../classes/class-wc-qd-invoice-manager.php:135
 msgid "Shipping"
 msgstr ""
