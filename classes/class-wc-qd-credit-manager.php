@@ -39,6 +39,7 @@ class WC_QD_Credit_Manager {
 			'contact_id' => $invoice->contact->id,
 			'currency' => $refund->get_currency(),
 			'po_number' => get_post_meta( $order->get_id(), '_order_number_formatted', true ) ?: $order->get_id(),
+			'tag_list' => implode( ',', $invoice->tag_list ),
 			'processor' => 'woocommerce',
 			'processor_id' => $order->get_id(),
 			'payment_method' => self::get_payment_method($order->get_id())
@@ -56,7 +57,7 @@ class WC_QD_Credit_Manager {
 		// Add item
 		$refunded_amount = -round($refund->get_total() * $exchange_rate, 2);
 		$new_item = new QuadernoDocumentItem(array(
-			'reference' => $item->reference,
+			'product_code' => $item->product_code,
 			'description' => 'Refund invoice #' . $invoice->number,
 			'quantity' => 1,
 			'total_amount' => $refunded_amount,
@@ -69,6 +70,7 @@ class WC_QD_Credit_Manager {
 		));
 		$credit->addItem( $new_item );
 
+write_log($credit);
 		if ( $credit->save() ) {
 			add_post_meta( $refund_id, '_quaderno_credit', $credit->id );
 			add_user_meta( $order->get_user_id(), '_quaderno_contact', $credit->contact_id, true );

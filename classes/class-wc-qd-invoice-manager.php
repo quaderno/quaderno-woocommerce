@@ -32,7 +32,7 @@ class WC_QD_Invoice_Manager {
 			'po_number' => get_post_meta( $order_id, '_order_number_formatted', true ) ?: $order_id,
 			'notes' => $order->get_customer_note(),
 			'processor' => 'woocommerce',
-			'processor_id' => $order->get_transaction_id() ?: $order_id,
+			'processor_id' => $order_id,
 			'payment_method' => $this->get_payment_method($order_id)
 		);
 
@@ -88,6 +88,9 @@ class WC_QD_Invoice_Manager {
 		// Let's create the invoice
 		$invoice = new QuadernoIncome($invoice_params);
 
+		// Let's create the tag list
+		$tags = array();
+
 		// Calculate exchange rate
 		$exchange_rate = get_post_meta( $order_id, '_woocs_order_rate', true ) ?: 1;
 
@@ -112,7 +115,7 @@ class WC_QD_Invoice_Manager {
 			$product = wc_get_product( $item->get_product_id() );
 
 			$new_item = new QuadernoDocumentItem(array(
-				'reference' => $product->get_sku(),
+				'product_code' => $product->get_sku(),
 				'description' => $item->get_name(),
 				'quantity' => $item->get_quantity(),
 				'total_amount' => round( $total * $exchange_rate, wc_get_price_decimals() ),
@@ -125,6 +128,13 @@ class WC_QD_Invoice_Manager {
 				'tax_1_transaction_type' => $tax->transaction_type
 			));
 			$invoice->addItem( $new_item );
+
+			$tags = array_merge( $tags, wp_get_object_terms( $product->get_id(), 'product_tag', array( 'fields' => 'slugs' ) ) );
+		}
+
+		// Add product tags to invoice
+		if ( count( $tags ) > 0 ) {
+			$invoice->tag_list = implode( ',', $tags );
 		}
 
 		// Add shipping items
