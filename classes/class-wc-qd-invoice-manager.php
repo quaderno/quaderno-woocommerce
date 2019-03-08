@@ -33,7 +33,8 @@ class WC_QD_Invoice_Manager {
 			'notes' => $order->get_customer_note(),
 			'processor' => 'woocommerce',
 			'processor_id' => $order_id,
-			'payment_method' => $this->get_payment_method($order_id)
+			'payment_method' => $this->get_payment_method($order_id),
+			'custom_metadata' => array( 'processor_url' => $order->get_edit_order_url() )
 		);
 
 		// Add the contact

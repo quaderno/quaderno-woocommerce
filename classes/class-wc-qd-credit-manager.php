@@ -43,7 +43,8 @@ class WC_QD_Credit_Manager {
 			'processor' => 'woocommerce',
 			'processor_id' => $order->get_id(),
 			'payment_method' => self::get_payment_method($order->get_id()),
-			'document_id' => $invoice_id
+			'document_id' => $invoice_id,
+			'custom_metadata' => array( 'processor_url' => $order->get_edit_order_url() )
 		);
 		
 		//Let's create the credit note
