@@ -39,7 +39,8 @@ class WC_QD_Vat_Number_Field {
 		woocommerce_form_field( 'vat_number', array(
 			'type'   => 'text',
 			'label'  => esc_html__( 'VAT number', 'woocommerce-quaderno' ),
-			'class'  => array( 'update_totals_on_change' )
+			'class'  => array( 'update_totals_on_change' ),
+      'autocomplete' => 'nope',
 		), $user_vat_number );
 
 		woocommerce_form_field( 'base_location', array(

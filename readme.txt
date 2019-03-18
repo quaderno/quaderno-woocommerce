@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
 Tested up to: 5.1
-Stable tag: 1.15.9
+Stable tag: 1.15.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,9 +67,12 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 == Changelog ==
 
 = 1.15.9 - March 8, 2019 =
-* Send products SKUs to Quaderno
-* Link refunds with invoices
-* Send order URL to Quaderno
+* Fix: Stop Chrome to autocomplete VAT numbers
+
+= 1.15.9 - March 8, 2019 =
+* Improvement: Send products SKUs to Quaderno
+* Improvement: Link refunds with invoices
+* Improvement: Send order URL to Quaderno
 
 = 1.15.8 - February 26, 2019 =
 * Tested with WordPress 5.1
