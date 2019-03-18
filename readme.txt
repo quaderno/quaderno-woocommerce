@@ -66,7 +66,7 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 
 == Changelog ==
 
-= 1.15.9 - March 8, 2019 =
+= 1.15.10 - March 18, 2019 =
 * Fix: Stop Chrome to autocomplete VAT numbers
 
 = 1.15.9 - March 8, 2019 =
