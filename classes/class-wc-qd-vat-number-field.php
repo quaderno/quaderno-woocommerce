@@ -55,7 +55,12 @@ class WC_QD_Vat_Number_Field {
 	 * @param $order_id
 	 */
 	public function save_field( $order_id ) {
-		if ( ! empty( $_POST['vat_number'] ) ) {
+    global $woocommerce;
+
+    $billing_country = WC()->customer->get_billing_country();
+    $shop_country = $woocommerce->countries->get_base_country();
+
+		if ( ! empty( $_POST['vat_number'] ) && $billing_country != $shop_country ) {
 			// Save the VAT number
 			update_post_meta( $order_id, self::META_KEY, sanitize_text_field( $_POST['vat_number'] ) );
 
@@ -70,8 +75,13 @@ class WC_QD_Vat_Number_Field {
 	 * @since 1.4
 	 */
 	public function validate_field() {
-		if ( ! empty( $_POST['vat_number'] ) ) {
-		  $valid_number = $this::is_valid( $_POST['vat_number'], WC()->customer->get_billing_country() );
+    global $woocommerce;
+
+    $billing_country = WC()->customer->get_billing_country();
+    $shop_country = $woocommerce->countries->get_base_country();
+
+		if ( ! empty( $_POST['vat_number'] ) && $billing_country != $shop_country ) {
+		  $valid_number = $this::is_valid( $_POST['vat_number'], $billing_country );
 
 			if ( false === $valid_number ) {
 				wc_add_notice( sprintf( esc_html__( '%s is not valid.', 'woocommerce-quaderno' ), '<strong>' . esc_html__( 'VAT number', 'woocommerce-quaderno' ) . '</strong>' ), 'error' );

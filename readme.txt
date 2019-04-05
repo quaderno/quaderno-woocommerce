@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
 Tested up to: 5.1
-Stable tag: 1.15.10
+Stable tag: 1.15.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,9 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.15.11 - April 5, 2019 =
+* Fix: Don't validate VAT number when customer is based in shop's country
 
 = 1.15.10 - March 18, 2019 =
 * Fix: Stop Chrome to autocomplete VAT numbers
