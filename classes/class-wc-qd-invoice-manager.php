@@ -113,10 +113,7 @@ class WC_QD_Invoice_Manager {
 			$total = $order->get_line_total($item, true);
 			$discount_rate = $subtotal == 0  ? 0 : round( ( $subtotal -  $total ) / $subtotal * 100, 0 );
 
-			$product = wc_get_product( $item->get_product_id() );
-
 			$new_item = new QuadernoDocumentItem(array(
-				'product_code' => $product->get_sku(),
 				'description' => $item->get_name(),
 				'quantity' => $item->get_quantity(),
 				'total_amount' => round( $total * $exchange_rate, wc_get_price_decimals() ),
@@ -128,9 +125,15 @@ class WC_QD_Invoice_Manager {
 				'tax_1_country' => $tax->country,
 				'tax_1_transaction_type' => $tax->transaction_type
 			));
-			$invoice->addItem( $new_item );
 
-			$tags = array_merge( $tags, wp_get_object_terms( $product->get_id(), 'product_tag', array( 'fields' => 'slugs' ) ) );
+			// Store the product code
+			$product = wc_get_product( $item->get_product_id() );
+			if ( !empty( $product ) ) {
+				$new_item->product_code = $product->get_sku();
+				$tags = array_merge( $tags, wp_get_object_terms( $product->get_id(), 'product_tag', array( 'fields' => 'slugs' ) ) );
+			}
+
+			$invoice->addItem( $new_item );
 		}
 
 		// Add product tags to invoice
