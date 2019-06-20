@@ -270,6 +270,34 @@ class WC_QD_Invoice_Manager {
 		}
 		return $method;
 	}
+
+  /**
+   * Get payment processor for Quaderno
+   *
+   * @param $order_id
+   */
+  public function get_payment_processor( $order_id ) {
+    $payment_id = get_post_meta( $order_id, '_payment_method', true );
+    $method = '';
+    switch( $payment_id ) {
+      case 'paypal':
+        $method = 'paypal';
+        break;
+      case 'stripe':
+        $method = 'stripe';
+        break;
+    }
+    return $method;
+  }
+
+  /**
+   * Get payment processor id for Quaderno
+   *
+   * @param $order_id
+   */
+  public function get_payment_processor_id( $order_id ) {
+    return get_post_meta( $order_id, '_transaction_id', true );
+  }
 	
 	public function get_tax_location( $order ) {
 		$tax_based_on = get_option( 'woocommerce_tax_based_on' );
