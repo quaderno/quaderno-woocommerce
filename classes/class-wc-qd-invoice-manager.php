@@ -33,9 +33,9 @@ class WC_QD_Invoice_Manager {
 			'notes' => $order->get_customer_note(),
 			'processor' => 'woocommerce',
 			'processor_id' => $order_id,
-			'payment_method' => $this->get_payment_method($order_id),
-      			'payment_processor' => get_post_meta( $order_id, '_payment_method', true ),
-      			'payment_processor_id' => get_post_meta( $order_id, '_transaction_id', true ),
+			'payment_method' => $this->get_payment_method($order),
+      'payment_processor' => $order->get_payment_method(),
+      'payment_processor_id' => $order->get_transaction_id(),
 			'custom_metadata' => array( 'processor_url' => $order->get_edit_order_url() )
 		);
 
@@ -211,8 +211,8 @@ class WC_QD_Invoice_Manager {
 	 *
 	 * @param $order_id
 	 */
-	public function get_payment_method( $order_id ) {
-		$payment_id = get_post_meta( $order_id, '_payment_method', true );
+	public function get_payment_method( $order ) {
+		$payment_id = $order->get_payment_method();
 		$method = '';
 		switch( $payment_id ) {
 			case 'bacs':

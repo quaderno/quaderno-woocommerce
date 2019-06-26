@@ -42,7 +42,7 @@ class WC_QD_Credit_Manager {
 			'tag_list' => implode( ',', $invoice->tag_list ),
 			'processor' => 'woocommerce',
 			'processor_id' => $order->get_id(),
-			'payment_method' => self::get_payment_method($order->get_id()),
+			'payment_method' => self::get_payment_method($order),
 			'document_id' => $invoice_id,
 			'custom_metadata' => array( 'processor_url' => $order->get_edit_order_url() )
 		);
@@ -85,8 +85,8 @@ class WC_QD_Credit_Manager {
 	 *
 	 * @param $order_id
 	 */
-	public function get_payment_method( $order_id ) {
-		$payment_id = get_post_meta( $order_id, '_payment_method', true );
+	public function get_payment_method( $order ) {
+		$payment_id = $order->get_payment_method();;
 		$method = '';
 		switch( $payment_id ) {
 			case 'bacs':
