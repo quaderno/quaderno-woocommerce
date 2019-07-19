@@ -36,6 +36,12 @@ class WC_QD_Invoice_Manager {
 			'payment_method' => $this->get_payment_method($order),
       'payment_processor' => $order->get_payment_method(),
       'payment_processor_id' => $order->get_transaction_id(),
+      'shipping_street_line_1' => $order->get_shipping_address_1(),
+      'shipping_street_line_2' => $order->get_shipping_address_2(),
+      'shipping_city' => $order->get_shipping_city(),
+      'shipping_postal_code' => $order->get_shipping_postcode(),
+      'shipping_region' => $order->get_shipping_state(),
+      'shipping_country' => $order->get_shipping_country(),
 			'custom_metadata' => array( 'processor_url' => $order->get_edit_order_url() )
 		);
 
