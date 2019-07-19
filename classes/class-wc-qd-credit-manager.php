@@ -58,6 +58,9 @@ class WC_QD_Credit_Manager {
 		// Get the first invoice item to calculate taxes
 		$item = $invoice->items[0];
 
+write_log($invoice);
+write_log($item);
+
 		// Add item
 		$refunded_amount = -round($refund->get_total() * $exchange_rate, 2);
 		$new_item = new QuadernoDocumentItem(array(
@@ -67,9 +70,12 @@ class WC_QD_Credit_Manager {
 			'total_amount' => $refunded_amount,
 			'tax_1_name' => $item->tax_1_name,
 			'tax_1_rate' => $item->tax_1_rate,
-			'tax_1_county' => $item->tax_1_county,
-			'tax_1_region' => $item->tax_1_region,
 			'tax_1_country' => $item->tax_1_country,
+			'tax_1_region' => $item->tax_1_region,
+			'tax_1_county' => $item->tax_1_county,
+			'tax_1_city' => $item->tax_1_city,
+			'tax_1_county_code' => $item->tax_1_county_code,
+			'tax_1_city_code' => $item->tax_1_city_code,
 			'tax_1_transaction_type' => $item->tax_1_transaction_type
 		));
 		$credit->addItem( $new_item );

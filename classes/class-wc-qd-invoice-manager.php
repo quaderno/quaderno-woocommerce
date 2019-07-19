@@ -122,9 +122,12 @@ class WC_QD_Invoice_Manager {
 				'discount_rate' => $discount_rate,
 				'tax_1_name' => $tax->name,
 				'tax_1_rate' => $tax->rate,
-				'tax_1_county' => $tax->county,
-				'tax_1_region' => $tax->region,
 				'tax_1_country' => $tax->country,
+				'tax_1_region' => $tax->region,
+				'tax_1_county' => $tax->county,
+				'tax_1_city' => $tax->city,
+				'tax_1_county_code' => $tax->county_tax_code,
+				'tax_1_city_code' => $tax->city_tax_code,
 				'tax_1_transaction_type' => $tax->transaction_type
 			));
 
@@ -156,9 +159,12 @@ class WC_QD_Invoice_Manager {
 				'total_amount' => round( $shipping_total * $exchange_rate, 2),
 				'tax_1_name' => $tax->name,
 				'tax_1_rate' => $tax->rate,
-				'tax_1_county' => $tax->county,
-				'tax_1_region' => $tax->region,
 				'tax_1_country' => $tax->country,
+				'tax_1_region' => $tax->region,
+				'tax_1_county' => $tax->county,
+				'tax_1_city' => $tax->city,
+				'tax_1_county_code' => $tax->county_tax_code,
+				'tax_1_city_code' => $tax->city_tax_code,
 				'tax_1_transaction_type' => $tax->transaction_type
 			));
 			$invoice->addItem( $new_item );
@@ -176,9 +182,12 @@ class WC_QD_Invoice_Manager {
 				'total_amount' => round( $fee_total * $exchange_rate, 2),
 				'tax_1_name' => $tax->name,
 				'tax_1_rate' => $tax->rate,
-				'tax_1_county' => $tax->county,
-				'tax_1_region' => $tax->region,
 				'tax_1_country' => $tax->country,
+				'tax_1_region' => $tax->region,
+				'tax_1_county' => $tax->county,
+				'tax_1_city' => $tax->city,
+				'tax_1_county_code' => $tax->county_tax_code,
+				'tax_1_city_code' => $tax->city_tax_code,
 				'tax_1_transaction_type' => $tax->transaction_type
 			));
 			$invoice->addItem( $new_item );
