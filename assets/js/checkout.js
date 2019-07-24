@@ -21,16 +21,12 @@ jQuery(document).ready( function ( $ ) {
 	});
 	$('#billing_country').trigger('change');
 
-	$('#billing_state').change(function () {
+	$('#billing_state, #billing_postcode, #billing_city, #vat_number').change(function () {
 	  $('body').trigger('update_checkout');
 	});
 
-	$('#billing_postcode').change(function () {
+	$('#shipping_country, #shipping_state, #shipping_postcode, #shipping_city').change(function () {
 	  $('body').trigger('update_checkout');
-	});
-
-	$('#vat_number').change(function() {
-		$('body').trigger('update_checkout');
 	});
 
 } );

@@ -65,14 +65,17 @@ class WC_QD_Checkout_Vat {
 			$country  = WC()->countries->get_base_country();
 			$state  = WC()->countries->get_base_state();
 			$postcode = WC()->countries->get_base_postcode();
+			$city = WC()->countries->get_base_city();
 		} elseif ( 'billing' === $tax_based_on ) {
 			$country  = sanitize_text_field( $post_arr['billing_country'] );
 			$state = sanitize_text_field( $post_arr['billing_state'] );
 			$postcode = sanitize_text_field( $post_arr['billing_postcode'] );
+			$city = sanitize_text_field( $post_arr['billing_city'] );
 		} else {
 			$country  = sanitize_text_field( $post_arr['shipping_country'] );
 			$state = sanitize_text_field( $post_arr['shipping_state'] );
 			$postcode = sanitize_text_field( $post_arr['shipping_postcode'] );
+			$city = sanitize_text_field( $post_arr['shipping_city'] );
 		}
 		$vat_number = sanitize_text_field( 'billing' === $tax_based_on ? $post_arr['vat_number'] : '' );
 
@@ -84,7 +87,7 @@ class WC_QD_Checkout_Vat {
 		}
 
 		// The cart manager
-		$cart_manager = new WC_QD_Cart_Manager($country, $state, $postcode, $vat_number);
+		$cart_manager = new WC_QD_Cart_Manager($country, $state, $postcode, $city, $vat_number);
 
 		// Update the taxes in cart based on cart items
 		$this->update_taxes_in_cart( $cart_manager->get_items_from_cart() );
@@ -104,19 +107,22 @@ class WC_QD_Checkout_Vat {
 			$country  = WC()->countries->get_base_country();
 			$state = WC()->countries->get_base_state();
 			$postcode = WC()->countries->get_base_postcode();
+			$city = WC()->countries->get_base_city();
 		} elseif ( 'billing' === $tax_based_on ) {
 			$country  = sanitize_text_field( $_POST['billing_country'] );
 			$state = sanitize_text_field( $_POST['billing_state'] );
 			$postcode = sanitize_text_field( $_POST['billing_postcode'] );
+			$city = sanitize_text_field( $_POST['billing_city'] );
 		} else {
 			$country  = sanitize_text_field( $_POST['shipping_country'] );
 			$state = sanitize_text_field( $_POST['shipping_state'] );
 			$postcode = sanitize_text_field( $_POST['shipping_postcode'] );
+			$city = sanitize_text_field( $_POST['shipping_city'] );
 		}
 		$vat_number = sanitize_text_field( 'billing' === $tax_based_on ? $_POST['vat_number'] : '' );
 
 		// The cart manager
-		$cart_manager = new WC_QD_Cart_Manager($country, $state, $postcode, $vat_number);
+		$cart_manager = new WC_QD_Cart_Manager($country, $state, $postcode, $city, $vat_number);
 
 		// Update the taxes in cart based on cart items
 		$this->update_taxes_in_cart( $cart_manager->get_items_from_cart() );
