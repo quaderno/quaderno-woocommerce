@@ -18,10 +18,11 @@ https://www.youtube.com/watch?v=mGs6SVOr7fU
 
 = What you get =
 
-* **Comply with local tax laws** in countries around the world, including the EU VAT rules for digital goods & services.
-* **Get notified any time you surpass a tax threshold**, or when a tax rate changes anywhere you sell your products or services. 
+* **Comply with local tax laws** in countries around the world.
+* **Get notified any time you surpass a tax threshold**, or when a tax rate changes anywhere you sell your products or services.
 * **Get all the information you need for your tax returns**, at a glance, in mere seconds.
-* **Automatic receipts, invoices, and credit notes** with every order in your store, in **multiple languages and currencies**.
+* **Automatic receipts and credit notes** with every order in your store, in **multiple languages and currencies**.
+* Let your customers to **download receipts and credit notes** right from your WooCommerce's orders page.  
 * **Manage all your revenue sources** in one easy-to-use dashboard.
 
 **Setup in less than 5 minutes**. Fast and easy!
