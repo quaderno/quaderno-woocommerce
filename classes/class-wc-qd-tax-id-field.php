@@ -4,6 +4,11 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
+// Countries wbere tax ID is required in local purchases
+if ( ! defined( 'TAX_ID_COUNTRIES' ) ) {
+  define( 'TAX_ID_COUNTRIES', ['BG', 'CY', 'ES', 'HR', 'IT', 'PT'] );
+} 
+
 class WC_QD_Tax_Id_Field {
 
 	const META_KEY = 'tax_id';
@@ -16,7 +21,7 @@ class WC_QD_Tax_Id_Field {
 	public function setup() {
 		add_action( 'woocommerce_after_checkout_billing_form', array( $this, 'print_field' ) );
 		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'save_field' ) );
-		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_field' ), 1 );
+		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_field' ), 10, 2 );
 		add_action( 'woocommerce_admin_order_data_after_billing_address', array( $this, 'display_field' ), 10, 1 );
 
     add_action( 'woocommerce_quaderno_meta_fields', array( $this, 'add_customer_meta_fields'), 30, 1 ); 
@@ -32,15 +37,16 @@ class WC_QD_Tax_Id_Field {
 	 * @since 1.8
 	 */
 	public function print_field() {
-		if ( 'yes' === WC_QD_Integration::$show_tax_id ){
-      $user_tax_id = get_user_meta( get_current_user_id(), '_quaderno_tax_id', true );
+    global $woocommerce;
 
-			woocommerce_form_field( 'tax_id', array(
-				'type'   => 'text',
-				'label'  => esc_html__( 'Tax ID', 'woocommerce-quaderno' ),
-				'required' => true
-			), $user_tax_id );			
-		}
+    $base_country = $woocommerce->countries->get_base_country();
+    $user_tax_id = get_user_meta( get_current_user_id(), '_quaderno_tax_id', true );
+
+		woocommerce_form_field( 'tax_id', array(
+			'type'   => 'text',
+			'label'  => esc_html__( 'Tax ID', 'woocommerce-quaderno' ),
+			'required' => in_array($base_country, TAX_ID_COUNTRIES)
+		), $user_tax_id );			
 	}
 
 	/**
@@ -60,14 +66,14 @@ class WC_QD_Tax_Id_Field {
 	 *
 	 * @since 1.8
 	 */
-	public function validate_field() {
+	public function validate_field( $fields, $errors ) {
 	  global $woocommerce;
 
 	  $billing_country = WC()->customer->get_billing_country();
 	  $base_country = $woocommerce->countries->get_base_country();
 
-		if ( 'yes' === WC_QD_Integration::$show_tax_id && $billing_country == $base_country && empty( $_POST['tax_id'] ) ) {
-		  wc_add_notice( sprintf( __( '%s is a required field.', 'woocommerce' ), '<strong>' . esc_html__( 'Tax ID', 'woocommerce-quaderno' ) . '</strong>' ), 'error' );
+		if ( in_array($base_country, TAX_ID_COUNTRIES) && $billing_country == $base_country && empty( $_POST['tax_id'] ) ) {
+      $errors->add( 'required-field', sprintf( __( '%s is a required field.', 'woocommerce' ), '<strong>' . esc_html__( 'Tax ID', 'woocommerce-quaderno' ) . '</strong>' ));
 		}
 	}
 
@@ -89,7 +95,11 @@ class WC_QD_Tax_Id_Field {
    * @since 1.12
    */
   public function add_customer_meta_fields( $user ) {
-    if ( 'yes' === WC_QD_Integration::$show_tax_id ) {
+    global $woocommerce;
+
+    $base_country = $woocommerce->countries->get_base_country();
+
+    if ( in_array($base_country, TAX_ID_COUNTRIES) ) {
     ?>    
     <tr>
       <th>

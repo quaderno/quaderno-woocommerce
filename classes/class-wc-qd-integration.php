@@ -8,7 +8,6 @@ class WC_QD_Integration extends WC_Integration {
 
 	public static $api_token = null;
 	public static $api_url = null;
-	public static $show_tax_id = null;
 	public static $autosend_invoices = null;
 
 	/**
@@ -27,7 +26,6 @@ class WC_QD_Integration extends WC_Integration {
 
 		self::$api_token = $this->get_option( 'api_token' );
 		self::$api_url  = $this->get_option( 'api_url' );
-		self::$show_tax_id  = $this->get_option( 'show_tax_id' );
 		self::$autosend_invoices  = $this->get_option( 'autosend_invoices' );
 
 		// Hooks
@@ -56,12 +54,6 @@ class WC_QD_Integration extends WC_Integration {
 				'title'       => __( 'API URL', 'woocommerce-quaderno' ),
 				'description' => '<a href="https://quadernoapp.com/settings/api/?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">' . __( 'Get your Quaderno API URL', 'woocommerce-quaderno' ) . '</a>',
 				'type'        => 'text'
-			),
-			'show_tax_id'  	=> array(
-				'title'       => __( 'Tax ID', 'woocommerce-quaderno' ),
-				'label' 			=> __( 'Ask for Tax ID when the customer is located in my country', 'woocommerce-quaderno' ),
-				'description' => __( 'Additional tax number that is mandatory in some countries. This is not the EU VAT number.', 'woocommerce-quaderno' ),
-				'type'        => 'checkbox'
 			),
 			'autosend_invoices' => array(
 				'title'       => __( 'Delivery', 'woocommerce-quaderno' ),
