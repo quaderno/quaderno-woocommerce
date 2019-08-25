@@ -4,11 +4,11 @@
  * Plugin Name: WooCommerce Quaderno
  * Plugin URI: https://wordpress.org/plugins/woocommerce-quaderno/
  * Description:  Automatically calculate tax rates & create instant tax reports for your WooCommerce store.
- * Version: 1.17.2
+ * Version: 1.17.3
  * Author: Quaderno
  * Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce
  * WC requires at least: 3.2.0
- * WC tested up to: 3.5.0
+ * WC tested up to: 3.7.0
  * License: GPL v3
  *
  * This program is free software: you can redistribute it and/or modify

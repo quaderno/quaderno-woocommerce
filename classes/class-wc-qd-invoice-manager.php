@@ -111,7 +111,13 @@ class WC_QD_Invoice_Manager {
 		$items = $order->get_items();
 		foreach ( $items as $item ) {
 			$tax_class = WC_QD_Calculate_Tax::get_tax_class( $item->get_product_id() );
-			$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $location['country'], $location['state'], $location['postcode'], $location['city'], $vat_number );
+			$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $location['country'], $location['state'], $location['postcode'], $location['city'] );
+
+			// Reverse charge
+			if ( true === WC_QD_Vat_Number_Field::is_valid( $vat_number, $country ) ) {
+				$tax->name = '';
+				$tax->rate = 0;
+			}
 
 			if ( true == in_array( $tax_class, array('eservice', 'ebook') )) {
 				$digital_products = true;
@@ -155,7 +161,14 @@ class WC_QD_Invoice_Manager {
 		// Add shipping items
 		$shipping_total = $order->get_shipping_total();
 		if ( $shipping_total > 0 ) {
-			$tax = WC_QD_Calculate_Tax::calculate( '', $location['country'], $location['state'], $location['postcode'], $location['city'], $vat_number );
+			$tax = WC_QD_Calculate_Tax::calculate( '', $location['country'], $location['state'], $location['postcode'], $location['city'] );
+
+			// Reverse charge
+			if ( true === WC_QD_Vat_Number_Field::is_valid( $vat_number, $country ) ) {
+				$tax->name = '';
+				$tax->rate = 0;
+			}
+
 			$shipping_tax = $order->get_shipping_tax();
 			$shipping_total += $shipping_tax;
 
@@ -179,7 +192,14 @@ class WC_QD_Invoice_Manager {
 		// Add fee items
 		$items = $order->get_items('fee');
 		foreach ( $items as $fee ) {
-			$tax = WC_QD_Calculate_Tax::calculate( '', $location['country'], $location['state'], $location['postcode'], $location['city'], $vat_number );
+			$tax = WC_QD_Calculate_Tax::calculate( '', $location['country'], $location['state'], $location['postcode'], $location['city'] );
+
+			// Reverse charge
+			if ( true === WC_QD_Vat_Number_Field::is_valid( $vat_number, $country ) ) {
+				$tax->name = '';
+				$tax->rate = 0;
+			}
+
 			$fee_total = $fee['total'] + $fee['total_tax'];
 
 			$new_item = new QuadernoDocumentItem(array(

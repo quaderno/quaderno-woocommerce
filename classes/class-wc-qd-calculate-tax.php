@@ -41,12 +41,13 @@ class WC_QD_Calculate_Tax {
 	 *
 	 * @param String $tax_class
 	 * @param String $country
+	 * @param String $region
 	 * @param String $postal_code
-	 * @param String $vat_number
+	 * @param String $city
 	 *
 	 * @return Tax
 	 */
-	public static function calculate( $tax_class, $country, $region = '', $postal_code = '', $city = '', $vat_number = '' ) {
+	public static function calculate( $tax_class, $country, $region = '', $postal_code = '', $city = '' ) {
 		switch ( $tax_class ) {
 			case 'eservice':
 			case 'ebook':
@@ -62,7 +63,6 @@ class WC_QD_Calculate_Tax {
 			'region' => urlencode($region),
 			'postal_code' => urlencode($postal_code),
 			'city' => urlencode($city),
-			'vat_number' => urlencode($vat_number),
 			'transaction_type' => urlencode($transaction_type),
 			'tax_class' => $tax_class
 		);
@@ -72,7 +72,7 @@ class WC_QD_Calculate_Tax {
 		// Calculate taxes if they're not cached
 		if ( false === ( $tax = get_transient( $slug ) ) ) {
 			$tax = QuadernoTax::calculate( $params );				
-
+			
 			$wc_rate = self::get_wc_rate( $tax_class, $country, $region, $postal_code, $city );
 			if ( !empty( $wc_rate ) ) {
 				$tax->name = $wc_rate['label'];

@@ -44,7 +44,7 @@ class WC_QD_Cart_Manager {
 				$tax_class = WC_QD_Calculate_Tax::get_tax_class( $id );
 
 				// Calculate taxes
-				$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $this->country, $this->region, $this->postal_code, $this->city, $this->vat_number );
+				$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $this->country, $this->region, $this->postal_code, $this->city );
 
 				$items[ $cart_key ] = array(
 					'id' => $id,
