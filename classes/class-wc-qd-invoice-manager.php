@@ -114,7 +114,7 @@ class WC_QD_Invoice_Manager {
 			$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $location['country'], $location['state'], $location['postcode'], $location['city'] );
 
 			// Reverse charge
-			if ( true === WC_QD_Vat_Number_Field::is_valid( $vat_number, $country ) ) {
+			if ( true === WC_QD_Vat_Number_Field::is_valid( $vat_number, $order->get_billing_country() ) ) {
 				$tax->name = '';
 				$tax->rate = 0;
 			}
@@ -164,7 +164,7 @@ class WC_QD_Invoice_Manager {
 			$tax = WC_QD_Calculate_Tax::calculate( '', $location['country'], $location['state'], $location['postcode'], $location['city'] );
 
 			// Reverse charge
-			if ( true === WC_QD_Vat_Number_Field::is_valid( $vat_number, $country ) ) {
+			if ( true === WC_QD_Vat_Number_Field::is_valid( $vat_number, $order->get_billing_country() ) ) {
 				$tax->name = '';
 				$tax->rate = 0;
 			}
@@ -195,7 +195,7 @@ class WC_QD_Invoice_Manager {
 			$tax = WC_QD_Calculate_Tax::calculate( '', $location['country'], $location['state'], $location['postcode'], $location['city'] );
 
 			// Reverse charge
-			if ( true === WC_QD_Vat_Number_Field::is_valid( $vat_number, $country ) ) {
+			if ( true === WC_QD_Vat_Number_Field::is_valid( $vat_number, $order->get_billing_country() ) ) {
 				$tax->name = '';
 				$tax->rate = 0;
 			}
