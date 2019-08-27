@@ -147,6 +147,12 @@ class WC_QD_Vat_Number_Field {
 	 */
 	public static function is_valid( $vat_number, $country ){
     global $woocommerce;
+
+    // get the country code from the number if it's empty
+    if ( empty($country) ) {
+      $country = substr( $vat_number, 0, 2 );
+    }
+
 	  $params = array(
 			'vat_number' => $vat_number,
 			'country' => $country
