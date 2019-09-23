@@ -27,7 +27,7 @@ class WC_QD_Invoice_Manager {
 		}
 
 		$invoice_params = array(
-			'issue_date' => date('Y-m-d'),
+			'issue_date' => current_time('Y-m-d'),
 			'currency' => $order->get_currency(),
 			'po_number' => get_post_meta( $order_id, '_order_number_formatted', true ) ?: $order_id,
 			'notes' => $order->get_customer_note(),
