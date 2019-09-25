@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2019-01-19 11:51+0000\n"
+"POT-Creation-Date: 2019-09-25 19:16+0100\n"
 "PO-Revision-Date: 2018-07-03 20:09-0000\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: \n"
@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__\n"
@@ -24,11 +24,11 @@ msgstr ""
 msgid "E-books are always virtual products but may have different tax rules."
 msgstr ""
 
-#: ../classes/class-wc-qd-calculate-tax.php:85
+#: ../classes/class-wc-qd-calculate-tax.php:86
 msgid "Taxes"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:20
+#: ../classes/class-wc-qd-integration.php:19
 msgid ""
 "Automatically calculate tax rates & create instant tax reports for your "
 "WooCommerce store. <br>Note: You need a <a href=\"https://quadernoapp.com/"
@@ -36,63 +36,45 @@ msgid ""
 "\">Quaderno account</a> for this extension to work."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:51
+#: ../classes/class-wc-qd-integration.php:49
 msgid "Private key"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:52
+#: ../classes/class-wc-qd-integration.php:50
 msgid "Get your Quaderno private key"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:56
+#: ../classes/class-wc-qd-integration.php:54
 msgid "API URL"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:57
+#: ../classes/class-wc-qd-integration.php:55
 msgid "Get your Quaderno API URL"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:61
-#: ../classes/class-wc-qd-tax-id-field.php:40
-#: ../classes/class-wc-qd-tax-id-field.php:70
-#: ../classes/class-wc-qd-tax-id-field.php:82
-#: ../classes/class-wc-qd-tax-id-field.php:96
-msgid "Tax ID"
-msgstr ""
-
-#: ../classes/class-wc-qd-integration.php:62
-msgid "Ask for Tax ID when the customer is located in my country"
-msgstr ""
-
-#: ../classes/class-wc-qd-integration.php:63
-msgid ""
-"Additional tax number that is mandatory in some countries. This is not the "
-"EU VAT number."
-msgstr ""
-
-#: ../classes/class-wc-qd-integration.php:67
+#: ../classes/class-wc-qd-integration.php:59
 msgid "Delivery"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:68
+#: ../classes/class-wc-qd-integration.php:60
 msgid "Autosend sales receipts and invoices"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:69
+#: ../classes/class-wc-qd-integration.php:61
 msgid "Check this to automatically send your sales receipts and invoices"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:84
+#: ../classes/class-wc-qd-integration.php:76
 msgid ""
 "<strong>Quaderno</strong> is almost ready &#8211; Please configure your API "
 "keys to start creating automatic invoices."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:88 ../woocommerce-quaderno.php:198
+#: ../classes/class-wc-qd-integration.php:80 ../woocommerce-quaderno.php:198
 msgid "Settings"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:104
+#: ../classes/class-wc-qd-integration.php:96
 msgid ""
 "Awesome, you've been using <strong>Quaderno for WooCommerce</strong> for a "
 "while.<br>Could you please do me a BIG favor and give a <strong>5-star "
@@ -100,32 +82,28 @@ msgid ""
 "motivation.<br><br>Thank you,<br>Carlos Hernandez, Founder"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:107
+#: ../classes/class-wc-qd-integration.php:99
 msgid "Ok, you deserve it"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:108
+#: ../classes/class-wc-qd-integration.php:100
 msgid "Nope, maybe later"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:109
+#: ../classes/class-wc-qd-integration.php:101
 msgid "I already did it"
 msgstr ""
 
-#: ../classes/class-wc-qd-invoice-manager.php:45
+#: ../classes/class-wc-qd-invoice-manager.php:54
 msgid "EU VAT reverse charged"
 msgstr ""
 
-#: ../classes/class-wc-qd-invoice-manager.php:60
+#: ../classes/class-wc-qd-invoice-manager.php:64
 msgid "WooCommerce customer"
 msgstr ""
 
-#: ../classes/class-wc-qd-invoice-manager.php:135
+#: ../classes/class-wc-qd-invoice-manager.php:175
 msgid "Shipping"
-msgstr ""
-
-#: ../classes/class-wc-qd-invoice-manager.php:155
-msgid "Fee"
 msgstr ""
 
 #: ../classes/class-wc-qd-order-manager.php:28
@@ -134,24 +112,31 @@ msgstr ""
 msgid "View Invoice"
 msgstr ""
 
-#: ../classes/class-wc-qd-tax-id-field.php:70
+#: ../classes/class-wc-qd-tax-id-field.php:47
+#: ../classes/class-wc-qd-tax-id-field.php:76
+#: ../classes/class-wc-qd-tax-id-field.php:88
+#: ../classes/class-wc-qd-tax-id-field.php:106
+msgid "Tax ID"
+msgstr ""
+
+#: ../classes/class-wc-qd-tax-id-field.php:76
 #, php-format
 msgid "%s is a required field."
 msgstr ""
 
 #: ../classes/class-wc-qd-vat-number-field.php:41
-#: ../classes/class-wc-qd-vat-number-field.php:76
-#: ../classes/class-wc-qd-vat-number-field.php:89
-#: ../classes/class-wc-qd-vat-number-field.php:166
+#: ../classes/class-wc-qd-vat-number-field.php:87
+#: ../classes/class-wc-qd-vat-number-field.php:100
+#: ../classes/class-wc-qd-vat-number-field.php:183
 msgid "VAT number"
 msgstr ""
 
-#: ../classes/class-wc-qd-vat-number-field.php:76
+#: ../classes/class-wc-qd-vat-number-field.php:87
 #, php-format
 msgid "%s is not valid."
 msgstr ""
 
-#: ../classes/class-wc-qd-vat-number-field.php:161
+#: ../classes/class-wc-qd-vat-number-field.php:178
 msgid "Additional Information"
 msgstr ""
 

@@ -202,7 +202,7 @@ class WC_QD_Invoice_Manager {
 			$fee_total = $fee['total'] + $fee['total_tax'];
 
 			$new_item = new QuadernoDocumentItem(array(
-				'description' => esc_html__('Fee', 'woocommerce-quaderno' ),
+				'description' => $fee->get_name(),
 				'quantity' => 1,
 				'total_amount' => round( $fee_total * $exchange_rate, 2),
 				'tax_1_name' => $tax->name,
