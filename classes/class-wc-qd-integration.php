@@ -9,6 +9,7 @@ class WC_QD_Integration extends WC_Integration {
 	public static $api_token = null;
 	public static $api_url = null;
 	public static $autosend_invoices = null;
+	public static $receipts_threshold = 0;
 
 	/**
 	 * Constructor
@@ -27,6 +28,7 @@ class WC_QD_Integration extends WC_Integration {
 		self::$api_token = $this->get_option( 'api_token' );
 		self::$api_url  = $this->get_option( 'api_url' );
 		self::$autosend_invoices  = $this->get_option( 'autosend_invoices' );
+		self::$receipts_threshold = $this->get_option( 'receipts_threshold' );
 
 		// Hooks
 		add_action( 'plugins_loaded', array( $this, 'init' ) );
@@ -53,6 +55,11 @@ class WC_QD_Integration extends WC_Integration {
 			'api_url'  => array(
 				'title'       => __( 'API URL', 'woocommerce-quaderno' ),
 				'description' => '<a href="https://quadernoapp.com/settings/api/?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">' . __( 'Get your Quaderno API URL', 'woocommerce-quaderno' ) . '</a>',
+				'type'        => 'text'
+			),
+			'receipts_threshold' => array(
+				'title'       => __( 'Receipts threshold', 'woocommerce-quaderno' ),
+				'description' => __( 'Receipts will be issued for orders below this threshold', 'woocommerce-quaderno' ),
 				'type'        => 'text'
 			),
 			'autosend_invoices' => array(

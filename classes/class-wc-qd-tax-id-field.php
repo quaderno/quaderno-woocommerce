@@ -45,7 +45,7 @@ class WC_QD_Tax_Id_Field {
 		woocommerce_form_field( 'tax_id', array(
 			'type'   => 'text',
 			'label'  => esc_html__( 'Tax ID', 'woocommerce-quaderno' ),
-			'required' => in_array($base_country, TAX_ID_COUNTRIES)
+			'required' => in_array($base_country, TAX_ID_COUNTRIES) && $woocommerce->cart->total > WC_QD_Integration::$receipts_threshold
 		), $user_tax_id );			
 	}
 
@@ -71,8 +71,9 @@ class WC_QD_Tax_Id_Field {
 
 	  $billing_country = WC()->customer->get_billing_country();
 	  $base_country = $woocommerce->countries->get_base_country();
+    $cart_total = $woocommerce->cart->total;
 
-		if ( in_array($base_country, TAX_ID_COUNTRIES) && $billing_country == $base_country && empty( $_POST['tax_id'] ) ) {
+		if ( in_array($base_country, TAX_ID_COUNTRIES) && $billing_country == $base_country && $cart_total > WC_QD_Integration::$receipts_threshold && empty( $_POST['tax_id'] ) ) {
       $errors->add( 'required-field', sprintf( __( '%s is a required field.', 'woocommerce' ), '<strong>' . esc_html__( 'Tax ID', 'woocommerce-quaderno' ) . '</strong>' ));
 		}
 	}

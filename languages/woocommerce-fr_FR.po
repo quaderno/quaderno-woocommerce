@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2019-09-25 19:18+0100\n"
-"PO-Revision-Date: 2019-09-25 19:18+0100\n"
+"POT-Creation-Date: 2019-09-25 21:03+0100\n"
+"PO-Revision-Date: 2019-09-25 21:03+0100\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Taxes"
 msgstr "Taxes"
 
-#: ../classes/class-wc-qd-integration.php:19
+#: ../classes/class-wc-qd-integration.php:20
 msgid ""
 "Automatically calculate tax rates & create instant tax reports for your "
 "WooCommerce store. <br>Note: You need a <a href=\"https://quadernoapp.com/"
@@ -37,37 +37,45 @@ msgid ""
 "\">Quaderno account</a> for this extension to work."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:49
+#: ../classes/class-wc-qd-integration.php:51
 msgid "Private key"
 msgstr "Clé privée"
 
-#: ../classes/class-wc-qd-integration.php:50
+#: ../classes/class-wc-qd-integration.php:52
 msgid "Get your Quaderno private key"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:54
+#: ../classes/class-wc-qd-integration.php:56
 msgid "API URL"
 msgstr "API URL"
 
-#: ../classes/class-wc-qd-integration.php:55
+#: ../classes/class-wc-qd-integration.php:57
 msgid "Get your Quaderno API URL"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:59
+#: ../classes/class-wc-qd-integration.php:61
+msgid "Receipts threshold"
+msgstr "Seuil de reçu"
+
+#: ../classes/class-wc-qd-integration.php:62
+msgid "Receipts will be issued for orders below this threshold"
+msgstr ""
+
+#: ../classes/class-wc-qd-integration.php:66
 msgid "Delivery"
 msgstr "Livraison"
 
-#: ../classes/class-wc-qd-integration.php:60
+#: ../classes/class-wc-qd-integration.php:67
 msgid "Autosend sales receipts and invoices"
 msgstr "Envoyez automatiquement les reçus de ventes et les factures"
 
-#: ../classes/class-wc-qd-integration.php:61
+#: ../classes/class-wc-qd-integration.php:68
 msgid "Check this to automatically send your sales receipts and invoices"
 msgstr ""
 "Cochez cette case pour envoyer automatiquement vos reçus de vente et vos "
 "factures"
 
-#: ../classes/class-wc-qd-integration.php:76
+#: ../classes/class-wc-qd-integration.php:83
 msgid ""
 "<strong>Quaderno</strong> is almost ready &#8211; Please configure your API "
 "keys to start creating automatic invoices."
@@ -75,11 +83,11 @@ msgstr ""
 "<strong>Quaderno</strong> est presque prêt  &#8211. Veuillez configurer vos "
 "clés API pour commencer à créer des factures automatiques."
 
-#: ../classes/class-wc-qd-integration.php:80 ../woocommerce-quaderno.php:198
+#: ../classes/class-wc-qd-integration.php:87 ../woocommerce-quaderno.php:198
 msgid "Settings"
 msgstr "Paramètres"
 
-#: ../classes/class-wc-qd-integration.php:96
+#: ../classes/class-wc-qd-integration.php:103
 msgid ""
 "Awesome, you've been using <strong>Quaderno for WooCommerce</strong> for a "
 "while.<br>Could you please do me a BIG favor and give a <strong>5-star "
@@ -87,15 +95,15 @@ msgid ""
 "motivation.<br><br>Thank you,<br>Carlos Hernandez, Founder"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:99
+#: ../classes/class-wc-qd-integration.php:106
 msgid "Ok, you deserve it"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:100
+#: ../classes/class-wc-qd-integration.php:107
 msgid "Nope, maybe later"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:101
+#: ../classes/class-wc-qd-integration.php:108
 msgid "I already did it"
 msgstr ""
 
@@ -118,13 +126,13 @@ msgid "View Invoice"
 msgstr ""
 
 #: ../classes/class-wc-qd-tax-id-field.php:47
-#: ../classes/class-wc-qd-tax-id-field.php:76
-#: ../classes/class-wc-qd-tax-id-field.php:88
-#: ../classes/class-wc-qd-tax-id-field.php:106
+#: ../classes/class-wc-qd-tax-id-field.php:77
+#: ../classes/class-wc-qd-tax-id-field.php:89
+#: ../classes/class-wc-qd-tax-id-field.php:107
 msgid "Tax ID"
 msgstr "Numéro d'identification fiscale"
 
-#: ../classes/class-wc-qd-tax-id-field.php:76
+#: ../classes/class-wc-qd-tax-id-field.php:77
 #, php-format
 msgid "%s is a required field."
 msgstr "%s est un champ obligatoire."
@@ -171,9 +179,6 @@ msgstr ""
 
 #~ msgid "Get this URL from your Quaderno account."
 #~ msgstr "Obtenez cet URL de votre compte Quaderno."
-
-#~ msgid "Receipts threshold"
-#~ msgstr "Seuil de reçu"
 
 #~ msgid ""
 #~ "All purchases under this threshold will generate a sales receipt, instead "
