@@ -30,7 +30,7 @@ msgstr ""
 msgid "Taxes"
 msgstr "Impuestos"
 
-#: ../classes/class-wc-qd-integration.php:20
+#: ../classes/class-wc-qd-integration.php:19
 msgid ""
 "Automatically calculate tax rates & create instant tax reports for your "
 "WooCommerce store. <br>Note: You need a <a href=\"https://quadernoapp.com/"
@@ -42,19 +42,19 @@ msgstr ""
 "quadernoapp.com/signup?utm_source=wordpress&utm_campaign=woocommerce\" "
 "target=\"_blank\">cuenta Quaderno</a> para que esta extensión funcione."
 
-#: ../classes/class-wc-qd-integration.php:51
+#: ../classes/class-wc-qd-integration.php:49
 msgid "Private key"
 msgstr "Clave privada"
 
-#: ../classes/class-wc-qd-integration.php:52
+#: ../classes/class-wc-qd-integration.php:50
 msgid "Get your Quaderno private key"
 msgstr "Obtén tu clave privada en Quaderno"
 
-#: ../classes/class-wc-qd-integration.php:56
+#: ../classes/class-wc-qd-integration.php:54
 msgid "API URL"
 msgstr "API URL"
 
-#: ../classes/class-wc-qd-integration.php:57
+#: ../classes/class-wc-qd-integration.php:55
 msgid "Get your Quaderno API URL"
 msgstr "Obtén tu API URL en Quaderno"
 
