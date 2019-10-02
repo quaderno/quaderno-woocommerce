@@ -84,8 +84,7 @@ class WC_QD_Invoice_Manager {
       'country' => $country,
       'email' => $order->get_billing_email(),
       'phone_1' => $order->get_billing_phone(),
-      'vat_number' => $vat_number,
-      'tax_id' => $tax_id
+      'tax_id' => empty( $vat_number ) ? $tax_id : $vat_number
     );
 
     $contact_id = get_user_meta( $order->get_user_id(), '_quaderno_contact', true );
