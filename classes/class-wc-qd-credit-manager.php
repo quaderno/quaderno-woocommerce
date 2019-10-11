@@ -35,7 +35,7 @@ class WC_QD_Credit_Manager {
 		$invoice = QuadernoInvoice::find( $invoice_id );
 
 		$credit_params = array(
-			'issue_date' => date('Y-m-d'),
+			'issue_date' => current_time('Y-m-d'),
 			'contact_id' => $invoice->contact->id,
 			'currency' => $refund->get_currency(),
 			'po_number' => get_post_meta( $order->get_id(), '_order_number_formatted', true ) ?: $order->get_id(),

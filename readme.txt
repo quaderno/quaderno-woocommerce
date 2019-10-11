@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
 Tested up to: 5.2
-Stable tag: 1.17.4
+Stable tag: 1.17.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,20 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 
 == Changelog ==
 
+<<<<<<< HEAD
+=======
+= 1.17.7 - October 2, 2019 =
+* Improvement: only use VAT number if exists
+
+= 1.17.6 - September 25, 2019 =
+* Improvement: use original name for fees
+* Improvement: add receipts threshold
+
+= 1.17.5 - September 23, 2019 =
+* Improvement: always send customer billing address
+* Improvement: user WordPress current_time function 
+
+>>>>>>> de15268bebd01ade04e9cf3b3ca424ec9c55ee5f
 = 1.17.4 - August 27, 2019 =
 * Fix: error in VAT validation for existent customers
 

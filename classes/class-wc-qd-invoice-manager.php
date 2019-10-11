@@ -27,7 +27,7 @@ class WC_QD_Invoice_Manager {
 		}
 
 		$invoice_params = array(
-			'issue_date' => date('Y-m-d'),
+			'issue_date' => current_time('Y-m-d'),
 			'currency' => $order->get_currency(),
 			'po_number' => get_post_meta( $order_id, '_order_number_formatted', true ) ?: $order_id,
 			'notes' => $order->get_customer_note(),
@@ -54,45 +54,43 @@ class WC_QD_Invoice_Manager {
 			$invoice_params['notes'] = esc_html__('EU VAT reverse charged', 'woocommerce-quaderno' );
 		}
 
-		$contact_id = get_user_meta( $order->get_user_id(), '_quaderno_contact', true );
-		if ( !empty( $contact_id ) ) {
-			$invoice_params['contact_id'] = $contact_id;
-		}
-		else {
-			if ( !empty( $order->get_billing_company() ) ) {
-				$kind = 'company';
-				$first_name = $order->get_billing_company();
-				$last_name = '';
-				$contact_name = $order->get_billing_first_name() . ' ' . $order->get_billing_last_name();
-			} else {
-				$kind = 'person';
-				$first_name = empty( $order->get_billing_first_name() ) ? esc_html__('WooCommerce customer', 'woocommerce-quaderno' ) : $order->get_billing_first_name();
-				$last_name = $order->get_billing_last_name();
-				$contact_name = '';
-			}
+		if ( !empty( $order->get_billing_company() ) ) {
+      $kind = 'company';
+      $first_name = $order->get_billing_company();
+      $last_name = '';
+      $contact_name = $order->get_billing_first_name() . ' ' . $order->get_billing_last_name();
+    } else {
+      $kind = 'person';
+      $first_name = empty( $order->get_billing_first_name() ) ? esc_html__('WooCommerce customer', 'woocommerce-quaderno' ) : $order->get_billing_first_name();
+      $last_name = $order->get_billing_last_name();
+      $contact_name = '';
+    }
 
-			$state = $order->get_billing_state();
-			$country = $order->get_billing_country();
-			$states = WC()->countries->get_states( $country );
-			$full_state = ( !in_array( $country, array('US', 'CA') ) && isset( $states[ $state ] ) ) ? $states[ $state ] : $state;
+    $state = $order->get_billing_state();
+    $country = $order->get_billing_country();
+    $states = WC()->countries->get_states( $country );
+    $full_state = ( !in_array( $country, array('US', 'CA') ) && isset( $states[ $state ] ) ) ? $states[ $state ] : $state;
 
-			$invoice_params['contact'] = array(
-				'kind' => $kind,
-				'first_name' => $first_name,
-				'last_name' => $last_name,
-				'contact_name' => $contact_name,
-				'street_line_1' => $order->get_billing_address_1(),
-				'street_line_2' => $order->get_billing_address_2(),
-				'city' => $order->get_billing_city(),
-				'postal_code' => $order->get_billing_postcode(),
-				'region' => $full_state,
-				'country' => $country,
-				'email' => $order->get_billing_email(),
-				'phone_1' => $order->get_billing_phone(),
-				'vat_number' => $vat_number,
-				'tax_id' => $tax_id
-			);
-		}
+    $invoice_params['contact'] = array(
+      'kind' => $kind,
+      'first_name' => $first_name,
+      'last_name' => $last_name,
+      'contact_name' => $contact_name,
+      'street_line_1' => $order->get_billing_address_1(),
+      'street_line_2' => $order->get_billing_address_2(),
+      'city' => $order->get_billing_city(),
+      'postal_code' => $order->get_billing_postcode(),
+      'region' => $full_state,
+      'country' => $country,
+      'email' => $order->get_billing_email(),
+      'phone_1' => $order->get_billing_phone(),
+      'tax_id' => empty( $vat_number ) ? $tax_id : $vat_number
+    );
+
+    $contact_id = get_user_meta( $order->get_user_id(), '_quaderno_contact', true );
+    if ( !empty( $contact_id ) ) {
+      $invoice_params['contact']['id'] = $contact_id;
+    }
 
 		// Let's create the invoice
 		$invoice = new QuadernoIncome($invoice_params);
@@ -203,7 +201,7 @@ class WC_QD_Invoice_Manager {
 			$fee_total = $fee['total'] + $fee['total_tax'];
 
 			$new_item = new QuadernoDocumentItem(array(
-				'description' => esc_html__('Fee', 'woocommerce-quaderno' ),
+				'description' => $fee->get_name(),
 				'quantity' => 1,
 				'total_amount' => round( $fee_total * $exchange_rate, 2),
 				'tax_1_name' => $tax->name,
