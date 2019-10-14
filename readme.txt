@@ -67,8 +67,6 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 
 == Changelog ==
 
-<<<<<<< HEAD
-=======
 = 1.17.7 - October 2, 2019 =
 * Improvement: only use VAT number if exists
 
@@ -80,7 +78,6 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 * Improvement: always send customer billing address
 * Improvement: user WordPress current_time function 
 
->>>>>>> de15268bebd01ade04e9cf3b3ca424ec9c55ee5f
 = 1.17.4 - August 27, 2019 =
 * Fix: error in VAT validation for existent customers
 
