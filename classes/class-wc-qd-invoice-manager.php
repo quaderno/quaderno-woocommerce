@@ -84,12 +84,30 @@ class WC_QD_Invoice_Manager {
       'country' => $country,
       'email' => $order->get_billing_email(),
       'phone_1' => $order->get_billing_phone(),
-      'tax_id' => empty( $vat_number ) ? $tax_id : $vat_number
+      'tax_id' => empty( $vat_number ) ? $tax_id : $vat_number,
+      'processor' => 'woocommerce',
+      'processor_id' => $order->get_user_id()
     );
 
     $contact_id = get_user_meta( $order->get_user_id(), '_quaderno_contact', true );
-    if ( !empty( $contact_id ) ) {
+    $args = array(
+        'status' => 'completed',
+        'type' => 'shop_order',
+        'limit' => 1,
+        'customer_id' => $order->get_user_id(),
+        'exclude' => array( $order->get_id() )
+    );
+    $last_order = reset(wc_get_orders( $args ));
+
+    if ( !empty( $contact_id ) && !empty( $last_order ) &&
+         $last_order->get_billing_company() == $order->get_billing_company() &&
+         $last_order->get_billing_first_name() == $order->get_billing_first_name() &&
+         $last_order->get_billing_last_name() == $order->get_billing_last_name()
+       ) 
+    {
       $invoice_params['contact']['id'] = $contact_id;
+      unset($invoice_params['contact']['first_name']);
+      unset($invoice_params['contact']['last_name']);
     }
 
 		// Let's create the invoice
