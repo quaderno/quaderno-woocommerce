@@ -77,17 +77,17 @@ class WC_QD_Checkout_Vat {
 			$postcode = sanitize_text_field( $post_arr['shipping_postcode'] );
 			$city = sanitize_text_field( $post_arr['shipping_city'] );
 		}
-		$vat_number = sanitize_text_field( 'billing' === $tax_based_on ? $post_arr['vat_number'] : '' );
+		$tax_id = sanitize_text_field( 'billing' === $tax_based_on ? $post_arr['tax_id'] : '' );
 
     // Check if the customer is VAT exempted
-		if ( false === WC_QD_Vat_Number_Field::is_valid( $vat_number, $country ) ) {
+		if ( false === WC_QD_Tax_Id_Field::is_valid( $tax_id, $country ) ) {
 			WC()->customer->set_is_vat_exempt( false );
 		} else {
 			WC()->customer->set_is_vat_exempt( true );
 		}
 
 		// The cart manager
-		$cart_manager = new WC_QD_Cart_Manager($country, $state, $postcode, $city, $vat_number);
+		$cart_manager = new WC_QD_Cart_Manager($country, $state, $postcode, $city, $tax_id);
 
 		// Update the taxes in cart based on cart items
 		$this->update_taxes_in_cart( $cart_manager->get_items_from_cart() );
@@ -119,10 +119,10 @@ class WC_QD_Checkout_Vat {
 			$postcode = sanitize_text_field( $_POST['shipping_postcode'] );
 			$city = sanitize_text_field( $_POST['shipping_city'] );
 		}
-		$vat_number = sanitize_text_field( 'billing' === $tax_based_on ? $_POST['vat_number'] : '' );
+		$tax_id = sanitize_text_field( 'billing' === $tax_based_on ? $_POST['tax_id'] : '' );
 
 		// The cart manager
-		$cart_manager = new WC_QD_Cart_Manager($country, $state, $postcode, $city, $vat_number);
+		$cart_manager = new WC_QD_Cart_Manager($country, $state, $postcode, $city, $tax_id);
 
 		// Update the taxes in cart based on cart items
 		$this->update_taxes_in_cart( $cart_manager->get_items_from_cart() );

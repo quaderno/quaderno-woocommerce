@@ -10,14 +10,14 @@ class WC_QD_Cart_Manager {
 	private $region;
 	private $postal_code;
 	private $city;
-	private $vat_number;
+	private $tax_id;
 	
-	public function __construct($country, $region, $postal_code, $city, $vat_number) {
+	public function __construct($country, $region, $postal_code, $city, $tax_id) {
 		$this->country = $country;
 		$this->region = $region;
 		$this->postal_code = $postal_code;
 		$this->city = $city;
-		$this->vat_number = $vat_number;
+		$this->tax_id = $tax_id;
 	}
 
 	/**

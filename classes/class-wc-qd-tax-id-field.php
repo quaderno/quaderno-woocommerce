@@ -4,11 +4,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-// Countries wbere tax ID is required in local purchases
-if ( ! defined( 'TAX_ID_COUNTRIES' ) ) {
-  define( 'TAX_ID_COUNTRIES', ['BG', 'CY', 'ES', 'HR', 'IT', 'PT'] );
-} 
-
 class WC_QD_Tax_Id_Field {
 
 	const META_KEY = 'tax_id';
@@ -40,12 +35,16 @@ class WC_QD_Tax_Id_Field {
     global $woocommerce;
 
     $base_country = $woocommerce->countries->get_base_country();
-    $user_tax_id = get_user_meta( get_current_user_id(), '_quaderno_tax_id', true );
+    $user_tax_id = get_user_meta( get_current_user_id(), '_quaderno_vat_number', true );
+    if ( empty( $user_tax_id ) ) {
+      $user_vat_number = get_user_meta( get_current_user_id(), '_quaderno_tax_id', true );
+    }
 
 		woocommerce_form_field( 'tax_id', array(
 			'type'   => 'text',
 			'label'  => esc_html__( 'Tax ID', 'woocommerce-quaderno' ),
-			'required' => in_array($base_country, TAX_ID_COUNTRIES) && $woocommerce->cart->total > WC_QD_Integration::$receipts_threshold
+      'class'  => array( 'update_totals_on_change' ),
+      'autocomplete' => 'nope'
 		), $user_tax_id );			
 	}
 
@@ -73,7 +72,7 @@ class WC_QD_Tax_Id_Field {
 	  $base_country = $woocommerce->countries->get_base_country();
     $cart_total = $woocommerce->cart->total;
 
-		if ( in_array($base_country, TAX_ID_COUNTRIES) && $billing_country == $base_country && $cart_total > WC_QD_Integration::$receipts_threshold && empty( $_POST['tax_id'] ) ) {
+		if ( $billing_country == $base_country && $cart_total > WC_QD_Integration::$receipts_threshold && empty( $_POST['tax_id'] ) ) {
       $errors->add( 'required-field', sprintf( __( '%s is a required field.', 'woocommerce' ), '<strong>' . esc_html__( 'Tax ID', 'woocommerce-quaderno' ) . '</strong>' ));
 		}
 	}
@@ -84,11 +83,49 @@ class WC_QD_Tax_Id_Field {
 	 * @param $order
 	 */
 	public function display_field( $order ) {
-		$tax_id = get_post_meta( $order->get_id(), self::META_KEY, true );
-		if ( '' != $tax_id ) {
+    $tax_id = get_post_meta( $order->get_id(), 'vat_number', true );
+    
+    if ( empty( $tax_id ) ) {
+      $tax_id = get_post_meta( $order->get_id(), self::META_KEY, true );
+    }
+	
+  	if ( !empty( $tax_id ) ) {
 			echo '<p><strong style="display:block;">' . esc_html__( 'Tax ID', 'woocommerce-quaderno' ) . ':</strong> ' . $tax_id . '</p>';
 		}
 	}
+
+  /**
+   * Validate business number
+   *
+   * @param string $tax_id
+   * @param string $country
+   *
+   * @return boolean
+   *
+   * @since 1.18
+   */
+  public static function is_valid( $tax_id, $country ){
+    global $woocommerce;
+
+    // get the country code from the number if it's empty
+    if ( empty($country) ) {
+      $country = substr( $tax_id, 0, 2 );
+    }
+
+    $params = array(
+      'vat_number' => $tax_id,
+      'country' => $country
+    );
+
+    $slug = 'vat_number_' . md5( implode( $params ) );
+
+    if ( false === ( $valid_number = get_transient( $slug ) ) ) {
+      $valid_number = (int) QuadernoTax::validate( $params );
+      set_transient( $slug, $valid_number, 4 * WEEK_IN_SECONDS );
+    }
+
+    return $valid_number == 1 && $country != $woocommerce->countries->get_base_country();
+  }
 
   /**
    * Add custom fields to admin area
@@ -98,20 +135,21 @@ class WC_QD_Tax_Id_Field {
   public function add_customer_meta_fields( $user ) {
     global $woocommerce;
 
-    $base_country = $woocommerce->countries->get_base_country();
+    $tax_id = get_the_author_meta( '_quaderno_vat_number', $user->ID );
+    if ( empty( $number ) ) {
+      $tax_id = get_the_author_meta( '_quaderno_tax_id', $user->ID );
+    }
 
-    if ( in_array($base_country, TAX_ID_COUNTRIES) ) {
     ?>    
     <tr>
       <th>
         <label for="tax_id"><?php echo esc_html__( 'Tax ID', 'woocommerce-quaderno' ) ?></label>
       </th>
       <td>
-        <input type="text" name="tax_id" id="tax_id" value="<?php echo esc_attr( get_the_author_meta( '_quaderno_tax_id', $user->ID ) ); ?>" class="regular-text" />
+        <input type="text" name="tax_id" id="tax_id" value="<?php echo esc_attr( $tax_id ); ?>" class="regular-text" />
       </td>
     </tr>
     <?php
-    } 
   }
 
   /**
