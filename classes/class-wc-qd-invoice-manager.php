@@ -50,7 +50,7 @@ class WC_QD_Invoice_Manager {
 
 		// Add the reverse charged note
 		if ( true ===  WC_QD_Tax_Id_Field::is_valid( $tax_id, $order->get_billing_country() ) ) {
-			$invoice_params['notes'] = esc_html__('VAT reverse charge', 'woocommerce-quaderno' );
+			$invoice_params['notes'] = esc_html__('Tax amount subject to reverse charge', 'woocommerce-quaderno' );
 		}
 
 		if ( !empty( $order->get_billing_company() ) ) {
