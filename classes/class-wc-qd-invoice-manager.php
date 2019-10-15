@@ -88,23 +88,10 @@ class WC_QD_Invoice_Manager {
       'processor' => 'woocommerce',
       'processor_id' => $order->get_user_id()
     );
+ 
+    $contact_id = $this->get_contact_id($order);
 
-    $contact_id = get_user_meta( $order->get_user_id(), '_quaderno_contact', true );
-    $args = array(
-        'status' => 'completed',
-        'type' => 'shop_order',
-        'limit' => 1,
-        'customer_id' => $order->get_user_id(),
-        'exclude' => array( $order->get_id() )
-    );
-    $last_order = reset(wc_get_orders( $args ));
-
-    if ( !empty( $contact_id ) && !empty( $last_order ) &&
-         $last_order->get_billing_company() == $order->get_billing_company() &&
-         $last_order->get_billing_first_name() == $order->get_billing_first_name() &&
-         $last_order->get_billing_last_name() == $order->get_billing_last_name()
-       ) 
-    {
+    if ( !empty( $contact_id ) ){
       $invoice_params['contact']['id'] = $contact_id;
       unset($invoice_params['contact']['first_name']);
       unset($invoice_params['contact']['last_name']);
@@ -240,9 +227,12 @@ class WC_QD_Invoice_Manager {
 			add_post_meta( $order_id, '_quaderno_invoice_number', $invoice->number );
 		  add_post_meta( $order_id, '_quaderno_url', $invoice->permalink );
 
-			add_user_meta( $order->get_user_id(), '_quaderno_contact', $invoice->contact->id, true );
-			update_user_meta( $order->get_user_id(), '_quaderno_tax_id', $tax_id );
-			update_user_meta( $order->get_user_id(), '_quaderno_vat_number', $vat_number );
+      $contact_ids = $this->get_contact_ids($order);
+      $order_contact_name = $this->get_order_contact_key($order);
+      $contact_ids[$order_contact_name] = $invoice->contact->id;
+      update_user_meta( $order->get_user_id(), '_quaderno_contact_ids', $contact_ids );
+      update_user_meta( $order->get_user_id(), '_quaderno_tax_id', $tax_id );
+      update_user_meta( $order->get_user_id(), '_quaderno_vat_number', $vat_number );
 
 			if ( true === $digital_products ) {
 				$evidence = new QuadernoEvidence(array(
@@ -322,4 +312,44 @@ class WC_QD_Invoice_Manager {
 		return $result;
 	}
 
+  private function get_contact_id($order){
+    $contact_id = get_user_meta( $order->get_user_id(), '_quaderno_contact', true );
+    $contact_ids = $this->get_contact_ids($order);
+
+    $args = array(
+        'status' => 'completed',
+        'type' => 'shop_order',
+        'limit' => 1,
+        'customer_id' => $order->get_user_id(),
+        'exclude' => array( $order->get_id() )
+    );
+    $last_order = reset(wc_get_orders( $args ));
+
+    //Backwards compatibility
+    //Create the contact_id in the associative array if it does not exist
+    if (empty($contact_ids) && !empty($contact_id) && !empty($last_order)){
+      $last_order_contact_name = $this->get_order_contact_key($last_order);
+      $contact_ids[$last_order_contact_name] = $contact_id;
+      update_user_meta( $order->get_user_id(), '_quaderno_contact_ids', $contact_ids );
+      //Never should need this meta again but we won't remove it for now just in case
+      //delete_user_meta( $order->get_user_id(), '_quaderno_contact');
+    }
+
+    $order_contact_name = $this->get_order_contact_key($order);
+    return $contact_ids[$order_contact_name];
+  }
+
+  private function get_order_contact_key($order){
+    return $order->get_billing_first_name() . ' ' . $order->get_billing_last_name() . ' ' . $order->get_billing_company();
+  }
+
+  private function get_contact_ids($order){
+    $contact_ids = get_user_meta( $order->get_user_id(), '_quaderno_contact_ids', true );
+    
+    if (empty($contact_ids)){
+      $contact_ids = [];
+    }
+
+    return $contact_ids;
+  }
 }
