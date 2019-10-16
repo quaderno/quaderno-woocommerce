@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2019-10-14 20:21+0100\n"
-"PO-Revision-Date: 2019-10-14 20:21+0100\n"
+"POT-Creation-Date: 2019-10-15 11:02+0100\n"
+"PO-Revision-Date: 2019-10-15 11:03+0100\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -108,9 +108,7 @@ msgid "I already did it"
 msgstr ""
 
 #: ../classes/class-wc-qd-invoice-manager.php:53
-#, fuzzy
-#| msgid "VAT reverse charged"
-msgid "VAT reverse charge"
+msgid "Tax amount subject to reverse charge"
 msgstr "Inversion de TVA"
 
 #: ../classes/class-wc-qd-invoice-manager.php:63
@@ -159,6 +157,11 @@ msgid ""
 msgstr ""
 "Veuillez mettre à jour WooCommerce <strong> version 2.2.9 ou ultérieure </ "
 "strong> pour que l'extension WooCommerce Quaderno puisse fonctionner!"
+
+#, fuzzy
+#~| msgid "VAT reverse charged"
+#~ msgid "VAT reverse charge"
+#~ msgstr "Inversion de TVA"
 
 #~ msgid "VAT number"
 #~ msgstr "Numéro de TVA"

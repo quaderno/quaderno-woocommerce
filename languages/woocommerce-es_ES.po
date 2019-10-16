@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2019-10-14 20:20+0100\n"
-"PO-Revision-Date: 2019-10-14 20:21+0100\n"
+"POT-Creation-Date: 2019-10-15 11:02+0100\n"
+"PO-Revision-Date: 2019-10-15 11:02+0100\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: Quaderno <hello@quaderno.io>\n"
 "Language: es_ES\n"
@@ -115,10 +115,8 @@ msgid "I already did it"
 msgstr "Ya lo hice"
 
 #: ../classes/class-wc-qd-invoice-manager.php:53
-msgid "VAT reverse charge"
-msgstr ""
-"Operación con inversión del sujeto pasivo conforme al artículo 84.1.2 de la "
-"Ley 37/1992"
+msgid "Tax amount subject to reverse charge"
+msgstr "Inversión de sujeto pasivo"
 
 #: ../classes/class-wc-qd-invoice-manager.php:63
 msgid "WooCommerce customer"
@@ -166,6 +164,11 @@ msgid ""
 msgstr ""
 "Por favor actualiza tu instalación de WooCommerce a la <strong>versión 2.2.9 "
 "o superior</strong> para poder usar este plugin"
+
+#~ msgid "VAT reverse charge"
+#~ msgstr ""
+#~ "Operación con inversión del sujeto pasivo conforme al artículo 84.1.2 de "
+#~ "la Ley 37/1992"
 
 #~ msgid "VAT number"
 #~ msgstr "Número de IVA"

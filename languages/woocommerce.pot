@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2019-10-14 20:20+0100\n"
+"POT-Creation-Date: 2019-10-15 11:01+0100\n"
 "PO-Revision-Date: 2018-07-03 20:09-0000\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: \n"
@@ -103,7 +103,7 @@ msgid "I already did it"
 msgstr ""
 
 #: ../classes/class-wc-qd-invoice-manager.php:53
-msgid "VAT reverse charge"
+msgid "Tax amount subject to reverse charge"
 msgstr ""
 
 #: ../classes/class-wc-qd-invoice-manager.php:63
