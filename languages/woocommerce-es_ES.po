@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "POT-Creation-Date: 2019-10-15 11:02+0100\n"
-"PO-Revision-Date: 2019-10-15 11:02+0100\n"
+"PO-Revision-Date: 2019-10-16 19:26+0100\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: Quaderno <hello@quaderno.io>\n"
 "Language: es_ES\n"
@@ -137,7 +137,7 @@ msgstr "Ver factura"
 #: ../classes/class-wc-qd-tax-id-field.php:93
 #: ../classes/class-wc-qd-tax-id-field.php:146
 msgid "Tax ID"
-msgstr "NIF / VAT Number"
+msgstr "NIF o Número de IVA"
 
 #: ../classes/class-wc-qd-tax-id-field.php:76
 #, php-format
