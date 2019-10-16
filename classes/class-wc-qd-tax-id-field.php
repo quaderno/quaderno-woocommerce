@@ -16,7 +16,6 @@ class WC_QD_Tax_Id_Field {
 	public function setup() {
 		add_action( 'woocommerce_after_checkout_billing_form', array( $this, 'print_field' ) );
 		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'save_field' ) );
-		add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_field' ), 10, 2 );
 		add_action( 'woocommerce_admin_order_data_after_billing_address', array( $this, 'display_field' ), 10, 1 );
 
     add_action( 'woocommerce_quaderno_meta_fields', array( $this, 'add_customer_meta_fields'), 30, 1 ); 
@@ -42,7 +41,7 @@ class WC_QD_Tax_Id_Field {
 
 		woocommerce_form_field( 'tax_id', array(
 			'type'   => 'text',
-			'label'  => esc_html__( 'Tax ID', 'woocommerce-quaderno' ),
+			'label'  => esc_html__( 'VAT number', 'woocommerce-quaderno' ),
       'class'  => array( 'update_totals_on_change' ),
       'autocomplete' => 'nope'
 		), $user_tax_id );			
@@ -57,23 +56,6 @@ class WC_QD_Tax_Id_Field {
 		if ( ! empty( $_POST['tax_id'] ) ) {
 			// Save the Tax ID number
 			update_post_meta( $order_id, self::META_KEY, sanitize_text_field( $_POST['tax_id'] ) );
-		}
-	}
-
-	/**
-	 * Validate the Tax ID field
-	 *
-	 * @since 1.8
-	 */
-	public function validate_field( $fields, $errors ) {
-	  global $woocommerce;
-
-	  $billing_country = WC()->customer->get_billing_country();
-	  $base_country = $woocommerce->countries->get_base_country();
-    $cart_total = $woocommerce->cart->total;
-
-		if ( $billing_country == $base_country && $cart_total > WC_QD_Integration::$receipts_threshold && empty( $_POST['tax_id'] ) ) {
-      $errors->add( 'required-field', sprintf( __( '%s is a required field.', 'woocommerce' ), '<strong>' . esc_html__( 'Tax ID', 'woocommerce-quaderno' ) . '</strong>' ));
 		}
 	}
 

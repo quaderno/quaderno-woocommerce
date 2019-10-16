@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2019-10-15 11:01+0100\n"
+"POT-Creation-Date: 2019-10-17 00:52+0100\n"
 "PO-Revision-Date: 2018-07-03 20:09-0000\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: \n"
@@ -28,7 +28,7 @@ msgstr ""
 msgid "Taxes"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:20
+#: ../classes/class-wc-qd-integration.php:19
 msgid ""
 "Automatically calculate tax rates & create instant tax reports for your "
 "WooCommerce store. <br>Note: You need a <a href=\"https://quadernoapp.com/"
@@ -36,53 +36,45 @@ msgid ""
 "\">Quaderno account</a> for this extension to work."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:51
+#: ../classes/class-wc-qd-integration.php:49
 msgid "Private key"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:52
+#: ../classes/class-wc-qd-integration.php:50
 msgid "Get your Quaderno private key"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:56
+#: ../classes/class-wc-qd-integration.php:54
 msgid "API URL"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:57
+#: ../classes/class-wc-qd-integration.php:55
 msgid "Get your Quaderno API URL"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:61
-msgid "Receipts threshold"
-msgstr ""
-
-#: ../classes/class-wc-qd-integration.php:62
-msgid "Receipts will be issued for orders below this threshold"
-msgstr ""
-
-#: ../classes/class-wc-qd-integration.php:66
+#: ../classes/class-wc-qd-integration.php:59
 msgid "Delivery"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:67
-msgid "Autosend sales receipts and invoices"
+#: ../classes/class-wc-qd-integration.php:60
+msgid "Autosend receipts"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:68
-msgid "Check this to automatically send your sales receipts and invoices"
+#: ../classes/class-wc-qd-integration.php:61
+msgid "Check this to automatically send your receipts"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:83
+#: ../classes/class-wc-qd-integration.php:76
 msgid ""
 "<strong>Quaderno</strong> is almost ready &#8211; Please configure your API "
 "keys to start creating automatic invoices."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:87 ../woocommerce-quaderno.php:194
+#: ../classes/class-wc-qd-integration.php:80 ../woocommerce-quaderno.php:194
 msgid "Settings"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:103
+#: ../classes/class-wc-qd-integration.php:96
 msgid ""
 "Awesome, you've been using <strong>Quaderno for WooCommerce</strong> for a "
 "while.<br>Could you please do me a BIG favor and give a <strong>5-star "
@@ -90,15 +82,15 @@ msgid ""
 "motivation.<br><br>Thank you,<br>Carlos Hernandez, Founder"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:106
+#: ../classes/class-wc-qd-integration.php:99
 msgid "Ok, you deserve it"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:107
+#: ../classes/class-wc-qd-integration.php:100
 msgid "Nope, maybe later"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:108
+#: ../classes/class-wc-qd-integration.php:101
 msgid "I already did it"
 msgstr ""
 
@@ -120,16 +112,13 @@ msgstr ""
 msgid "View Invoice"
 msgstr ""
 
-#: ../classes/class-wc-qd-tax-id-field.php:45
-#: ../classes/class-wc-qd-tax-id-field.php:76
-#: ../classes/class-wc-qd-tax-id-field.php:93
-#: ../classes/class-wc-qd-tax-id-field.php:146
-msgid "Tax ID"
+#: ../classes/class-wc-qd-tax-id-field.php:44
+msgid "VAT number"
 msgstr ""
 
-#: ../classes/class-wc-qd-tax-id-field.php:76
-#, php-format
-msgid "%s is a required field."
+#: ../classes/class-wc-qd-tax-id-field.php:75
+#: ../classes/class-wc-qd-tax-id-field.php:128
+msgid "Tax ID"
 msgstr ""
 
 #: ../quaderno/quaderno_json.php:55 ../quaderno/quaderno_request.php:78

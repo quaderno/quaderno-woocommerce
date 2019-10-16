@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2019-10-15 11:02+0100\n"
-"PO-Revision-Date: 2019-10-15 11:03+0100\n"
+"POT-Creation-Date: 2019-10-17 00:54+0100\n"
+"PO-Revision-Date: 2019-10-17 00:54+0100\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Taxes"
 msgstr "Taxes"
 
-#: ../classes/class-wc-qd-integration.php:20
+#: ../classes/class-wc-qd-integration.php:19
 msgid ""
 "Automatically calculate tax rates & create instant tax reports for your "
 "WooCommerce store. <br>Note: You need a <a href=\"https://quadernoapp.com/"
@@ -37,45 +37,35 @@ msgid ""
 "\">Quaderno account</a> for this extension to work."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:51
+#: ../classes/class-wc-qd-integration.php:49
 msgid "Private key"
 msgstr "Clé privée"
 
-#: ../classes/class-wc-qd-integration.php:52
+#: ../classes/class-wc-qd-integration.php:50
 msgid "Get your Quaderno private key"
 msgstr "Obtenez votre clé privée Quaderno"
 
-#: ../classes/class-wc-qd-integration.php:56
+#: ../classes/class-wc-qd-integration.php:54
 msgid "API URL"
 msgstr "API URL"
 
-#: ../classes/class-wc-qd-integration.php:57
+#: ../classes/class-wc-qd-integration.php:55
 msgid "Get your Quaderno API URL"
 msgstr "Obtenez votre URL API Quaderno"
 
-#: ../classes/class-wc-qd-integration.php:61
-msgid "Receipts threshold"
-msgstr "Seuil de reçu"
-
-#: ../classes/class-wc-qd-integration.php:62
-msgid "Receipts will be issued for orders below this threshold"
-msgstr "Des reçus seront émis pour les commandes inférieures à ce seuil"
-
-#: ../classes/class-wc-qd-integration.php:66
+#: ../classes/class-wc-qd-integration.php:59
 msgid "Delivery"
 msgstr "Livraison"
 
-#: ../classes/class-wc-qd-integration.php:67
-msgid "Autosend sales receipts and invoices"
-msgstr "Envoyez automatiquement les reçus de ventes et les factures"
+#: ../classes/class-wc-qd-integration.php:60
+msgid "Autosend receipts"
+msgstr "Envoyez automatiquement les factures"
 
-#: ../classes/class-wc-qd-integration.php:68
-msgid "Check this to automatically send your sales receipts and invoices"
-msgstr ""
-"Cochez cette case pour envoyer automatiquement vos reçus de vente et vos "
-"factures"
+#: ../classes/class-wc-qd-integration.php:61
+msgid "Check this to automatically send your receipts"
+msgstr "Cochez cette case pour envoyer automatiquement vos factures"
 
-#: ../classes/class-wc-qd-integration.php:83
+#: ../classes/class-wc-qd-integration.php:76
 msgid ""
 "<strong>Quaderno</strong> is almost ready &#8211; Please configure your API "
 "keys to start creating automatic invoices."
@@ -83,11 +73,11 @@ msgstr ""
 "<strong>Quaderno</strong> est presque prêt  &#8211. Veuillez configurer vos "
 "clés API pour commencer à créer des factures automatiques."
 
-#: ../classes/class-wc-qd-integration.php:87 ../woocommerce-quaderno.php:194
+#: ../classes/class-wc-qd-integration.php:80 ../woocommerce-quaderno.php:194
 msgid "Settings"
 msgstr "Paramètres"
 
-#: ../classes/class-wc-qd-integration.php:103
+#: ../classes/class-wc-qd-integration.php:96
 msgid ""
 "Awesome, you've been using <strong>Quaderno for WooCommerce</strong> for a "
 "while.<br>Could you please do me a BIG favor and give a <strong>5-star "
@@ -95,15 +85,15 @@ msgid ""
 "motivation.<br><br>Thank you,<br>Carlos Hernandez, Founder"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:106
+#: ../classes/class-wc-qd-integration.php:99
 msgid "Ok, you deserve it"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:107
+#: ../classes/class-wc-qd-integration.php:100
 msgid "Nope, maybe later"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:108
+#: ../classes/class-wc-qd-integration.php:101
 msgid "I already did it"
 msgstr ""
 
@@ -125,17 +115,14 @@ msgstr "Frais de livraison"
 msgid "View Invoice"
 msgstr "Voir la facture"
 
-#: ../classes/class-wc-qd-tax-id-field.php:45
-#: ../classes/class-wc-qd-tax-id-field.php:76
-#: ../classes/class-wc-qd-tax-id-field.php:93
-#: ../classes/class-wc-qd-tax-id-field.php:146
-msgid "Tax ID"
-msgstr "Numéro d'identification fiscale"
+#: ../classes/class-wc-qd-tax-id-field.php:44
+msgid "VAT number"
+msgstr "Numéro de TVA"
 
-#: ../classes/class-wc-qd-tax-id-field.php:76
-#, php-format
-msgid "%s is a required field."
-msgstr "%s est un champ obligatoire."
+#: ../classes/class-wc-qd-tax-id-field.php:75
+#: ../classes/class-wc-qd-tax-id-field.php:128
+msgid "Tax ID"
+msgstr "Numéro de TVA"
 
 #: ../quaderno/quaderno_json.php:55 ../quaderno/quaderno_request.php:78
 msgid "There was a problem connecting to the API."
@@ -158,13 +145,20 @@ msgstr ""
 "Veuillez mettre à jour WooCommerce <strong> version 2.2.9 ou ultérieure </ "
 "strong> pour que l'extension WooCommerce Quaderno puisse fonctionner!"
 
+#~ msgid "Receipts threshold"
+#~ msgstr "Seuil de reçu"
+
+#~ msgid "Receipts will be issued for orders below this threshold"
+#~ msgstr "Des reçus seront émis pour les commandes inférieures à ce seuil"
+
+#, php-format
+#~ msgid "%s is a required field."
+#~ msgstr "%s est un champ obligatoire."
+
 #, fuzzy
 #~| msgid "VAT reverse charged"
 #~ msgid "VAT reverse charge"
 #~ msgstr "Inversion de TVA"
-
-#~ msgid "VAT number"
-#~ msgstr "Numéro de TVA"
 
 #, php-format
 #~ msgid "%s is not valid."
