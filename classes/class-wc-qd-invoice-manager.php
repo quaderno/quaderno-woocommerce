@@ -46,12 +46,11 @@ class WC_QD_Invoice_Manager {
 		);
 
 		// Add the contact
-		$vat_number = get_post_meta( $order_id, WC_QD_Vat_Number_Field::META_KEY, true );
 		$tax_id = get_post_meta( $order_id, WC_QD_Tax_Id_Field::META_KEY, true );
 
 		// Add the reverse charged note
-		if ( !empty($vat_number) ) {
-			$invoice_params['notes'] = esc_html__('EU VAT reverse charged', 'woocommerce-quaderno' );
+		if ( true ===  WC_QD_Tax_Id_Field::is_valid( $tax_id, $order->get_billing_country() ) ) {
+			$invoice_params['notes'] = esc_html__('VAT reverse charge', 'woocommerce-quaderno' );
 		}
 
 		if ( !empty( $order->get_billing_company() ) ) {
@@ -84,7 +83,7 @@ class WC_QD_Invoice_Manager {
       'country' => $country,
       'email' => $order->get_billing_email(),
       'phone_1' => $order->get_billing_phone(),
-      'tax_id' => empty( $vat_number ) ? $tax_id : $vat_number,
+      'tax_id' => $tax_id,
       'processor' => 'woocommerce',
       'processor_id' => $order->get_user_id()
     );
@@ -130,7 +129,7 @@ class WC_QD_Invoice_Manager {
 			$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $location['country'], $location['state'], $location['postcode'], $location['city'] );
 
 			// Reverse charge
-			if ( true === WC_QD_Vat_Number_Field::is_valid( $vat_number, $order->get_billing_country() ) ) {
+			if ( true === WC_QD_Tax_Id_Field::is_valid( $tax_id, $order->get_billing_country() ) ) {
 				$tax->name = '';
 				$tax->rate = 0;
 			}
@@ -180,7 +179,7 @@ class WC_QD_Invoice_Manager {
 			$tax = WC_QD_Calculate_Tax::calculate( '', $location['country'], $location['state'], $location['postcode'], $location['city'] );
 
 			// Reverse charge
-			if ( true === WC_QD_Vat_Number_Field::is_valid( $vat_number, $order->get_billing_country() ) ) {
+			if ( true === WC_QD_Tax_Id_Field::is_valid( $tax_id, $order->get_billing_country() ) ) {
 				$tax->name = '';
 				$tax->rate = 0;
 			}
@@ -211,7 +210,7 @@ class WC_QD_Invoice_Manager {
 			$tax = WC_QD_Calculate_Tax::calculate( '', $location['country'], $location['state'], $location['postcode'], $location['city'] );
 
 			// Reverse charge
-			if ( true === WC_QD_Vat_Number_Field::is_valid( $vat_number, $order->get_billing_country() ) ) {
+			if ( true === WC_QD_Tax_Id_Field::is_valid( $tax_id, $order->get_billing_country() ) ) {
 				$tax->name = '';
 				$tax->rate = 0;
 			}
@@ -242,7 +241,6 @@ class WC_QD_Invoice_Manager {
 
 			add_user_meta( $order->get_user_id(), '_quaderno_contact', $invoice->contact->id, true );
 			update_user_meta( $order->get_user_id(), '_quaderno_tax_id', $tax_id );
-			update_user_meta( $order->get_user_id(), '_quaderno_vat_number', $vat_number );
 
 			if ( true === $digital_products ) {
 				$evidence = new QuadernoEvidence(array(

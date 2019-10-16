@@ -146,10 +146,6 @@ class WooCommerce_Quaderno {
 		// Setup the autoloader
 		self::setup_autoloader();
 
-		// The VAT number Field
-		$vat_number_field = new WC_QD_Vat_Number_Field();
-		$vat_number_field->setup();
-
 		// The Tax ID Field
 		$tax_id_field = new WC_QD_Tax_Id_Field();
 		$tax_id_field->setup();
