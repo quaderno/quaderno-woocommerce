@@ -46,7 +46,10 @@ class WC_QD_Invoice_Manager {
 		);
 
 		// Add the contact
-		$tax_id = get_post_meta( $order_id, WC_QD_Tax_Id_Field::META_KEY, true );
+    $tax_id = get_post_meta( $order_id, 'vat_number', true );
+    if ( empty( $tax_id )) {
+      $tax_id = get_post_meta( $order_id, WC_QD_Tax_Id_Field::META_KEY, true );
+    }
 
 		// Add the reverse charged note
 		if ( true ===  WC_QD_Tax_Id_Field::is_valid( $tax_id, $order->get_billing_country() ) ) {
@@ -89,6 +92,8 @@ class WC_QD_Invoice_Manager {
     );
 
     $contact_id = get_user_meta( $order->get_user_id(), '_quaderno_contact', true );
+
+    // Get last order to see if name has changed
     $args = array(
         'status' => 'completed',
         'type' => 'shop_order',
@@ -98,6 +103,7 @@ class WC_QD_Invoice_Manager {
     );
     $last_order = reset(wc_get_orders( $args ));
 
+    // New contact if name has changed
     if ( !empty( $contact_id ) && !empty( $last_order ) &&
          $last_order->get_billing_company() == $order->get_billing_company() &&
          $last_order->get_billing_first_name() == $order->get_billing_first_name() &&
