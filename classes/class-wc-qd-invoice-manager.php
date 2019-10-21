@@ -239,7 +239,7 @@ class WC_QD_Invoice_Manager {
 			add_post_meta( $order_id, '_quaderno_invoice_number', $invoice->number );
 		  add_post_meta( $order_id, '_quaderno_url', $invoice->permalink );
 
-			add_user_meta( $order->get_user_id(), '_quaderno_contact', $invoice->contact->id, true );
+			update_user_meta( $order->get_user_id(), '_quaderno_contact', $invoice->contact->id );
 			update_user_meta( $order->get_user_id(), '_quaderno_tax_id', $tax_id );
 
 			if ( true === $digital_products ) {
