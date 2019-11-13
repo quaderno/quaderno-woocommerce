@@ -9,6 +9,7 @@ class WC_QD_Integration extends WC_Integration {
 	public static $api_token = null;
 	public static $api_url = null;
 	public static $autosend_invoices = null;
+	public static $require_tax_id = null;
 
 	/**
 	 * Constructor
@@ -27,6 +28,7 @@ class WC_QD_Integration extends WC_Integration {
 		self::$api_token = $this->get_option( 'api_token' );
 		self::$api_url  = $this->get_option( 'api_url' );
 		self::$autosend_invoices  = $this->get_option( 'autosend_invoices' );
+		self::$require_tax_id  = $this->get_option( 'require_tax_id' );
 
 		// Hooks
 		add_action( 'plugins_loaded', array( $this, 'init' ) );
@@ -44,6 +46,9 @@ class WC_QD_Integration extends WC_Integration {
 	 * Init integration form fields
 	 */
 	public function init_form_fields() {
+    global $woocommerce;
+		$base_country = $woocommerce->countries->get_base_country();
+
 		$this->form_fields = array(
 			'api_token' => array(
 				'title'       => __( 'Private key', 'woocommerce-quaderno' ),
@@ -59,6 +64,12 @@ class WC_QD_Integration extends WC_Integration {
 				'title'       => __( 'Delivery', 'woocommerce-quaderno' ),
 				'label'       => __( 'Autosend receipts', 'woocommerce-quaderno' ),
 				'description' => __( 'Check this to automatically send your receipts', 'woocommerce-quaderno' ),
+				'type'        => 'checkbox'
+			),
+			'require_tax_id' => array(
+				'title'       => __( 'Tax ID', 'woocommerce-quaderno' ),
+				'label'       => __( 'Require tax ID', 'woocommerce-quaderno' ),
+				'description' => sprintf(__( 'Check this if tax ID must be required for all sales in %s', 'woocommerce-quaderno' ), $woocommerce->countries->countries[ $base_country ]),
 				'type'        => 'checkbox'
 			)
 		);
