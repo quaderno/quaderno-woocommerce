@@ -163,7 +163,7 @@ class WC_QD_Tax_Manager {
 
     if( !empty($extra_rate) && !empty($extra_label)){
       $rate += $extra_rate;
-      $label = $label. ' + ' .$extra_label;
+      $label = $label . ' + ' . $extra_label;
     }
 
 		if ( ! isset( $this->tax_rates[ $clean_slug ] ) ) {

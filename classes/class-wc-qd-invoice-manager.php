@@ -177,7 +177,6 @@ class WC_QD_Invoice_Manager {
         $item_data['tax_2_transaction_type'] = $tax->transaction_type;
       }
 
-
 			$new_item = new QuadernoDocumentItem( $item_data );
 
 			// Store the product code
