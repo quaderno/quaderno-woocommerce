@@ -50,7 +50,9 @@ class WC_QD_Cart_Manager {
 					'id' => $id,
 					'product_type' => $tax_class,
 					'tax_name' => $tax->name,
-					'tax_rate' => $tax->rate );
+					'tax_rate' => $tax->rate, 
+          'tax_extra_name' => $tax->extra_name,
+          'tax_extra_rate' => $tax->extra_rate );
 			}
 		}
 
