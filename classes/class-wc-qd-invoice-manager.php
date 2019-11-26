@@ -138,6 +138,7 @@ class WC_QD_Invoice_Manager {
 			if ( true === WC_QD_Tax_Id_Field::is_valid( $tax_id, $order->get_billing_country() ) ) {
 				$tax->name = '';
 				$tax->rate = 0;
+        $tax->extra_rate = 0;
 			}
 
 			if ( true == in_array( $tax_class, array('eservice', 'ebook') )) {
@@ -148,21 +149,36 @@ class WC_QD_Invoice_Manager {
 			$total = $order->get_line_total($item, true);
 			$discount_rate = $subtotal == 0  ? 0 : round( ( $subtotal -  $total ) / $subtotal * 100, 0 );
 
-			$new_item = new QuadernoDocumentItem(array(
-				'description' => $item->get_name(),
-				'quantity' => $item->get_quantity(),
-				'total_amount' => round( $total * $exchange_rate, wc_get_price_decimals() ),
-				'discount_rate' => $discount_rate,
-				'tax_1_name' => $tax->name,
-				'tax_1_rate' => $tax->rate,
-				'tax_1_country' => $tax->country,
-				'tax_1_region' => $tax->region,
-				'tax_1_county' => $tax->county,
-				'tax_1_city' => $tax->city,
-				'tax_1_county_code' => $tax->county_tax_code,
-				'tax_1_city_code' => $tax->city_tax_code,
-				'tax_1_transaction_type' => $tax->transaction_type
-			));
+      $item_data = array(
+        'description' => $item->get_name(),
+        'quantity' => $item->get_quantity(),
+        'total_amount' => round( $total * $exchange_rate, wc_get_price_decimals() ),
+        'discount_rate' => $discount_rate,
+        'tax_1_name' => $tax->name,
+        'tax_1_rate' => $tax->rate,
+        'tax_1_country' => $tax->country,
+        'tax_1_region' => $tax->region,
+        'tax_1_county' => $tax->county,
+        'tax_1_city' => $tax->city,
+        'tax_1_county_code' => $tax->county_tax_code,
+        'tax_1_city_code' => $tax->city_tax_code,
+        'tax_1_transaction_type' => $tax->transaction_type
+      );
+
+      if( !empty($tax->extra_rate) ){
+        $item_data['tax_2_name'] = $tax->extra_name;
+        $item_data['tax_2_rate'] = $tax->extra_rate;
+        $item_data['tax_2_country'] = $tax->country;
+        $item_data['tax_2_region'] = $tax->region;
+        $item_data['tax_2_county'] = $tax->county;
+        $item_data['tax_2_city'] = $tax->city;
+        $item_data['tax_2_county_code'] = $tax->county_tax_code;
+        $item_data['tax_2_city_code'] = $tax->city_tax_code;
+        $item_data['tax_2_transaction_type'] = $tax->transaction_type;
+      }
+
+
+			$new_item = new QuadernoDocumentItem( $item_data );
 
 			// Store the product code
 			$product = wc_get_product( $item->get_product_id() );
@@ -188,25 +204,40 @@ class WC_QD_Invoice_Manager {
 			if ( true === WC_QD_Tax_Id_Field::is_valid( $tax_id, $order->get_billing_country() ) ) {
 				$tax->name = '';
 				$tax->rate = 0;
+        $tax->extra_rate = 0;
 			}
 
 			$shipping_tax = $order->get_shipping_tax();
 			$shipping_total += $shipping_tax;
+      
+      $item_data = array(
+        'description' => esc_html__('Shipping', 'woocommerce-quaderno' ),
+        'quantity' => 1,
+        'total_amount' => round( $shipping_total * $exchange_rate, 2),
+        'tax_1_name' => $tax->name,
+        'tax_1_rate' => $tax->rate,
+        'tax_1_country' => $tax->country,
+        'tax_1_region' => $tax->region,
+        'tax_1_county' => $tax->county,
+        'tax_1_city' => $tax->city,
+        'tax_1_county_code' => $tax->county_tax_code,
+        'tax_1_city_code' => $tax->city_tax_code,
+        'tax_1_transaction_type' => $tax->transaction_type
+      );
 
-			$new_item = new QuadernoDocumentItem(array(
-				'description' => esc_html__('Shipping', 'woocommerce-quaderno' ),
-				'quantity' => 1,
-				'total_amount' => round( $shipping_total * $exchange_rate, 2),
-				'tax_1_name' => $tax->name,
-				'tax_1_rate' => $tax->rate,
-				'tax_1_country' => $tax->country,
-				'tax_1_region' => $tax->region,
-				'tax_1_county' => $tax->county,
-				'tax_1_city' => $tax->city,
-				'tax_1_county_code' => $tax->county_tax_code,
-				'tax_1_city_code' => $tax->city_tax_code,
-				'tax_1_transaction_type' => $tax->transaction_type
-			));
+      if( !empty($tax->extra_rate) ){
+        $item_data['tax_2_name'] = $tax->extra_name;
+        $item_data['tax_2_rate'] = $tax->extra_rate;
+        $item_data['tax_2_country'] = $tax->country;
+        $item_data['tax_2_region'] = $tax->region;
+        $item_data['tax_2_county'] = $tax->county;
+        $item_data['tax_2_city'] = $tax->city;
+        $item_data['tax_2_county_code'] = $tax->county_tax_code;
+        $item_data['tax_2_city_code'] = $tax->city_tax_code;
+        $item_data['tax_2_transaction_type'] = $tax->transaction_type;
+      }
+			
+      $new_item = new QuadernoDocumentItem($item_data);
 			$invoice->addItem( $new_item );
 		}
 
@@ -219,24 +250,39 @@ class WC_QD_Invoice_Manager {
 			if ( true === WC_QD_Tax_Id_Field::is_valid( $tax_id, $order->get_billing_country() ) ) {
 				$tax->name = '';
 				$tax->rate = 0;
+        $tax->extra_rate = 0;
 			}
 
 			$fee_total = $fee['total'] + $fee['total_tax'];
 
-			$new_item = new QuadernoDocumentItem(array(
-				'description' => $fee->get_name(),
-				'quantity' => 1,
-				'total_amount' => round( $fee_total * $exchange_rate, 2),
-				'tax_1_name' => $tax->name,
-				'tax_1_rate' => $tax->rate,
-				'tax_1_country' => $tax->country,
-				'tax_1_region' => $tax->region,
-				'tax_1_county' => $tax->county,
-				'tax_1_city' => $tax->city,
-				'tax_1_county_code' => $tax->county_tax_code,
-				'tax_1_city_code' => $tax->city_tax_code,
-				'tax_1_transaction_type' => $tax->transaction_type
-			));
+      $item_data = array(
+        'description' => $fee->get_name(),
+        'quantity' => 1,
+        'total_amount' => round( $fee_total * $exchange_rate, 2),
+        'tax_1_name' => $tax->name,
+        'tax_1_rate' => $tax->rate,
+        'tax_1_country' => $tax->country,
+        'tax_1_region' => $tax->region,
+        'tax_1_county' => $tax->county,
+        'tax_1_city' => $tax->city,
+        'tax_1_county_code' => $tax->county_tax_code,
+        'tax_1_city_code' => $tax->city_tax_code,
+        'tax_1_transaction_type' => $tax->transaction_type
+      );
+
+      if( !empty($tax->extra_rate) ){
+        $item_data['tax_2_name'] = $tax->extra_name;
+        $item_data['tax_2_rate'] = $tax->extra_rate;
+        $item_data['tax_2_country'] = $tax->country;
+        $item_data['tax_2_region'] = $tax->region;
+        $item_data['tax_2_county'] = $tax->county;
+        $item_data['tax_2_city'] = $tax->city;
+        $item_data['tax_2_county_code'] = $tax->county_tax_code;
+        $item_data['tax_2_city_code'] = $tax->city_tax_code;
+        $item_data['tax_2_transaction_type'] = $tax->transaction_type;
+      }
+
+			$new_item = new QuadernoDocumentItem($item_data);
 			$invoice->addItem( $new_item );
 		}
 
