@@ -79,16 +79,7 @@ class WC_QD_Credit_Manager {
 			'tax_1_city' => $item->tax_1_city,
 			'tax_1_county_code' => $item->tax_1_county_code,
 			'tax_1_city_code' => $item->tax_1_city_code,
-			'tax_1_transaction_type' => $item->tax_1_transaction_type,
-      'tax_2_name' => $item->tax_2_name,
-      'tax_2_rate' => $item->tax_2_rate,
-      'tax_2_country' => $item->tax_2_country,
-      'tax_2_region' => $item->tax_2_region,
-      'tax_2_county' => $item->tax_2_county,
-      'tax_2_city' => $item->tax_2_city,
-      'tax_2_county_code' => $item->tax_2_county_code,
-      'tax_2_city_code' => $item->tax_2_city_code,
-      'tax_2_transaction_type' => $item->tax_2_transaction_type
+			'tax_1_transaction_type' => $item->tax_1_transaction_type
 		));
 		$credit->addItem( $new_item );
 

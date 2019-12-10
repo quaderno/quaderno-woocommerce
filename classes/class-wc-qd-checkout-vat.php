@@ -41,7 +41,7 @@ class WC_QD_Checkout_Vat {
 				$tax_manager->add_product_tax_class( $item['id'], $item['product_type'] );
 
 				// Add the new tax rate for this transaction line
-				$tax_manager->add_tax_rate( $item['product_type'], $item['tax_rate'], $item['tax_name'], $item['tax_extra_rate'], $item['tax_extra_name'] );
+				$tax_manager->add_tax_rate( $item['product_type'], $item['tax_rate'], $item['tax_name']);
 			}
 		}
 	}
@@ -157,7 +157,7 @@ class WC_QD_Checkout_Vat {
 				$tax = WC_QD_Calculate_Tax::calculate($tax_class, $country);
 
 				$tax_manager->add_product_tax_class( $item_id, $tax_class );
-				$tax_manager->add_tax_rate( $tax_class, $tax->rate, $tax->name, $tax->extra_rate, $tax->extra_name );
+				$tax_manager->add_tax_rate( $tax_class, $tax->rate, $tax->name );
 				$items['order_item_tax_class'][ $item_id ] = $tax_manager->clean_tax_class( $tax_class );
 			}
 

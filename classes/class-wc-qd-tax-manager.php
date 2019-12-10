@@ -159,13 +159,8 @@ class WC_QD_Tax_Manager {
 	 *
 	 * @return bool
 	 */
-	public function add_tax_rate( $tax_class, $rate, $label, $extra_rate=null, $extra_label=null ) {
+	public function add_tax_rate( $tax_class, $rate, $label ) {
 		$clean_slug = $this->clean_tax_class( $tax_class );
-
-    if( !empty($extra_rate) && !empty($extra_label)){
-      $rate += $extra_rate;
-      $label = $label . ' + ' . $extra_label;
-    }
 
 		if ( ! isset( $this->tax_rates[ $clean_slug ] ) ) {
 			$this->tax_rates[ $clean_slug ] = array(
