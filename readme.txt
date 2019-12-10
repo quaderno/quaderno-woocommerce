@@ -69,6 +69,7 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 
 = 1.20.2 – December 10, 2019 =
 * Fix: tax calculation is wrong for product variations
+* Fix: error in tax calculations for shipping in particular cases
 * New: remove tax name when taxes are not applied
 
 = 1.20.1 – December 10, 2019 =
