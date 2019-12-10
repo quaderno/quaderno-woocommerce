@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
 Tested up to: 5.3
-Stable tag: 1.20.2
+Stable tag: 1.20.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Automatically calculate tax rates & create instant tax reports for your WooComme
 
 == Description ==
 
-Quaderno for WooCommerce takes taxes off your plate by automatically calculating tax on every sale and following up with beautiful invoices or receipts, no matter where your customer is located. Transactions and invoices processed through Quaderno always comply with ever-changing local tax rules, including in the US, Canada, Australia, New Zealand, Singapore, and the European Union.
+Quaderno for WooCommerce takes taxes off your plate by automatically calculating tax on every sale and following up with beautiful receipts and credit notes, no matter where your customer is located. Transactions and invoices processed through Quaderno always comply with ever-changing local tax rules, including US sales tax, EU VAT, and Canadian GST.
 
 https://www.youtube.com/watch?v=mGs6SVOr7fU
 
@@ -66,6 +66,9 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.20.3 – December 10, 2019 =
+* Update plugin description
 
 = 1.20.2 – December 10, 2019 =
 * Fix: tax calculation is wrong for product variations
