@@ -10,6 +10,7 @@ class WC_QD_Integration extends WC_Integration {
 	public static $api_url = null;
 	public static $autosend_invoices = null;
 	public static $require_tax_id = null;
+	public static $universal_pricing = null;
 
 	/**
 	 * Constructor
@@ -17,7 +18,7 @@ class WC_QD_Integration extends WC_Integration {
 	public function __construct() {
 		$this->id                 = 'quaderno';
 		$this->method_title       = 'Quaderno';
-		$this->method_description = __( 'Automatically calculate tax rates & create instant tax reports for your WooCommerce store. <br>Note: You need a <a href="https://quadernoapp.com/signup?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">Quaderno account</a> for this extension to work.', 'woocommerce-quaderno' );
+		$this->method_description = sprintf( __( 'Automatically calculate tax rates & create instant tax reports for your WooCommerce store. %sNote: You need a %sQuaderno%s account for this extension to work.', 'woocommerce-quaderno' ), '<br>', '<a href="https://quadernoapp.com/signup?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">', '</a>' );
 
 		// Load admin form
 		$this->init_form_fields();
@@ -26,13 +27,18 @@ class WC_QD_Integration extends WC_Integration {
 		$this->init_settings();
 
 		self::$api_token = $this->get_option( 'api_token' );
-		self::$api_url  = $this->get_option( 'api_url' );
-		self::$autosend_invoices  = $this->get_option( 'autosend_invoices' );
-		self::$require_tax_id  = $this->get_option( 'require_tax_id' );
+		self::$api_url = $this->get_option( 'api_url' );
+		self::$autosend_invoices = $this->get_option( 'autosend_invoices' );
+		self::$require_tax_id = $this->get_option( 'require_tax_id' );
+		self::$universal_pricing = $this->get_option( 'universal_pricing', 'no' );
 
 		// Hooks
 		add_action( 'plugins_loaded', array( $this, 'init' ) );
 		add_action( 'woocommerce_update_options_integration_quaderno', array( $this, 'process_admin_options' ) );
+
+		if ( version_compare( WC_VERSION, '2.4.7', '>=' ) && self::$universal_pricing == 'yes' ) {
+			add_filter( 'woocommerce_adjust_non_base_location_prices', '__return_false' );
+		}
 
 		if ( empty( self::$api_token ) || empty( self::$api_url ) ) {
 			add_action( 'admin_notices', array( $this, 'settings_notice' ) );
@@ -40,6 +46,63 @@ class WC_QD_Integration extends WC_Integration {
 
 		add_action( 'admin_notices', array( $this, 'review_notice' ) );
 		add_action( 'admin_init', array( $this, 'review_dismised' ) );
+	}
+
+
+	/**
+	 * Return Quaderno Universal Pricing settings for form fields
+	 */
+	public function get_universal_pricing_setting() {
+		$universal_pricing_available = false;
+		
+		$woocommerce_prices_include_tax = ( get_option( 'woocommerce_prices_include_tax' ) == 'yes' ? true : false );
+		$woocommerce_tax_display_shop   = ( get_option( 'woocommerce_tax_display_shop' ) == 'incl' ? true : false );
+		$woocommerce_tax_display_cart   = ( get_option( 'woocommerce_tax_display_cart' ) == 'incl' ? true : false );
+		
+		// Check that conditions are met for this option to be enabled
+		if ( $woocommerce_prices_include_tax && $woocommerce_tax_display_shop && $woocommerce_tax_display_cart ) {
+			$universal_pricing_available = true;
+		}
+		
+		if ( $universal_pricing_available ) {
+			$setting = array(
+				'title'       => __( 'Force universal pricing', 'woocommerce-quaderno' ),
+				'description' => __( 'Check this if you want Quaderno to calculate tax in such a way, that the final price is always the same as the price provided.' ),
+				'type'        => 'checkbox',
+				'default'     => 'no',
+				'disabled'	  => false
+			);
+		} else {
+			// Build the description of what conditions must be met for this option to be enabled
+			$setting_description = sprintf( __( 'In order for this option to be available you must set the following options on the %sTax Options%s page:' ), '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=tax' ) . '">', '</a>' );
+			
+			$setting_description .= '<ol>';
+			
+			if ( $woocommerce_prices_include_tax == false ){
+				$setting_description .= '<li><span>' . sprintf( __( 'Prices entered with tax: %sYes, I will enter prices inclusive of tax%s' ), '<strong>', '</strong>' ) . '</span></li>';
+			}	
+
+			if ( $woocommerce_tax_display_shop == false ) {
+				$setting_description .= '<li><span>' . sprintf( __( 'Display prices in the shop: %sIncluding tax%s' ), '<strong>', '</strong>' ) . '</span></li>';
+			}
+
+			if ( $woocommerce_tax_display_cart == false ) 
+			{
+				$setting_description .= '<li><span>' . sprintf( __( 'Display prices during cart and checkout: %sIncluding tax%s' ), '<strong>', '</strong>' ) . '</span></li>';
+			}
+			
+			$setting_description .= '</ol>';
+
+			$setting = array( 
+				'title'       => __( 'Force universal pricing', 'woocommerce-quaderno' ),
+				'description' => $setting_description,
+				'type'        => 'checkbox',
+				'default'     => 'no',
+				'disabled'	  => true
+			);
+		}
+
+		return $setting;
 	}
 	
 	/**
@@ -52,27 +115,30 @@ class WC_QD_Integration extends WC_Integration {
 		$this->form_fields = array(
 			'api_token' => array(
 				'title'       => __( 'Private key', 'woocommerce-quaderno' ),
-				'description' => '<a href="https://quadernoapp.com/settings/api/?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">' . __( 'Get your Quaderno private key', 'woocommerce-quaderno' ) . '</a>',
+				'description' => '<a href="https://quadernoapp.com/developers/api-keys/?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">' . __( 'Get your Quaderno private key', 'woocommerce-quaderno' ) . '</a>',
 				'type'        => 'text'
 			),
 			'api_url'  => array(
 				'title'       => __( 'API URL', 'woocommerce-quaderno' ),
-				'description' => '<a href="https://quadernoapp.com/settings/api/?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">' . __( 'Get your Quaderno API URL', 'woocommerce-quaderno' ) . '</a>',
+				'description' => '<a href="https://quadernoapp.com/developers/api-keys/?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">' . __( 'Get your Quaderno API URL', 'woocommerce-quaderno' ) . '</a>',
 				'type'        => 'text'
 			),
-			'autosend_invoices' => array(
-				'title'       => __( 'Delivery', 'woocommerce-quaderno' ),
-				'label'       => __( 'Autosend receipts', 'woocommerce-quaderno' ),
-				'description' => __( 'Check this to automatically send your receipts', 'woocommerce-quaderno' ),
+			'require_tax_id' => array(
+				'title'       => __( 'Require tax ID', 'woocommerce-quaderno' ),
+				'description' => sprintf(__( 'Check this if tax ID must be required for all sales in %s.', 'woocommerce-quaderno' ), $woocommerce->countries->countries[ $base_country ]),
 				'type'        => 'checkbox'
 			),
-			'require_tax_id' => array(
-				'title'       => __( 'Tax ID', 'woocommerce-quaderno' ),
-				'label'       => __( 'Require tax ID', 'woocommerce-quaderno' ),
-				'description' => sprintf(__( 'Check this if tax ID must be required for all sales in %s', 'woocommerce-quaderno' ), $woocommerce->countries->countries[ $base_country ]),
+			'autosend_invoices' => array(
+				'title'       => __( 'Autosend receipts', 'woocommerce-quaderno' ),
+				'description' => __( 'Check this if you want Quaderno to automatically email your receipts.', 'woocommerce-quaderno' ),
 				'type'        => 'checkbox'
 			)
 		);
+
+		if ( version_compare( WC_VERSION, '2.4.7', '>=' ) ) {
+			// Get the universal pricing option and add it to the form fields array
+			$this->form_fields[ 'universal_pricing' ] = $this->get_universal_pricing_setting();
+		}
 	}
 
 	/**

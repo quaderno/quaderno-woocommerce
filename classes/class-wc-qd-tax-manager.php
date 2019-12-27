@@ -40,9 +40,6 @@ class WC_QD_Tax_Manager {
 
 		// Override the rate label
 		add_filter( 'woocommerce_rate_label', array( $this, 'override_rate_label'), 10, 2 );
-
-		// Stop base taxes being taken off when dealing with out of base locations
-		add_filter( 'woocommerce_adjust_non_base_location_prices', '__return_false' );
 	}
 
 	/**
@@ -187,7 +184,8 @@ class WC_QD_Tax_Manager {
 	 * @return string
 	 */
 	public function override_product_tax_class( $tax_class, $product ) {
-		$id = $product->get_id();
+		// Get the correct ID
+		$id = ( version_compare( WC_VERSION, '3.0', '<' ) && isset( $product->variation_id ) ) ? $product->variation_id : $product->get_id();
 
 		// Check if we got a Quaderno class for this product
 		if ( isset( $this->product_to_tax_class[ $id ] ) ) {
