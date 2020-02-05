@@ -67,28 +67,28 @@ class WC_QD_Integration extends WC_Integration {
 		if ( $universal_pricing_available ) {
 			$setting = array(
 				'title'       => __( 'Force universal pricing', 'woocommerce-quaderno' ),
-				'description' => __( 'Check this if you want Quaderno to calculate tax in such a way, that the final price is always the same as the price provided.' ),
+				'description' => __( 'Check this if you want Quaderno to calculate tax in such a way, that the final price is always the same as the price provided.', 'woocommerce-quaderno' ),
 				'type'        => 'checkbox',
 				'default'     => 'no',
 				'disabled'	  => false
 			);
 		} else {
 			// Build the description of what conditions must be met for this option to be enabled
-			$setting_description = sprintf( __( 'In order for this option to be available you must set the following options on the %sTax Options%s page:' ), '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=tax' ) . '">', '</a>' );
+			$setting_description = sprintf( __( 'In order for this option to be available you must set the following options on the %sTax Options%s page:', 'woocommerce-quaderno' ), '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=tax' ) . '">', '</a>' );
 			
 			$setting_description .= '<ol>';
 			
 			if ( $woocommerce_prices_include_tax == false ){
-				$setting_description .= '<li><span>' . sprintf( __( 'Prices entered with tax: %sYes, I will enter prices inclusive of tax%s' ), '<strong>', '</strong>' ) . '</span></li>';
+				$setting_description .= '<li><span>' . sprintf( __( 'Prices entered with tax: %sYes, I will enter prices inclusive of tax%s', 'woocommerce' ), '<strong>', '</strong>' ) . '</span></li>';
 			}	
 
 			if ( $woocommerce_tax_display_shop == false ) {
-				$setting_description .= '<li><span>' . sprintf( __( 'Display prices in the shop: %sIncluding tax%s' ), '<strong>', '</strong>' ) . '</span></li>';
+				$setting_description .= '<li><span>' . sprintf( __( 'Display prices in the shop: %sIncluding tax%s', 'woocommerce' ), '<strong>', '</strong>' ) . '</span></li>';
 			}
 
 			if ( $woocommerce_tax_display_cart == false ) 
 			{
-				$setting_description .= '<li><span>' . sprintf( __( 'Display prices during cart and checkout: %sIncluding tax%s' ), '<strong>', '</strong>' ) . '</span></li>';
+				$setting_description .= '<li><span>' . sprintf( __( 'Display prices during cart and checkout: %sIncluding tax%s', 'woocommerce' ), '<strong>', '</strong>' ) . '</span></li>';
 			}
 			
 			$setting_description .= '</ol>';
