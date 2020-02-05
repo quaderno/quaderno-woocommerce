@@ -115,12 +115,12 @@ class WC_QD_Integration extends WC_Integration {
 		$this->form_fields = array(
 			'api_token' => array(
 				'title'       => __( 'Private key', 'woocommerce-quaderno' ),
-				'description' => '<a href="https://quadernoapp.com/developers/api-keys/?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">' . __( 'Get your Quaderno private key', 'woocommerce-quaderno' ) . '</a>',
+				'description' => '<a href="https://quadernoapp.com/users/api-keys/?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">' . __( 'Get your Quaderno private key', 'woocommerce-quaderno' ) . '</a>',
 				'type'        => 'text'
 			),
 			'api_url'  => array(
 				'title'       => __( 'API URL', 'woocommerce-quaderno' ),
-				'description' => '<a href="https://quadernoapp.com/developers/api-keys/?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">' . __( 'Get your Quaderno API URL', 'woocommerce-quaderno' ) . '</a>',
+				'description' => '<a href="https://quadernoapp.com/users/api-keys/?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">' . __( 'Get your Quaderno API URL', 'woocommerce-quaderno' ) . '</a>',
 				'type'        => 'text'
 			),
 			'require_tax_id' => array(
