@@ -57,8 +57,11 @@ class WC_QD_Tax_Id_Field {
 	 */
 	public function save_field( $order_id ) {
 		if ( ! empty( $_POST['tax_id'] ) ) {
+      // Remove non-word characters
+      $tax_id = preg_replace('/\W/', '', sanitize_text_field( $_POST['tax_id'] ));
+
 			// Save the Tax ID number
-			update_post_meta( $order_id, self::META_KEY, sanitize_text_field( $_POST['tax_id'] ) );
+			update_post_meta( $order_id, self::META_KEY, $tax_id );
 		}
 	}
 
@@ -106,6 +109,9 @@ class WC_QD_Tax_Id_Field {
    */
   public static function is_valid( $tax_id, $country ){
     global $woocommerce;
+
+    // remove non-word characters from tax ID
+    $tax_id = preg_replace('/\W/', '', $tax_id);
 
     // get the country code from the number if it's empty
     if ( empty($country) ) {
@@ -161,7 +167,12 @@ class WC_QD_Tax_Id_Field {
     if ( !current_user_can( 'edit_user', $user_id ) ) { 
       return false; 
     }
-    update_user_meta( $user_id, '_quaderno_tax_id', $_POST['tax_id'] );
+
+    // Remove non-word characters
+    $tax_id = preg_replace('/\W/', '', sanitize_text_field( $_POST['tax_id'] ));
+
+    // Save the tax ID
+    update_user_meta( $user_id, '_quaderno_tax_id', $tax_id );
   }
 
   /**
