@@ -56,12 +56,21 @@ class WC_QD_Tax_Id_Field {
 	 * @param $order_id
 	 */
 	public function save_field( $order_id ) {
+    global $woocommerce;
+
 		if ( ! empty( $_POST['tax_id'] ) ) {
       // Remove non-word characters
       $tax_id = preg_replace('/\W/', '', sanitize_text_field( $_POST['tax_id'] ));
 
-			// Save the Tax ID number
-			update_post_meta( $order_id, self::META_KEY, $tax_id );
+      $order = wc_get_order( $order_id );
+      $billing_country = $order->get_billing_country();
+      $base_country = $woocommerce->countries->get_base_country();
+
+      if ( $billing_country == $base_country || 'yes' === get_post_meta( $order_id, 'is_vat_exempt', true ) ) {
+        update_post_meta( $order_id, self::META_KEY, $tax_id );
+      } else {
+        $order->add_order_note( sprintf( __( 'Tax ID %s could not be validated', 'woocommerce-quaderno' ), $tax_id ) );
+      }
 		}
 	}
 

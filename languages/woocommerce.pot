@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2019-12-27 01:06+0000\n"
+"POT-Creation-Date: 2020-02-21 20:11+0000\n"
 "PO-Revision-Date: 2018-07-03 20:09-0000\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: \n"
@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__\n"
@@ -128,15 +128,15 @@ msgstr ""
 msgid "I already did it"
 msgstr ""
 
-#: ../classes/class-wc-qd-invoice-manager.php:56
-msgid "Tax amount subject to reverse charge"
-msgstr ""
-
-#: ../classes/class-wc-qd-invoice-manager.php:66
+#: ../classes/class-wc-qd-invoice-manager.php:55
 msgid "WooCommerce customer"
 msgstr ""
 
-#: ../classes/class-wc-qd-invoice-manager.php:204
+#: ../classes/class-wc-qd-invoice-manager.php:114
+msgid "Tax amount subject to reverse charge"
+msgstr ""
+
+#: ../classes/class-wc-qd-invoice-manager.php:190
 msgid "Shipping"
 msgstr ""
 
@@ -147,9 +147,9 @@ msgid "View Invoice"
 msgstr ""
 
 #: ../classes/class-wc-qd-tax-id-field.php:46
-#: ../classes/class-wc-qd-tax-id-field.php:76
-#: ../classes/class-wc-qd-tax-id-field.php:93
-#: ../classes/class-wc-qd-tax-id-field.php:146
+#: ../classes/class-wc-qd-tax-id-field.php:88
+#: ../classes/class-wc-qd-tax-id-field.php:105
+#: ../classes/class-wc-qd-tax-id-field.php:161
 msgid "Tax ID"
 msgstr ""
 
@@ -157,12 +157,17 @@ msgstr ""
 msgid "VAT number, ABN, or NZBN"
 msgstr ""
 
-#: ../classes/class-wc-qd-tax-id-field.php:76
+#: ../classes/class-wc-qd-tax-id-field.php:72
+#, php-format
+msgid "Tax ID %s could not be validated"
+msgstr ""
+
+#: ../classes/class-wc-qd-tax-id-field.php:88
 #, php-format
 msgid "%s is a required field."
 msgstr ""
 
-#: ../classes/class-wc-qd-tax-id-field.php:174
+#: ../classes/class-wc-qd-tax-id-field.php:194
 msgid "optional"
 msgstr ""
 
