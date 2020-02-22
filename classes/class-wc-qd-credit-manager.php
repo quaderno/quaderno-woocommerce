@@ -32,7 +32,7 @@ class WC_QD_Credit_Manager {
 			return; 
 		}
 
-		$invoice = QuadernoInvoice::find( $invoice_id );
+		$invoice = QuadernoIncome::find( $invoice_id );
 
 		$credit_params = array(
 			'issue_date' => current_time('Y-m-d'),
