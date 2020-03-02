@@ -8,12 +8,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
    public function setup() {
     add_filter( 'woocommerce_my_account_my_orders_actions', array( $this, 'show_invoice_action' ), 10, 2 );
+    add_action( 'woocommerce_after_account_orders', array( $this, 'after_my_orders_js' ), 10, 2);
     add_action( 'woocommerce_order_details_after_order_table', array( $this, 'show_invoice_button'), 10 );
     add_action( 'woocommerce_admin_order_data_after_billing_address', array( $this, 'display_field' ), 10, 1 );
   }
 
 	/**
-	 * Show invice action
+	 * Show invoice action
 	 *
    * @param $actions
    * @param $order
@@ -34,7 +35,23 @@ if ( ! defined( 'ABSPATH' ) ) {
   }
 
   /**
-   * Show invice button
+   * Open invoice action in a new tab
+   */
+  function after_my_orders_js() {
+    $action_slug = 'invoice';
+    ?>
+    <script>
+    jQuery(function($){
+        $('a.<?php echo $action_slug; ?>').each( function(){
+            $(this).attr('target','_blank');
+        })
+    });
+    </script>
+    <?php
+  }
+
+  /**
+   * Show invoice button
    *
    * @param $order
    */
@@ -48,7 +65,7 @@ if ( ! defined( 'ABSPATH' ) ) {
       ?>
 
       <p class="view_invoice">
-      </strong> <a href="<?php echo esc_url( $permalink ); ?>" class="button"><?php _e( 'View Invoice', 'woocommerce-quaderno'); ?></a>
+      </strong> <a href="<?php echo esc_url( $permalink ); ?>" class="button" target="_blank"><?php _e( 'View Invoice', 'woocommerce-quaderno'); ?></a>
     </p>
 
     <?php
