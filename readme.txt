@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
 Tested up to: 5.3
-Stable tag: 1.21.2
+Stable tag: 1.21.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,10 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.21.3 – March 2, 2020 =
+* Improvement: Recurring customer can store their Tax ID in their billing details
+* Improvement: Quaderno invoices are always opened in a new tab
 
 = 1.21.2 – February 21, 2020 =
 * Improvement: Better management of tax IDs
