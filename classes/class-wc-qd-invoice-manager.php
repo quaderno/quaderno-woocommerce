@@ -64,7 +64,7 @@ class WC_QD_Invoice_Manager {
 
     $tax_id = get_post_meta( $order_id, 'vat_number', true );
     if ( empty( $tax_id )) {
-      $tax_id = get_post_meta( $order_id, WC_QD_Tax_Id_Field::META_KEY, true );
+      $tax_id = get_post_meta( $order_id, 'tax_id', true );
     }
 
     $invoice_params['contact'] = array(
@@ -95,7 +95,8 @@ class WC_QD_Invoice_Manager {
         'customer_id' => $order->get_user_id(),
         'exclude' => array( $order->get_id() )
     );
-    $last_order = reset(wc_get_orders( $args ));
+    $past_orders = wc_get_orders( $args );
+    $last_order = reset( $past_orders );
 
     // New contact if name has changed
     if ( !empty( $contact_id ) && !empty( $last_order ) &&
@@ -230,9 +231,7 @@ class WC_QD_Invoice_Manager {
       add_post_meta( $order_id, '_quaderno_invoice', $invoice->id );
       add_post_meta( $order_id, '_quaderno_invoice_number', $invoice->number );
       add_post_meta( $order_id, '_quaderno_url', $invoice->permalink );
-
       update_user_meta( $order->get_user_id(), '_quaderno_contact', $invoice->contact->id );
-      update_user_meta( $order->get_user_id(), '_quaderno_tax_id', $tax_id );
 
       if ( true === $digital_products ) {
         $evidence = new QuadernoEvidence(array(

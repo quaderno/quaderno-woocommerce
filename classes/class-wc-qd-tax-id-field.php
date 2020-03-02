@@ -5,9 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class WC_QD_Tax_Id_Field {
-
-	const META_KEY = 'tax_id';
-
 	/**
 	 * Setup
 	 *
@@ -17,15 +14,10 @@ class WC_QD_Tax_Id_Field {
 		add_action( 'woocommerce_after_checkout_billing_form', array( $this, 'print_field' ) );
 		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'save_field' ) );
     add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_field' ), 10, 2 );
-		add_action( 'woocommerce_admin_order_data_after_billing_address', array( $this, 'display_field' ), 10, 1 );
-
-    add_action( 'woocommerce_quaderno_meta_fields', array( $this, 'add_customer_meta_fields'), 30, 1 ); 
-    add_action( 'woocommerce_quaderno_meta_fields', array( $this, 'add_customer_meta_fields'), 30, 1 ); 
-
-    add_action( 'personal_options_update', array( $this, 'save_customer_meta_fields'), 30, 1 ); 
-    add_action( 'edit_user_profile_update', array( $this, 'save_customer_meta_fields'), 30, 1 ); 
 
     add_filter( 'woocommerce_form_field', array( $this, 'remove_checkout_optional_text'), 10, 4 );
+    add_filter( 'woocommerce_default_address_fields', array( $this, 'display_field_in_address_form' ), 20, 1 );
+    add_filter( 'woocommerce_customer_meta_fields', array( $this, 'display_field_in_admin_form' ), 20, 1 );
 	}
 
 	/**
@@ -36,12 +28,15 @@ class WC_QD_Tax_Id_Field {
 	public function print_field() {
     global $woocommerce;
 
-    $user_tax_id = get_user_meta( get_current_user_id(), '_quaderno_vat_number', true );
+    $user_tax_id = get_user_meta( get_current_user_id(), 'billing_tax_id', true );
     if ( empty( $user_tax_id ) ) {
+      $user_tax_id = get_user_meta( get_current_user_id(), '_quaderno_vat_number', true );
+    }
+		if ( empty( $user_tax_id ) ) {
       $user_tax_id = get_user_meta( get_current_user_id(), '_quaderno_tax_id', true );
     }
 
-		woocommerce_form_field( 'tax_id', array(
+    woocommerce_form_field( 'tax_id', array(
 			'type'   => 'text',
 			'label'  => esc_html__( 'Tax ID', 'woocommerce-quaderno' ),
       'placeholder' => esc_html__( 'VAT number, ABN, or NZBN', 'woocommerce-quaderno' ),
@@ -67,7 +62,7 @@ class WC_QD_Tax_Id_Field {
       $base_country = $woocommerce->countries->get_base_country();
 
       if ( $billing_country == $base_country || 'yes' === get_post_meta( $order_id, 'is_vat_exempt', true ) ) {
-        update_post_meta( $order_id, self::META_KEY, $tax_id );
+        update_post_meta( $order_id, 'tax_id', $tax_id );
       } else {
         $order->add_order_note( sprintf( __( 'Tax ID %s could not be validated', 'woocommerce-quaderno' ), $tax_id ) );
       }
@@ -88,23 +83,6 @@ class WC_QD_Tax_Id_Field {
       $errors->add( 'required-field', sprintf( __( '%s is a required field.', 'woocommerce' ), '<strong>' . esc_html__( 'Tax ID', 'woocommerce-quaderno' ) . '</strong>' ));
     }
   }
-
-	/**
-	 * Display the Tax ID field in the backend
-	 *
-	 * @param $order
-	 */
-	public function display_field( $order ) {
-    $tax_id = get_post_meta( $order->get_id(), 'vat_number', true );
-    
-    if ( empty( $tax_id ) ) {
-      $tax_id = get_post_meta( $order->get_id(), self::META_KEY, true );
-    }
-	
-  	if ( !empty( $tax_id ) ) {
-			echo '<p><strong style="display:block;">' . esc_html__( 'Tax ID', 'woocommerce-quaderno' ) . ':</strong> ' . $tax_id . '</p>';
-		}
-	}
 
   /**
    * Validate business number
@@ -143,48 +121,6 @@ class WC_QD_Tax_Id_Field {
   }
 
   /**
-   * Add custom fields to admin area
-   *
-   * @since 1.12
-   */
-  public function add_customer_meta_fields( $user ) {
-    global $woocommerce;
-
-    $tax_id = get_the_author_meta( '_quaderno_vat_number', $user->ID );
-    if ( empty( $number ) ) {
-      $tax_id = get_the_author_meta( '_quaderno_tax_id', $user->ID );
-    }
-
-    ?>    
-    <tr>
-      <th>
-        <label for="tax_id"><?php echo esc_html__( 'Tax ID', 'woocommerce-quaderno' ) ?></label>
-      </th>
-      <td>
-        <input type="text" name="tax_id" id="tax_id" value="<?php echo esc_attr( $tax_id ); ?>" class="regular-text" />
-      </td>
-    </tr>
-    <?php
-  }
-
-  /**
-   * Save custom fields from admin area
-   *
-   * @since 1.12
-   */
-  public function save_customer_meta_fields( $user_id ) {
-    if ( !current_user_can( 'edit_user', $user_id ) ) { 
-      return false; 
-    }
-
-    // Remove non-word characters
-    $tax_id = preg_replace('/\W/', '', sanitize_text_field( $_POST['tax_id'] ));
-
-    // Save the tax ID
-    update_user_meta( $user_id, '_quaderno_tax_id', $tax_id );
-  }
-
-  /**
    * Remove the text "optional" if the tax ID is required
    *
    * @since 1.19
@@ -196,5 +132,36 @@ class WC_QD_Tax_Id_Field {
     }
     return $field;
   } 
+
+  /**
+   * Show the Tax ID field in My Account section
+   *
+   * @since 1.21
+   */
+  public function display_field_in_address_form( $fields ) {
+    // Only on account pages
+    if( ! is_account_page() ) return $fields;
+
+    $fields['tax_id'] = array(
+        'label'        => __( 'Tax ID', 'woocommerce-quaderno' ),
+        'required'     => false,
+        'priority'     => 33
+      );
+
+    return $fields;
+  }
+
+  /**
+   * Show the Tax ID field in the User form
+   *
+   * @since 1.21
+   */
+  public function display_field_in_admin_form( $admin_fields ) {
+    $admin_fields['billing']['fields']['billing_tax_id'] = array(
+      'label' => __( 'Tax ID', 'woocommerce-quaderno' )
+    );
+
+    return $admin_fields;
+  }
 
 }
