@@ -265,6 +265,7 @@ class WC_QD_Invoice_Manager {
         $method = 'cash';
         break;
       case 'paypal':
+      case 'ppec_paypal':
         $method = 'paypal';
         break;
       case 'stripe':
