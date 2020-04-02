@@ -44,10 +44,13 @@ class WC_QD_Integration extends WC_Integration {
 			add_action( 'admin_notices', array( $this, 'settings_notice' ) );
 		}
 
-		add_action( 'admin_notices', array( $this, 'review_notice' ) );
-		add_action( 'admin_init', array( $this, 'review_dismised' ) );
+		// Show review notice
+		if ( is_super_admin() && ! get_option( 'quaderno_dismiss_review' ) ) {
+			add_action( 'admin_notices', array( $this, 'quaderno_review' ) );
+			add_action( 'admin_footer', array( $this, 'quaderno_review_script' ) );
+			add_action( 'wp_ajax_quaderno_review', array( $this, 'quaderno_dismiss_review' ) );
+		}
 	}
-
 
 	/**
 	 * Return Quaderno Universal Pricing settings for form fields
@@ -159,32 +162,55 @@ class WC_QD_Integration extends WC_Integration {
 	<?php
 	}
 
-	public function review_notice() {
+	/**
+	 * Ask users to leave a review for the plugin on wp.org.
+	 */
+ 	public function quaderno_review() {
 		global $wpdb;
 
 		$post_count = $wpdb->get_var( "SELECT count(*) FROM " . $wpdb->prefix . "postmeta WHERE meta_key = '_quaderno_invoice'" );
 		$user_id = get_current_user_id();
 
-		if ( !current_user_can( 'manage_options' ) || get_user_meta( $user_id, 'quaderno_review_dismissed' ) || $post_count < 5 ) {
+		if ( $post_count < 5 ) {
 			return;
 		}
 		?>
-		<div class="notice notice-info">
-    	<p><?php _e( "Awesome, you've been using <strong>Quaderno for WooCommerce</strong> for a while.<br>Could you please do me a BIG favor and give a <strong>5-star rating</strong> on WordPress? Just to help us spread the word and boost our motivation.<br><br>Thank you,<br>Carlos Hernandez, Founder", 'woocommerce-quaderno' ); ?>
+		<div id="quaderno-review" class="notice notice-info is-dismissible">
+    	<p>
+    		<?php _e( "Hi there! You've been using Quaderno for a while and we hope it has been a big help for you.", 'woocommerce-quaderno' ); ?>
+      	<br>
+    		<?php _e( "If you could take a few moments to rate it on WordPress.org, we would really appreciate your help making the plugin better. Thanks!", 'woocommerce-quaderno' ); ?>
+      	<br><br>
+      	<a href="https://wordpress.org/support/plugin/woocommerce-quaderno/reviews/?filter=5#new-post" target="_blank" class="button-secondary"><?php _e( 'Post review', 'woocommerce-quaderno' ); ?></a>
       </p>
-      <ul>
-          <li><a href="https://wordpress.org/support/plugin/woocommerce-quaderno/reviews/?filter=5#new-post" target="_blank"><?php _e( 'Ok, you deserve it', 'woocommerce-quaderno' ); ?></a></li>
-          <li><a href="?review-dismissed"><?php _e( 'Nope, maybe later', 'woocommerce-quaderno' ); ?></a></li>
-          <li><a href="?review-dismissed"><?php _e( 'I already did it', 'woocommerce-quaderno' ); ?></a></li>
-      </ul>
     </div>
 	<?php
 	}
 
-	public function review_dismised() {
-		$user_id = get_current_user_id();
-    if ( isset( $_GET['review-dismissed'] ) ) {
-      add_user_meta( $user_id, 'quaderno_review_dismissed', 'true', true );
-    }
+	/**
+	 * Loads the inline script to dismiss the review notice.
+	 */
+	public function quaderno_review_script() {
+		echo
+			"<script>\n" .
+			"jQuery(document).on('click', '#quaderno-review .notice-dismiss', function() {\n" .
+			"\tvar quaderno_review_data = {\n" .
+			"\t\taction: 'quaderno_review',\n" .
+			"\t};\n" .
+			"\tjQuery.post(ajaxurl, quaderno_review_data, function(response) {\n" .
+			"\t\tif (response) {\n" .
+			"\t\t\tconsole.log(response);\n" .
+			"\t\t}\n" .
+			"\t});\n" .
+			"});\n" .
+			"</script>\n";
+	}
+
+	/**
+	 * Disables the notice about leaving a review.
+	 */
+	function quaderno_dismiss_review() {
+		update_option( 'quaderno_dismiss_review', true, false );
+		wp_die();
 	}
 }

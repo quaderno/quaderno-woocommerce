@@ -3,8 +3,8 @@ Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&u
 Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
-Tested up to: 5.3
-Stable tag: 1.21.6
+Tested up to: 5.4
+Stable tag: 1.21.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,9 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.21.7 – April 2, 2020 =
+* New: Support WordPress 5.4
 
 = 1.21.6 – March 30, 2020 =
 * Improvement: Identify payments via PayPal Express
