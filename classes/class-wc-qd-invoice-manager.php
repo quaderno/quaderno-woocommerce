@@ -31,7 +31,7 @@ class WC_QD_Invoice_Manager {
       'currency' => $order->get_currency(),
       'po_number' => get_post_meta( $order_id, '_order_number_formatted', true ) ?: $order_id,
       'processor' => 'woocommerce',
-      'processor_id' => $order_id,
+      'processor_id' => strtotime($order->get_date_created()) . '_' . $order_id,
       'payment_method' => $this->get_payment_method($order),
       'payment_processor' => $order->get_payment_method(),
       'payment_processor_id' => $order->get_transaction_id(),
