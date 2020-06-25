@@ -139,7 +139,7 @@ class WC_QD_Invoice_Manager {
 
       $subtotal = $order->get_line_subtotal($item, true);
       $total = $order->get_line_total($item, true);
-      $discount_rate = $subtotal == 0  ? 0 : round( ( $subtotal -  $total ) / $subtotal * 100, 0 );
+      $discount_rate = $subtotal == 0  ? 0 : round( ( $subtotal -  $total ) / $subtotal * 100, 2 );
 
       $new_item = new QuadernoDocumentItem(array(
         'description' => $item->get_name(),
