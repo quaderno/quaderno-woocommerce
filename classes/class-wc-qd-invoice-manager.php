@@ -131,7 +131,7 @@ class WC_QD_Invoice_Manager {
     $items = $order->get_items();
     foreach ( $items as $item ) {
       $tax_class = WC_QD_Calculate_Tax::get_tax_class( $item->get_product_id() );
-      $tax = $this->get_tax( $order, $tax_class );
+      $tax = $this->get_tax( $order, $tax_class, $tax_id );
 
       if ( true == in_array( $tax_class, array('eservice', 'ebook') )) {
         $digital_products = true;
@@ -182,7 +182,7 @@ class WC_QD_Invoice_Manager {
           $tax_class = $shipping_tax_class;
       }
 
-      $tax = $this->get_tax( $order, $tax_class );
+      $tax = $this->get_tax( $order, $tax_class, $tax_id );
 
       $shipping_tax = $order->get_shipping_tax();
       $shipping_total += $shipping_tax;
@@ -207,7 +207,7 @@ class WC_QD_Invoice_Manager {
     // Add fee items
     $items = $order->get_items('fee');
     foreach ( $items as $fee ) {
-      $tax = $this->get_tax( $order, '' );
+      $tax = $this->get_tax( $order, '', $tax_id );
       $fee_total = $fee['total'] + $fee['total_tax'];
 
       $new_item = new QuadernoDocumentItem(array(
@@ -277,14 +277,15 @@ class WC_QD_Invoice_Manager {
     return $method;
   }
   
-  public function get_tax( $order, $tax_class ) {
+  public function get_tax( $order, $tax_class, $tax_id ) {
     // Get tax location
     $location = $this->get_tax_location( $order );
 
     $tax = WC_QD_Calculate_Tax::calculate( $tax_class, $location['country'], $location['state'], $location['postcode'], $location['city'] );
+    $is_vat_exempt = get_post_meta( $order->get_id(), 'is_vat_exempt', true );
 
     // Tax exempted
-    if ( 'yes' === get_post_meta( $order->get_id(), 'is_vat_exempt', true ) ) {
+    if ( 'yes' === $is_vat_exempt || ( $is_vat_exempt == '' && true === WC_QD_Tax_Id_Field::is_valid( $tax_id, $location['country'] ) ) ) {
       $tax->name = '';
       $tax->rate = 0;
     }
