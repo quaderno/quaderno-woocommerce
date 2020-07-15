@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
 Tested up to: 5.4
-Stable tag: 1.21.9
+Stable tag: 1.21.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,9 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.21.10 – July 15, 2020 =
+* New: Re-validate the customer's tax id if the completed order doesn't have the custom file "is_vat_exempted"
 
 = 1.21.9 – June 16, 2020 =
 * Fix: VAT numbers are validated when the field is empty

@@ -111,7 +111,7 @@ class WC_QD_Invoice_Manager {
     }
 
     // Add order notes
-    if ( 'yes' === get_post_meta( $order_id, 'is_vat_exempt', true ) ) {
+    if ( $this->is_reverse_charge($order) ) {
       $invoice_params['notes'] = esc_html__('Tax amount subject to reverse charge', 'woocommerce-quaderno' );
     } else {
       $invoice_params['notes'] = $order->get_customer_note();
@@ -131,7 +131,7 @@ class WC_QD_Invoice_Manager {
     $items = $order->get_items();
     foreach ( $items as $item ) {
       $tax_class = WC_QD_Calculate_Tax::get_tax_class( $item->get_product_id() );
-      $tax = $this->get_tax( $order, $tax_class, $tax_id );
+      $tax = $this->get_tax( $order, $tax_class );
 
       if ( true == in_array( $tax_class, array('eservice', 'ebook') )) {
         $digital_products = true;
@@ -182,7 +182,7 @@ class WC_QD_Invoice_Manager {
           $tax_class = $shipping_tax_class;
       }
 
-      $tax = $this->get_tax( $order, $tax_class, $tax_id );
+      $tax = $this->get_tax( $order, $tax_class );
 
       $shipping_tax = $order->get_shipping_tax();
       $shipping_total += $shipping_tax;
@@ -207,7 +207,7 @@ class WC_QD_Invoice_Manager {
     // Add fee items
     $items = $order->get_items('fee');
     foreach ( $items as $fee ) {
-      $tax = $this->get_tax( $order, '', $tax_id );
+      $tax = $this->get_tax( $order, '' );
       $fee_total = $fee['total'] + $fee['total_tax'];
 
       $new_item = new QuadernoDocumentItem(array(
@@ -277,15 +277,14 @@ class WC_QD_Invoice_Manager {
     return $method;
   }
   
-  public function get_tax( $order, $tax_class, $tax_id ) {
+  public function get_tax( $order, $tax_class ) {
     // Get tax location
     $location = $this->get_tax_location( $order );
 
     $tax = WC_QD_Calculate_Tax::calculate( $tax_class, $location['country'], $location['state'], $location['postcode'], $location['city'] );
-    $is_vat_exempt = get_post_meta( $order->get_id(), 'is_vat_exempt', true );
 
     // Tax exempted
-    if ( 'yes' === $is_vat_exempt || ( $is_vat_exempt == '' && true === WC_QD_Tax_Id_Field::is_valid( $tax_id, $location['country'] ) ) ) {
+    if ( $this->is_reverse_charge($order) ) {
       $tax->name = '';
       $tax->rate = 0;
     }
@@ -326,6 +325,21 @@ class WC_QD_Invoice_Manager {
     );
 
     return $result;
+  }
+
+  public function is_reverse_charge($order) {
+    $order_id = $order->get_id();
+
+    $is_vat_exempt = get_post_meta( $order_id, 'is_vat_exempt', true );
+
+    # get the tax ID
+    $tax_id = get_post_meta( $order_id, 'vat_number', true );
+    if ( empty( $tax_id )) {
+      $tax_id = get_post_meta( $order_id, 'tax_id', true );
+    }
+
+    // Tax exempted
+    return 'yes' === $is_vat_exempt || ( $is_vat_exempt == '' && true === WC_QD_Tax_Id_Field::is_valid( $tax_id, $location['country'] ) );
   }
 
 
