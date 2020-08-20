@@ -20,8 +20,6 @@ class WC_QD_Checkout_Vat {
 		// Update the taxes when the line taxes are calculated in the admin
 		add_filter( 'woocommerce_ajax_calc_line_taxes', array( $this, 'update_taxes_on_calc_line_taxes' ), 10, 3 );
 
-		// Set default customer location
-		add_filter( 'woocommerce_customer_default_location', array( $this, 'set_default_customer_location' ), 10, 1 );
 	}
 
 	/**
@@ -165,20 +163,6 @@ class WC_QD_Checkout_Vat {
 
 		return $items;
 
-	}
-
-	/**
-	 * Retrieve the customer location based on their IP and set as default location.
-	 *
-	 * @param string
-	 */
-	public function set_default_customer_location( $default ) {
-	  $geoip = WC_Geolocation::geolocate_ip();
-	  if( is_array( $geoip ) ) {
-	    $default = $geoip['country'];
-	  }
-
-		return $default;
 	}
 
 }
