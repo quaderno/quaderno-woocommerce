@@ -150,10 +150,6 @@ class WC_QD_Invoice_Manager {
         'tax_1_rate' => $tax->rate,
         'tax_1_country' => $tax->country,
         'tax_1_region' => $tax->region,
-        'tax_1_county' => $tax->county,
-        'tax_1_city' => $tax->city,
-        'tax_1_county_code' => $tax->county_tax_code,
-        'tax_1_city_code' => $tax->city_tax_code,
         'tax_1_transaction_type' => $tax->transaction_type
       ));
 
@@ -195,10 +191,6 @@ class WC_QD_Invoice_Manager {
         'tax_1_rate' => $tax->rate,
         'tax_1_country' => $tax->country,
         'tax_1_region' => $tax->region,
-        'tax_1_county' => $tax->county,
-        'tax_1_city' => $tax->city,
-        'tax_1_county_code' => $tax->county_tax_code,
-        'tax_1_city_code' => $tax->city_tax_code,
         'tax_1_transaction_type' => $tax->transaction_type
       ));
       $invoice->addItem( $new_item );
@@ -218,10 +210,6 @@ class WC_QD_Invoice_Manager {
         'tax_1_rate' => $tax->rate,
         'tax_1_country' => $tax->country,
         'tax_1_region' => $tax->region,
-        'tax_1_county' => $tax->county,
-        'tax_1_city' => $tax->city,
-        'tax_1_county_code' => $tax->county_tax_code,
-        'tax_1_city_code' => $tax->city_tax_code,
         'tax_1_transaction_type' => $tax->transaction_type
       ));
       $invoice->addItem( $new_item );

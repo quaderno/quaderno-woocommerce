@@ -78,6 +78,7 @@ class WC_QD_Calculate_Tax {
 				$tax->name = $wc_rate['label'];
 				$tax->rate = $wc_rate['rate'];
 				$tax->country = $country;
+				$tax->region = $region;
 			}
 
 			set_transient( $slug, $tax, DAY_IN_SECONDS );
