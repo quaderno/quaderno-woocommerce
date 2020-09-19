@@ -5,6 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class WC_QD_Tax_Id_Field {
+
+  const COUNTRIES = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB', 'AU', 'NZ', 'TR'];
+
 	/**
 	 * Setup
 	 *
@@ -79,7 +82,7 @@ class WC_QD_Tax_Id_Field {
     $billing_country = WC()->customer->get_billing_country();
     $base_country = $woocommerce->countries->get_base_country();
 
-    if ( 'yes' === WC_QD_Integration::$require_tax_id && $billing_country == $base_country && empty( $_POST['tax_id'] ) ) {
+    if ( 'yes' === WC_QD_Integration::$require_tax_id && in_array( $base_country, self::COUNTRIES ) && $billing_country == $base_country && empty( $_POST['tax_id'] ) ) {
       $errors->add( 'required-field', sprintf( __( '%s is a required field.', 'woocommerce' ), '<strong>' . esc_html__( 'Tax ID', 'woocommerce-quaderno' ) . '</strong>' ));
     }
   }

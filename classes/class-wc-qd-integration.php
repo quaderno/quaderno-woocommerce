@@ -126,17 +126,20 @@ class WC_QD_Integration extends WC_Integration {
 				'description' => '<a href="https://quadernoapp.com/users/api-keys/?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">' . __( 'Get your Quaderno API URL', 'woocommerce-quaderno' ) . '</a>',
 				'type'        => 'text'
 			),
-			'require_tax_id' => array(
-				'title'       => __( 'Require tax ID', 'woocommerce-quaderno' ),
-				'description' => sprintf(__( 'Check this if tax ID must be required for all sales in %s.', 'woocommerce-quaderno' ), $woocommerce->countries->countries[ $base_country ]),
-				'type'        => 'checkbox'
-			),
 			'autosend_invoices' => array(
 				'title'       => __( 'Autosend receipts', 'woocommerce-quaderno' ),
 				'description' => __( 'Check this if you want Quaderno to automatically email your receipts.', 'woocommerce-quaderno' ),
 				'type'        => 'checkbox'
 			)
 		);
+
+		if ( in_array( $base_country, WC_QD_Tax_Id_Field::COUNTRIES ) ) {
+			$this->form_fields['require_tax_id'] = array(
+				'title'       => __( 'Require tax ID', 'woocommerce-quaderno' ),
+				'description' => sprintf(__( 'Check this if tax ID must be required for all sales in %s.', 'woocommerce-quaderno' ), $woocommerce->countries->countries[ $base_country ]),
+				'type'        => 'checkbox'
+			);
+		}
 
 		if ( version_compare( WC_VERSION, '2.4.7', '>=' ) ) {
 			// Get the universal pricing option and add it to the form fields array
