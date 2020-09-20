@@ -35,6 +35,7 @@ class WC_QD_Integration extends WC_Integration {
 		// Hooks
 		add_action( 'plugins_loaded', array( $this, 'init' ) );
 		add_action( 'woocommerce_update_options_integration_quaderno', array( $this, 'process_admin_options' ) );
+		add_action( 'woocommerce_settings_save_integration', array( $this, 'clear_transients' ) );
 
 		if ( version_compare( WC_VERSION, '2.4.7', '>=' ) && self::$universal_pricing == 'yes' ) {
 			add_filter( 'woocommerce_adjust_non_base_location_prices', '__return_false' );
@@ -134,7 +135,7 @@ class WC_QD_Integration extends WC_Integration {
 		);
 
 		if ( in_array( $base_country, WC_QD_Tax_Id_Field::COUNTRIES ) ) {
-			$this->form_fields['require_tax_id'] = array(
+			$this->form_fields[ 'require_tax_id' ] = array(
 				'title'       => __( 'Require tax ID', 'woocommerce-quaderno' ),
 				'description' => sprintf(__( 'Check this if tax ID must be required for all sales in %s.', 'woocommerce-quaderno' ), $woocommerce->countries->countries[ $base_country ]),
 				'type'        => 'checkbox'
@@ -145,6 +146,26 @@ class WC_QD_Integration extends WC_Integration {
 			// Get the universal pricing option and add it to the form fields array
 			$this->form_fields[ 'universal_pricing' ] = $this->get_universal_pricing_setting();
 		}
+
+		$this->form_fields[ 'clear_trasients' ] = array(
+				'title'       => __( 'Clear tax cache', 'woocommerce-quaderno' ),
+				'description' => __( 'Check this if you have updated your tax settings in Quaderno.', 'woocommerce-quaderno' ),
+				'type'        => 'checkbox'
+			);
+	}
+
+	/**
+	 * Clear transients
+	 */
+	public function clear_transients() {
+		global $wpdb;
+
+	 	// delete all transients
+	 	if ( isset( $_POST['woocommerce_quaderno_clear_trasients'] )) {
+		  $sql = 'DELETE FROM ' . $wpdb->options . ' WHERE option_name LIKE "_transient_quaderno_tax_%"';
+		  $wpdb->query($sql);
+		  $_POST['woocommerce_quaderno_clear_trasients'] = NULL;
+	 	}
 	}
 
 	/**

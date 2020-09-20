@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2020-02-21 20:12+0000\n"
-"PO-Revision-Date: 2020-02-21 20:12+0000\n"
+"POT-Creation-Date: 2020-09-20 14:25+0100\n"
+"PO-Revision-Date: 2020-09-20 14:26+0100\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4.1\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__\n"
@@ -36,12 +36,12 @@ msgstr ""
 "Steuerberichte für Ihren WooCommerce-Shop. %sHinweis: Sie benötigen ein "
 "%sQuaderno-Konto%s, damit diese Erweiterung funktioniert."
 
-#: ../classes/class-wc-qd-integration.php:69
-#: ../classes/class-wc-qd-integration.php:97
+#: ../classes/class-wc-qd-integration.php:73
+#: ../classes/class-wc-qd-integration.php:101
 msgid "Force universal pricing"
 msgstr "Universelle Preisgestaltung erzwingen"
 
-#: ../classes/class-wc-qd-integration.php:70
+#: ../classes/class-wc-qd-integration.php:74
 msgid ""
 "Check this if you want Quaderno to calculate tax in such a way, that the "
 "final price is always the same as the price provided."
@@ -49,7 +49,7 @@ msgstr ""
 "Bitte anklicken, wenn Quaderno die Steuer so berechnen soll, dass der "
 "Endpreis immer dem angegebenen Preis entspricht."
 
-#: ../classes/class-wc-qd-integration.php:77
+#: ../classes/class-wc-qd-integration.php:81
 #, php-format
 msgid ""
 "In order for this option to be available you must set the following options "
@@ -58,61 +58,71 @@ msgstr ""
 "Damit diese Option verfügbar ist, müssen Sie auf der Seite %sMehrwersteuer%s "
 "die folgenden Optionen festlegen:"
 
-#: ../classes/class-wc-qd-integration.php:82
+#: ../classes/class-wc-qd-integration.php:86
 #, php-format
 msgid "Prices entered with tax: %sYes, I will enter prices inclusive of tax%s"
 msgstr ""
 "Preise mit Steuern eingegeben: %sJa, ich gebe die Produktpreise inklusive "
 "Mehrwertsteuer ein%s"
 
-#: ../classes/class-wc-qd-integration.php:86
+#: ../classes/class-wc-qd-integration.php:90
 #, php-format
 msgid "Display prices in the shop: %sIncluding tax%s"
 msgstr "Preise im Shop anzeigen: %sSteuern eingeschlossen%s"
 
-#: ../classes/class-wc-qd-integration.php:91
+#: ../classes/class-wc-qd-integration.php:95
 #, php-format
 msgid "Display prices during cart and checkout: %sIncluding tax%s"
 msgstr ""
 "Preise während Bestell- (Warenkorb) und Bezahlvorgang (Kasse) anzeigen: "
 "%sSteuern eingeschlossen%s"
 
-#: ../classes/class-wc-qd-integration.php:117
+#: ../classes/class-wc-qd-integration.php:121
 msgid "Private key"
 msgstr "Privater Schlüssel"
 
-#: ../classes/class-wc-qd-integration.php:118
+#: ../classes/class-wc-qd-integration.php:122
 msgid "Get your Quaderno private key"
 msgstr "Holen Sie sich Ihren privaten Quaderno-Schlüssel"
 
-#: ../classes/class-wc-qd-integration.php:122
+#: ../classes/class-wc-qd-integration.php:126
 msgid "API URL"
 msgstr "API URL"
 
-#: ../classes/class-wc-qd-integration.php:123
+#: ../classes/class-wc-qd-integration.php:127
 msgid "Get your Quaderno API URL"
 msgstr "Holen Sie sich Ihre Quaderno-API-URL"
 
-#: ../classes/class-wc-qd-integration.php:127
+#: ../classes/class-wc-qd-integration.php:131
+msgid "Autosend receipts"
+msgstr "Rechnungen automatisch senden"
+
+#: ../classes/class-wc-qd-integration.php:132
+msgid "Check this if you want Quaderno to automatically email your receipts."
+msgstr "Bitte anklicken, um Quittungen automatisch zu versenden."
+
+#: ../classes/class-wc-qd-integration.php:139
 msgid "Require tax ID"
 msgstr "Steuernummer erforderlich"
 
-#: ../classes/class-wc-qd-integration.php:128
+#: ../classes/class-wc-qd-integration.php:140
 #, php-format
 msgid "Check this if tax ID must be required for all sales in %s."
 msgstr ""
 "Bitte anklicken, wenn für alle Verkäufe in %s eine Steuernummer erforderlich "
 "ist."
 
-#: ../classes/class-wc-qd-integration.php:132
-msgid "Autosend receipts"
-msgstr "Rechnungen automatisch senden"
+#: ../classes/class-wc-qd-integration.php:151
+msgid "Clear tax cache"
+msgstr "Steuer-Cache löschen"
 
-#: ../classes/class-wc-qd-integration.php:133
-msgid "Check this if you want Quaderno to automatically email your receipts."
-msgstr "Bitte anklicken, um Quittungen automatisch zu versenden."
+#: ../classes/class-wc-qd-integration.php:152
+msgid "Check this if you have updated your tax settings in Quaderno."
+msgstr ""
+"Bitte anklicken, wenn Sie Ihre Steuereinstellungen in Quaderno aktualisiert "
+"haben."
 
-#: ../classes/class-wc-qd-integration.php:153
+#: ../classes/class-wc-qd-integration.php:180
 msgid ""
 "<strong>Quaderno</strong> is almost ready &#8211; Please configure your API "
 "keys to start creating automatic invoices."
@@ -120,70 +130,66 @@ msgstr ""
 "<strong>Quaderno</strong> ist fast fertig &#8211; Bitte konfigurieren Sie "
 "Ihre API-Schlüssel, um mit der automatischen Rechnungserstellung zu beginnen."
 
-#: ../classes/class-wc-qd-integration.php:157 ../woocommerce-quaderno.php:194
+#: ../classes/class-wc-qd-integration.php:184 ../woocommerce-quaderno.php:196
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: ../classes/class-wc-qd-integration.php:173
+#: ../classes/class-wc-qd-integration.php:204
 msgid ""
-"Awesome, you've been using <strong>Quaderno for WooCommerce</strong> for a "
-"while.<br>Could you please do me a BIG favor and give a <strong>5-star "
-"rating</strong> on WordPress? Just to help us spread the word and boost our "
-"motivation.<br><br>Thank you,<br>Carlos Hernandez, Founder"
+"Hi there! You've been using Quaderno for a while and we hope it has been a "
+"big help for you."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:176
-msgid "Ok, you deserve it"
+#: ../classes/class-wc-qd-integration.php:206
+msgid ""
+"If you could take a few moments to rate it on WordPress.org, we would really "
+"appreciate your help making the plugin better. Thanks!"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:177
-msgid "Nope, maybe later"
-msgstr ""
-
-#: ../classes/class-wc-qd-integration.php:178
-msgid "I already did it"
+#: ../classes/class-wc-qd-integration.php:208
+msgid "Post review"
 msgstr ""
 
 #: ../classes/class-wc-qd-invoice-manager.php:55
 msgid "WooCommerce customer"
 msgstr "WooCommerce-Kunde"
 
-#: ../classes/class-wc-qd-invoice-manager.php:114
+#: ../classes/class-wc-qd-invoice-manager.php:115
 msgid "Tax amount subject to reverse charge"
 msgstr "Steuerbetrag unterliegt der Reverse Charge"
 
-#: ../classes/class-wc-qd-invoice-manager.php:190
+#: ../classes/class-wc-qd-invoice-manager.php:187
 msgid "Shipping"
 msgstr "Versandkosten"
 
-#: ../classes/class-wc-qd-order-manager.php:28
-#: ../classes/class-wc-qd-order-manager.php:51
-#: ../classes/class-wc-qd-order-manager.php:66
+#: ../classes/class-wc-qd-order-manager.php:29
+#: ../classes/class-wc-qd-order-manager.php:68
+#: ../classes/class-wc-qd-order-manager.php:83
 msgid "View Invoice"
 msgstr "Rechnung anzeigen"
 
-#: ../classes/class-wc-qd-tax-id-field.php:46
-#: ../classes/class-wc-qd-tax-id-field.php:88
-#: ../classes/class-wc-qd-tax-id-field.php:105
-#: ../classes/class-wc-qd-tax-id-field.php:161
+#: ../classes/class-wc-qd-tax-id-field.php:44
+#: ../classes/class-wc-qd-tax-id-field.php:86
+#: ../classes/class-wc-qd-tax-id-field.php:149
+#: ../classes/class-wc-qd-tax-id-field.php:164
 msgid "Tax ID"
 msgstr "Steuernummer"
 
-#: ../classes/class-wc-qd-tax-id-field.php:47
+#: ../classes/class-wc-qd-tax-id-field.php:45
 msgid "VAT number, ABN, or NZBN"
 msgstr "Umsatzsteuer-Identifikationsnummer"
 
-#: ../classes/class-wc-qd-tax-id-field.php:72
+#: ../classes/class-wc-qd-tax-id-field.php:70
 #, php-format
 msgid "Tax ID %s could not be validated"
 msgstr "Die Steuernummer %s konnte nicht validiert werden"
 
-#: ../classes/class-wc-qd-tax-id-field.php:88
+#: ../classes/class-wc-qd-tax-id-field.php:86
 #, php-format
 msgid "%s is a required field."
 msgstr "%s ist ein Pflichtfeld."
 
-#: ../classes/class-wc-qd-tax-id-field.php:194
+#: ../classes/class-wc-qd-tax-id-field.php:133
 msgid "optional"
 msgstr "optional"
 
