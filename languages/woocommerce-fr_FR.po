@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2020-09-20 14:27+0100\n"
-"PO-Revision-Date: 2020-09-20 14:30+0100\n"
+"POT-Creation-Date: 2020-09-20 21:43+0100\n"
+"PO-Revision-Date: 2020-09-20 21:43+0100\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -131,24 +131,15 @@ msgid "Settings"
 msgstr "Paramètres"
 
 #: ../classes/class-wc-qd-integration.php:204
+#, php-format
 msgid ""
-"Hi there! You've been using Quaderno for a while and we hope it has been a "
-"big help for you."
+"We have noticed that you have been using Quaderno for some time. We hope you "
+"love it, and we would really appreciate it if you would <a href='%s' "
+"target='_blank'>give us a 5 stars rating</a>."
 msgstr ""
-"Salut! Vous utilisez Quaderno depuis un certain temps et nous espérons que "
-"cela vous a été d’une grande aide."
-
-#: ../classes/class-wc-qd-integration.php:206
-msgid ""
-"If you could take a few moments to rate it on WordPress.org, we would really "
-"appreciate your help making the plugin better. Thanks!"
-msgstr ""
-"Si vous pouviez prendre quelques instants pour le noter sur WordPress.org, "
-"nous apprécierions vraiment votre aide pour améliorer le plugin. Merci!"
-
-#: ../classes/class-wc-qd-integration.php:208
-msgid "Post review"
-msgstr "Publier un avis"
+"Nous avons remarqué que vous utilisez Quaderno depuis un certain temps. Nous "
+"espérons que vous l’aimerez, et nous apprécierions vraiment que vous <a "
+"href=‘%s’ target=‘_blank’>nous attribue une note de 5 étoiles</a>."
 
 #: ../classes/class-wc-qd-invoice-manager.php:55
 msgid "WooCommerce customer"
@@ -213,6 +204,24 @@ msgid ""
 msgstr ""
 "Veuillez mettre à jour WooCommerce <strong> version 2.2.9 ou ultérieure </ "
 "strong> pour que l'extension WooCommerce Quaderno puisse fonctionner!"
+
+#~ msgid ""
+#~ "Hi there! You've been using Quaderno for a while and we hope it has been "
+#~ "a big help for you."
+#~ msgstr ""
+#~ "Salut! Vous utilisez Quaderno depuis un certain temps et nous espérons "
+#~ "que cela vous a été d’une grande aide."
+
+#~ msgid ""
+#~ "If you could take a few moments to rate it on WordPress.org, we would "
+#~ "really appreciate your help making the plugin better. Thanks!"
+#~ msgstr ""
+#~ "Si vous pouviez prendre quelques instants pour le noter sur WordPress."
+#~ "org, nous apprécierions vraiment votre aide pour améliorer le plugin. "
+#~ "Merci!"
+
+#~ msgid "Post review"
+#~ msgstr "Publier un avis"
 
 #~ msgid "Taxes"
 #~ msgstr "Taxes"

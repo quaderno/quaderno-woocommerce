@@ -201,11 +201,7 @@ class WC_QD_Integration extends WC_Integration {
 		?>
 		<div id="quaderno-review" class="notice notice-info is-dismissible">
     	<p>
-    		<?php _e( "Hi there! You've been using Quaderno for a while and we hope it has been a big help for you.", 'woocommerce-quaderno' ); ?>
-      	<br>
-    		<?php _e( "If you could take a few moments to rate it on WordPress.org, we would really appreciate your help making the plugin better. Thanks!", 'woocommerce-quaderno' ); ?>
-      	<br><br>
-      	<a href="https://wordpress.org/support/plugin/woocommerce-quaderno/reviews/?filter=5#new-post" target="_blank" class="button-secondary"><?php _e( 'Post review', 'woocommerce-quaderno' ); ?></a>
+    		<?php echo sprintf(__( "We have noticed that you have been using Quaderno for some time. We hope you love it, and we would really appreciate it if you would <a href='%s' target='_blank'>give us a 5 stars rating</a>.", 'woocommerce-quaderno' ), 'https://wordpress.org/support/plugin/woocommerce-quaderno/reviews/?filter=5#new-post'); ?>
       </p>
     </div>
 	<?php

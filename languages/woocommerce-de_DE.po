@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2020-09-20 14:25+0100\n"
-"PO-Revision-Date: 2020-09-20 14:26+0100\n"
+"POT-Creation-Date: 2020-09-20 21:41+0100\n"
+"PO-Revision-Date: 2020-09-20 21:42+0100\n"
 "Last-Translator: hello@quaderno.io\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -135,20 +135,15 @@ msgid "Settings"
 msgstr "Einstellungen"
 
 #: ../classes/class-wc-qd-integration.php:204
+#, php-format
 msgid ""
-"Hi there! You've been using Quaderno for a while and we hope it has been a "
-"big help for you."
+"We have noticed that you have been using Quaderno for some time. We hope you "
+"love it, and we would really appreciate it if you would <a href='%s' "
+"target='_blank'>give us a 5 stars rating</a>."
 msgstr ""
-
-#: ../classes/class-wc-qd-integration.php:206
-msgid ""
-"If you could take a few moments to rate it on WordPress.org, we would really "
-"appreciate your help making the plugin better. Thanks!"
-msgstr ""
-
-#: ../classes/class-wc-qd-integration.php:208
-msgid "Post review"
-msgstr ""
+"Wir haben festgestellt, dass Sie Quaderno seit einiger Zeit verwenden. Wir "
+"hoffen, Sie lieben es und würden uns sehr freuen, wenn Sie uns <a href=‘%s’ "
+"target=‘_blank’>eine 5-Sterne-Bewertung geben würden</a>."
 
 #: ../classes/class-wc-qd-invoice-manager.php:55
 msgid "WooCommerce customer"
