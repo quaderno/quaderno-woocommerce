@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
 Tested up to: 5.5
-Stable tag: 1.21.14
+Stable tag: 1.21.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,9 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.21.15 – September 28, 2020 =
+* Fix: Remove tax from shipping costs if they're exempted
 
 = 1.21.14 – September 20, 2020 =
 * New: Option to clear tax cache

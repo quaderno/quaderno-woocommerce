@@ -186,13 +186,17 @@ class WC_QD_Invoice_Manager {
       $new_item = new QuadernoDocumentItem(array(
         'description' => esc_html__('Shipping', 'woocommerce-quaderno' ),
         'quantity' => 1,
-        'total_amount' => round( $shipping_total * $exchange_rate, 2),
-        'tax_1_name' => $tax->name,
-        'tax_1_rate' => $tax->rate,
-        'tax_1_country' => $tax->country,
-        'tax_1_region' => $tax->region,
-        'tax_1_transaction_type' => $tax->transaction_type
+        'total_amount' => round( $shipping_total * $exchange_rate, 2)
       ));
+
+      if ( $shipping_tax > 0 ) {
+        $new_item['tax_1_name'] = $tax->name;
+        $new_item['tax_1_rate'] = $tax->rate;
+        $new_item['tax_1_country'] = $tax->country;
+        $new_item['tax_1_region'] = $tax->region;
+        $new_item['tax_1_transaction_type'] = $tax->transaction_type;
+      }
+
       $invoice->addItem( $new_item );
     }
 
