@@ -190,11 +190,11 @@ class WC_QD_Invoice_Manager {
       ));
 
       if ( $shipping_tax > 0 ) {
-        $new_item['tax_1_name'] = $tax->name;
-        $new_item['tax_1_rate'] = $tax->rate;
-        $new_item['tax_1_country'] = $tax->country;
-        $new_item['tax_1_region'] = $tax->region;
-        $new_item['tax_1_transaction_type'] = $tax->transaction_type;
+        $new_item->tax_1_name = $tax->name;
+        $new_item->tax_1_rate = $tax->rate;
+        $new_item->tax_1_country = $tax->country;
+        $new_item->tax_1_region = $tax->region;
+        $new_item->tax_1_transaction_type = $tax->transaction_type;
       }
 
       $invoice->addItem( $new_item );
