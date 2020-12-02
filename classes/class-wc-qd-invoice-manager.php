@@ -130,13 +130,19 @@ class WC_QD_Invoice_Manager {
     $digital_products = false;
     $items = $order->get_items();
     foreach ( $items as $item ) {
-      $tax_class = WC_QD_Calculate_Tax::get_tax_class( $item->get_product_id() );
-      $tax = $this->get_tax( $order, $tax_class );
+      // Get the product or variation ID to calculate the right tax class
+      $product_id = $item->get_variation_id();
+      if( empty( $product_id ) ) {
+        $product_id = $item->get_product_id();
+      }
 
+      // Calculate the tax class
+      $tax_class = WC_QD_Calculate_Tax::get_tax_class( $product_id );
       if ( true == in_array( $tax_class, array('eservice', 'ebook') )) {
         $digital_products = true;
       }
 
+      $tax = $this->get_tax( $order, $tax_class );
       $subtotal = $order->get_line_subtotal($item, true);
       $total = $order->get_line_total($item, true);
       $discount_rate = $subtotal == 0  ? 0 : round( ( $subtotal -  $total ) / $subtotal * 100, 2 );
@@ -175,7 +181,7 @@ class WC_QD_Invoice_Manager {
       $tax_class = null;
       $shipping_tax_class = get_option( 'woocommerce_shipping_tax_class' );
       if ( 'inherit' !== $shipping_tax_class ) {
-          $tax_class = $shipping_tax_class;
+        $tax_class = $shipping_tax_class;
       }
 
       $tax = $this->get_tax( $order, $tax_class );
