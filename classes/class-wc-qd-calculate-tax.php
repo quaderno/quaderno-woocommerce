@@ -31,6 +31,10 @@ class WC_QD_Calculate_Tax {
 			if ( 'yes' === $is_ebook ) {
 				$type = 'ebook';
 			}
+
+			if ( 'none' === $product->get_tax_status() ) {
+				$type = 'exempted';
+			}
 		}
 
 		return $type;
