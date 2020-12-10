@@ -3,8 +3,8 @@ Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&u
 Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
-Tested up to: 5.5
-Stable tag: 1.21.20
+Tested up to: 5.6
+Stable tag: 1.21.21
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,9 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 
 == Changelog ==
 
+= 1.21.21 – December 9, 2020 =
+* New: Support for WordPress 5.6
+
 = 1.21.20 – December 3, 2020 =
 * Fix: Do not calculate taxes for tax exempted products
 
@@ -96,8 +99,8 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 * Fix: Default location is not used in the cart
 
 = 1.21.11 – August 11, 2020 =
-* New: Support WordPress 5.5
-* New: Support WooCommerce 4.3
+* New: Support for WordPress 5.5
+* New: Support for WooCommerce 4.3
 
 = 1.21.10 – July 15, 2020 =
 * New: Re-validate the customer's tax id if the completed order doesn't have the custom file "is_vat_exempted"
