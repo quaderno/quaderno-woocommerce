@@ -152,7 +152,7 @@ class WC_QD_Checkout_Vat {
 				$tax_class = WC_QD_Calculate_Tax::get_tax_class( $product_id );
 
 				// Calculate taxes
-				$tax = WC_QD_Calculate_Tax::calculate($tax_class, $country);
+				$tax = WC_QD_Calculate_Tax::calculate($product_id, $order->get_total(''), get_woocommerce_currency(), $country);
 
 				$tax_manager->add_product_tax_class( $item_id, $tax_class );
 				$tax_manager->add_tax_rate( $tax_class, $tax->rate, $tax->name );

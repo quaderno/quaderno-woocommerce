@@ -51,24 +51,37 @@ class WC_QD_Calculate_Tax {
 	 *
 	 * @return Tax
 	 */
-	public static function calculate( $tax_class, $country, $region = '', $postal_code = '', $city = '' ) {
+	public static function calculate( $product_id_or_tax_class, $amount, $currency, $country, $region = '', $postal_code = '', $city = '', $tax_class = 'standard' ) {
+		global $woocommerce;
+
+		if ( is_numeric($product_id_or_tax_class) ) {
+			$tax_class = WC_QD_Calculate_Tax::get_tax_class( $product_id_or_tax_class );
+			$product_type = wc_get_product( $product_id_or_tax_class )->is_virtual() ? 'service' : 'good';			
+		} else {
+			$tax_class = $product_id_or_tax_class;
+			$product_type = in_array( $tax_class, array('eservice', 'ebook') ) ? 'service' : 'good';
+		}
+
 		switch ( $tax_class ) {
 			case 'eservice':
 			case 'ebook':
-				$transaction_type = $tax_class;
+				$quaderno_tax_class = $tax_class;
 				break;
 			default:
-				$transaction_type = 'standard';
+				$quaderno_tax_class = 'standard';
 				break;
 		}
 
 		$params = array(
-			'country' => $country,
-			'region' => urlencode($region),
-			'postal_code' => urlencode($postal_code),
-			'city' => urlencode($city),
-			'transaction_type' => urlencode($transaction_type),
-			'tax_class' => $tax_class
+			'from_country' => apply_filters( 'quaderno_shipping_country', $woocommerce->countries->get_base_country() ),
+			'from_postal_code' => apply_filters( 'quaderno_shipping_postcode', $woocommerce->countries->get_base_postcode() ),
+			'to_country' => $country,
+			'to_postal_code' => urlencode($postal_code),
+			'to_city' => urlencode($city),
+			'tax_class' => urlencode($quaderno_tax_class),
+			'product_type' => $product_type,
+			'amount' => $amount,
+			'currency' => $currency
 		);
 
 		$slug = 'quaderno_tax_' . md5( implode( $params ) );

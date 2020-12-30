@@ -142,7 +142,7 @@ class WC_QD_Invoice_Manager {
         $digital_products = true;
       }
 
-      $tax = $this->get_tax( $order, $tax_class );
+      $tax = $this->get_tax( $order, $product_id );
       $subtotal = $order->get_line_subtotal($item, true);
       $total = $order->get_line_total($item, true);
       $discount_rate = $subtotal == 0  ? 0 : round( ( $subtotal -  $total ) / $subtotal * 100, 2 );
@@ -275,13 +275,14 @@ class WC_QD_Invoice_Manager {
     return $method;
   }
   
-  public function get_tax( $order, $tax_class ) {
+  public function get_tax( $order, $product_id_or_tax_class ) {
     // Get tax location
     $location = $this->get_tax_location( $order );
 
-    $tax = WC_QD_Calculate_Tax::calculate( $tax_class, $location['country'], $location['state'], $location['postcode'], $location['city'] );
+    $tax = WC_QD_Calculate_Tax::calculate( $product_id_or_tax_class, $order->get_total(), get_woocommerce_currency(), $location['country'], $location['state'], $location['postcode'], $location['city'] );
 
     // Tax exempted
+    $tax_class = is_numeric( $product_id_or_tax_class ) ? WC_QD_Calculate_Tax::get_tax_class( $product_id_or_tax_class ) : $product_id_or_tax_class;
     if ( $this->is_reverse_charge($order) || $tax_class == 'exempted' ) {
       $tax->name = '';
       $tax->rate = 0;
