@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
 Tested up to: 5.6
-Stable tag: 1.21.21
+Stable tag: 1.22.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,9 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.22.0 – December 21, 2020 =
+* New: Support for new UK VAT after Brexit, including VAT calculation for overseas goods sold to UK customers under £135
 
 = 1.21.21 – December 9, 2020 =
 * New: Support for WordPress 5.6
