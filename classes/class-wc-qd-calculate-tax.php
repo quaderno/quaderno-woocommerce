@@ -14,30 +14,41 @@ class WC_QD_Calculate_Tax {
 	 * @return String
 	 */
 	public static function get_tax_class( $product_id ) {
-		$type = 'standard';
-		$product_types = array( 'product', 'product_variation', 'subscription', 'subscription_variation', 'variable-subscription' );
+		// the product has a Quaderno tax clas
+		if ( metadata_exists('post', $product_id, '_quaderno_tax_class' )  ) {
+			$tax_class = get_post_meta( $product_id, '_quaderno_tax_class', true );
 
-		if ( in_array( get_post_type( $product_id ), $product_types ) ) {
-			$product = wc_get_product( $product_id );
-			$type = $product->get_tax_class();
-
-			// Check if this is a virtual product
-			if ( $product->is_virtual() ) {
-				$type = 'eservice';
+			if ( empty( $tax_class ) ) {
+				$product = wc_get_product( $product_id );
+				$tax_class = $product->get_tax_class();
 			}
+		}
+		else {
+			$tax_class = 'standard';
+			$product_types = array( 'product', 'product_variation', 'subscription', 'subscription_variation', 'variable-subscription' );
 
-			// Check if this is an e-book
-			$is_ebook = get_post_meta( $product_id, '_ebook', true );
-			if ( 'yes' === $is_ebook ) {
-				$type = 'ebook';
-			}
+			if ( in_array( get_post_type( $product_id ), $product_types ) ) {
+				$product = wc_get_product( $product_id );
+				$tax_class = $product->get_tax_class();
 
-			if ( 'none' === $product->get_tax_status() ) {
-				$type = 'exempted';
+				// Check if this is a virtual product
+				if ( $product->is_virtual() ) {
+					$tax_class = 'eservice';
+				}
+
+				// Check if this is an e-book
+				$is_ebook = get_post_meta( $product_id, '_ebook', true );
+				if ( 'yes' === $is_ebook ) {
+					$tax_class = 'ebook';
+				}
+
+				if ( 'none' === $product->get_tax_status() ) {
+					$tax_class = 'exempt';
+				}
 			}
 		}
 
-		return $type;
+		return $tax_class;
 	}
 	
 	/**
@@ -97,13 +108,19 @@ class WC_QD_Calculate_Tax {
 
 		// Calculate taxes if they're not cached
 		if ( false === ( $tax = get_transient( $slug ) ) ) {
-			$tax = QuadernoTaxRate::calculate( $params );				
-			$wc_rate = self::get_wc_rate( $tax_class, $country, $region, $postal_code, $city );
-			if ( !empty( $wc_rate ) ) {
-				$tax->name = $wc_rate['label'];
-				$tax->rate = $wc_rate['rate'];
-				$tax->country = $country;
-				$tax->region = $region;
+			$tax = QuadernoTax::calculate( $params );
+
+			// we use
+			if ( !array_key_exists( $tax_class, WC_QD_Tax_Class_Field::TAX_CLASSES ) || empty( $tax_class ) ) {
+				$tax->transaction_type = 'standard';
+
+				$wc_rate = self::get_wc_rate( $tax_class, $country, $region, $postal_code, $city );
+				if ( !empty( $wc_rate ) ) {
+					$tax->name = $wc_rate['label'];
+					$tax->rate = $wc_rate['rate'];
+					$tax->country = $country;
+					$tax->region = $region;
+				}
 			}
 
 			set_transient( $slug, $tax, DAY_IN_SECONDS );

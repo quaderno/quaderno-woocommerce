@@ -148,11 +148,12 @@ class WC_QD_Checkout_Vat {
 				// Get the product ID
 				$product_id = $order->get_item_meta( $item_id, '_product_id', true );
 
-				// Get the transaction type
+				// Get the tax class and the product type
 				$tax_class = WC_QD_Calculate_Tax::get_tax_class( $product_id );
+				$product_type = wc_get_product( $product_id )->is_virtual() ? 'service' : 'good';
 
 				// Calculate taxes
-				$tax = WC_QD_Calculate_Tax::calculate($product_id, $order->get_total(''), get_woocommerce_currency(), $country);
+				$tax = WC_QD_Calculate_Tax::calculate($tax_class, $product_type, $order->get_total(''), get_woocommerce_currency(), $country);
 
 				$tax_manager->add_product_tax_class( $item_id, $tax_class );
 				$tax_manager->add_tax_rate( $tax_class, $tax->rate, $tax->name );

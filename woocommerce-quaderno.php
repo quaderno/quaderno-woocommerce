@@ -171,9 +171,13 @@ class WooCommerce_Quaderno {
 		// Admin only classes
 		if ( is_admin() ) {
 
+			// The Quaderno tax class field
+			$tax_class_field = new WC_QD_Tax_Class_Field();
+			$tax_class_field->setup();
+
 			// The admin E-Book Field
-			$admin_ebook = new WC_QD_Admin_Ebook();
-			$admin_ebook->setup();
+			// $admin_ebook = new WC_QD_Admin_Ebook();
+			// $admin_ebook->setup();
 
 			// Setup Order manager
 			$status_page = new WC_QD_Status();
@@ -188,6 +192,7 @@ class WooCommerce_Quaderno {
 
 		// Enqueue scripts
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 	}
 
 	/**
@@ -229,8 +234,22 @@ class WooCommerce_Quaderno {
 				plugins_url( '/assets/js/checkout' . $suffix . '.js', WooCommerce_Quaderno::get_plugin_file() ),
 				array( 'jquery' )
 			);
-
 		}
+	}
+
+	public function enqueue_admin_scripts( $pagehook ) {
+	 
+		// do nothing if we are not on the target pages
+		if ( 'edit.php' != $pagehook ) {
+			return;
+		}
+	 
+	 	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+
+		wp_enqueue_script( 'wc_qd_products_js', 
+			plugins_url( '/assets/js/products' . $suffix . '.js', WooCommerce_Quaderno::get_plugin_file() ), 
+			array( 'jquery' ) 
+		);
 	}
 	
 	public function load_textdomain() {

@@ -16,7 +16,6 @@ class WC_QD_Admin_Ebook {
 
 		// Variable products
 		add_action( 'woocommerce_variation_options', array( $this, 'display_variation_ebook_field' ), 10, 3 );
-
 		add_action( 'woocommerce_save_product_variation', array( $this, 'save_variation_ebook_field' ), 10, 2 );
 	}
 
