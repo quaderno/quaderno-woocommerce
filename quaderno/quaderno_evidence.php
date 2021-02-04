@@ -14,6 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class QuadernoEvidence extends QuadernoModel
 {
-	static protected $model = 'evidences';
+	static protected $model = 'evidence';
 }
 ?>

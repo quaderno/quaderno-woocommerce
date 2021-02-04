@@ -237,6 +237,7 @@ class WC_QD_Invoice_Manager {
           'billing_country' => $order->get_billing_country(),
           'ip_address' => $order->get_customer_ip_address()
         ));
+
         $evidence->save();
       }
 
