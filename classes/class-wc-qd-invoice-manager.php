@@ -22,9 +22,9 @@ class WC_QD_Invoice_Manager {
 
     // Return if an invoice has already been issued for this order or the order is free
     $invoice_id = get_post_meta( $order_id, '_quaderno_invoice', true );
-    if ( !empty( $invoice_id ) || $order->get_total() == 0 ) {
+    /*if ( !empty( $invoice_id ) || $order->get_total() == 0 ) {
       return;
-    }
+    }*/
 
     $invoice_params = array(
       'issue_date' => current_time('Y-m-d'),
@@ -130,10 +130,15 @@ class WC_QD_Invoice_Manager {
     $digital_products = false;
     $items = $order->get_items();
     foreach ( $items as $item ) {
-      // Get the product or variation ID to calculate the right tax class
+      // Get the product or variation ID to calculate the right tax class and the item description
       $product_id = $item->get_variation_id();
-      if( empty( $product_id ) ) {
+      if( !empty($product_id) ) {
+        $variation = wc_get_product($product_id);
+        $description = $item->get_name() . "<br />" . wc_get_formatted_variation( $variation, true, true, true );
+      }
+      else {
         $product_id = $item->get_product_id();
+        $description = $item->get_name();
       }
 
       // Calculate the tax class
@@ -148,7 +153,7 @@ class WC_QD_Invoice_Manager {
       $discount_rate = $subtotal == 0  ? 0 : round( ( $subtotal -  $total ) / $subtotal * 100, 2 );
 
       $new_item = new QuadernoDocumentItem(array(
-        'description' => $item->get_name(),
+        'description' => $description,
         'quantity' => $item->get_quantity(),
         'total_amount' => round( $total * $exchange_rate, wc_get_price_decimals() ),
         'discount_rate' => $discount_rate,
