@@ -134,7 +134,7 @@ class WC_QD_Invoice_Manager {
       $product_id = $item->get_variation_id();
       if( !empty($product_id) ) {
         $variation = wc_get_product($product_id);
-        $description = $item->get_name() . "<br />" . wc_get_formatted_variation( $variation, true, true, true );
+        $description = $item->get_name() . " – " . wc_get_formatted_variation( $variation, true, true, true );
       }
       else {
         $product_id = $item->get_product_id();
