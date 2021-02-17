@@ -51,7 +51,7 @@ class WC_QD_Calculate_Tax {
 	 *
 	 * @return Tax
 	 */
-	public static function calculate( $product_id_or_tax_class, $amount, $currency, $country, $region = '', $postal_code = '', $city = '', $tax_class = 'standard' ) {
+	public static function calculate( $product_id_or_tax_class, $amount, $currency, $country, $region = '', $postal_code = '', $city = '' ) {
 		global $woocommerce;
 
 		if ( is_numeric($product_id_or_tax_class) ) {
@@ -81,7 +81,8 @@ class WC_QD_Calculate_Tax {
 			'tax_class' => urlencode($quaderno_tax_class),
 			'product_type' => $product_type,
 			'amount' => $amount,
-			'currency' => $currency
+			'currency' => $currency,
+			'woocommerce_tax_class' => $tax_class // we need to add the woocommerce_tax_class in this array to create different slugs for custom tax classes
 		);
 
 		$slug = 'quaderno_tax_' . md5( implode( $params ) );
@@ -89,7 +90,6 @@ class WC_QD_Calculate_Tax {
 		// Calculate taxes if they're not cached
 		if ( false === ( $tax = get_transient( $slug ) ) ) {
 			$tax = QuadernoTax::calculate( $params );				
-			
 			$wc_rate = self::get_wc_rate( $tax_class, $country, $region, $postal_code, $city );
 			if ( !empty( $wc_rate ) ) {
 				$tax->name = $wc_rate['label'];
