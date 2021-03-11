@@ -3,7 +3,7 @@ Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&u
 Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
-Tested up to: 5.6
+Tested up to: 5.7
 Stable tag: 1.22.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -67,8 +67,12 @@ If you have any questions please get in touch with us at hello@quaderno.io.
 
 == Changelog ==
 
+= 1.22.5 – March 11, 2020 =
+* New: Support for WooCommerce 5.1
+* New: Support for WordPress 5.7
+
 = 1.22.4 – February 17, 2020 =
-* Fix: error in tax calculations for custom tax classes
+* Fix: Error in tax calculations for custom tax classes
 
 = 1.22.3 – February 10, 2020 =
 * Fix: Quaderno is creating invoice for $0 orders

@@ -8,7 +8,7 @@
  * Author: Quaderno
  * Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce
  * WC requires at least: 3.2.0
- * WC tested up to: 4.5.2
+ * WC tested up to: 5.1.0
  * License: GPL v3
  *
  * This program is free software: you can redistribute it and/or modify
