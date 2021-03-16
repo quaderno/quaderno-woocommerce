@@ -56,7 +56,7 @@ Nope - we take care of everything you. Just install the plugin, add your API tok
 = Does Quaderno work with any WooCommerce themes? =
 Yes, Quaderno works with any WooCommerce theme - whether free, commercial or custom. You just need WooCommerce activated for Quaderno to work.
 
-If you have any questions please get in touch with us at hello@quaderno.io.
+If you have any questions please get in touch with us at support@quaderno.io.
 
 == Screenshots ==
 

@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-class WC_QD_Invoice_Manager {
+class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
 
   public function setup() {
     add_action( 'woocommerce_payment_complete', array( $this, 'create_invoice' ), 10, 1 );
@@ -26,25 +26,30 @@ class WC_QD_Invoice_Manager {
       return;
     }
 
-    $invoice_params = array(
-      'issue_date' => current_time('Y-m-d'),
+    $transaction_params = array(
+      'type' => 'sale',
+      'date' => current_time('Y-m-d'),
       'currency' => $order->get_currency(),
       'po_number' => get_post_meta( $order_id, '_order_number_formatted', true ) ?: $order_id,
       'processor' => 'woocommerce',
       'processor_id' => strtotime($order->get_date_created()) . '_' . $order_id,
-      'payment_method' => $this->get_payment_method($order),
-      'payment_processor' => $order->get_payment_method(),
-      'payment_processor_id' => $order->get_transaction_id(),
-      'shipping_street_line_1' => $order->get_shipping_address_1(),
-      'shipping_street_line_2' => $order->get_shipping_address_2(),
-      'shipping_city' => $order->get_shipping_city(),
-      'shipping_postal_code' => $order->get_shipping_postcode(),
-      'shipping_region' => $order->get_shipping_state(),
-      'shipping_country' => $order->get_shipping_country(),
+      'payment' => array(
+        'method' => $this->get_payment_method($order),
+        'processor' => $order->get_payment_method(),
+        'processor_id' => $order->get_transaction_id()
+      ), 
+      'shipping_address' => array(
+        'street_line_1' => $order->get_shipping_address_1(),
+        'street_line_2' => $order->get_shipping_address_2(),
+        'city' => $order->get_shipping_city(),
+        'postal_code' => $order->get_shipping_postcode(),
+        'region' => $order->get_shipping_state(),
+        'country' => $order->get_shipping_country()
+      ),
       'custom_metadata' => array( 'processor_url' => $order->get_edit_order_url() )
     );
 
-    // Add the contact
+    // Add the customer
     if ( !empty( $order->get_billing_company() ) ) {
       $kind = 'company';
       $first_name = $order->get_billing_company();
@@ -67,7 +72,7 @@ class WC_QD_Invoice_Manager {
       $tax_id = get_post_meta( $order_id, 'tax_id', true );
     }
 
-    $invoice_params['contact'] = array(
+    $transaction_params['customer'] = array(
       'kind' => $kind,
       'first_name' => $first_name,
       'last_name' => $last_name,
@@ -105,247 +110,81 @@ class WC_QD_Invoice_Manager {
          $last_order->get_billing_last_name() == $order->get_billing_last_name()
        ) 
     {
-      $invoice_params['contact']['id'] = $contact_id;
-      unset($invoice_params['contact']['first_name']);
-      unset($invoice_params['contact']['last_name']);
+      $transaction_params['customer']['id'] = $contact_id;
+      unset($transaction_params['customer']['first_name']);
+      unset($transaction_params['customer']['last_name']);
     }
 
-    // Add order notes
-    if ( $this->is_reverse_charge($order) ) {
-      $invoice_params['notes'] = esc_html__('Tax amount subject to reverse charge', 'woocommerce-quaderno' );
-    } else {
-      $invoice_params['notes'] = $order->get_customer_note();
-    }
-
-    // Let's create the invoice
-    $invoice = new QuadernoIncome($invoice_params);
-
-    // Let's create the tag list
-    $tags = array();
+    // Let's create the transaction
+    $transaction = new QuadernoTransaction($transaction_params);
 
     // Calculate exchange rate
     $exchange_rate = get_post_meta( $order_id, '_woocs_order_rate', true ) ?: 1;
 
-    // Add line items
-    $digital_products = false;
-    $items = $order->get_items();
+    // Calculate transaction items
+    $tags = array();
+    $transaction_items = array();
+    $items = $order->get_items(array('line_item', 'shipping' ,'fee'));
     foreach ( $items as $item ) {
-      // Get the product or variation ID to calculate the right tax class and the item description
-      $product_id = $item->get_variation_id();
-      if( !empty($product_id) ) {
-        $variation = wc_get_product($product_id);
-        $description = $item->get_name() . " – " . wc_get_formatted_variation( $variation, true, true, true );
-      }
-      else {
-        $product_id = $item->get_product_id();
-        $description = $item->get_name();
-      }
-
-      // Calculate the tax class
-      $tax_class = WC_QD_Calculate_Tax::get_tax_class( $product_id );
-      if ( true == in_array( $tax_class, array('eservice', 'ebook') )) {
-        $digital_products = true;
-      }
-
-      $tax = $this->get_tax( $order, $product_id );
       $subtotal = $order->get_line_subtotal($item, true);
       $total = $order->get_line_total($item, true);
       $discount_rate = $subtotal == 0  ? 0 : round( ( $subtotal -  $total ) / $subtotal * 100, 2 );
 
-      $new_item = new QuadernoDocumentItem(array(
-        'description' => $description,
-        'quantity' => $item->get_quantity(),
-        'total_amount' => round( $total * $exchange_rate, wc_get_price_decimals() ),
-        'discount_rate' => $discount_rate,
-        'tax_1_name' => $tax->name,
-        'tax_1_rate' => $tax->rate,
-        'tax_1_country' => $tax->country,
-        'tax_1_region' => $tax->region,
-        'tax_1_transaction_type' => $tax->transaction_type
-      ));
+      $new_item = array(
+        'description' => $this->get_description( $item ),
+        'quantity' => $item->get_quantity() ?: 1,
+        'amount' => round( $total * $exchange_rate, wc_get_price_decimals() ),
+        'discount_rate' => $discount_rate
+      );
 
-      // Store the product code
-      $product = wc_get_product( $item->get_product_id() );
-      if ( !empty( $product ) ) {
-        $new_item->product_code = $product->get_sku();
-        $tags = array_merge( $tags, wp_get_object_terms( $product->get_id(), 'product_tag', array( 'fields' => 'slugs' ) ) );
+      if ( $item->get_total_tax('edit') != 0 ) {
+        $new_item['tax'] = $this->get_tax( $order, $item );
       }
 
-      $invoice->addItem( $new_item );
+      if ( $item->is_type('line_item') ) {
+        // Get the product code and tags if exist
+        $product = wc_get_product( $item->get_product_id() );
+        if ( !empty( $product ) ) {
+          $new_item['product_code'] = $product->get_sku();
+          $tags = array_merge( $tags, wp_get_object_terms( $product->get_id(), 'product_tag', array( 'fields' => 'slugs' ) ) );
+        }
+      }
+
+      array_push($transaction_items, $new_item );
     }
 
-    // Add product tags to invoice
+    // Add items to transaction
+    $transaction->items = $transaction_items;
+
+    // Add product tags to transaction
     if ( count( $tags ) > 0 ) {
-      $invoice->tag_list = implode( ',', $tags );
+      $transaction->tags = implode( ',', $tags );
     }
 
-    // Add shipping items
-    $shipping_total = $order->get_shipping_total();
-    if ( $shipping_total > 0 ) {
-      // See if we have an explicitly set shipping tax class.
-      $tax_class = null;
-      $shipping_tax_class = get_option( 'woocommerce_shipping_tax_class' );
-      if ( 'inherit' !== $shipping_tax_class ) {
-        $tax_class = $shipping_tax_class;
-      }
-
-      $tax = $this->get_tax( $order, $tax_class );
-
-      $shipping_tax = $order->get_shipping_tax();
-      $shipping_total += $shipping_tax;
-
-      $new_item = new QuadernoDocumentItem(array(
-        'description' => esc_html__('Shipping', 'woocommerce-quaderno' ),
-        'quantity' => 1,
-        'total_amount' => round( $shipping_total * $exchange_rate, 2)
-      ));
-
-      if ( $shipping_tax > 0 ) {
-        $new_item->tax_1_name = $tax->name;
-        $new_item->tax_1_rate = $tax->rate;
-        $new_item->tax_1_country = $tax->country;
-        $new_item->tax_1_region = $tax->region;
-        $new_item->tax_1_transaction_type = $tax->transaction_type;
-      }
-
-      $invoice->addItem( $new_item );
+    // Add location evidence
+    if ( true === $this->is_digital( $order ) ) {
+      $transaction->evidence = array(
+        'billing_country' => $order->get_billing_country(),
+        'ip_address' => $order->get_customer_ip_address()
+      );
     }
 
-    // Add fee items
-    $items = $order->get_items('fee');
-    foreach ( $items as $fee ) {
-      $tax = $this->get_tax( $order, '' );
-      $fee_total = $fee['total'] + $fee['total_tax'];
-
-      $new_item = new QuadernoDocumentItem(array(
-        'description' => $fee->get_name(),
-        'quantity' => 1,
-        'total_amount' => round( $fee_total * $exchange_rate, 2),
-        'tax_1_name' => $tax->name,
-        'tax_1_rate' => $tax->rate,
-        'tax_1_country' => $tax->country,
-        'tax_1_region' => $tax->region,
-        'tax_1_transaction_type' => $tax->transaction_type
-      ));
-      $invoice->addItem( $new_item );
-    }
-
-    if ( $invoice->save() ) {
-      add_post_meta( $order_id, '_quaderno_invoice', $invoice->id );
-      add_post_meta( $order_id, '_quaderno_invoice_number', $invoice->number );
-      add_post_meta( $order_id, '_quaderno_url', $invoice->permalink );
-      update_user_meta( $order->get_user_id(), '_quaderno_contact', $invoice->contact->id );
-
-      if ( true === $digital_products ) {
-        $evidence = new QuadernoEvidence(array(
-          'document_id' => $invoice->id,
-          'billing_country' => $order->get_billing_country(),
-          'ip_address' => $order->get_customer_ip_address()
-        ));
-
-        $evidence->save();
-      }
-
-      if ( 'yes' === WC_QD_Integration::$autosend_invoices ) $invoice->deliver();
-    }
-  }
-
-  /**
-   * Get payment method for Quaderno
-   *
-   * @param $order_id
-   */
-  public function get_payment_method( $order ) {
-    $payment_id = $order->get_payment_method();
-    $method = '';
-    switch( $payment_id ) {
-      case 'bacs':
-        $method = 'wire_transfer';
-        break;
-      case 'cheque':
-        $method = 'check';
-        break;
-      case 'cod':
-        $method = 'cash';
-        break;
-      case 'paypal':
-      case 'ppec_paypal':
-        $method = 'paypal';
-        break;
-      case 'stripe':
-        $method = 'credit_card';
-        break;
-      default:
-        $method = 'other';
-    }
-    return $method;
-  }
-  
-  public function get_tax( $order, $product_id_or_tax_class ) {
-    // Get tax location
-    $location = $this->get_tax_location( $order );
-
-    $tax = WC_QD_Calculate_Tax::calculate( $product_id_or_tax_class, $order->get_total(), get_woocommerce_currency(), $location['country'], $location['state'], $location['postcode'], $location['city'] );
-
-    // Tax exempted
-    $tax_class = is_numeric( $product_id_or_tax_class ) ? WC_QD_Calculate_Tax::get_tax_class( $product_id_or_tax_class ) : $product_id_or_tax_class;
-    if ( $this->is_reverse_charge($order) || $tax_class == 'exempted' ) {
-      $tax->name = '';
-      $tax->rate = 0;
-    }
-
-    return $tax;
-  }
-
-  public function get_tax_location( $order ) {
-    $tax_based_on = get_option( 'woocommerce_tax_based_on' );
-
-    if ( 'shipping' === $tax_based_on && ! $order->get_shipping_country() ) {
-      $tax_based_on = 'billing';
-    }
-
-    if ( 'base' === $tax_based_on ) {
-      $country  = WC()->countries->get_base_country();
-      $state  = WC()->countries->get_base_state();
-      $postcode = WC()->countries->get_base_postcode();
-      $city = WC()->countries->get_base_city();
-    } elseif ( 'billing' === $tax_based_on ) {
-      $country  = $order->get_billing_country();
-      $state = $order->get_billing_state();
-      $postcode = $order->get_billing_postcode();
-      $city = $order->get_billing_city();
+    // Add order notes
+    if ( $this->is_reverse_charge( $order ) ) {
+      $transaction->notes = esc_html__('Tax amount subject to reverse charge', 'woocommerce-quaderno' );
     } else {
-      $country  = $order->get_shipping_country();
-      $state  = $order->get_shipping_state();
-      $postcode = $order->get_shipping_postcode();
-      $postcode = $order->get_shipping_postcode();
-      $city = $order->get_shipping_city();
+      $transaction->notes = $order->get_customer_note();
     }
 
-    $result = array(
-      'country'  => $country,
-      'state' => $state,
-      'postcode' => $postcode,
-      'city' => $city
-    );
+    if ( $transaction->save() ) {
+      add_post_meta( $order_id, '_quaderno_invoice', $transaction->id );
+      add_post_meta( $order_id, '_quaderno_invoice_number', $transaction->number );
+      add_post_meta( $order_id, '_quaderno_url', $transaction->permalink );
+      add_post_meta( $order_id, '_quaderno_contact_id', $transaction->contact->id );
+      update_user_meta( $order->get_user_id(), '_quaderno_contact', $transaction->contact->id );
 
-    return $result;
-  }
-
-  public function is_reverse_charge($order) {
-    $order_id = $order->get_id();
-
-    $is_vat_exempt = get_post_meta( $order_id, 'is_vat_exempt', true );
-
-    # get the tax ID
-    $tax_id = get_post_meta( $order_id, 'vat_number', true );
-    if ( empty( $tax_id )) {
-      $tax_id = get_post_meta( $order_id, 'tax_id', true );
+      if ( 'yes' === WC_QD_Integration::$autosend_invoices ) $transaction->deliver();
     }
-
-    // Tax exempted
-    return 'yes' === $is_vat_exempt || ( $is_vat_exempt == '' && true === WC_QD_Tax_Id_Field::is_valid( $tax_id, $location['country'] ) );
   }
-
 
 }

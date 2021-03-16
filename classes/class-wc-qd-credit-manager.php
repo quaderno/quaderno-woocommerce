@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-class WC_QD_Credit_Manager {
+class WC_QD_Credit_Manager extends WC_QD_Transaction_Manager {
 
 	public function setup() {
 		add_action( 'woocommerce_refund_created', array( $this, 'create_credit' ), 10, 2 );
@@ -26,96 +26,88 @@ class WC_QD_Credit_Manager {
 			return;
 		}
 
-		// Get the original invoice
-		$invoice_id = get_post_meta( $order->get_id(), '_quaderno_invoice', true );
-		if ( empty( $invoice_id ) ) {
-			return; 
-		}
-
-		$invoice = QuadernoIncome::find( $invoice_id );
-
-		$credit_params = array(
+		$transaction_params = array(
+			'type' => 'refund',
 			'issue_date' => current_time('Y-m-d'),
-			'contact_id' => $invoice->contact->id,
-			'currency' => $refund->get_currency(),
-			'po_number' => get_post_meta( $order->get_id(), '_order_number_formatted', true ) ?: $order->get_id(),
-			'tag_list' => implode( ',', $invoice->tag_list ),
-			'processor' => 'woocommerce',
-			'processor_id' => $order->get_id(),
-			'payment_method' => self::get_payment_method($order),
-      'payment_processor' => $order->get_payment_method(),
-      'payment_processor_id' => $order->get_transaction_id(),
-			'document_id' => $invoice_id,
-      'shipping_street_line_1' => $order->get_shipping_address_1(),
-      'shipping_street_line_2' => $order->get_shipping_address_2(),
-      'shipping_city' => $order->get_shipping_city(),
-      'shipping_postal_code' => $order->get_shipping_postcode(),
-      'shipping_region' => $order->get_shipping_state(),
-      'shipping_country' => $order->get_shipping_country(),
-			'custom_metadata' => array( 'processor_url' => $order->get_edit_order_url() )
+			'customer' => array(
+				'id' => get_post_meta( $order->get_id(), '_quaderno_contact_id', true ) ?: get_user_meta( $order->get_user_id(), '_quaderno_contact', true )
+			),
+      'currency' => $order->get_currency(),
+      'po_number' => get_post_meta( $order->get_id(), '_order_number_formatted', true ) ?: $order->get_id(),
+      'processor' => 'woocommerce',
+      'processor_id' => strtotime($order->get_date_created()) . '_' . $args['order_id'],
+      'payment' => array(
+        'method' => $this->get_payment_method($order),
+        'processor' => $order->get_payment_method(),
+        'processor_id' => $order->get_transaction_id()
+      ), 
+      'shipping_address' => array(
+        'street_line_1' => $order->get_shipping_address_1(),
+        'street_line_2' => $order->get_shipping_address_2(),
+        'city' => $order->get_shipping_city(),
+        'postal_code' => $order->get_shipping_postcode(),
+        'region' => $order->get_shipping_state(),
+        'country' => $order->get_shipping_country()
+      ),
+      'custom_metadata' => array( 'processor_url' => $order->get_edit_order_url() )
 		);
 		
 		//Let's create the credit note
-		$credit = new QuadernoCredit($credit_params);
+    $transaction = new QuadernoTransaction($transaction_params);
 
 		// Calculate exchange rate
 		$exchange_rate = get_post_meta( $order->get_id(), '_woocs_order_rate', true ) ?: 1;
 
-		// Get the first invoice item to calculate taxes
-		$item = $invoice->items[0];
+    // Calculate transaction items and tags
+    $tags = array();
+    $transaction_items = array();
+    $items = $refund->get_items(array('line_item', 'shipping' ,'fee'));
+    foreach ( $items as $item ) {
+      $new_item = array(
+        'description' => $this->get_description( $item ),
+        'quantity' => abs( $item->get_quantity() ?: 1 ),
+        'amount' => abs(round( $refund->get_line_total($item, true) * $exchange_rate, wc_get_price_decimals() ))
+      );
 
-		// Add item
-		$refunded_amount = -round($refund->get_total() * $exchange_rate, 2);
-		$new_item = new QuadernoDocumentItem(array(
-			'product_code' => $item->product_code,
-			'description' => 'Refund invoice #' . $invoice->number,
-			'quantity' => 1,
-			'total_amount' => $refunded_amount,
-			'tax_1_name' => $item->tax_1_name,
-			'tax_1_rate' => $item->tax_1_rate,
-			'tax_1_country' => $item->tax_1_country,
-			'tax_1_region' => $item->tax_1_region,
-			'tax_1_county' => $item->tax_1_county,
-			'tax_1_city' => $item->tax_1_city,
-			'tax_1_county_code' => $item->tax_1_county_code,
-			'tax_1_city_code' => $item->tax_1_city_code,
-			'tax_1_transaction_type' => $item->tax_1_transaction_type
-		));
-		$credit->addItem( $new_item );
+      if ( $item->get_total_tax('edit') != 0 ) {
+        $new_item['tax'] = $this->get_tax( $order, $item );
+      }
 
-		if ( $credit->save() ) {
-			add_post_meta( $refund_id, '_quaderno_credit', $credit->id );
-			add_user_meta( $order->get_user_id(), '_quaderno_contact', $credit->contact_id, true );
+      if ( $item->is_type('line_item') ) {
+        // Get the product code and tags if exist
+        $product = wc_get_product( $item->get_product_id() );
+        if ( !empty( $product ) ) {
+          $new_item['product_code'] = $product->get_sku();
+          $tags = array_merge( $tags, wp_get_object_terms( $product->get_id(), 'product_tag', array( 'fields' => 'slugs' ) ) );
+        }
+      }
 
-			if ( 'yes' === WC_QD_Integration::$autosend_invoices ) $credit->deliver();
+      array_push($transaction_items, $new_item );
+    }
+
+    // Add items to transaction
+    $transaction->items = $transaction_items;
+
+    // Add product tags to transaction
+    if ( count( $tags ) > 0 ) {
+      $transaction->tags = implode( ',', $tags );
+    }
+
+    // Add order notes
+    if ( $this->is_reverse_charge( $order ) ) {
+      $transaction->notes = esc_html__('Tax amount subject to reverse charge', 'woocommerce-quaderno' );
+    } else {
+      $transaction->notes = $order->get_customer_note();
+    }
+
+		if ( $transaction->save() ) {
+			add_post_meta( $refund_id, '_quaderno_credit', $transaction->id );
+      add_post_meta( $refund_id, '_quaderno_credit_number', $transaction->number );
+      add_post_meta( $refund_id, '_quaderno_url', $transaction->permalink );
+      add_post_meta( $refund_id, '_quaderno_contact_id', $transaction->contact->id );
+
+			if ( 'yes' === WC_QD_Integration::$autosend_invoices ) $transaction->deliver();
 		}
-	}
-
-	/**
-	 * Get payment method for Quaderno
-	 *
-	 * @param $order_id
-	 */
-	public function get_payment_method( $order ) {
-		$payment_id = $order->get_payment_method();;
-		$method = '';
-		switch( $payment_id ) {
-			case 'bacs':
-				$method = 'wire_transfer';
-				break;
-			case 'cheque':
-				$method = 'check';
-				break;
-			case 'cod':
-				$method = 'cash';
-				break;
-			case 'paypal':
-				$method = 'paypal';
-				break;
-			default:
-				$method = 'credit_card';
-		}
-		return $method;
 	}
 
 }
