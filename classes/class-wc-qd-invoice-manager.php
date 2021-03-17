@@ -22,7 +22,8 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
 
     // Return if an invoice has already been issued for this order or the order is free
     $invoice_id = get_post_meta( $order_id, '_quaderno_invoice', true );
-    if ( !empty( $invoice_id ) || $order->get_total() == 0 ) {
+    $skip = false; 
+    if ( !empty( $invoice_id ) || $order->get_total() == 0 || apply_filters( 'quaderno_invoice_skip', $skip, $order_id ) ) {
       return;
     }
 

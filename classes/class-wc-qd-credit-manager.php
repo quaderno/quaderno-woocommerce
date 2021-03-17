@@ -22,7 +22,8 @@ class WC_QD_Credit_Manager extends WC_QD_Transaction_Manager {
 
 		// Return if an credit has already been issued for this refund
 		$credit_id = get_post_meta( $refund_id, '_quaderno_credit', true );
-		if ( !empty( $credit_id ) || $order->get_total() == 0 ) {
+    $skip = false;
+		if ( !empty( $credit_id ) || $order->get_total() == 0 || apply_filters( 'quaderno_credit_skip', $skip, $refund_id ) ) {
 			return;
 		}
 
