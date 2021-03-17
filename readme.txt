@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
 Tested up to: 5.7
-Stable tag: 1.22.5
+Stable tag: 1.23.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,10 @@ If you have any questions please get in touch with us at support@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.23.0 – March 17, 2020 =
+* New: Add new hook to skip invoices and credit notes 
+* New: Use new Quaderno Transactions API
 
 = 1.22.5 – March 11, 2020 =
 * New: Support for WooCommerce 5.1
@@ -397,9 +401,9 @@ If you have any questions please get in touch with us at support@quaderno.io.
 
 * English - default, always included
 * Spanish: Español - siempre incluido
-* German: Deutsch - translated by [Alex Gahr](http://alexgahr.com)
-* French: Français - translated by [Sébastien Jacobs](http://xando.be)
-* Dutch: Nederlands - translated by [Sébastien Jacobs](http://xando.be)
+* German: Deutsch - translated by [Alex Gahr](https://germantakeaways.com)
+* French: Français - translated by [Sébastien Jacobs](https://xando.pro)
+* Dutch: Nederlands - translated by [Sébastien Jacobs](https://xando.pro)
 
 *Note:* This plugin is fully localized. This is very important for all users worldwide. So please contribute your language to the plugin to make it even more useful. For translating we recommend the ["Poedit Editor"](http://www.poedit.net/).
 
