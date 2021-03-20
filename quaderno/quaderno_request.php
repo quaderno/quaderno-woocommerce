@@ -96,6 +96,11 @@ class QuadernoRequest {
 
 		return array();
 	}
+
+	public function ping() {
+		$this->request_endpoint = 'ping';
+		return $this->exec();
+	}
 	
 	public function find($model, $params = null) {
 		$this->request_methods = array( $model );

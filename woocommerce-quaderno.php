@@ -175,6 +175,10 @@ class WooCommerce_Quaderno {
 			$admin_ebook = new WC_QD_Admin_Ebook();
 			$admin_ebook->setup();
 
+			// Setup Order manager
+			$status_page = new WC_QD_Status();
+			$status_page->setup();
+
 			// Filter plugin links
 			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_links' ) );
 		}
