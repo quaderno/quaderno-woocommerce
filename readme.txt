@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
 Tested up to: 5.7
-Stable tag: 1.23.1
+Stable tag: 1.23.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,11 @@ If you have any questions please get in touch with us at support@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.23.2 – March 20, 2020 =
+* New: Use the customer processor data only if the customer is registered
+* New: Add Quaderno status page to improve our customer support
+* New: Use the new Tax API to validate tax ids and calculate tax rates
 
 = 1.23.1 – March 18, 2020 =
 * Fix: Problem with evidence creation
