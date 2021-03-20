@@ -28,5 +28,6 @@ require_once $quaderno_script_path.'quaderno_invoice.php';
 require_once $quaderno_script_path.'quaderno_credit.php';
 require_once $quaderno_script_path.'quaderno_document_item.php';
 require_once $quaderno_script_path.'quaderno_payment.php';
-require_once $quaderno_script_path.'quaderno_tax.php';
+require_once $quaderno_script_path.'quaderno_tax_id.php';
+require_once $quaderno_script_path.'quaderno_tax_rate.php';
 require_once $quaderno_script_path.'quaderno_evidence.php';

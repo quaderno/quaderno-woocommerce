@@ -78,7 +78,7 @@ class WC_QD_Calculate_Tax {
 			'to_country' => $country,
 			'to_postal_code' => urlencode($postal_code),
 			'to_city' => urlencode($city),
-			'tax_class' => urlencode($quaderno_tax_class),
+			'tax_code' => urlencode($quaderno_tax_class),
 			'product_type' => $product_type,
 			'amount' => $amount,
 			'currency' => $currency,
@@ -89,7 +89,7 @@ class WC_QD_Calculate_Tax {
 
 		// Calculate taxes if they're not cached
 		if ( false === ( $tax = get_transient( $slug ) ) ) {
-			$tax = QuadernoTax::calculate( $params );				
+			$tax = QuadernoTaxRate::calculate( $params );				
 			$wc_rate = self::get_wc_rate( $tax_class, $country, $region, $postal_code, $city );
 			if ( !empty( $wc_rate ) ) {
 				$tax->name = $wc_rate['label'];

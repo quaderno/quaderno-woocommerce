@@ -109,14 +109,14 @@ class WC_QD_Tax_Id_Field {
     }
 
     $params = array(
-      'vat_number' => $tax_id,
+      'tax_id' => $tax_id,
       'country' => $country
     );
 
     $slug = 'vat_number_' . md5( implode( $params ) );
 
     if ( false === ( $valid_number = get_transient( $slug ) ) ) {
-      $valid_number = (int) QuadernoTax::validate( $params );
+      $valid_number = (int) QuadernoTaxId::validate( $params );
       set_transient( $slug, $valid_number, 4 * WEEK_IN_SECONDS );
     }
 
