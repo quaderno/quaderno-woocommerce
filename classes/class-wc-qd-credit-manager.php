@@ -27,11 +27,24 @@ class WC_QD_Credit_Manager extends WC_QD_Transaction_Manager {
 			return;
 		}
 
+    // Get the original invoice
+    $invoice_id = get_post_meta( $order->get_id(), '_quaderno_invoice', true );
+    if ( empty( $invoice_id ) ) {
+      return; 
+    }
+
+    // Get the contact ID
+    $contact_id = get_post_meta( $order->get_id(), '_quaderno_contact_id', true );
+    if( empty( $contact_id) ) {
+      $invoice = QuadernoInvoice::find( $invoice_id ) ?: QuadernoReceipt::find( $invoice_id );
+      $contact_id = $invoice->contact->id;
+    } 
+
 		$transaction_params = array(
 			'type' => 'refund',
 			'issue_date' => current_time('Y-m-d'),
 			'customer' => array(
-				'id' => get_post_meta( $order->get_id(), '_quaderno_contact_id', true ) ?: get_user_meta( $order->get_user_id(), '_quaderno_contact', true )
+				'id' => $contact_id
 			),
       'currency' => $order->get_currency(),
       'po_number' => get_post_meta( $order->get_id(), '_order_number_formatted', true ) ?: $order->get_id(),
