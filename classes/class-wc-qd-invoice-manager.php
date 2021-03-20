@@ -86,34 +86,39 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
       'country' => $country,
       'email' => $order->get_billing_email(),
       'phone_1' => $order->get_billing_phone(),
-      'tax_id' => $tax_id,
-      'processor' => 'woocommerce',
-      'processor_id' => $order->get_user_id()
+      'tax_id' => $tax_id
     );
 
-    $contact_id = get_user_meta( $order->get_user_id(), '_quaderno_contact', true );
+    if ( !empty( $order->get_user_id() ) ) {
+      // If the customer is registered, we send their WooCommerce ID to Quaderno
+      $transaction_params['customer']['processor'] = 'woocommerce';
+      $transaction_params['customer']['processor_id'] = $order->get_user_id();
 
-    // Get last order to see if name has changed
-    $args = array(
-        'status' => 'completed',
-        'type' => 'shop_order',
-        'limit' => 1,
-        'customer_id' => $order->get_user_id(),
-        'exclude' => array( $order->get_id() )
-    );
-    $past_orders = wc_get_orders( $args );
-    $last_order = reset( $past_orders );
+      // Some users use the same WooCommerce account to buy on behalf of different customers
+      // Let's get the last order to see if customer's name has changed
+      $args = array(
+          'status' => 'completed',
+          'type' => 'shop_order',
+          'limit' => 1,
+          'customer_id' => $order->get_user_id(),
+          'exclude' => array( $order->get_id() )
+      );
+      $past_orders = wc_get_orders( $args );
+      $last_order = reset( $past_orders );
 
-    // New contact if name has changed
-    if ( !empty( $contact_id ) && !empty( $last_order ) &&
-         $last_order->get_billing_company() == $order->get_billing_company() &&
-         $last_order->get_billing_first_name() == $order->get_billing_first_name() &&
-         $last_order->get_billing_last_name() == $order->get_billing_last_name()
-       ) 
-    {
-      $transaction_params['customer']['id'] = $contact_id;
-      unset($transaction_params['customer']['first_name']);
-      unset($transaction_params['customer']['last_name']);
+      // If this is the customer's first order or their name hasn't changed, we reuse the contact ID
+      // Otherwise, a new contact will be created in Quaderno 
+      $contact_id = get_user_meta( $order->get_user_id(), '_quaderno_contact', true );
+      if ( !empty( $contact_id ) && !empty( $last_order ) &&
+           $last_order->get_billing_company() == $order->get_billing_company() &&
+           $last_order->get_billing_first_name() == $order->get_billing_first_name() &&
+           $last_order->get_billing_last_name() == $order->get_billing_last_name()
+         ) 
+      {
+        $transaction_params['customer']['id'] = $contact_id;
+        unset($transaction_params['customer']['first_name']);
+        unset($transaction_params['customer']['last_name']);
+      }
     }
 
     // Let's create the transaction

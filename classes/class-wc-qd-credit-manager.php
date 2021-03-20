@@ -27,7 +27,7 @@ class WC_QD_Credit_Manager extends WC_QD_Transaction_Manager {
 			return;
 		}
 
-    // Get the original invoice
+    // Return if the refund does not have a related invoice in Quaderno
     $invoice_id = get_post_meta( $order->get_id(), '_quaderno_invoice', true );
     if ( empty( $invoice_id ) ) {
       return; 
