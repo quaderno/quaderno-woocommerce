@@ -50,7 +50,7 @@ class WC_QD_Transaction_Manager {
    * @param $order
    */
   public function get_payment_method( $order ) {
-    $payment_id = $order->get_payment_method();;
+    $payment_id = $order->get_payment_method();
     $method = '';
     switch( $payment_id ) {
       case 'bacs':
@@ -63,10 +63,14 @@ class WC_QD_Transaction_Manager {
         $method = 'cash';
         break;
       case 'paypal':
+      case 'ppec_paypal':
         $method = 'paypal';
         break;
-      default:
+      case 'stripe':
         $method = 'credit_card';
+        break;
+      default:
+        $method = 'other';
     }
     return $method;
   }

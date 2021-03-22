@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
 Tested up to: 5.7
-Stable tag: 1.23.2
+Stable tag: 1.23.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,9 @@ If you have any questions please get in touch with us at support@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.23.3 – March 22, 2020 =
+* New: Track new payment methods
 
 = 1.23.2 – March 20, 2020 =
 * New: Use the customer processor data only if the customer is registered
