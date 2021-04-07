@@ -25,6 +25,7 @@ require_once $quaderno_script_path.'quaderno_contact.php';
 require_once $quaderno_script_path.'quaderno_document.php';
 require_once $quaderno_script_path.'quaderno_transaction.php';
 require_once $quaderno_script_path.'quaderno_invoice.php';
+require_once $quaderno_script_path.'quaderno_receipt.php';
 require_once $quaderno_script_path.'quaderno_credit.php';
 require_once $quaderno_script_path.'quaderno_document_item.php';
 require_once $quaderno_script_path.'quaderno_payment.php';

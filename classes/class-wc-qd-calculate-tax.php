@@ -15,7 +15,7 @@ class WC_QD_Calculate_Tax {
 	 */
 	public static function get_tax_class( $product_id ) {
 		$type = 'standard';
-		$product_types = array( 'product', 'product_variation' );
+		$product_types = array( 'product', 'product_variation', 'subscription', 'subscription_variation', 'variable-subscription' );
 
 		if ( in_array( get_post_type( $product_id ), $product_types ) ) {
 			$product = wc_get_product( $product_id );

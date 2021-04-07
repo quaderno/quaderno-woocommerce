@@ -143,7 +143,8 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
         'discount_rate' => $discount_rate
       );
 
-      if ( $item->get_total_tax('edit') != 0 ) {
+      // Add tax info for line items, fees, and taxable shipping costs
+      if ( !$item->is_type('shipping') || $item->get_total_tax('edit') > 0 ) {
         $new_item['tax'] = $this->get_tax( $order, $item );
       }
 

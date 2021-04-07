@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
 Tested up to: 5.7
-Stable tag: 1.23.3
+Stable tag: 1.23.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,35 +67,39 @@ If you have any questions please get in touch with us at support@quaderno.io.
 
 == Changelog ==
 
-= 1.23.3 – March 22, 2020 =
+= 1.23.4 – April 7, 2021 =
+* Fix: Create invoices with 0% tax rate when there are no taxes
+* Fix: Cannot deliver receipts
+
+= 1.23.3 – March 22, 2021 =
 * New: Track new payment methods
 
-= 1.23.2 – March 20, 2020 =
+= 1.23.2 – March 20, 2021 =
 * New: Use the customer processor data only if the customer is registered
 * New: Add Quaderno status page to improve our customer support
 * New: Use the new Tax API to validate tax ids and calculate tax rates
 
-= 1.23.1 – March 18, 2020 =
+= 1.23.1 – March 18, 2021 =
 * Fix: Problem with evidence creation
 
-= 1.23.0 – March 17, 2020 =
+= 1.23.0 – March 17, 2021 =
 * New: Add new hook to skip invoices and credit notes 
 * New: Use new Quaderno Transactions API
 
-= 1.22.5 – March 11, 2020 =
+= 1.22.5 – March 11, 2021 =
 * New: Support for WooCommerce 5.1
 * New: Support for WordPress 5.7
 
-= 1.22.4 – February 17, 2020 =
+= 1.22.4 – February 17, 2021 =
 * Fix: Error in tax calculations for custom tax classes
 
-= 1.22.3 – February 10, 2020 =
+= 1.22.3 – February 10, 20201 =
 * Fix: Quaderno is creating invoice for $0 orders
 
-= 1.22.2 – February 9, 2020 =
+= 1.22.2 – February 9, 2021 =
 * New: Show variation description on invoices
 
-= 1.22.1 – February 4, 2020 =
+= 1.22.1 – February 4, 2021 =
 * Fix: Location evidence are not stored in Quaderno
 
 = 1.22.0 – December 21, 2020 =

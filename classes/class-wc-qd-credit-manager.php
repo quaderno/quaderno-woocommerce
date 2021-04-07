@@ -83,7 +83,8 @@ class WC_QD_Credit_Manager extends WC_QD_Transaction_Manager {
         'amount' => abs(round( $refund->get_line_total($item, true) * $exchange_rate, wc_get_price_decimals() ))
       );
 
-      if ( $item->get_total_tax('edit') != 0 ) {
+      // Add tax info for line items, fees, and taxable shipping costs
+      if ( !$item->is_type('shipping') || $item->get_total_tax('edit') > 0 ) {
         $new_item['tax'] = $this->get_tax( $order, $item );
       }
 
