@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
 Tested up to: 5.7
-Stable tag: 1.23.4
+Stable tag: 1.23.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,9 @@ If you have any questions please get in touch with us at support@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.23.5 – April 15, 2021 =
+* New: Support for Braintree
 
 = 1.23.4 – April 7, 2021 =
 * Fix: Create invoices with 0% tax rate when there are no taxes

@@ -50,9 +50,9 @@ class WC_QD_Transaction_Manager {
    * @param $order
    */
   public function get_payment_method( $order ) {
-    $payment_id = $order->get_payment_method();
+    $payment_method = $order->get_payment_method();
     $method = '';
-    switch( $payment_id ) {
+    switch( $payment_method ) {
       case 'bacs':
         $method = 'wire_transfer';
         break;
@@ -64,9 +64,11 @@ class WC_QD_Transaction_Manager {
         break;
       case 'paypal':
       case 'ppec_paypal':
+      case 'braintree_paypal':
         $method = 'paypal';
         break;
       case 'stripe':
+      case 'braintree_credit_card':
         $method = 'credit_card';
         break;
       default:
