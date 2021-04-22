@@ -27,11 +27,14 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
       return;
     }
 
+    // Get the PO number
+    $po_number = get_post_meta( $order_id, '_order_number_formatted', true ) ?: $order_id;
+
     $transaction_params = array(
       'type' => 'sale',
       'date' => current_time('Y-m-d'),
       'currency' => $order->get_currency(),
-      'po_number' => get_post_meta( $order_id, '_order_number_formatted', true ) ?: $order_id,
+      'po_number' => apply_filters( 'quaderno_invoice_po_number', $po_number, $order),
       'processor' => 'woocommerce',
       'processor_id' => strtotime($order->get_date_created()) . '_' . $order_id,
       'payment' => array(
@@ -178,10 +181,9 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
 
     // Add order notes
     if ( $this->is_reverse_charge( $order ) ) {
-      $transaction->notes = esc_html__('Tax amount subject to reverse charge', 'woocommerce-quaderno' );
-    } else {
-      $transaction->notes = $order->get_customer_note();
+      $transaction->notes = esc_html__('Tax amount subject to reverse charge', 'woocommerce-quaderno' ) . '<br>';
     }
+    $transaction->notes .= apply_filters( 'quaderno_invoice_notes', $order->get_customer_note(), $order );
 
     if ( $transaction->save() ) {
       add_post_meta( $order_id, '_quaderno_invoice', $transaction->id );

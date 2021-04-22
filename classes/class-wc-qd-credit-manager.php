@@ -40,6 +40,9 @@ class WC_QD_Credit_Manager extends WC_QD_Transaction_Manager {
       $contact_id = $invoice->contact->id;
     } 
 
+    // Get the PO number
+    $po_number = get_post_meta( $order->get_id(), '_order_number_formatted', true ) ?: $order->get_id();
+
 		$transaction_params = array(
 			'type' => 'refund',
 			'issue_date' => current_time('Y-m-d'),
@@ -47,7 +50,7 @@ class WC_QD_Credit_Manager extends WC_QD_Transaction_Manager {
 				'id' => $contact_id
 			),
       'currency' => $order->get_currency(),
-      'po_number' => get_post_meta( $order->get_id(), '_order_number_formatted', true ) ?: $order->get_id(),
+      'po_number' => apply_filters( 'quaderno_credit_po_number', $po_number, $order),
       'processor' => 'woocommerce',
       'processor_id' => strtotime($order->get_date_created()) . '_' . $args['order_id'],
       'payment' => array(
@@ -110,10 +113,9 @@ class WC_QD_Credit_Manager extends WC_QD_Transaction_Manager {
 
     // Add order notes
     if ( $this->is_reverse_charge( $order ) ) {
-      $transaction->notes = esc_html__('Tax amount subject to reverse charge', 'woocommerce-quaderno' );
-    } else {
-      $transaction->notes = $order->get_customer_note();
+      $transaction->notes = esc_html__('Tax amount subject to reverse charge', 'woocommerce-quaderno' ) . '<br>';
     }
+    $transaction->notes .= apply_filters( 'quaderno_credit_notes', $order->get_customer_note(), $order );
 
 		if ( $transaction->save() ) {
 			add_post_meta( $refund_id, '_quaderno_credit', $transaction->id );
