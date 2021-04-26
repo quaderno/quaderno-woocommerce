@@ -18,7 +18,7 @@ class WC_QD_Transaction_Manager {
       }
     }
 
-    return $result;
+    return apply_filters( 'quaderno_is_digital', $result, $order );
   }
 
   /**
@@ -41,7 +41,7 @@ class WC_QD_Transaction_Manager {
       $description = $item->get_name();
     }
 
-    return $description;
+    return apply_filters( 'quaderno_item_description', $description, $item );
   }
 
   /**
@@ -74,7 +74,8 @@ class WC_QD_Transaction_Manager {
       default:
         $method = 'other';
     }
-    return $method;
+
+    return apply_filters( 'quaderno_payment_method', $method, $order );
   }
 
   /**
@@ -107,7 +108,7 @@ class WC_QD_Transaction_Manager {
       $tax->rate = 0;
     }
 
-    return $tax;
+    return apply_filters( 'quaderno_item_tax', $tax, $item, $order );
   }
 
   /**
@@ -140,14 +141,14 @@ class WC_QD_Transaction_Manager {
       $city = $order->get_shipping_city();
     }
 
-    $result = array(
+    $tax_location = array(
       'country'  => $country,
       'state' => $state,
       'postcode' => $postcode,
       'city' => $city
     );
 
-    return $result;
+    return apply_filters( 'quaderno_tax_location', $tax_location, $order );
   }
 
   /**
