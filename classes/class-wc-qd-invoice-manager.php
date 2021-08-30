@@ -42,16 +42,20 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
         'processor' => $order->get_payment_method(),
         'processor_id' => $order->get_transaction_id()
       ), 
-      'shipping_address' => array(
+      'custom_metadata' => array( 'processor_url' => $order->get_edit_order_url() )
+    );
+
+    // Add the shipping address if exists
+    if ( !empty( $order->get_shipping_address_1() )) {
+      $transaction_params['shipping_address'] = array(
         'street_line_1' => $order->get_shipping_address_1(),
         'street_line_2' => $order->get_shipping_address_2(),
         'city' => $order->get_shipping_city(),
         'postal_code' => $order->get_shipping_postcode(),
         'region' => $order->get_shipping_state(),
         'country' => $order->get_shipping_country()
-      ),
-      'custom_metadata' => array( 'processor_url' => $order->get_edit_order_url() )
-    );
+      );
+    }
 
     // Add the customer
     if ( !empty( $order->get_billing_company() ) ) {
