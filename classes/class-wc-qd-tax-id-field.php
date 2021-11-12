@@ -116,8 +116,13 @@ class WC_QD_Tax_Id_Field {
     $slug = 'vat_number_' . md5( implode( $params ) );
 
     if ( false === ( $valid_number = get_transient( $slug ) ) ) {
-      $valid_number = (int) QuadernoTaxId::validate( $params );
-      set_transient( $slug, $valid_number, 4 * WEEK_IN_SECONDS );
+      $validation_result = QuadernoTaxId::validate( $params );
+      $valid_number = (int) $validation_result;
+
+      // Cache the result, unless the tax ID validation service was down.
+      if ( !is_null($validation_result) ) {
+        set_transient( $slug, $valid_number, 4 * WEEK_IN_SECONDS );
+      }
     }
 
     return $valid_number == 1 && $country != $woocommerce->countries->get_base_country();
