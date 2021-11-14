@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
 Tested up to: 5.8
-Stable tag: 1.23.8
+Stable tag: 1.23.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,10 @@ If you have any questions please get in touch with us at support@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 1.23.9 – November 14, 2021 =
+* Improvement: delete tax ids validations from cache
+* Improvement: do not cache tax ids when validation service is down
 
 = 1.23.8 – August 30, 2021 =
 * Improvement: send shipping address to Quaderno only if it exists

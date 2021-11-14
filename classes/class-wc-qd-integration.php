@@ -164,6 +164,10 @@ class WC_QD_Integration extends WC_Integration {
 	 	if ( isset( $_POST['woocommerce_quaderno_clear_trasients'] )) {
 		  $sql = 'DELETE FROM ' . $wpdb->options . ' WHERE option_name LIKE "_transient_quaderno_tax_%"';
 		  $wpdb->query($sql);
+
+		  $sql = 'DELETE FROM ' . $wpdb->options . ' WHERE option_name LIKE "%_vat_number_%"';
+		  $wpdb->query($sql);
+
 		  $_POST['woocommerce_quaderno_clear_trasients'] = NULL;
 	 	}
 	}

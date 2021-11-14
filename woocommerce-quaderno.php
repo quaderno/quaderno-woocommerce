@@ -4,7 +4,7 @@
  * Plugin Name: WooCommerce Quaderno
  * Plugin URI: https://wordpress.org/plugins/woocommerce-quaderno/
  * Description:  Automatically calculate tax rates & create instant tax reports for your WooCommerce store.
- * Version: 1.23.8
+ * Version: 1.23.9
  * Author: Quaderno
  * Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce
  * WC requires at least: 3.2.0
@@ -262,6 +262,9 @@ function woocommerce_quaderno_deactivate() {
  
  	// delete all transients
   $sql = 'DELETE FROM ' . $wpdb->options . ' WHERE option_name LIKE "_transient_quaderno_tax_%"';
+  $wpdb->query($sql);
+
+  $sql = 'DELETE FROM ' . $wpdb->options . ' WHERE option_name LIKE "%_vat_number_%"';
   $wpdb->query($sql);
 }
 register_deactivation_hook( __FILE__, 'woocommerce_quaderno_deactivate' );
