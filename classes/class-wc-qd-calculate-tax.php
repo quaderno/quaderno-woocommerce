@@ -54,12 +54,20 @@ class WC_QD_Calculate_Tax {
 	public static function calculate( $product_id_or_tax_class, $amount, $currency, $country, $region = '', $postal_code = '', $city = '' ) {
 		global $woocommerce;
 
+    $product_type = 'good';
 		if ( is_numeric($product_id_or_tax_class) ) {
 			$tax_class = WC_QD_Calculate_Tax::get_tax_class( $product_id_or_tax_class );
-			$product_type = wc_get_product( $product_id_or_tax_class )->is_virtual() ? 'service' : 'good';			
+
+      $product = wc_get_product( $product_id_or_tax_class );
+			if ( !empty($product) && $product->is_virtual() ) {
+			 $product_type = 'service';
+			}
 		} else {
 			$tax_class = $product_id_or_tax_class;
-			$product_type = in_array( $tax_class, array('eservice', 'ebook') ) ? 'service' : 'good';
+
+      if ( in_array( $tax_class, array('eservice', 'ebook') ) ) {
+        $product_type = 'service';
+      }
 		}
 
 		switch ( $tax_class ) {
