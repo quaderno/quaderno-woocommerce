@@ -64,6 +64,7 @@ class WC_QD_Transaction_Manager {
         break;
       case 'paypal':
       case 'ppec_paypal':
+      case 'ppcp-gateway':
       case 'braintree_paypal':
         $method = 'paypal';
         break;
