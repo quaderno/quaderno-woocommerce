@@ -10,6 +10,7 @@ class WC_QD_Tax_Class_Field {
     'eservice' => 'e-Service', 
     'ebook' => 'e-Book', 
     'saas' => 'SaaS', 
+    'consulting' => 'Consulting',
     'standard' => 'Standard', 
     'reduced' => 'Reduced', 
     'exempt' => 'Tax-exempt'

@@ -86,22 +86,26 @@ class WC_QD_Transaction_Manager {
    * @param $item
    */
   public function get_tax( $order, $item ) {
-    // Get tax class
+    // Get the tax class and the product type
     $tax_class = '';
     if ( $item->is_type('line_item') ) {
-      $tax_class = WC_QD_Calculate_Tax::get_tax_class( $item->get_variation_id() ?: $item->get_product_id() );
+      $product_id = $item->get_variation_id() ?: $item->get_product_id();
+
+      $tax_class = WC_QD_Calculate_Tax::get_tax_class( $product_id );
+      $product_type = WC_QD_Calculate_Tax::get_product_type( $product_id );
     } elseif ( $item->is_type('shipping') ) {
       $shipping_tax_class = get_option( 'woocommerce_shipping_tax_class' );
       if ( 'inherit' !== $shipping_tax_class ) {
         $tax_class = $shipping_tax_class;
       }
+      $product_type = 'service';
     }
 
     // Get tax location
     $location = $this->get_tax_location( $order );
 
     // Calculate tax
-    $tax = WC_QD_Calculate_Tax::calculate( $tax_class, $order->get_total(), get_woocommerce_currency(), $location['country'], $location['state'], $location['postcode'], $location['city'] );
+    $tax = WC_QD_Calculate_Tax::calculate( $tax_class, $product_type, $order->get_total(), get_woocommerce_currency(), $location['country'], $location['state'], $location['postcode'], $location['city'] );
 
     // Check if tax exempted
     if ( $this->is_reverse_charge( $order ) || $tax_class == 'exempted' ) {

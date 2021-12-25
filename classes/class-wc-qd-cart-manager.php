@@ -43,7 +43,7 @@ class WC_QD_Cart_Manager {
 
 				// Get the tax class and the product type
 				$tax_class = WC_QD_Calculate_Tax::get_tax_class( $id );
-				$product_type = wc_get_product( $id )->is_virtual() ? 'service' : 'good';
+				$product_type = WC_QD_Calculate_Tax::get_product_type( $id );
 
 				// Calculate taxes
 				$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $product_type, WC()->cart->get_total(''), get_woocommerce_currency(), $this->country, $this->region, $this->postal_code, $this->city );
