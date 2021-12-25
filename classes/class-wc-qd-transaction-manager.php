@@ -88,6 +88,8 @@ class WC_QD_Transaction_Manager {
   public function get_tax( $order, $item ) {
     // Get the tax class and the product type
     $tax_class = '';
+    $product_type = 'good';
+
     if ( $item->is_type('line_item') ) {
       $product_id = $item->get_variation_id() ?: $item->get_product_id();
 
@@ -98,7 +100,6 @@ class WC_QD_Transaction_Manager {
       if ( 'inherit' !== $shipping_tax_class ) {
         $tax_class = $shipping_tax_class;
       }
-      $product_type = 'service';
     }
 
     // Get tax location
