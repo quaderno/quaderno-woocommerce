@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2020-09-20 21:37+0100\n"
+"POT-Creation-Date: 2021-12-26 13:45+0000\n"
 "PO-Revision-Date: 2018-07-03 20:09-0000\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: \n"
@@ -10,18 +10,15 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.1\n"
-"X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: .\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../classes/class-wc-qd-admin-ebook.php:34
-msgid "E-Book"
-msgstr ""
-
-#: ../classes/class-wc-qd-admin-ebook.php:35
-msgid "E-books are always virtual products but may have different tax rules."
+#: ../classes/class-wc-qd-credit-manager.php:120
+#: ../classes/class-wc-qd-invoice-manager.php:188
+msgid "Tax amount subject to reverse charge"
 msgstr ""
 
 #: ../classes/class-wc-qd-integration.php:21
@@ -106,17 +103,17 @@ msgstr ""
 msgid "Check this if you have updated your tax settings in Quaderno."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:180
+#: ../classes/class-wc-qd-integration.php:184
 msgid ""
 "<strong>Quaderno</strong> is almost ready &#8211; Please configure your API "
 "keys to start creating automatic invoices."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:184 ../woocommerce-quaderno.php:196
+#: ../classes/class-wc-qd-integration.php:188 ../woocommerce-quaderno.php:201
 msgid "Settings"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:204
+#: ../classes/class-wc-qd-integration.php:208
 #, php-format
 msgid ""
 "We have noticed that you have been using Quaderno for some time. We hope "
@@ -124,16 +121,8 @@ msgid ""
 "target='_blank'>give us a 5 stars rating</a>."
 msgstr ""
 
-#: ../classes/class-wc-qd-invoice-manager.php:55
+#: ../classes/class-wc-qd-invoice-manager.php:68
 msgid "WooCommerce customer"
-msgstr ""
-
-#: ../classes/class-wc-qd-invoice-manager.php:115
-msgid "Tax amount subject to reverse charge"
-msgstr ""
-
-#: ../classes/class-wc-qd-invoice-manager.php:187
-msgid "Shipping"
 msgstr ""
 
 #: ../classes/class-wc-qd-order-manager.php:29
@@ -142,10 +131,58 @@ msgstr ""
 msgid "View Invoice"
 msgstr ""
 
+#: ../classes/class-wc-qd-status.php:19
+msgid "Quaderno"
+msgstr ""
+
+#: ../classes/class-wc-qd-status.php:32
+msgid "Customer shipping address"
+msgstr ""
+
+#: ../classes/class-wc-qd-status.php:33
+msgid "Customer billing address"
+msgstr ""
+
+#: ../classes/class-wc-qd-status.php:34
+msgid "Shop base address"
+msgstr ""
+
+#: ../classes/class-wc-qd-status.php:37
+msgid "Shipping tax class based on cart items"
+msgstr ""
+
+#: ../classes/class-wc-qd-status.php:73
+msgid ""
+"You must add your base country in the standard tax rates page if you work "
+"with tax included prices."
+msgstr ""
+
+#: ../classes/class-wc-qd-status.php:87
+msgid "Check if API credentials are correct."
+msgstr ""
+
+#: ../classes/class-wc-qd-status.php:92
+msgid "Invoices and credit notes will be automatically sent."
+msgstr ""
+
+#: ../classes/class-wc-qd-status.php:97
+msgid "Local customers have to enter their tax ID."
+msgstr ""
+
+#: ../classes/class-wc-qd-status.php:102
+msgid ""
+"All customers pay the same price for the same product, no matter where they "
+"are based."
+msgstr ""
+
+#: ../classes/class-wc-qd-tax-code-field.php:68
+msgid "Quaderno tax code"
+msgstr ""
+
 #: ../classes/class-wc-qd-tax-id-field.php:44
 #: ../classes/class-wc-qd-tax-id-field.php:86
-#: ../classes/class-wc-qd-tax-id-field.php:149
-#: ../classes/class-wc-qd-tax-id-field.php:164
+#: ../classes/class-wc-qd-tax-id-field.php:154
+#: ../classes/class-wc-qd-tax-id-field.php:169
 msgid "Tax ID"
 msgstr ""
 
@@ -163,11 +200,15 @@ msgstr ""
 msgid "%s is a required field."
 msgstr ""
 
-#: ../classes/class-wc-qd-tax-id-field.php:133
+#: ../classes/class-wc-qd-tax-id-field.php:138
 msgid "optional"
 msgstr ""
 
-#: ../quaderno/quaderno_json.php:55 ../quaderno/quaderno_request.php:78
+#: ../classes/class-wc-qd-transaction-manager.php:39
+msgid "Shipping"
+msgstr ""
+
+#: ../quaderno/quaderno_request.php:78
 msgid "There was a problem connecting to the API."
 msgstr ""
 

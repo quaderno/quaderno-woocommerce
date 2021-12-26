@@ -1,30 +1,25 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2020-09-20 21:37+0100\n"
-"PO-Revision-Date: 2020-09-20 21:41+0100\n"
+"POT-Creation-Date: 2021-12-26 13:45+0000\n"
+"PO-Revision-Date: 2021-12-26 13:50+0000\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: Quaderno <support@quaderno.io>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.1\n"
-"X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: .\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../classes/class-wc-qd-admin-ebook.php:34
-msgid "E-Book"
-msgstr "E-book"
-
-#: ../classes/class-wc-qd-admin-ebook.php:35
-msgid "E-books are always virtual products but may have different tax rules."
-msgstr ""
-"Los e-books también son productos virtuales pero pueden tener impuestos "
-"diferentes."
+#: ../classes/class-wc-qd-credit-manager.php:120
+#: ../classes/class-wc-qd-invoice-manager.php:188
+msgid "Tax amount subject to reverse charge"
+msgstr "Inversión de sujeto pasivo"
 
 #: ../classes/class-wc-qd-integration.php:21
 #, php-format
@@ -123,7 +118,7 @@ msgstr ""
 "Selecciona esta opción si has actualizado tu configuración de impuestos en "
 "Quaderno."
 
-#: ../classes/class-wc-qd-integration.php:180
+#: ../classes/class-wc-qd-integration.php:184
 msgid ""
 "<strong>Quaderno</strong> is almost ready &#8211; Please configure your API "
 "keys to start creating automatic invoices."
@@ -131,11 +126,11 @@ msgstr ""
 "<strong>Quaderno</strong> está casi listo &#8211; Por favor configura tus "
 "claves API para empezar a crear facturas automáticas."
 
-#: ../classes/class-wc-qd-integration.php:184 ../woocommerce-quaderno.php:196
+#: ../classes/class-wc-qd-integration.php:188 ../woocommerce-quaderno.php:201
 msgid "Settings"
 msgstr "Configuración"
 
-#: ../classes/class-wc-qd-integration.php:204
+#: ../classes/class-wc-qd-integration.php:208
 #, php-format
 msgid ""
 "We have noticed that you have been using Quaderno for some time. We hope you "
@@ -146,17 +141,9 @@ msgstr ""
 "que te guste y te agradeceríamos mucho que <a href=‘%s’ target=‘_blank’>nos "
 "calificaras con 5 estrellas</a>."
 
-#: ../classes/class-wc-qd-invoice-manager.php:55
+#: ../classes/class-wc-qd-invoice-manager.php:68
 msgid "WooCommerce customer"
 msgstr "Cliente WooCommerce"
-
-#: ../classes/class-wc-qd-invoice-manager.php:115
-msgid "Tax amount subject to reverse charge"
-msgstr "Inversión de sujeto pasivo"
-
-#: ../classes/class-wc-qd-invoice-manager.php:187
-msgid "Shipping"
-msgstr "Gastos de envío"
 
 #: ../classes/class-wc-qd-order-manager.php:29
 #: ../classes/class-wc-qd-order-manager.php:68
@@ -164,10 +151,64 @@ msgstr "Gastos de envío"
 msgid "View Invoice"
 msgstr "Ver factura"
 
+#: ../classes/class-wc-qd-status.php:19
+msgid "Quaderno"
+msgstr "Quaderno"
+
+#: ../classes/class-wc-qd-status.php:32
+msgid "Customer shipping address"
+msgstr "Dirección de envío del cliente"
+
+#: ../classes/class-wc-qd-status.php:33
+msgid "Customer billing address"
+msgstr "Dirección de facturación del cliente"
+
+#: ../classes/class-wc-qd-status.php:34
+msgid "Shop base address"
+msgstr "Dirección base de la tienda"
+
+#: ../classes/class-wc-qd-status.php:37
+msgid "Shipping tax class based on cart items"
+msgstr ""
+"El tipo de impuesto para los gastos de envío depende del contenido del "
+"carrito. "
+
+#: ../classes/class-wc-qd-status.php:73
+msgid ""
+"You must add your base country in the standard tax rates page if you work "
+"with tax included prices."
+msgstr ""
+"Tienes que añadir tu país en la página de impuestos estándar si trabajas con "
+"precios con impuestos incluidos."
+
+#: ../classes/class-wc-qd-status.php:87
+msgid "Check if API credentials are correct."
+msgstr "Comprobar si las credenciales API son correctas."
+
+#: ../classes/class-wc-qd-status.php:92
+msgid "Invoices and credit notes will be automatically sent."
+msgstr "Las facturas y los abonos serán enviados automáticamente"
+
+#: ../classes/class-wc-qd-status.php:97
+msgid "Local customers have to enter their tax ID."
+msgstr "Los clientes locales tienes que introducir su NIF"
+
+#: ../classes/class-wc-qd-status.php:102
+msgid ""
+"All customers pay the same price for the same product, no matter where they "
+"are based."
+msgstr ""
+"Todos los clientes pagan el mismo precio por el mismo producto, sin importar "
+"dónde están radicados."
+
+#: ../classes/class-wc-qd-tax-code-field.php:68
+msgid "Quaderno tax code"
+msgstr "Tipo de impuesto en Quaderno"
+
 #: ../classes/class-wc-qd-tax-id-field.php:44
 #: ../classes/class-wc-qd-tax-id-field.php:86
-#: ../classes/class-wc-qd-tax-id-field.php:149
-#: ../classes/class-wc-qd-tax-id-field.php:164
+#: ../classes/class-wc-qd-tax-id-field.php:154
+#: ../classes/class-wc-qd-tax-id-field.php:169
 msgid "Tax ID"
 msgstr "NIF o NIF-IVA"
 
@@ -185,11 +226,15 @@ msgstr "El NIF-IVA %s no pudo ser validado"
 msgid "%s is a required field."
 msgstr "%s es un campo obligatorio."
 
-#: ../classes/class-wc-qd-tax-id-field.php:133
+#: ../classes/class-wc-qd-tax-id-field.php:138
 msgid "optional"
 msgstr "opcional"
 
-#: ../quaderno/quaderno_json.php:55 ../quaderno/quaderno_request.php:78
+#: ../classes/class-wc-qd-transaction-manager.php:39
+msgid "Shipping"
+msgstr "Gastos de envío"
+
+#: ../quaderno/quaderno_request.php:78
 msgid "There was a problem connecting to the API."
 msgstr "Hubo un problema al conectar con la API."
 
@@ -209,6 +254,15 @@ msgid ""
 msgstr ""
 "Por favor actualiza tu instalación de WooCommerce a la <strong>versión 2.2.9 "
 "o superior</strong> para poder usar este plugin"
+
+#~ msgid "E-Book"
+#~ msgstr "E-book"
+
+#~ msgid ""
+#~ "E-books are always virtual products but may have different tax rules."
+#~ msgstr ""
+#~ "Los e-books también son productos virtuales pero pueden tener impuestos "
+#~ "diferentes."
 
 #~ msgid ""
 #~ "Hi there! You've been using Quaderno for a while and we hope it has been "
@@ -309,9 +363,6 @@ msgstr ""
 
 #~ msgid "<strong>VAT number</strong> is not valid"
 #~ msgstr "<strong>El número de IVA</strong> no es válido"
-
-#~ msgid "Quaderno"
-#~ msgstr "Quaderno"
 
 #~ msgid "VAT Number"
 #~ msgstr "Número IVA intracomunitario"
