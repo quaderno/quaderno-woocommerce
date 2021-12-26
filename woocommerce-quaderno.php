@@ -172,12 +172,8 @@ class WooCommerce_Quaderno {
 		if ( is_admin() ) {
 
 			// The Quaderno tax class field
-			$tax_class_field = new WC_QD_Tax_Class_Field();
-			$tax_class_field->setup();
-
-			// The admin E-Book Field
-			// $admin_ebook = new WC_QD_Admin_Ebook();
-			// $admin_ebook->setup();
+			$tax_code_field = new WC_QD_Tax_Code_Field();
+			$tax_code_field->setup();
 
 			// Setup Order manager
 			$status_page = new WC_QD_Status();

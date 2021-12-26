@@ -13,7 +13,7 @@ class WC_QD_Transaction_Manager {
       $product_id = $item->get_variation_id() ?: $item->get_product_id();
       $tax_class = WC_QD_Calculate_Tax::get_tax_class( $product_id );
 
-      if ( true == in_array( $tax_class, array('eservice', 'ebook', 'saas') )) {
+      if ( true == in_array( $tax_class, WC_QD_Tax_Code_Field::DIGITAL_TAX_CODES )) {
         $result = true;
       }
     }

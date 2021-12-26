@@ -20,8 +20,8 @@ class WC_QD_Calculate_Tax {
     if ( in_array( get_post_type( $product_id ), $product_types ) ) {
 
   		// the product has a Quaderno tax clas
-  		if ( metadata_exists('post', $product_id, '_quaderno_tax_class' )  ) {
-  			$tax_class = get_post_meta( $product_id, '_quaderno_tax_class', true );
+  		if ( metadata_exists('post', $product_id, '_quaderno_tax_code' )  ) {
+  			$tax_class = get_post_meta( $product_id, '_quaderno_tax_code', true );
 
   			if ( empty( $tax_class ) ) {
   				$product = wc_get_product( $product_id );
@@ -99,8 +99,8 @@ class WC_QD_Calculate_Tax {
 		if ( false === ( $tax = get_transient( $slug ) ) ) {
 			$tax = QuadernoTaxRate::calculate( $params );
 
-			// we use the WooCommerce tax engine if the tax class doesn't exist in Quaderno
-			if ( !array_key_exists( $tax_class, WC_QD_Tax_Class_Field::TAX_CLASSES ) || empty( $tax_class ) ) {
+			// we use the WooCommerce tax engine if the tax code doesn't exist in Quaderno
+			if ( !array_key_exists( $tax_class, WC_QD_Tax_Code_Field::TAX_CODES ) || empty( $tax_class ) ) {
 				$tax->tax_code = 'standard';
 
 				$wc_rate = self::get_wc_rate( $tax_class, $country, $region, $postal_code, $city );
