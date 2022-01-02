@@ -72,7 +72,7 @@ If you have any questions please get in touch with us at support@quaderno.io.
 
 = 1.23.10 – December 20, 2021 =
 * Improvement: unknow products are classified as goods
-* New: Support for WordPress 6.0
+* New: Support for WooCommerce 6.0
 
 = 1.23.9 – November 14, 2021 =
 * Improvement: delete tax ids validations from cache
