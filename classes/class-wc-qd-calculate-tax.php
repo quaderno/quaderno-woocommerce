@@ -62,7 +62,14 @@ class WC_QD_Calculate_Tax {
    * @return String
    */
   public static function get_product_type( $product_id ) {
-    wc_get_product( $product_id )->is_virtual() ? 'service' : 'good';
+  	$product_type = 'good';
+
+  	$product = wc_get_product( $product_id );
+		if ( !empty($product) && $product->is_virtual() ) {
+			$product_type = 'service';
+		}
+
+    return $product_type;
   }
 
 	
