@@ -67,7 +67,7 @@ If you have any questions please get in touch with us at support@quaderno.io.
 
 == Changelog ==
 
-= 2.0.0 – February 7, 2022 =
+= 2.0.0 – February 21, 2022 =
 * New: Products can be assigned to a particular Quaderno tax code
 
 = 1.23.12 – January 27, 2021 =
