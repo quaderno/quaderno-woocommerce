@@ -69,6 +69,7 @@ If you have any questions please get in touch with us at support@quaderno.io.
 
 = 2.0.0 – February 21, 2022 =
 * New: Products can be assigned to a particular Quaderno tax code
+* New: Support for WooCommerce 6.2
 
 = 1.23.12 – January 27, 2021 =
 * New: Support for WordPress 5.9
