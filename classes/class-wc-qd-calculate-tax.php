@@ -14,24 +14,34 @@ class WC_QD_Calculate_Tax {
 	 * @return String
 	 */
 	public static function get_tax_class( $product_id ) {
-    $tax_class = 'standard';
-    $product_types = array( 'product', 'product_variation', 'subscription', 'subscription_variation', 'variable-subscription' );
+    $tax_class = '';
+    $product_types = array( 'product', 'subscription' );
+    $variation_types = array( 'product_variation', 'subscription_variation', 'variable-subscription' );
 
-    if ( in_array( get_post_type( $product_id ), $product_types ) ) {
+    if ( in_array( get_post_type( $product_id ), $variation_types ) ) {
+   		$variation = wc_get_product( $product_id );
 
-  		// the product has a Quaderno tax clas
-  		if ( metadata_exists('post', $product_id, '_quaderno_tax_code' )  ) {
-  			$tax_class = get_post_meta( $product_id, '_quaderno_tax_code', true );
-
-  			if ( empty( $tax_class ) ) {
-  				$product = wc_get_product( $product_id );
-  				$tax_class = $product->get_tax_class();
-  			}
+  		// the parent has a Quaderno tax class
+  		if ( metadata_exists('post', $variation->get_parent_id(), '_quaderno_tax_code' )  ) {
+  			$tax_class = get_post_meta( $variation->get_parent_id(), '_quaderno_tax_code', true );
   		}
-  		else {
+
+  		// use the WooCommerce tax class
+ 			if ( empty( $tax_class ) ) {
+ 				$tax_class = $variation->get_tax_class();
+ 			}
+    }
+    elseif ( in_array( get_post_type( $product_id ), $product_types ) ) {
+			$product = wc_get_product( $product_id );
+
+  		// the product has a Quaderno tax class
+  		if ( metadata_exists('post', $product->get_id(), '_quaderno_tax_code' )  ) {
+  			$tax_class = get_post_meta( $product->get_id(), '_quaderno_tax_code', true );
+  		}
+
+ 			if ( empty( $tax_class ) ) {
         // for compability with old versions
         // we use the former rules
-				$product = wc_get_product( $product_id );
 				$tax_class = $product->get_tax_class();
 
 				// check if this is a virtual product
@@ -49,6 +59,9 @@ class WC_QD_Calculate_Tax {
 					$tax_class = 'exempt';
 				}
   		}
+    }
+    else {
+    	$tax_class = 'standard';
     }
 
 		return $tax_class;
