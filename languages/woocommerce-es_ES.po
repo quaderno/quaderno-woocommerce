@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2021-12-26 13:45+0000\n"
-"PO-Revision-Date: 2021-12-26 13:50+0000\n"
+"POT-Creation-Date: 2022-03-05 14:10+0000\n"
+"PO-Revision-Date: 2022-03-05 14:12+0000\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: Quaderno <support@quaderno.io>\n"
 "Language: es_ES\n"
@@ -108,17 +108,7 @@ msgstr ""
 "Selecciona esta opción si el NIF debe ser obligatorio para todas las ventas "
 "en %s."
 
-#: ../classes/class-wc-qd-integration.php:151
-msgid "Clear tax cache"
-msgstr "Borrar la caché de impuestos"
-
-#: ../classes/class-wc-qd-integration.php:152
-msgid "Check this if you have updated your tax settings in Quaderno."
-msgstr ""
-"Selecciona esta opción si has actualizado tu configuración de impuestos en "
-"Quaderno."
-
-#: ../classes/class-wc-qd-integration.php:184
+#: ../classes/class-wc-qd-integration.php:160
 msgid ""
 "<strong>Quaderno</strong> is almost ready &#8211; Please configure your API "
 "keys to start creating automatic invoices."
@@ -126,11 +116,11 @@ msgstr ""
 "<strong>Quaderno</strong> está casi listo &#8211; Por favor configura tus "
 "claves API para empezar a crear facturas automáticas."
 
-#: ../classes/class-wc-qd-integration.php:188 ../woocommerce-quaderno.php:201
+#: ../classes/class-wc-qd-integration.php:164 ../woocommerce-quaderno.php:203
 msgid "Settings"
 msgstr "Configuración"
 
-#: ../classes/class-wc-qd-integration.php:208
+#: ../classes/class-wc-qd-integration.php:184
 #, php-format
 msgid ""
 "We have noticed that you have been using Quaderno for some time. We hope you "
@@ -230,6 +220,42 @@ msgstr "%s es un campo obligatorio."
 msgid "optional"
 msgstr "opcional"
 
+#: ../classes/class-wc-qd-tools.php:15
+msgid "Clear tax cache"
+msgstr "Borrar la caché de impuestos"
+
+#: ../classes/class-wc-qd-tools.php:16 ../classes/class-wc-qd-tools.php:33
+msgid "Clear"
+msgstr ""
+
+#: ../classes/class-wc-qd-tools.php:19 ../classes/class-wc-qd-tools.php:36
+msgid "Note:"
+msgstr ""
+
+#: ../classes/class-wc-qd-tools.php:20
+msgid "This tool will empty the tax cache created by Quaderno."
+msgstr "Esta herramienta borrará la caché de impuestos creada por Quaderno."
+
+#: ../classes/class-wc-qd-tools.php:32
+msgid "Clear Quaderno data"
+msgstr "Borrar datos de Quaderno"
+
+#: ../classes/class-wc-qd-tools.php:37
+msgid ""
+"This tool will clear all data created by Quaderno. Use this if you are going "
+"to connect your WooCommerce store to a new Quaderno account."
+msgstr ""
+"Esta herramienta borrará todos los datos creados por Quaderno. Utilízala si "
+"vas a conectar tu tienda de WooCommerce a una nueva cuenta de Quaderno."
+
+#: ../classes/class-wc-qd-tools.php:55
+msgid "The tax cache has been emptied."
+msgstr "La caché de impuestos ha sido borrada."
+
+#: ../classes/class-wc-qd-tools.php:68
+msgid "All Quaderno data has been deleted."
+msgstr "Todos los datos de Quaderno han sido borrados."
+
 #: ../classes/class-wc-qd-transaction-manager.php:39
 msgid "Shipping"
 msgstr "Gastos de envío"
@@ -254,6 +280,11 @@ msgid ""
 msgstr ""
 "Por favor actualiza tu instalación de WooCommerce a la <strong>versión 2.2.9 "
 "o superior</strong> para poder usar este plugin"
+
+#~ msgid "Check this if you have updated your tax settings in Quaderno."
+#~ msgstr ""
+#~ "Selecciona esta opción si has actualizado tu configuración de impuestos "
+#~ "en Quaderno."
 
 #~ msgid "E-Book"
 #~ msgstr "E-book"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2021-12-26 13:45+0000\n"
-"PO-Revision-Date: 2021-12-26 13:51+0000\n"
+"POT-Creation-Date: 2022-03-05 14:10+0000\n"
+"PO-Revision-Date: 2022-03-05 14:20+0000\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -103,17 +103,7 @@ msgstr ""
 "Cochez cette case si le numéro de TVA doit être requis pour toutes les "
 "ventes en %s."
 
-#: ../classes/class-wc-qd-integration.php:151
-msgid "Clear tax cache"
-msgstr "Vider le cache des taxes"
-
-#: ../classes/class-wc-qd-integration.php:152
-msgid "Check this if you have updated your tax settings in Quaderno."
-msgstr ""
-"Cochez cette option si vous avez mis à jour vos paramètres fiscaux dans "
-"Quaderno."
-
-#: ../classes/class-wc-qd-integration.php:184
+#: ../classes/class-wc-qd-integration.php:160
 msgid ""
 "<strong>Quaderno</strong> is almost ready &#8211; Please configure your API "
 "keys to start creating automatic invoices."
@@ -121,11 +111,11 @@ msgstr ""
 "<strong>Quaderno</strong> est presque prêt  &#8211. Veuillez configurer vos "
 "clés API pour commencer à créer des factures automatiques."
 
-#: ../classes/class-wc-qd-integration.php:188 ../woocommerce-quaderno.php:201
+#: ../classes/class-wc-qd-integration.php:164 ../woocommerce-quaderno.php:203
 msgid "Settings"
 msgstr "Paramètres"
 
-#: ../classes/class-wc-qd-integration.php:208
+#: ../classes/class-wc-qd-integration.php:184
 #, php-format
 msgid ""
 "We have noticed that you have been using Quaderno for some time. We hope you "
@@ -152,43 +142,48 @@ msgstr "Quaderno"
 
 #: ../classes/class-wc-qd-status.php:32
 msgid "Customer shipping address"
-msgstr ""
+msgstr "Adresse de livraison du client"
 
 #: ../classes/class-wc-qd-status.php:33
 msgid "Customer billing address"
-msgstr ""
+msgstr "Adresse de facturation du client"
 
 #: ../classes/class-wc-qd-status.php:34
 msgid "Shop base address"
-msgstr ""
+msgstr "Adresse de base du magasin"
 
 #: ../classes/class-wc-qd-status.php:37
 msgid "Shipping tax class based on cart items"
-msgstr ""
+msgstr "Classe de taxe d’expédition basée sur les articles du panier"
 
 #: ../classes/class-wc-qd-status.php:73
 msgid ""
 "You must add your base country in the standard tax rates page if you work "
 "with tax included prices."
 msgstr ""
+"Vous devez ajouter votre pays de base dans la page des taux standard si vous "
+"travaillez avec des prix TTC."
 
 #: ../classes/class-wc-qd-status.php:87
 msgid "Check if API credentials are correct."
-msgstr ""
+msgstr "Vérifiez si les donnés d’identification de l’API sont correctes."
 
 #: ../classes/class-wc-qd-status.php:92
 msgid "Invoices and credit notes will be automatically sent."
-msgstr ""
+msgstr "Les factures et les notes de crédit seront automatiquement envoyées."
 
 #: ../classes/class-wc-qd-status.php:97
 msgid "Local customers have to enter their tax ID."
 msgstr ""
+"Les clients locaux doivent saisir leur numéro d’identification fiscale."
 
 #: ../classes/class-wc-qd-status.php:102
 msgid ""
 "All customers pay the same price for the same product, no matter where they "
 "are based."
 msgstr ""
+"Tous les clients paient le même prix pour le même produit, quel que soit "
+"l’endroit où ils se trouvent."
 
 #: ../classes/class-wc-qd-tax-code-field.php:68
 msgid "Quaderno tax code"
@@ -217,7 +212,44 @@ msgstr "%s est un champ obligatoire."
 
 #: ../classes/class-wc-qd-tax-id-field.php:138
 msgid "optional"
+msgstr "optionnel"
+
+#: ../classes/class-wc-qd-tools.php:15
+msgid "Clear tax cache"
+msgstr "Vider le cache des taxes"
+
+#: ../classes/class-wc-qd-tools.php:16 ../classes/class-wc-qd-tools.php:33
+msgid "Clear"
 msgstr ""
+
+#: ../classes/class-wc-qd-tools.php:19 ../classes/class-wc-qd-tools.php:36
+msgid "Note:"
+msgstr ""
+
+#: ../classes/class-wc-qd-tools.php:20
+msgid "This tool will empty the tax cache created by Quaderno."
+msgstr "Cet outil permettra de vider le cache fiscal créé par Quaderno."
+
+#: ../classes/class-wc-qd-tools.php:32
+msgid "Clear Quaderno data"
+msgstr "Effacer les donnés Quaderno"
+
+#: ../classes/class-wc-qd-tools.php:37
+msgid ""
+"This tool will clear all data created by Quaderno. Use this if you are going "
+"to connect your WooCommerce store to a new Quaderno account."
+msgstr ""
+"Cet outil effacera toutes les données créées par Quaderno. Utilisez-le si "
+"vous souhaitez connecter votre boutique WooCommerce à un nouveau compte "
+"Quaderno."
+
+#: ../classes/class-wc-qd-tools.php:55
+msgid "The tax cache has been emptied."
+msgstr "La cache des taxes a été vidée."
+
+#: ../classes/class-wc-qd-tools.php:68
+msgid "All Quaderno data has been deleted."
+msgstr "Toutes les données Quaderno ont été supprimées."
 
 #: ../classes/class-wc-qd-transaction-manager.php:39
 msgid "Shipping"
@@ -243,6 +275,11 @@ msgid ""
 msgstr ""
 "Veuillez mettre à jour WooCommerce <strong> version 2.2.9 ou ultérieure </ "
 "strong> pour que l'extension WooCommerce Quaderno puisse fonctionner!"
+
+#~ msgid "Check this if you have updated your tax settings in Quaderno."
+#~ msgstr ""
+#~ "Cochez cette option si vous avez mis à jour vos paramètres fiscaux dans "
+#~ "Quaderno."
 
 #~ msgid "E-Book"
 #~ msgstr "Livre électronique"
