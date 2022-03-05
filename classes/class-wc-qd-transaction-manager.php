@@ -95,14 +95,10 @@ class WC_QD_Transaction_Manager {
 
       $tax_class = WC_QD_Calculate_Tax::get_tax_class( $product_id );
       $product_type = WC_QD_Calculate_Tax::get_product_type( $product_id );
-      write_log( 'Product: '. $product_id );
-      write_log( 'Tax class: '. $tax_class );
-      write_log( 'Product type: '. $product_type );
     } elseif ( $item->is_type('shipping') ) {
       $shipping_tax_class = get_option( 'woocommerce_shipping_tax_class' );
       if ( 'inherit' !== $shipping_tax_class ) {
         $tax_class = $shipping_tax_class;
-        write_log( 'Shipping: '. $tax_class );
       }
     }
 
