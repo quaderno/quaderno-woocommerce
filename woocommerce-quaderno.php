@@ -170,7 +170,6 @@ class WooCommerce_Quaderno {
 
 		// Admin only classes
 		if ( is_admin() ) {
-
 			// The Quaderno tax class field
 			$tax_code_field = new WC_QD_Tax_Code_Field();
 			$tax_code_field->setup();
@@ -178,6 +177,9 @@ class WooCommerce_Quaderno {
 			// Setup Order manager
 			$status_page = new WC_QD_Status();
 			$status_page->setup();
+
+			// Show tools
+			$tools = new WC_QD_Tools();
 
 			// Filter plugin links
 			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_links' ) );

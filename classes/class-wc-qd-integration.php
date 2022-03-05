@@ -146,30 +146,6 @@ class WC_QD_Integration extends WC_Integration {
 			// Get the universal pricing option and add it to the form fields array
 			$this->form_fields[ 'universal_pricing' ] = $this->get_universal_pricing_setting();
 		}
-
-		$this->form_fields[ 'clear_trasients' ] = array(
-				'title'       => __( 'Clear tax cache', 'woocommerce-quaderno' ),
-				'description' => __( 'Check this if you have updated your tax settings in Quaderno.', 'woocommerce-quaderno' ),
-				'type'        => 'checkbox'
-			);
-	}
-
-	/**
-	 * Clear transients
-	 */
-	public function clear_transients() {
-		global $wpdb;
-
-	 	// delete all transients
-	 	if ( isset( $_POST['woocommerce_quaderno_clear_trasients'] )) {
-		  $sql = 'DELETE FROM ' . $wpdb->options . ' WHERE option_name LIKE "_transient_quaderno_tax_%"';
-		  $wpdb->query($sql);
-
-		  $sql = 'DELETE FROM ' . $wpdb->options . ' WHERE option_name LIKE "%_vat_number_%"';
-		  $wpdb->query($sql);
-
-		  $_POST['woocommerce_quaderno_clear_trasients'] = NULL;
-	 	}
 	}
 
 	/**
