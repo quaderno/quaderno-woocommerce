@@ -121,7 +121,6 @@ class WC_QD_Calculate_Tax {
 				$tax->rate = $wc_rate['rate'];
 				$tax->tax_code = 'standard';
 				$tax->country = $country;
-				$tax->region = $region;
 			}
 
 			set_transient( $slug, $tax, DAY_IN_SECONDS );
