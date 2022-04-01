@@ -114,6 +114,11 @@ class WC_QD_Calculate_Tax {
 				$tax = QuadernoTaxRate::calculate( $params );
 			}
 
+			// fallback if there's any error in the tax calculator
+			if ( !is_object( $tax ) ) {
+				$tax = (object) ['name' => 'VAT', 'rate' => 0, 'tax_code' => 'standard', 'country' => $country];
+			}
+
 			// we use the WooCommerce tax calculator if the tax rate exists
 			$wc_rate = self::get_wc_rate( $tax_class, $country, $region, $postal_code, $city );
 			if ( !empty( $wc_rate ) ) {

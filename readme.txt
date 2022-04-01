@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
 Tested up to: 5.9
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,10 @@ If you have any questions please get in touch with us at support@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 2.1.2 – April 1, 2022 =
+* New: fallback when Quaderno tax calculator fails
+* Fix: remove call to old function
 
 = 2.1.1 – March 14, 2022 =
 * Fix: some taxes are separated on final invoices

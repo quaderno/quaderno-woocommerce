@@ -35,7 +35,6 @@ class WC_QD_Integration extends WC_Integration {
 		// Hooks
 		add_action( 'plugins_loaded', array( $this, 'init' ) );
 		add_action( 'woocommerce_update_options_integration_quaderno', array( $this, 'process_admin_options' ) );
-		add_action( 'woocommerce_settings_save_integration', array( $this, 'clear_transients' ) );
 
 		if ( version_compare( WC_VERSION, '2.4.7', '>=' ) && self::$universal_pricing == 'yes' ) {
 			add_filter( 'woocommerce_adjust_non_base_location_prices', '__return_false' );
