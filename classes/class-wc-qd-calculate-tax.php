@@ -31,7 +31,7 @@ class WC_QD_Calculate_Tax {
  			if ( empty( $tax_class ) ) {
  				$tax_class = $variation->get_tax_class();
 
- 				$legacy_class = self::get_legacy_class($parent);
+ 				$legacy_class = self::get_legacy_class($variation);
 				if ( !empty( $legacy_class ) ) {
 					$tax_class = $legacy_class;
 				}
