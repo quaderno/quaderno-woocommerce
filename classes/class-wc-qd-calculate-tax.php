@@ -91,6 +91,7 @@ class WC_QD_Calculate_Tax {
 	 */
 	public static function calculate( $tax_class, $product_type, $amount, $currency, $country, $region = '', $postal_code = '', $city = '' ) {
 		global $woocommerce;
+		$cache_tax = true;
 
 		$params = array(
 			'from_country' => apply_filters( 'quaderno_shipping_country', $woocommerce->countries->get_base_country() ),
@@ -117,6 +118,7 @@ class WC_QD_Calculate_Tax {
 			// fallback if there's any error in the tax calculator
 			if ( !is_object( $tax ) ) {
 				$tax = (object) ['name' => 'VAT', 'rate' => 0, 'tax_code' => 'standard', 'country' => $country];
+				$cache_tax = false; // we do not cache the tax calculations in this case
 			}
 
 			// we use the WooCommerce tax calculator if the tax rate exists
@@ -128,7 +130,9 @@ class WC_QD_Calculate_Tax {
 				$tax->country = $country;
 			}
 
-			set_transient( $slug, $tax, DAY_IN_SECONDS );
+			if ( true === $cache_tax ) {
+				set_transient( $slug, $tax, DAY_IN_SECONDS );
+			}
 		}
 
 		return $tax;
