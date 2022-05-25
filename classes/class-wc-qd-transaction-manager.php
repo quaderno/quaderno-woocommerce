@@ -54,6 +54,8 @@ class WC_QD_Transaction_Manager {
     $method = '';
     switch( $payment_method ) {
       case 'bacs':
+      case 'bizum':
+      case 'bizumredsys':
         $method = 'wire_transfer';
         break;
       case 'cheque':
@@ -69,8 +71,19 @@ class WC_QD_Transaction_Manager {
         $method = 'paypal';
         break;
       case 'stripe':
+      case 'cpsw_stripe':
+      case 'stripe_cc':
       case 'braintree_credit_card':
+      case 'square_credit_card':
+      case 'redsys':
+      case 'myredsys':
+      case 'redsys_gw':
         $method = 'credit_card';
+        break;
+      case 'gocardless':
+      case 'stripe_sepa':
+      case 'mollie_wc_gateway_directdebit':
+        $method = 'direct_debit';
         break;
       default:
         $method = 'other';
