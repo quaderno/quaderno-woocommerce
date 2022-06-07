@@ -93,6 +93,11 @@ class WC_QD_Status {
             <td><mark class="<?php echo(WC_QD_Integration::$autosend_invoices) ?>"><span class="dashicons dashicons-<?php echo(WC_QD_Integration::$autosend_invoices) ?>"></span></mark></td>
           </tr>
           <tr>
+            <td data-export-label="Autosend invoices">Update tax in subscriptions:</td>
+            <td class="help"><?php echo wc_help_tip( esc_html__( 'Taxes will be recalculated for subscriptions if needed', 'woocommerce-quaderno' ) ); ?></td>
+            <td><mark class="<?php echo(WC_QD_Integration::$update_subscription_tax) ?>"><span class="dashicons dashicons-<?php echo(WC_QD_Integration::$update_subscription_tax) ?>"></span></mark></td>
+          </tr>
+          <tr>
             <td data-export-label="Require tax ID">Require tax ID in <?php echo $woocommerce->countries->countries[ $base_country ] ?>:</td>
             <td class="help"><?php echo wc_help_tip( esc_html__( 'Local customers have to enter their tax ID.', 'woocommerce-quaderno' ) ); ?></td>
             <td><mark class="<?php echo(WC_QD_Integration::$require_tax_id) ?>"><span class="dashicons dashicons-<?php echo(WC_QD_Integration::$require_tax_id) ?>"></span></mark></td>
