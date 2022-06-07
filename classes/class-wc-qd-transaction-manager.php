@@ -186,8 +186,14 @@ class WC_QD_Transaction_Manager {
       $tax_id = get_post_meta( $order_id, 'tax_id', true );
     }
 
+    # get the tax ID country if exists
+    $country = '';
+    if ( isset($location) ) {
+      $country = $location['country'];
+    }
+
     // Check if the order is tax exempted
-    return 'yes' === $is_vat_exempt || ( $is_vat_exempt == '' && true === WC_QD_Tax_Id_Field::is_valid( $tax_id, $location['country'] ) );
+    return 'yes' === $is_vat_exempt || ( $is_vat_exempt == '' && true === WC_QD_Tax_Id_Field::is_valid( $tax_id, $country ));
   }
 
 }
