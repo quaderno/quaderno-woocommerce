@@ -29,7 +29,7 @@ class WC_QD_Subscription_Manager extends WC_QD_Transaction_Manager {
 
     // Return if the order is reverse-charged
     if ( $this->is_reverse_charge( $new_order ) ) {
-      add_post_meta( $new_order->get_id(), 'is_vat_exempt', true );
+      add_post_meta( $new_order->get_id(), 'is_vat_exempt', 'yes' );
       return $new_order;
     }
 

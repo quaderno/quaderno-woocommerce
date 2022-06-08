@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2022-03-05 14:10+0000\n"
+"POT-Creation-Date: 2022-06-08 10:57+0100\n"
 "PO-Revision-Date: 2018-07-03 20:09-0000\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: \n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__\n"
 "X-Poedit-SearchPath-0: ..\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Tax amount subject to reverse charge"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:21
+#: ../classes/class-wc-qd-integration.php:22
 #, php-format
 msgid ""
 "Automatically calculate tax rates & create instant tax reports for your "
@@ -29,83 +29,93 @@ msgid ""
 "extension to work."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:73
-#: ../classes/class-wc-qd-integration.php:101
+#: ../classes/class-wc-qd-integration.php:74
+#: ../classes/class-wc-qd-integration.php:102
 msgid "Force universal pricing"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:74
+#: ../classes/class-wc-qd-integration.php:75
 msgid ""
 "Check this if you want Quaderno to calculate tax in such a way, that the "
 "final price is always the same as the price provided."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:81
+#: ../classes/class-wc-qd-integration.php:82
 #, php-format
 msgid ""
 "In order for this option to be available you must set the following options "
 "on the %sTax Options%s page:"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:86
+#: ../classes/class-wc-qd-integration.php:87
 #, php-format
 msgid "Prices entered with tax: %sYes, I will enter prices inclusive of tax%s"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:90
+#: ../classes/class-wc-qd-integration.php:91
 #, php-format
 msgid "Display prices in the shop: %sIncluding tax%s"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:95
+#: ../classes/class-wc-qd-integration.php:96
 #, php-format
 msgid "Display prices during cart and checkout: %sIncluding tax%s"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:121
+#: ../classes/class-wc-qd-integration.php:122
 msgid "Private key"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:122
+#: ../classes/class-wc-qd-integration.php:123
 msgid "Get your Quaderno private key"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:126
+#: ../classes/class-wc-qd-integration.php:127
 msgid "API URL"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:127
+#: ../classes/class-wc-qd-integration.php:128
 msgid "Get your Quaderno API URL"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:131
+#: ../classes/class-wc-qd-integration.php:132
 msgid "Autosend receipts"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:132
+#: ../classes/class-wc-qd-integration.php:133
 msgid "Check this if you want Quaderno to automatically email your receipts."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:139
+#: ../classes/class-wc-qd-integration.php:137
+msgid "Update tax in subscriptions"
+msgstr ""
+
+#: ../classes/class-wc-qd-integration.php:138
+msgid ""
+"Check this if you want Quaderno to recalculate tax in your subscriptions if "
+"needed."
+msgstr ""
+
+#: ../classes/class-wc-qd-integration.php:145
 msgid "Require tax ID"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:140
+#: ../classes/class-wc-qd-integration.php:146
 #, php-format
 msgid "Check this if tax ID must be required for all sales in %s."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:160
+#: ../classes/class-wc-qd-integration.php:166
 msgid ""
 "<strong>Quaderno</strong> is almost ready &#8211; Please configure your API "
 "keys to start creating automatic invoices."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:164 ../woocommerce-quaderno.php:203
+#: ../classes/class-wc-qd-integration.php:170 ../woocommerce-quaderno.php:207
 msgid "Settings"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:184
+#: ../classes/class-wc-qd-integration.php:190
 #, php-format
 msgid ""
 "We have noticed that you have been using Quaderno for some time. We hope "
@@ -158,10 +168,14 @@ msgid "Invoices and credit notes will be automatically sent."
 msgstr ""
 
 #: ../classes/class-wc-qd-status.php:97
-msgid "Local customers have to enter their tax ID."
+msgid "Taxes will be recalculated for subscriptions if needed"
 msgstr ""
 
 #: ../classes/class-wc-qd-status.php:102
+msgid "Local customers have to enter their tax ID."
+msgstr ""
+
+#: ../classes/class-wc-qd-status.php:107
 msgid ""
 "All customers pay the same price for the same product, no matter where they "
 "are based."

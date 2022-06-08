@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
 Requires at least: 4.6
 Tested up to: 6.0
-Stable tag: 2.1.6
+Stable tag: 2.1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,11 @@ If you have any questions please get in touch with us at support@quaderno.io.
 4. Example of a receipt
 
 == Changelog ==
+
+= 2.1.7 – June 8, 2022 =
+* Fix: ignore reverse-charge subscriptions in renewal
+* Fix: error in subscriptions renewals with multiple items
+* New: add subscription renewal option to status page
 
 = 2.1.6 – May 25, 2022 =
 * New: identify new payment methods
