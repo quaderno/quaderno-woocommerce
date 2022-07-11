@@ -119,6 +119,13 @@ class WC_QD_Checkout_Vat {
 		}
 		$tax_id = sanitize_text_field( 'billing' === $tax_based_on ? $_POST['tax_id'] : '' );
 
+    // Check if the customer is VAT exempted
+		if ( empty( $tax_id ) || false === WC_QD_Tax_Id_Field::is_valid( $tax_id, $country ) ) {
+			WC()->customer->set_is_vat_exempt( false );
+		} else {
+			WC()->customer->set_is_vat_exempt( true );
+		}
+
 		// The cart manager
 		$cart_manager = new WC_QD_Cart_Manager($country, $state, $postcode, $city, $tax_id);
 
