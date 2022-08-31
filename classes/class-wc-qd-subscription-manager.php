@@ -36,12 +36,15 @@ class WC_QD_Subscription_Manager extends WC_QD_Transaction_Manager {
     $items = $new_order->get_items(array('line_item', 'shipping' ,'fee'));
 
     foreach ( $items as $item_id => $item ) {
-      $subtotal = $new_order->get_line_subtotal( $item, true );
-      $total = $new_order->get_line_total( $item, true );
       $tax = $this->get_tax( $new_order, $item );
 
       // Recalculate item's subtotal and total
-      $item->set_subtotal( $subtotal + round( $subtotal * $tax->rate / 100, 2 ));
+      if ( $item->is_type( 'line_item' ) ) {
+        $subtotal = $new_order->get_line_subtotal( $item, true );
+        $item->set_subtotal( $subtotal + round( $subtotal * $tax->rate / 100, 2 ));
+      }
+
+      $total = $new_order->get_line_total( $item, true );
       $item->set_total( $total + round( $total * $tax->rate / 100, 2 ));
 
       $item->calculate_taxes(); // Make new taxes calculations
