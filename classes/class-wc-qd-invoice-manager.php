@@ -156,8 +156,16 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
       }
 
       if ( $item->is_type('line_item') ) {
+        $product_id = $item['product_id'];
+        $product_variation_id = $item['variation_id'];
+
         // Get the product code and tags if exist
-        $product = wc_get_product( $item->get_product_id() );
+        if ( $product_variation_id )  {
+          $product = wc_get_product( $product_variation_id );
+        } else {
+          $product = wc_get_product( $product_id );
+        }
+
         if ( !empty( $product ) ) {
           $new_item['product_code'] = $product->get_sku();
           $tags = array_merge( $tags, wp_get_object_terms( $product->get_id(), 'product_tag', array( 'fields' => 'slugs' ) ) );
