@@ -1,4 +1,4 @@
-=== WooCommerce Quaderno ===
+=== WooCommerce Quaderno – Tax Automation ===
 Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce
 Contributors: polimorfico
 Tags: tax, taxes, sales tax, vat, gst, vatmoss, vat moss, billing, invoices, receipts, credit notes, woocommerce, quaderno
@@ -12,58 +12,62 @@ Automatically calculate tax rates & create instant tax reports for your WooComme
 
 == Description ==
 
-Quaderno for WooCommerce takes taxes off your plate by automatically calculating tax on every sale and following up with beautiful receipts and credit notes, no matter where your customer is located. Transactions and invoices processed through Quaderno always comply with ever-changing local tax rules, including US sales tax, EU VAT, and Canadian GST.
+The Quaderno plugin for WooCommerce simplifies your business by automatically calculating tax on every sale and following up with tax-compliant receipts and credit notes, no matter where your customer is located. Transactions and invoices processed through Quaderno are compliant with ever-changing local [tax rules for WooCommerce sellers](https://www.quaderno.io/digital-tax-guides/woocommerce-sales-tax-guide/?utm_source=wordpress&utm_campaign=woocommerce), including US sales tax, EU VAT, and Canadian GST.
 
-https://www.youtube.com/watch?v=mGs6SVOr7fU
+https://www.youtube.com/watch?v=NyWw4Dye2ag
 
 = What you get =
 
 * **Comply with local tax laws** in countries around the world.
-* **Get notified any time you surpass a tax threshold**, or when a tax rate changes anywhere you sell your products or services.
-* **Get all the information you need for your tax returns**, at a glance, in mere seconds.
-* **Automatic receipts and credit notes** with every order in your store, in **multiple languages and currencies**.
-* Let your customers to **download receipts and credit notes** right from your WooCommerce's orders page.  
-* **Manage all your revenue sources** in one easy-to-use dashboard.
+* **Get notified any time you become liable for taxes** by surpassing a tax registration or [US economic nexus threshold](https://www.quaderno.io/digital-tax-guides/us-economic-nexus-guide/?utm_source=wordpress&utm_campaign=woocommerce), or when a tax rate changes anywhere you sell your products or services. You’ll always know [when to charge sales tax](https://www.quaderno.io/blog/do-i-need-to-collect-sales-tax-for-selling-online/?utm_source=wordpress&utm_campaign=woocommerce), and Quaderno does that for you!
+* **Automatic tax calculation on every transaction**. Our database identifies the correct tax rate and amount based on your product and the customer's location.
+* **Get all the information you need for your tax returns** at a glance, with Quaderno’s instant tax reports.
+* **Automatic receipts and credit notes** sent for every order in your store, in **multiple languages and currencies**.
+* Let your customers **download receipts and credit notes** directly from your WooCommerce orders page. Hands-free customer service!
+* *+Manage all your revenue sources** and other business data in one easy-to-use dashboard.
 
-**Setup in less than 5 minutes**. Fast and easy!
+**Setup in less than 5 minutes**. Quick and easy!
 
 1. Download & activate this plugin
-2. [Sign up](https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce) for a Quaderno account
+2. [Sign up](https://quadernoapp.com/signup/?utm_source=wordpress&utm_campaign=woocommerce) for a Quaderno account
 3. Paste your API key in your WooCommerce site
 4. That's all!
 
-**Note:** this plugin requires a [Quaderno](https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce) account.
+**Note:** this plugin requires a [Quaderno](https://quadernoapp.com/signup/?utm_source=wordpress&utm_campaign=woocommerce) account.
 
 == Installation ==
 
-Following are the steps to install the WooCommerce Quaderno
+Follow these steps to install the WooCommerce Quaderno - Tax Automation plugin.
 
-1. Unpack the entire contents of this plugin zip file into your wp-content/plugins/ folder locally.
+1. Unpack the entire contents of this plugin zip file to your wp-content/plugins/ folder locally.
 2. Upload to your site.
 3. Navigate to wp-admin/plugins.php on your site (your WP Admin plugin page).
 4. Activate this plugin.
 5. Configure the options from WooCommerce > Settings > Integration.
 
-OR you can just install it with WordPress by going to Plugins > Add New > and type this plugin's name
+OR you can just install it with WordPress by going to Plugins > Add New > and typing this plugin’s name.
 
-That's it! You can now customize your WooCommerce receipts and be EU VAT compliant.
+That’s it! You can now customize your WooCommerce receipts and stay compliant with US sales tax, EU VAT, and other consumption taxes around the world.
+
+Check out our [WooCommerce Quaderno support documentation](https://support.quaderno.io/category/465-woocommerce/?utm_source=wordpress&utm_campaign=woocommerce) for more information.
 
 == Frequently Asked Questions ==
 
-= Do I need to modify any code? =
-Nope - we take care of everything you. Just install the plugin, add your API token and you’ll be good to go!
+= How do I add tax to my WooCommerce sales with Quaderno? =
+Our plugin will automatically do this for you! Once the [integration with WooCommerce](https://support.quaderno.io/article/500-connecting-woocommerce/?utm_source=wordpress&utm_campaign=woocommerce) is complete, you’ll see the correct tax added to each transaction directly in the checkout process.
 
-= Does Quaderno work with any WooCommerce themes? =
-Yes, Quaderno works with any WooCommerce theme - whether free, commercial or custom. You just need WooCommerce activated for Quaderno to work.
+= Can I integrate other e-commerce platforms with Quaderno? =
+Sure, if you sell on Amazon FBA or Shopify, you can connect those platforms to your Quaderno account as well. This way you can have all your sales and taxes in one dashboard.
 
-If you have any questions please get in touch with us at support@quaderno.io.
+= What pricing plans are available? =
+We offer simple, transaction-based pricing that scales with your business. [Quaderno plans](https://www.quaderno.io/pricing/?utm_source=wordpress&utm_campaign=woocommerce) start at $29 per month.
 
 == Screenshots ==
 
 1. Copy your API token and API URL from your Quaderno account
 2. Paste it on the Quaderno settings page
 3. Calculate taxes on the fly if you sell digital goods to EU customers
-4. Example of a receipt
+4. Example of an invoice
 
 == Changelog ==
 
