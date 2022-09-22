@@ -24,7 +24,7 @@ https://www.youtube.com/watch?v=NyWw4Dye2ag
 * **Get all the information you need for your tax returns** at a glance, with Quaderno’s instant tax reports.
 * **Automatic receipts and credit notes** sent for every order in your store, in **multiple languages and currencies**.
 * Let your customers **download receipts and credit notes** directly from your WooCommerce orders page. Hands-free customer service!
-* *+Manage all your revenue sources** and other business data in one easy-to-use dashboard.
+* **Manage all your revenue sources** and other business data in one easy-to-use dashboard.
 
 **Setup in less than 5 minutes**. Quick and easy!
 
