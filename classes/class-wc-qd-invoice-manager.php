@@ -168,7 +168,9 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
 
         if ( !empty( $product ) ) {
           $new_item['product_code'] = $product->get_sku();
-          $tags = array_merge( $tags, wp_get_object_terms( $product->get_id(), 'product_tag', array( 'fields' => 'slugs' ) ) );
+
+          // Tags are always linked to products, not to variants
+          $tags = array_merge( $tags, wp_get_object_terms( $product_id, 'product_tag', array( 'fields' => 'slugs' ) ) );
         }
       }
 

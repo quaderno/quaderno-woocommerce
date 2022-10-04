@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: woocommerce, tax, taxes, sales tax, vat, gst, vatmoss, vat moss, vat oss, billing, invoices, receipts, credit notes
 Requires at least: 4.6
 Tested up to: 6.0
-Stable tag: 2.1.11
+Stable tag: 2.1.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,9 @@ We offer simple, transaction-based pricing that scales with your business. [Quad
 4. Example of an invoice
 
 == Changelog ==
+
+= 2.1.12 – October 4, 2022 =
+* Fix: tags of product variants are not sent to Quaderno
 
 = 2.1.11 – September 22, 2022 =
 * Update: readme content
