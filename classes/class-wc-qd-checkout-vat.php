@@ -66,14 +66,14 @@ class WC_QD_Checkout_Vat {
 			$city = WC()->countries->get_base_city();
 		} elseif ( 'billing' === $tax_based_on ) {
 			$country  = sanitize_text_field( $post_arr['billing_country'] );
-			$state = sanitize_text_field( $post_arr['billing_state'] );
-			$postcode = sanitize_text_field( $post_arr['billing_postcode'] );
-			$city = sanitize_text_field( $post_arr['billing_city'] );
+			$state = isset( $post_arr['billing_state'] ) ? sanitize_text_field( $post_arr['billing_state'] ) : null;
+			$postcode = isset( $post_arr['billing_postcode'] ) ? sanitize_text_field( $post_arr['billing_postcode'] ) : null;
+			$city = isset( $post_arr['billing_city'] ) ? sanitize_text_field( $post_arr['billing_city'] ) : null;
 		} else {
 			$country  = sanitize_text_field( $post_arr['shipping_country'] );
-			$state = sanitize_text_field( $post_arr['shipping_state'] );
-			$postcode = sanitize_text_field( $post_arr['shipping_postcode'] );
-			$city = sanitize_text_field( $post_arr['shipping_city'] );
+			$state = isset( $post_arr['shipping_state'] ) ? sanitize_text_field( $post_arr['shipping_state'] ) : null;
+			$postcode = isset( $post_arr['shipping_postcode'] ) ? sanitize_text_field( $post_arr['shipping_postcode'] ) : null;
+			$city = isset( $post_arr['shipping_city'] ) ? sanitize_text_field( $post_arr['shipping_city'] ) : null;
 		}
 		$tax_id = sanitize_text_field( 'billing' === $tax_based_on ? $post_arr['tax_id'] : '' );
 
