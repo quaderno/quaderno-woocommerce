@@ -30,9 +30,6 @@ class WC_QD_Cart_Manager {
 		// The items
 		$items = array();
 
-		// Pre Calculate totals
-		WC()->cart->calculate_totals();
-
 		// Loop through cart items
 		$cart = WC()->cart->get_cart();
 
@@ -52,7 +49,8 @@ class WC_QD_Cart_Manager {
 					'id' => $id,
 					'product_type' => $tax_class,
 					'tax_name' => $tax->name,
-					'tax_rate' => $tax->rate);
+					'tax_rate' => $tax->rate
+				);
 			}
 		}
 
