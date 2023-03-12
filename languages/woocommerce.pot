@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2022-06-08 10:57+0100\n"
+"POT-Creation-Date: 2023-03-12 21:04+0000\n"
 "PO-Revision-Date: 2018-07-03 20:09-0000\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: \n"
@@ -11,13 +11,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../classes/class-wc-qd-credit-manager.php:120
-#: ../classes/class-wc-qd-invoice-manager.php:188
+#: ../classes/class-wc-qd-invoice-manager.php:198
 msgid "Tax amount subject to reverse charge"
 msgstr ""
 
@@ -118,9 +118,9 @@ msgstr ""
 #: ../classes/class-wc-qd-integration.php:190
 #, php-format
 msgid ""
-"We have noticed that you have been using Quaderno for some time. We hope "
-"you love it, and we would really appreciate it if you would <a href='%s' "
-"target='_blank'>give us a 5 stars rating</a>."
+"Thank you for choosing Quaderno to manage your taxes in WooCommerce! Please "
+"consider <a href='%s' target='_blank'>writing a quick review</a>, so we can "
+"reach more business owners like you."
 msgstr ""
 
 #: ../classes/class-wc-qd-invoice-manager.php:68

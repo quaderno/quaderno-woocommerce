@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2022-06-08 10:57+0100\n"
-"PO-Revision-Date: 2022-06-08 10:58+0100\n"
+"POT-Creation-Date: 2023-03-12 21:04+0000\n"
+"PO-Revision-Date: 2023-03-12 21:05+0000\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: Quaderno <support@quaderno.io>\n"
 "Language: es_ES\n"
@@ -10,14 +10,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../classes/class-wc-qd-credit-manager.php:120
-#: ../classes/class-wc-qd-invoice-manager.php:188
+#: ../classes/class-wc-qd-invoice-manager.php:198
 msgid "Tax amount subject to reverse charge"
 msgstr "Inversión de sujeto pasivo"
 
@@ -135,13 +135,13 @@ msgstr "Configuración"
 #: ../classes/class-wc-qd-integration.php:190
 #, php-format
 msgid ""
-"We have noticed that you have been using Quaderno for some time. We hope you "
-"love it, and we would really appreciate it if you would <a href='%s' "
-"target='_blank'>give us a 5 stars rating</a>."
+"Thank you for choosing Quaderno to manage your taxes in WooCommerce! Please "
+"consider <a href='%s' target='_blank'>writing a quick review</a>, so we can "
+"reach more business owners like you."
 msgstr ""
-"Hemos notado que ha estado usando Quaderno durante algún tiempo. Esperamos "
-"que te guste y te agradeceríamos mucho que <a href=‘%s’ target=‘_blank’>nos "
-"calificaras con 5 estrellas</a>."
+"¡Gracias por elegir Quaderno para gestionar tus impuestos en WooCommerce! Si "
+"es posible, nos gustaría <a href=‘%s’ target=‘_blank’>pedirte una pequeña "
+"reseña</a> para llegar a más propietarios de negocios como el tuyo."
 
 #: ../classes/class-wc-qd-invoice-manager.php:68
 msgid "WooCommerce customer"
@@ -173,7 +173,7 @@ msgstr "Dirección base de la tienda"
 msgid "Shipping tax class based on cart items"
 msgstr ""
 "El tipo de impuesto para los gastos de envío depende del contenido del "
-"carrito. "
+"carrito"
 
 #: ../classes/class-wc-qd-status.php:73
 msgid ""
@@ -189,7 +189,7 @@ msgstr "Comprobar si las credenciales API son correctas."
 
 #: ../classes/class-wc-qd-status.php:92
 msgid "Invoices and credit notes will be automatically sent."
-msgstr "Las facturas y los abonos serán enviados automáticamente"
+msgstr "Las facturas y los abonos serán enviados automáticamente."
 
 #: ../classes/class-wc-qd-status.php:97
 msgid "Taxes will be recalculated for subscriptions if needed"
@@ -198,7 +198,7 @@ msgstr ""
 
 #: ../classes/class-wc-qd-status.php:102
 msgid "Local customers have to enter their tax ID."
-msgstr "Los clientes locales tienes que introducir su NIF"
+msgstr "Los clientes locales tienes que introducir su NIF."
 
 #: ../classes/class-wc-qd-status.php:107
 msgid ""
@@ -295,8 +295,18 @@ msgid ""
 "Please update WooCommerce to <strong>version 2.2.9 or higher</strong> in "
 "order for the WooCommerce Quaderno extension to work!"
 msgstr ""
-"Por favor actualiza tu instalación de WooCommerce a la <strong>versión 2.2.9 "
-"o superior</strong> para poder usar este plugin"
+"¡Por favor actualiza tu instalación de WooCommerce a la <strong>versión "
+"2.2.9 o superior</strong> para poder usar este plugin!"
+
+#, php-format
+#~ msgid ""
+#~ "We have noticed that you have been using Quaderno for some time. We hope "
+#~ "you love it, and we would really appreciate it if you would <a href='%s' "
+#~ "target='_blank'>give us a 5 stars rating</a>."
+#~ msgstr ""
+#~ "Hemos notado que ha estado usando Quaderno durante algún tiempo. "
+#~ "Esperamos que te guste y te agradeceríamos mucho que <a href=‘%s’ "
+#~ "target=‘_blank’>nos calificaras con 5 estrellas</a>."
 
 #~ msgid "Check this if you have updated your tax settings in Quaderno."
 #~ msgstr ""
