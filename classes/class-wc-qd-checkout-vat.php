@@ -11,12 +11,12 @@ class WC_QD_Checkout_Vat {
 	 */
 	public function setup() {
 
+		// Update the taxes on the cart page
+		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'update_taxes_on_update_cart' ), 10, 1 );
+
 		// Update the taxes on the checkout page whenever the order review template part is refreshed
 		add_action( 'woocommerce_checkout_update_order_review', array( $this, 'update_taxes_on_update_order_review' ), 10, 1 );
 
-		// Update the taxes on the cart page
-		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'update_taxes_on_update_cart' ), 10, 1 );
- 
 		// Update the taxes in the checkout process when the checkout is processed
 		add_action( 'woocommerce_checkout_process', array( $this, 'update_taxes_on_check_process' ), 10 );
 
@@ -28,24 +28,17 @@ class WC_QD_Checkout_Vat {
 	public function update_taxes_on_update_cart( $cart ) {
 		
 		if( is_cart() ) {
-
-			// $tax_based_on 	= 'base';
-			// $country  		= WC()->countries->get_base_country();
-			// $state 			= WC()->countries->get_base_state();
-			// $postcode 		= WC()->countries->get_base_postcode();
-			// $city 			= WC()->countries->get_base_city();
-
 			$tax_based_on = get_option( 'woocommerce_tax_based_on' );
 
 			$shipping_country = WC()->customer->get_shipping_country();
 			$shipping_state = WC()->customer->get_shipping_state();
 			$shipping_postcode = WC()->customer->get_shipping_postcode();
 			$shipping_city = WC()->customer->get_shipping_city();
-			$tax_id 		= sanitize_text_field( 'billing' === $tax_based_on ? $_POST['tax_id'] : '' );
+			$tax_id = sanitize_text_field( 'billing' === $tax_based_on ? $_POST['tax_id'] : '' );
 			
 			// The cart manager
-			// $cart_manager = new WC_QD_Cart_Manager( $country, $state, $postcode, $city, $tax_id );
 			$cart_manager = new WC_QD_Cart_Manager( $shipping_country, $shipping_state, $shipping_postcode, $shipping_city, $tax_id );
+
 			// Update the taxes in cart based on cart items
 			$tax_rates = $this->update_taxes_in_cart( $cart_manager->get_items_from_cart() );
 			

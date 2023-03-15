@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: woocommerce, tax, taxes, sales tax, vat, gst, vatmoss, vat moss, vat oss, billing, invoices, receipts, credit notes
 Requires at least: 4.6
 Tested up to: 6.1
-Stable tag: 2.1.15
+Stable tag: 2.1.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,9 @@ We offer simple, transaction-based pricing that scales with your business. [Quad
 4. Example of an invoice
 
 == Changelog ==
+
+= 2.1.16 – March 15, 2023 =
+* New: we now calculate taxes in the shopping cart
 
 = 2.1.15 – January 30, 2023 =
 * New: Support FunnelKit payment method
