@@ -14,12 +14,56 @@ class WC_QD_Checkout_Vat {
 		// Update the taxes on the checkout page whenever the order review template part is refreshed
 		add_action( 'woocommerce_checkout_update_order_review', array( $this, 'update_taxes_on_update_order_review' ), 10, 1 );
 
+		// Update the taxes on the cart page
+		add_action( 'woocommerce_cart_calculate_fees', array( $this, 'update_taxes_on_update_cart' ), 10, 1 );
+ 
 		// Update the taxes in the checkout process when the checkout is processed
 		add_action( 'woocommerce_checkout_process', array( $this, 'update_taxes_on_check_process' ), 10 );
 
 		// Update the taxes when the line taxes are calculated in the admin
 		add_filter( 'woocommerce_ajax_calc_line_taxes', array( $this, 'update_taxes_on_calc_line_taxes' ), 10, 3 );
 
+	}
+
+	public function update_taxes_on_update_cart( $cart ) {
+		
+		if( is_cart() ) {
+
+			// $tax_based_on 	= 'base';
+			// $country  		= WC()->countries->get_base_country();
+			// $state 			= WC()->countries->get_base_state();
+			// $postcode 		= WC()->countries->get_base_postcode();
+			// $city 			= WC()->countries->get_base_city();
+
+			$tax_based_on = get_option( 'woocommerce_tax_based_on' );
+
+			$shipping_country = WC()->customer->get_shipping_country();
+			$shipping_state = WC()->customer->get_shipping_state();
+			$shipping_postcode = WC()->customer->get_shipping_postcode();
+			$shipping_city = WC()->customer->get_shipping_city();
+			$tax_id 		= sanitize_text_field( 'billing' === $tax_based_on ? $_POST['tax_id'] : '' );
+			
+			// The cart manager
+			// $cart_manager = new WC_QD_Cart_Manager( $country, $state, $postcode, $city, $tax_id );
+			$cart_manager = new WC_QD_Cart_Manager( $shipping_country, $shipping_state, $shipping_postcode, $shipping_city, $tax_id );
+			// Update the taxes in cart based on cart items
+			$tax_rates = $this->update_taxes_in_cart( $cart_manager->get_items_from_cart() );
+			
+			// Update taxes when the country is not selected
+			if( empty( $_POST ) ) {
+				foreach ( $tax_rates as $key => $value ) {
+					$taxes = array_values( $value );
+	
+					foreach ( $taxes as $tax ) {
+						$cart_total =  WC()->cart->get_cart_contents_total();
+						$tax_amount = ( WC()->cart->get_cart_contents_total() + WC()->cart->get_shipping_total() ) * $tax['rate'] / 100;
+						WC()->cart->add_fee( __( $tax['label'], 'woocommerce-quaderno' ), $tax_amount, true, 'standard' );
+					}
+				}
+			}
+
+		}
+		
 	}
 
 	/**
@@ -39,8 +83,12 @@ class WC_QD_Checkout_Vat {
 				$tax_manager->add_product_tax_class( $item['id'], $item['product_type'] );
 
 				// Add the new tax rate for this transaction line
-				$tax_manager->add_tax_rate( $item['product_type'], $item['tax_rate'], $item['tax_name']);
+				$tax_manager->add_tax_rate( $item['product_type'], $item['tax_rate'], $item['tax_name'] );
 			}
+
+			$tax_rates = $tax_manager->get_tax_rates();
+
+			return $tax_rates;
 		}
 	}
 
@@ -77,7 +125,7 @@ class WC_QD_Checkout_Vat {
 		}
 		$tax_id = sanitize_text_field( 'billing' === $tax_based_on ? $post_arr['tax_id'] : '' );
 
-    // Check if the customer is VAT exempted
+    	// Check if the customer is VAT exempted
 		if ( empty( $tax_id ) || false === WC_QD_Tax_Id_Field::is_valid( $tax_id, $country ) ) {
 			WC()->customer->set_is_vat_exempt( false );
 		} else {

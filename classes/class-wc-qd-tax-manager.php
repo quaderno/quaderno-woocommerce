@@ -243,4 +243,13 @@ class WC_QD_Tax_Manager {
 		return $rate_name;
 	}
 
+	/**
+	 * Returns tax rates after tax rates are added.
+	 * 
+	 * @return array
+	 */
+	public function get_tax_rates() {
+		return $this->tax_rates;
+	}
+
 }
