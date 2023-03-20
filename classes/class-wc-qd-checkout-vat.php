@@ -34,7 +34,7 @@ class WC_QD_Checkout_Vat {
 			$shipping_state = WC()->customer->get_shipping_state();
 			$shipping_postcode = WC()->customer->get_shipping_postcode();
 			$shipping_city = WC()->customer->get_shipping_city();
-			$tax_id = sanitize_text_field( 'billing' === $tax_based_on ? $_POST['tax_id'] : '' );
+			$tax_id = sanitize_text_field( 'billing' === $tax_based_on ? (isset($_POST['tax_id']) ? $_POST['tax_id'] : '') : '' );
 			
 			// The cart manager
 			$cart_manager = new WC_QD_Cart_Manager( $shipping_country, $shipping_state, $shipping_postcode, $shipping_city, $tax_id );
