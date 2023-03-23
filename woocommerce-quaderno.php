@@ -150,11 +150,13 @@ class WooCommerce_Quaderno {
 
 		// The Tax ID Field
 		$tax_id_field = new WC_QD_Tax_Id_Field();
-		$tax_id_field->setup();
+  	$tax_id_field->setup();
 
-		// Setup the Checkout VAT stuff
-		$checkout_vat = new WC_QD_Checkout_Vat();
-		$checkout_vat->setup();
+    if ( wc_tax_enabled() ) {
+  		// Setup the Checkout VAT stuff
+  		$checkout_vat = new WC_QD_Checkout_Vat();
+  		$checkout_vat->setup();
+    }
 
 		// Setup Invoice manager
 		$invoice_manager = new WC_QD_Invoice_Manager();
