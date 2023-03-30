@@ -3,8 +3,8 @@ Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&u
 Contributors: polimorfico
 Tags: woocommerce, tax, taxes, sales tax, vat, gst, vatmoss, vat moss, vat oss, billing, invoices, receipts, credit notes
 Requires at least: 4.6
-Tested up to: 6.1
-Stable tag: 2.1.18
+Tested up to: 6.2
+Stable tag: 2.1.19
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,9 @@ We offer simple, transaction-based pricing that scales with your business. [Quad
 4. Example of an invoice
 
 == Changelog ==
+
+= 2.1.19 – March 30, 2023 =
+* New: Support for WordPress 6.2
 
 = 2.1.18 – March 23, 2023 =
 * Update: Show taxes in cart only if tax calculations are enabled
