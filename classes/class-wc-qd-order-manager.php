@@ -56,7 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) {
    * @param $order
    */
   public function show_invoice_button( $order ) {
-    if ( ! $order || ! is_user_logged_in() ) {
+    if ( ! $order || ! is_user_logged_in() || 'yes' != WC_QD_Integration::$autosend_invoices ) {
       return;
     }
 

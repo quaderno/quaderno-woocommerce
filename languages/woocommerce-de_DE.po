@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2023-03-12 21:04+0000\n"
-"PO-Revision-Date: 2023-03-12 21:06+0000\n"
+"POT-Creation-Date: 2023-04-14 18:07+0100\n"
+"PO-Revision-Date: 2023-04-14 18:09+0100\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -89,12 +89,16 @@ msgid "Get your Quaderno API URL"
 msgstr "Holen Sie sich Ihre Quaderno-API-URL"
 
 #: ../classes/class-wc-qd-integration.php:132
-msgid "Autosend receipts"
-msgstr "Rechnungen automatisch senden"
+msgid "Send invoices"
+msgstr "Rechnungen versenden"
 
 #: ../classes/class-wc-qd-integration.php:133
-msgid "Check this if you want Quaderno to automatically email your receipts."
-msgstr "Bitte anklicken, um Quittungen automatisch zu versenden."
+msgid ""
+"Check this if you want if you want Quaderno to send an invoice for each "
+"completed order."
+msgstr ""
+"Bitte anklicken, wenn Sie möchten, dass Quaderno für jede abgeschlossene "
+"Bestellung eine Rechnung versendet."
 
 #: ../classes/class-wc-qd-integration.php:137
 msgid "Update tax in subscriptions"
@@ -127,7 +131,7 @@ msgstr ""
 "<strong>Quaderno</strong> ist fast fertig &#8211; Bitte konfigurieren Sie "
 "Ihre API-Schlüssel, um mit der automatischen Rechnungserstellung zu beginnen."
 
-#: ../classes/class-wc-qd-integration.php:170 ../woocommerce-quaderno.php:207
+#: ../classes/class-wc-qd-integration.php:170 ../woocommerce-quaderno.php:209
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -295,6 +299,9 @@ msgid ""
 msgstr ""
 "Bitte aktualisieren Sie WooCommerce bis <strong>Version 2.2.9 oder neuer</"
 "strong>, damit das WooCommerce-Quaderno-Plug-in funktioniert!"
+
+#~ msgid "Autosend receipts"
+#~ msgstr "Rechnungen automatisch senden"
 
 #, php-format
 #~ msgid ""

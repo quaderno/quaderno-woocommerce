@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2023-03-12 21:04+0000\n"
+"POT-Creation-Date: 2023-04-14 18:07+0100\n"
 "PO-Revision-Date: 2018-07-03 20:09-0000\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: \n"
@@ -79,11 +79,13 @@ msgid "Get your Quaderno API URL"
 msgstr ""
 
 #: ../classes/class-wc-qd-integration.php:132
-msgid "Autosend receipts"
+msgid "Send invoices"
 msgstr ""
 
 #: ../classes/class-wc-qd-integration.php:133
-msgid "Check this if you want Quaderno to automatically email your receipts."
+msgid ""
+"Check this if you want if you want Quaderno to send an invoice for each "
+"completed order."
 msgstr ""
 
 #: ../classes/class-wc-qd-integration.php:137
@@ -111,7 +113,7 @@ msgid ""
 "keys to start creating automatic invoices."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:170 ../woocommerce-quaderno.php:207
+#: ../classes/class-wc-qd-integration.php:170 ../woocommerce-quaderno.php:209
 msgid "Settings"
 msgstr ""
 
