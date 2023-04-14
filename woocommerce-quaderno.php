@@ -154,7 +154,7 @@ class WooCommerce_Quaderno {
 
     if ( wc_tax_enabled() ) {
   		// Setup the Checkout VAT stuff
-  		$checkout_vat = new WC_QD_Checkout_Vat();
+  		$checkout_vat = new WC_QD_Checkout_Manager();
   		$checkout_vat->setup();
     }
 

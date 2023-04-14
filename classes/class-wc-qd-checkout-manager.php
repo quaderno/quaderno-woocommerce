@@ -4,15 +4,14 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-class WC_QD_Checkout_Vat {
+class WC_QD_Checkout_Manager {
 
 	/**
 	 * Setup the class
 	 */
 	public function setup() {
-
 		// Update the taxes on the cart page
-    add_filter( 'woocommerce_cart_taxes_total', array( $this, 'update_cart_taxes_total' ), 10, 4 );
+    add_action( 'woocommerce_before_calculate_totals', array( $this, 'update_taxes_on_cart_view' ), 10, 1 );
 
 		// Update the taxes on the checkout page whenever the order review template part is refreshed
 		add_action( 'woocommerce_checkout_update_order_review', array( $this, 'update_taxes_on_update_order_review' ), 10, 1 );
@@ -22,39 +21,7 @@ class WC_QD_Checkout_Vat {
 
 		// Update the taxes when the line taxes are calculated in the admin
 		add_filter( 'woocommerce_ajax_calc_line_taxes', array( $this, 'update_taxes_on_calc_line_taxes' ), 10, 3 );
-
 	}
-
-  /**
-   * Show tax amount in the cart view
-   *
-   * @param integer $total
-   * @param String $country_code
-   */
-  public function update_cart_taxes_total( $total, $compound, $display, $cart ) {
-    $shipping_country = $cart->get_customer()->get_shipping_country();
-    $shipping_state = $cart->get_customer()->get_shipping_state();
-    $shipping_postcode = $cart->get_customer()->get_shipping_postcode();
-    $shipping_city = $cart->get_customer()->get_shipping_city();
-
-    // The cart manager
-    $cart_manager = new WC_QD_Cart_Manager( $shipping_country, $shipping_state, $shipping_postcode, $shipping_city, '' );
-
-    // Update the taxes in cart based on cart items
-    $tax_rates = $this->update_taxes_in_cart( $cart_manager->get_items_from_cart() );
-
-    // Update taxes when the country is not selected
-    $tax_amount = 0;
-    foreach ( $tax_rates as $key => $value ) {
-      $taxes = array_values( $value );
-
-      foreach ( $taxes as $tax ) {
-        $tax_amount += $cart->get_total( '' ) * $tax['rate'] / 100;
-      }
-    }
-
-    return $tax_amount;
-  }
 
 	/**
 	 * Update taxes in cart
@@ -81,6 +48,25 @@ class WC_QD_Checkout_Vat {
 			return $tax_rates;
 		}
 	}
+
+  /**
+   * Show tax amount in the cart view
+   *
+   * @param integer $total
+   * @param String $country_code
+   */
+  public function update_taxes_on_cart_view( $cart ) {
+    $shipping_country = $cart->get_customer()->get_shipping_country();
+    $shipping_state = $cart->get_customer()->get_shipping_state();
+    $shipping_postcode = $cart->get_customer()->get_shipping_postcode();
+    $shipping_city = $cart->get_customer()->get_shipping_city();
+
+    // The cart manager
+    $cart_manager = new WC_QD_Cart_Manager( $shipping_country, $shipping_state, $shipping_postcode, $shipping_city, '' );
+
+    // Update the taxes in cart based on cart items
+    $this->update_taxes_in_cart( $cart_manager->get_items_from_cart() );
+  }
 
 	/**
 	 * Catch the update order review action and update taxes to selected billing country
@@ -208,7 +194,6 @@ class WC_QD_Checkout_Vat {
 		}
 
 		return $items;
-
 	}
 
 }
