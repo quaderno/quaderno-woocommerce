@@ -130,7 +130,7 @@ class WC_QD_Integration extends WC_Integration {
 			),
 			'autosend_invoices' => array(
 				'title'       => __( 'Send invoices', 'woocommerce-quaderno' ),
-				'description' => __( 'Check this if you want if you want Quaderno to send an invoice for each completed order.', 'woocommerce-quaderno' ),
+				'description' => __( 'Check this if you want Quaderno to send an invoice for each completed order.', 'woocommerce-quaderno' ),
 				'type'        => 'checkbox'
 			),
 			'update_subscription_tax' => array(
