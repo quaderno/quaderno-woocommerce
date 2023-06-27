@@ -128,6 +128,8 @@ class WC_QD_Calculate_Tax {
 				$tax->rate = $wc_rate['rate'];
 				$tax->tax_code = 'standard';
 				$tax->country = $country;
+				$tax->region = $region;
+				$tax->city = $city;
 			}
 
 			if ( true === $cache_tax ) {

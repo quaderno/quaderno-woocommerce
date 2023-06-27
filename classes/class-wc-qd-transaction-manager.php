@@ -157,7 +157,6 @@ class WC_QD_Transaction_Manager {
       $country  = $order->get_shipping_country();
       $state  = $order->get_shipping_state();
       $postcode = $order->get_shipping_postcode();
-      $postcode = $order->get_shipping_postcode();
       $city = $order->get_shipping_city();
     }
 
