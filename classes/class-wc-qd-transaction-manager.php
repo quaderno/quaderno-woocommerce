@@ -94,6 +94,44 @@ class WC_QD_Transaction_Manager {
   }
 
   /**
+   * Get payment processor for a particular order
+   *
+   * @param $order
+   */
+  public function get_payment_processor( $order ) {
+    $payment_method = $order->get_payment_method();
+    $method = '';
+    switch( $payment_method ) {
+      case 'paypal':
+      case 'ppec_paypal':
+      case 'ppcp-gateway':
+        $method = 'paypal';
+        break;
+      case 'stripe':
+      case 'cpsw_stripe':
+      case 'stripe_cc':
+      case 'fkwcs_stripe':
+      case 'stripe_sepa':
+        $method = 'stripe';
+        break;
+      case 'braintree_paypal':
+      case 'braintree_credit_card':
+        $method = 'braintree';
+        break;
+      case 'square_credit_card':
+        $method = 'square';
+        break;
+      case 'gocardless':
+        $method = 'gocardless';
+        break;
+      default:
+        $method = $payment_method;
+    }
+
+    return apply_filters( 'quaderno_payment_processor', $method, $order );
+  }
+
+  /**
    * Get the tax of a particular order item
    *
    * @param $order

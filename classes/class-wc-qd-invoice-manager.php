@@ -39,7 +39,7 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
       'processor_id' => strtotime($order->get_date_created()) . '_' . $order_id,
       'payment' => array(
         'method' => $this->get_payment_method($order),
-        'processor' => $order->get_payment_method(),
+        'processor' => $this->get_payment_processor($order),
         'processor_id' => $order->get_transaction_id()
       ), 
       'custom_metadata' => array( 'processor_url' => $order->get_edit_order_url() )

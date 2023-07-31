@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: woocommerce, tax, taxes, sales tax, vat, gst, vatmoss, vat moss, vat oss, billing, invoices, receipts, credit notes
 Requires at least: 4.6
 Tested up to: 6.2
-Stable tag: 2.1.21
+Stable tag: 2.1.22
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,9 @@ We offer simple, transaction-based pricing that scales with your business. [Quad
 4. Example of an invoice
 
 == Changelog ==
+
+= 2.1.22 – Jul 31, 2023 =
+* Fix: use standard payment processors
 
 = 2.1.21 – June 27, 2023 =
 * Fix: region is not send to Quaderno when WooCommerce tax calculator is used
