@@ -76,9 +76,6 @@ class WC_QD_Credit_Manager extends WC_QD_Transaction_Manager {
 		//Let's create the credit note
     $transaction = new QuadernoTransaction($transaction_params);
 
-		// Calculate exchange rate
-		$exchange_rate = get_post_meta( $order->get_id(), '_woocs_order_rate', true ) ?: 1;
-
     // Calculate transaction items and tags
     $tags = array();
     $transaction_items = array();
@@ -87,7 +84,7 @@ class WC_QD_Credit_Manager extends WC_QD_Transaction_Manager {
       $new_item = array(
         'description' => $this->get_description( $item ),
         'quantity' => abs( $item->get_quantity() ?: 1 ),
-        'amount' => abs(round( $refund->get_line_total($item, true) * $exchange_rate, wc_get_price_decimals() ))
+        'amount' => abs($refund->get_line_total($item, true))
       );
 
       // Add tax info for line items, fees, and taxable shipping costs

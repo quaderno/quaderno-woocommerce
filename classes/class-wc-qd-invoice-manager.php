@@ -131,9 +131,6 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
     // Let's create the transaction
     $transaction = new QuadernoTransaction($transaction_params);
 
-    // Calculate exchange rate
-    $exchange_rate = get_post_meta( $order_id, '_woocs_order_rate', true ) ?: 1;
-
     // Calculate transaction items
     $tags = array();
     $transaction_items = array();
@@ -146,7 +143,7 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
       $new_item = array(
         'description' => $this->get_description( $item ),
         'quantity' => $item->get_quantity() ?: 1,
-        'amount' => round( $total * $exchange_rate, wc_get_price_decimals() ),
+        'amount' => $total,
         'discount_rate' => $discount_rate
       );
 

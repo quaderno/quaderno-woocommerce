@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: woocommerce, tax, taxes, sales tax, vat, gst, vatmoss, vat moss, vat oss, billing, invoices, receipts, credit notes
 Requires at least: 4.6
 Tested up to: 6.3
-Stable tag: 2.1.23
+Stable tag: 2.1.24
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,9 @@ We offer simple, transaction-based pricing that scales with your business. [Quad
 4. Example of an invoice
 
 == Changelog ==
+
+= 2.1.24 – August 15, 2023 =
+* Fix: compatibility with FOX – Currency Switcher Professional for WooCommerce (formely WOOCS)
 
 = 2.1.23 – August 9, 2023 =
 * New: Support for WordPress 6.3
