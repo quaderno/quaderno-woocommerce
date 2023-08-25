@@ -21,27 +21,27 @@ class WC_QD_Credit_Manager extends WC_QD_Transaction_Manager {
 		$order = wc_get_order( $args['order_id'] );
 
 		// Return if an credit has already been issued for this refund
-		$credit_id = get_post_meta( $refund_id, '_quaderno_credit', true );
+		$credit_id = $refund->get_meta( '_quaderno_credit' );
     $skip = false;
 		if ( !empty( $credit_id ) || $order->get_total() == 0 || apply_filters( 'quaderno_credit_skip', $skip, $refund_id ) ) {
 			return;
 		}
 
     // Return if the refund does not have a related invoice in Quaderno
-    $invoice_id = get_post_meta( $order->get_id(), '_quaderno_invoice', true );
+    $invoice_id = $order->get_meta( '_quaderno_invoice' );
     if ( empty( $invoice_id ) ) {
       return; 
     }
 
     // Get the contact ID
-    $contact_id = get_post_meta( $order->get_id(), '_quaderno_contact_id', true );
+    $contact_id = $order->get_meta( '_quaderno_contact_id' );
     if( empty( $contact_id) ) {
       $invoice = QuadernoInvoice::find( $invoice_id ) ?: QuadernoReceipt::find( $invoice_id );
       $contact_id = $invoice->contact->id;
     } 
 
     // Get the PO number
-    $po_number = get_post_meta( $order->get_id(), '_order_number_formatted', true ) ?: $order->get_id();
+    $po_number = $order->get_meta( '_order_number_formatted' ) ?: $order->get_id();
 
 		$transaction_params = array(
 			'type' => 'refund',
@@ -119,10 +119,11 @@ class WC_QD_Credit_Manager extends WC_QD_Transaction_Manager {
     $transaction->notes .= apply_filters( 'quaderno_credit_notes', $order->get_customer_note(), $order );
 
 		if ( $transaction->save() ) {
-			add_post_meta( $refund_id, '_quaderno_credit', $transaction->id );
-      add_post_meta( $refund_id, '_quaderno_credit_number', $transaction->number );
-      add_post_meta( $refund_id, '_quaderno_url', $transaction->permalink );
-      add_post_meta( $refund_id, '_quaderno_contact_id', $transaction->contact->id );
+			$refund->add_meta_data( '_quaderno_credit', $transaction->id );
+      $refund->add_meta_data( '_quaderno_credit_number', $transaction->number );
+      $refund->add_meta_data( '_quaderno_url', $transaction->permalink );
+      $refund->add_meta_data( '_quaderno_contact_id', $transaction->contact->id );
+      $refund->save();
 
 			if ( 'yes' === WC_QD_Integration::$autosend_invoices ) $transaction->deliver();
 		}

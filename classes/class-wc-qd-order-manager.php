@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
    * @param $order
 	 */
 	public function show_invoice_action( $actions, $order ) {
-    $permalink = get_post_meta( $order->get_id(), '_quaderno_url', true );
+    $permalink = $order->get_meta( '_quaderno_url' );
 
     if ( !empty($permalink) ) {
       $actions = array_merge($actions, array(
@@ -60,7 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
       return;
     }
 
-    $permalink = get_post_meta( $order->get_id(), '_quaderno_url', true );
+    $permalink = $order->get_meta( '_quaderno_url' );
     if ( !empty($permalink) ) {
       ?>
 
@@ -78,7 +78,7 @@ if ( ! defined( 'ABSPATH' ) ) {
    * @param $order
    */
   public function display_field( $order ) {
-    $permalink = get_post_meta( $order->get_id(), '_quaderno_url', true );
+    $permalink = $order->get_meta( '_quaderno_url' );
     if ( !empty($permalink) ) {
       echo '<p><a href="' . $permalink . '" target="_blank">' . esc_html__( 'View Invoice', 'woocommerce-quaderno' ) . '</a></p>';
     }

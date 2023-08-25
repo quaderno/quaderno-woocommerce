@@ -214,14 +214,12 @@ class WC_QD_Transaction_Manager {
    * @param $order
    */
   public function is_reverse_charge( $order ) {
-    $order_id = $order->get_id();
-
-    $is_vat_exempt = get_post_meta( $order_id, 'is_vat_exempt', true );
+    $is_vat_exempt = $order->get_meta( 'is_vat_exempt' );
 
     # get the tax ID
-    $tax_id = get_post_meta( $order_id, 'vat_number', true );
+    $tax_id = $order->get_meta( 'vat_number' );
     if ( empty( $tax_id )) {
-      $tax_id = get_post_meta( $order_id, 'tax_id', true );
+      $tax_id = $order->get_meta( 'tax_id' );
     }
 
     # get the tax ID country if exists

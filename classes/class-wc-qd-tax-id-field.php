@@ -64,11 +64,13 @@ class WC_QD_Tax_Id_Field {
       $billing_country = $order->get_billing_country();
       $base_country = $woocommerce->countries->get_base_country();
 
-      if ( $billing_country == $base_country || 'yes' === get_post_meta( $order_id, 'is_vat_exempt', true ) ) {
-        update_post_meta( $order_id, 'tax_id', $tax_id );
+      if ( $billing_country == $base_country || 'yes' === $order->get_meta( 'is_vat_exempt' ) ) {
+        $order->update_meta_data( 'tax_id', $tax_id );
       } else {
         $order->add_order_note( sprintf( __( 'Tax ID %s could not be validated', 'woocommerce-quaderno' ), $tax_id ) );
       }
+
+      $order->save();
 		}
 	}
 

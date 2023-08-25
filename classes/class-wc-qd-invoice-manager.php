@@ -21,14 +21,14 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
     $order = wc_get_order( $order_id );
 
     // Return if an invoice has already been issued for this order or the order is free
-    $invoice_id = get_post_meta( $order_id, '_quaderno_invoice', true );
+    $invoice_id = $order->get_meta( '_quaderno_invoice' );
     $skip = false; 
     if ( !empty( $invoice_id ) || $order->get_total() == 0 || apply_filters( 'quaderno_invoice_skip', $skip, $order_id ) ) {
       return;
     }
 
     // Get the PO number
-    $po_number = get_post_meta( $order_id, '_order_number_formatted', true ) ?: $order_id;
+    $po_number = $order->get_meta( '_order_number_formatted' ) ?: $order_id;
 
     $transaction_params = array(
       'type' => 'sale',
@@ -75,9 +75,9 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
     $states = WC()->countries->get_states( $country );
     $full_state = ( !in_array( $country, array('US', 'CA') ) && isset( $states[ $state ] ) ) ? $states[ $state ] : $state;
 
-    $tax_id = get_post_meta( $order_id, 'vat_number', true );
+    $tax_id = $order->get_meta( 'vat_number' );
     if ( empty( $tax_id )) {
-      $tax_id = get_post_meta( $order_id, 'tax_id', true );
+      $tax_id = $order->get_meta( 'tax_id' );
     }
 
     $transaction_params['customer'] = array(
@@ -197,10 +197,12 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
     $transaction->notes .= apply_filters( 'quaderno_invoice_notes', $order->get_customer_note(), $order );
 
     if ( $transaction->save() ) {
-      add_post_meta( $order_id, '_quaderno_invoice', $transaction->id );
-      add_post_meta( $order_id, '_quaderno_invoice_number', $transaction->number );
-      add_post_meta( $order_id, '_quaderno_url', $transaction->permalink );
-      add_post_meta( $order_id, '_quaderno_contact_id', $transaction->contact->id );
+      $order->add_meta_data( '_quaderno_invoice', $transaction->id );
+      $order->add_meta_data( '_quaderno_invoice_number', $transaction->number );
+      $order->add_meta_data( '_quaderno_url', $transaction->permalink );
+      $order->add_meta_data( '_quaderno_contact_id', $transaction->contact->id );
+      $order->save();
+
       update_user_meta( $order->get_user_id(), '_quaderno_contact', $transaction->contact->id );
 
       if ( 'yes' === WC_QD_Integration::$autosend_invoices ) $transaction->deliver();
