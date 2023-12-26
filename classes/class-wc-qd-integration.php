@@ -132,11 +132,6 @@ class WC_QD_Integration extends WC_Integration {
 				'title'       => __( 'Send invoices', 'woocommerce-quaderno' ),
 				'description' => __( 'Check this if you want Quaderno to send an invoice for each completed order.', 'woocommerce-quaderno' ),
 				'type'        => 'checkbox'
-			),
-			'update_subscription_tax' => array(
-				'title'       => __( 'Update tax in subscriptions', 'woocommerce-quaderno' ),
-				'description' => __( 'Check this if you want Quaderno to recalculate tax in your subscriptions if needed.', 'woocommerce-quaderno' ),
-				'type'        => 'checkbox'
 			)
 		);
 
@@ -144,6 +139,14 @@ class WC_QD_Integration extends WC_Integration {
 			$this->form_fields[ 'require_tax_id' ] = array(
 				'title'       => __( 'Require tax ID', 'woocommerce-quaderno' ),
 				'description' => sprintf(__( 'Check this if tax ID must be required for all sales in %s.', 'woocommerce-quaderno' ), $woocommerce->countries->countries[ $base_country ]),
+				'type'        => 'checkbox'
+			);
+		}
+
+		if ( is_plugin_active ( 'woocommerce-subscriptions/woocommerce-subscriptions.php' ) ) {
+			$this->form_fields[ 'update_subscription_tax' ] = array(
+				'title'       => __( 'Update tax in subscriptions', 'woocommerce-quaderno' ),
+				'description' => __( 'Check this if you want Quaderno to recalculate tax in your subscriptions if needed.', 'woocommerce-quaderno' ),
 				'type'        => 'checkbox'
 			);
 		}
