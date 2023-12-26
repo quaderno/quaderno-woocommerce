@@ -23,10 +23,13 @@ class WC_QD_Status {
   function add_quaderno_status_content(){
     global $woocommerce;
 
-    // Check if the base country is set in the standard tax rates; required with tax included prices
     $base_country = $woocommerce->countries->get_base_country();
-    $rates = WC_TAX::find_rates( array('country' => $base_country) );
-    $base_country_in_stardard_rates = empty( $rates ) ? 'no' : 'yes';
+
+    // Get all the standard tax codes
+    $codes = array();
+    foreach( WC_TAX::get_rates_for_tax_class('') as $key => $rate ) {
+      array_unshift( $codes, WC_TAX::get_rate_code( $key ) . ' => ' . round($rate->tax_rate, 2) . '%' );
+    }
 
     $tax_calculation_options = array(
       'shipping' => __( 'Customer shipping address', 'woocommerce' ),
@@ -69,9 +72,9 @@ class WC_QD_Status {
             <td><?php echo get_option( 'woocommerce_tax_display_cart' ) == 'incl' ? 'Included' : 'Excluded' ?></td>
           </tr>
           <tr>
-            <td data-export-label="Display prices">Base country in standard tax rates:</td>
-            <td class="help"><?php echo wc_help_tip( esc_html__( 'You must add your base country in the standard tax rates page if you work with tax included prices.', 'woocommerce-quaderno' ) ); ?></td>
-            <td><mark class="<?php echo($base_country_in_stardard_rates) ?>"><span class="dashicons dashicons-<?php echo($base_country_in_stardard_rates) ?>"></span></mark></td>
+            <td data-export-label="Display prices">Standard tax rates:</td>
+            <td class="help"><?php if (get_option( 'woocommerce_prices_include_tax' ) == 'yes') { echo wc_help_tip( esc_html__( 'You must add your base country in the standard tax rates page if you work with tax included prices.', 'woocommerce-quaderno' ) ); } ?></td>
+            <td><?php echo(implode(', ', $codes)) ?></td>
           </tr>
         </tbody>
     </table>
