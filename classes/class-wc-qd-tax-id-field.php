@@ -39,6 +39,15 @@ class WC_QD_Tax_Id_Field {
       $user_tax_id = get_user_meta( get_current_user_id(), '_quaderno_tax_id', true );
     }
 
+    $billing_country = WC()->customer->get_billing_country();
+    $base_country = $woocommerce->countries->get_base_country();
+
+    if ( 'yes' === WC_QD_Integration::$require_tax_id ) {
+      woocommerce_form_field('base_country', array(
+        'type' => 'hidden',
+      ), $base_country );
+    }
+
     woocommerce_form_field( 'tax_id', array(
 			'type'   => 'text',
 			'label'  => esc_html__( 'Tax ID', 'woocommerce-quaderno' ),

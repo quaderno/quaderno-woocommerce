@@ -3,6 +3,12 @@ jQuery(document).ready( function ( $ ) {
 	var countries = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB', 'AU', 'NZ', 'TR'];
 
 	$('#billing_country').change(function() {
+		if ( $('#base_country') && $('#billing_country').val() == $('#base_country').val() ) {
+			$('#tax_id_field label').append('<abbr class="required" title="required">&nbsp;*</abbr>');
+		} else {
+			$('#tax_id_field label abbr').remove();
+		}
+
 		if ( $.inArray($(this).val(), countries) >= 0 ) {
 			$('#tax_id_field').show();
 		} else {
