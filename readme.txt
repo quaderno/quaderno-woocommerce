@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: woocommerce, tax, taxes, sales tax, vat, gst, vatmoss, vat moss, vat oss, billing, invoices, receipts, credit notes
 Requires at least: 4.6
 Tested up to: 6.3
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,11 @@ We offer simple, transaction-based pricing that scales with your business. [Quad
 4. Example of an invoice
 
 == Changelog ==
+
+= 2.2.1 – December 28, 2023 =
+* Fix: Tax ID is marked as mandatory in checkout form when the related required option is selected in Quaderno settings
+* New: Show the "subscriptions update" option only when the WooCommmerce Subscriptions plugin is active
+* New: Show all the standard tax rates in the Quaderno status page
 
 = 2.2.0 – August 25, 2023 =
 * New: compatibility with HPOS
