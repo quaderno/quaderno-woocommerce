@@ -43,7 +43,7 @@ class WC_QD_Cart_Manager {
 				$product_type = WC_QD_Calculate_Tax::get_product_type( $id );
 
 				// Calculate taxes
-				$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $product_type, WC()->cart->get_total(''), get_woocommerce_currency(), $this->country, $this->region, $this->postal_code, $this->city );
+				$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $product_type, WC()->cart->get_total(''), get_woocommerce_currency(), $this->country, $this->region, $this->postal_code, $this->city, $this->tax_id );
 
 				$items[ $cart_key ] = array(
 					'id' => $id,

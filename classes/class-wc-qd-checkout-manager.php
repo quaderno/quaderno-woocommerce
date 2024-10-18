@@ -11,7 +11,9 @@ class WC_QD_Checkout_Manager {
 	 */
 	public function setup() {
 		// Update the taxes on the cart page
-    add_action( 'woocommerce_before_calculate_totals', array( $this, 'update_taxes_on_cart_view' ), 10, 1 );
+		if ( is_cart() ) {
+   	 add_action( 'woocommerce_before_calculate_totals', array( $this, 'update_taxes_on_cart_view' ), 10, 1 );
+  	}
 
 		// Update the taxes on the checkout page whenever the order review template part is refreshed
 		add_action( 'woocommerce_checkout_update_order_review', array( $this, 'update_taxes_on_update_order_review' ), 10, 1 );
@@ -101,13 +103,6 @@ class WC_QD_Checkout_Manager {
 		}
 		$tax_id = sanitize_text_field( 'billing' === $tax_based_on ? $post_arr['tax_id'] : '' );
 
-    	// Check if the customer is VAT exempted
-		if ( empty( $tax_id ) || false === WC_QD_Tax_Id_Field::is_valid( $tax_id, $country ) ) {
-			WC()->customer->set_is_vat_exempt( false );
-		} else {
-			WC()->customer->set_is_vat_exempt( true );
-		}
-
 		// The cart manager
 		$cart_manager = new WC_QD_Cart_Manager($country, $state, $postcode, $city, $tax_id);
 
@@ -143,13 +138,6 @@ class WC_QD_Checkout_Manager {
 		}
 		$tax_id = sanitize_text_field( 'billing' === $tax_based_on ? $_POST['tax_id'] : '' );
 
-    // Check if the customer is VAT exempted
-		if ( empty( $tax_id ) || false === WC_QD_Tax_Id_Field::is_valid( $tax_id, $country ) ) {
-			WC()->customer->set_is_vat_exempt( false );
-		} else {
-			WC()->customer->set_is_vat_exempt( true );
-		}
-
 		// The cart manager
 		$cart_manager = new WC_QD_Cart_Manager($country, $state, $postcode, $city, $tax_id);
 
@@ -184,7 +172,7 @@ class WC_QD_Checkout_Manager {
 				$product_type = WC_QD_Calculate_Tax::get_product_type( $product_id );
 
 				// Calculate taxes
-				$tax = WC_QD_Calculate_Tax::calculate($tax_class, $product_type, $order->get_total(''), get_woocommerce_currency(), $country);
+				$tax = WC_QD_Calculate_Tax::calculate($tax_class, $product_type, $order->get_total(''), get_woocommerce_currency(), $country, $order->get_meta( 'tax_id' ));
 
 				$tax_manager->add_product_tax_class( $item_id, $tax_class );
 				$tax_manager->add_tax_rate( $tax_class, $tax->rate, $tax->name );

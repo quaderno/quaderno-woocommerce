@@ -38,7 +38,7 @@ class WC_QD_Subscription_Manager extends WC_QD_Transaction_Manager {
     $items = $new_order->get_items(array('line_item', 'shipping' ,'fee'));
 
     foreach ( $items as $item_id => $item ) {
-      $tax = $this->get_tax( $new_order, $item );
+      $tax = $this->get_tax( $new_order, $item, $new_order->get_meta( 'tax_id' ) );
 
       // Recalculate item's subtotal and total
       if ( $item->is_type( 'line_item' ) ) {
