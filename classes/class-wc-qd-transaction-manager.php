@@ -235,7 +235,7 @@ class WC_QD_Transaction_Manager {
     }
 
     // Check if the order is not an standard service and the customer has a valid tax ID
-    return 'yes' === $is_vat_exempt || true === WC_QD_Tax_Id_Field::is_valid( $tax_id, $country );
+    return 'yes' === $is_vat_exempt || ($is_vat_exempt == '' && true === WC_QD_Tax_Id_Field::is_valid( $tax_id, $country ));
   }
 
 }

@@ -134,7 +134,9 @@ class WC_QD_Calculate_Tax {
 			}
 
       // mark customer as tax exempted to remove taxes from checkout form
-      WC()->customer->set_is_vat_exempt( $tax->rate == 0 );
+      if ( isset( WC()->customer ) ) {
+        WC()->customer->set_is_vat_exempt( $tax->rate == 0 );
+      }
 
 			if ( true === $cache_tax ) {
 				set_transient( $slug, $tax, DAY_IN_SECONDS );
