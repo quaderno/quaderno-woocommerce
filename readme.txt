@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: woocommerce, tax, taxes, sales tax, vat, gst, vatmoss, vat moss, vat oss, billing, invoices, receipts, credit notes
 Requires at least: 4.6
 Tested up to: 6.6
-Stable tag: 2.2.8
+Stable tag: 2.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,10 @@ We offer simple, transaction-based pricing that scales with your business. [Quad
 4. Example of an invoice
 
 == Changelog ==
+
+= 2.3.0 – October 25, 2024 =
+* New: show the customer tax ID on the order email
+* New: show the customer tax ID on the order details page
 
 = 2.2.8 – October 21, 2024 =
 * Fix: businesses must pay local taxes for standard services
