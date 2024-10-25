@@ -11,7 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     add_action( 'woocommerce_after_account_orders', array( $this, 'after_my_orders_js' ), 10, 2);
     add_action( 'woocommerce_order_details_after_order_table', array( $this, 'show_invoice_button'), 10 );
     add_action( 'woocommerce_admin_order_data_after_billing_address', array( $this, 'display_field' ), 10, 1 );
-  }
+    add_filter( 'woocommerce_email_order_meta_fields', array( $this, 'add_email_order_meta' ), 10, 3 );
+}
 
 	/**
 	 * Show invoice action
@@ -69,7 +70,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     </p>
 
     <?php
-  }  
+  }
 }
 
   /**
@@ -82,6 +83,29 @@ if ( ! defined( 'ABSPATH' ) ) {
     if ( !empty($permalink) ) {
       echo '<p><a href="' . $permalink . '" target="_blank">' . esc_html__( 'View Invoice', 'woocommerce-quaderno' ) . '</a></p>';
     }
+  }
+
+  /**
+   * Display the customer's tax ID in the order email
+   *
+   * @param $order
+   * @param $sent_to_admin
+   * @param $plain_text
+   */
+  public function add_email_order_meta( $fields, $sent_to_admin, $order ) {
+    $tax_id = $order->get_meta( 'tax_id' );
+
+    if( empty( $tax_id ) ) {
+      return $fields;
+    }
+
+    $fields[ 'tax_id' ] = array(
+      'label' => esc_html__( 'Tax ID', 'woocommerce-quaderno' ),
+      'value' => $tax_id
+    );
+
+
+    return $fields;
   }
 
 }
