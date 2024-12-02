@@ -18,11 +18,11 @@ jQuery(document).ready( function ( $ ) {
 	});
 	$('#billing_country').trigger('change');
 
-	$('#billing_state, #billing_postcode, #billing_city, #tax_id').change(function () {
+	$('#billing_state, #billing_postcode, #billing_city, #tax_id').input(function () {
 	  $('body').trigger('update_checkout');
 	});
 
-	$('#shipping_country, #shipping_state, #shipping_postcode, #shipping_city').change(function () {
+	$('#shipping_country, #shipping_state, #shipping_postcode, #shipping_city').input(function () {
 	  $('body').trigger('update_checkout');
 	});
 

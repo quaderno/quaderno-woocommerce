@@ -131,11 +131,12 @@ class WC_QD_Calculate_Tax {
 				$tax->country = $country;
 				$tax->region = $region;
 				$tax->city = $city;
+				$tax->status = 'taxable';
 			}
 
       // mark customer as tax exempted to remove taxes from checkout form
       if ( isset( WC()->customer ) ) {
-        WC()->customer->set_is_vat_exempt( $tax->rate == 0 );
+        WC()->customer->set_is_vat_exempt( $tax->status == 'reverse_charge' );
       }
 
 			if ( true === $cache_tax ) {
