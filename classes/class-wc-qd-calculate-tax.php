@@ -134,15 +134,15 @@ class WC_QD_Calculate_Tax {
 				$tax->status = 'taxable';
 			}
 
-      // mark customer as tax exempted to remove taxes from checkout form
-      if ( isset( WC()->customer ) ) {
-        WC()->customer->set_is_vat_exempt( $tax->status == 'reverse_charge' );
-      }
-
 			if ( true === $cache_tax ) {
 				set_transient( $slug, $tax, DAY_IN_SECONDS );
 			}
 		}
+
+    // if the operation is reverse charge, we mark the customer as tax exempted to remove taxes from checkout form
+    if ( isset( WC()->customer ) ) {
+      WC()->customer->set_is_vat_exempt( $tax->status == 'reverse_charge' );
+    }
 
 		return $tax;
 	}

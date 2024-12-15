@@ -137,7 +137,7 @@ class WC_QD_Transaction_Manager {
    * @param $order
    * @param $item
    */
-  public function get_tax( $order, $item, $tax_id ) {
+  public function get_tax( $order, $item ) {
     // Get the tax class and the product type
     $tax_class = get_transient( 'last_tax_class' );
     if ( empty( $tax_class ) ) {
@@ -164,7 +164,7 @@ class WC_QD_Transaction_Manager {
     $location = $this->get_tax_location( $order );
 
     // Calculate tax
-    $tax = WC_QD_Calculate_Tax::calculate( $tax_class, $product_type, $order->get_total(), get_woocommerce_currency(), $location['country'], $location['state'], $location['postcode'], $location['city'], $tax_id );
+    $tax = WC_QD_Calculate_Tax::calculate( $tax_class, $product_type, $order->get_total(), get_woocommerce_currency(), $location['country'], $location['state'], $location['postcode'], $location['city'] );
 
     // Check if tax exempted
     if ( $this->is_reverse_charge( $order ) || $tax_class == 'exempted' ) {
@@ -220,22 +220,7 @@ class WC_QD_Transaction_Manager {
    * @param $order
    */
   public function is_reverse_charge( $order ) {
-    $is_vat_exempt = $order->get_meta( 'is_vat_exempt' );
-
-    # get the tax ID
-    $tax_id = $order->get_meta( 'vat_number' );
-    if ( empty( $tax_id )) {
-      $tax_id = $order->get_meta( 'tax_id' );
-    }
-
-    # get the tax ID country if exists
-    $country = '';
-    if ( isset($location) ) {
-      $country = $location['country'];
-    }
-
-    // Check if the order is not an standard service and the customer has a valid tax ID
-    return 'yes' === $is_vat_exempt || ($is_vat_exempt == '' && true === WC_QD_Tax_Id_Field::is_valid( $tax_id, $country ));
+    return 'yes' === $order->get_meta( 'is_vat_exempt' );
   }
 
 }
