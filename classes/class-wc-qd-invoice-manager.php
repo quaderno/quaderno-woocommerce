@@ -27,7 +27,7 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
     }
 
     // Get the PO number
-    $po_number = $order->get_meta( '_order_number_formatted' ) ?: $order_id;
+    $po_number = $order->get_meta( '_order_number_formatted' ) ?: $order->get_order_number();
 
     $transaction_params = array(
       'type' => 'sale',
