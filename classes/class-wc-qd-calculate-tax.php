@@ -96,11 +96,6 @@ class WC_QD_Calculate_Tax {
 		// remove non-word characters from tax ID
 		$tax_id = preg_replace('/\W/', '', $tax_id);
 		
-		// get the country code from the number if it's empty
-		if ( empty($country) ) {
-		    $country = substr( $tax_id, 0, 2 );
-		}
-		
 		$params = array(
 			'from_country' => apply_filters( 'quaderno_shipping_country', $woocommerce->countries->get_base_country() ),
 			'from_postal_code' => apply_filters( 'quaderno_shipping_postcode', $woocommerce->countries->get_base_postcode() ),
