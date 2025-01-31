@@ -124,7 +124,9 @@ class WC_QD_Calculate_Tax {
 				$tax = (object) ['name' => 'VAT', 'rate' => 0, 'tax_code' => 'standard', 'country' => $country];
 				$cache_tax = false; // we do not cache the tax calculations in this case
 			}
-
+			$service_down = property_exists($tax, "notice") && $tax->notice == "We couldn't validate the provided tax ID because the validation service was down.";
+			$cache_tax = $cache_tax && !$service_down;
+			
 			// we use the WooCommerce tax calculator if the tax rate exists
 			$wc_rate = self::get_wc_rate( $tax_class, $country, $region, $postal_code, $city );
 			if ( !empty( $wc_rate ) ) {
