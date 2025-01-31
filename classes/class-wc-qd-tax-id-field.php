@@ -108,36 +108,10 @@ class WC_QD_Tax_Id_Field {
    * @since 1.18
    */
   public static function is_valid( $tax_id, $country ){
-    global $woocommerce;
-
-    // remove non-word characters from tax ID
-    $tax_id = preg_replace('/\W/', '', $tax_id);
-
-    // get the country code from the number if it's empty
-    if ( empty($country) ) {
-      $country = substr( $tax_id, 0, 2 );
-    }
-
-    $params = array(
-      'tax_id' => $tax_id,
-      'country' => $country
-    );
-
-    $slug = 'vat_number_' . md5( implode( $params ) );
-
-    if ( false === ( $valid_number = get_transient( $slug ) ) ) {
-      $validation_result = QuadernoTaxId::validate( $params );
-      $valid_number = (int) $validation_result;
-
-      // Cache the result, unless the tax ID validation service was down.
-      if ( !is_null($validation_result) ) {
-        set_transient( $slug, $valid_number, 4 * WEEK_IN_SECONDS );
-      }
-    }
-
-    return $valid_number == 1 && $country != $woocommerce->countries->get_base_country();
+      global $woocommerce;
+      return $country != $woocommerce->countries->get_base_country() && QuadernoTaxId::validate($tax_id, $country);
   }
-
+  
   /**
    * Remove the text "optional" if the tax ID is required
    *
