@@ -25,7 +25,7 @@ class QuadernoRequest {
 	private $request_endpoint = null;
 	private $request_body = null;
 	private $response = null;
-	private $error_message = '';
+	public  $error_message = '';
 
 	public function __construct() {
 		$this->username = WC_QD_Integration::$api_token;

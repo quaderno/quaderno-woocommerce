@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2023-04-16 21:07+0100\n"
-"PO-Revision-Date: 2023-04-16 21:08+0100\n"
+"POT-Creation-Date: 2025-02-21 18:14+0000\n"
+"PO-Revision-Date: 2025-02-21 18:16+0000\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: Quaderno <support@quaderno.io>\n"
 "Language: es_ES\n"
@@ -10,16 +10,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../classes/class-wc-qd-credit-manager.php:120
-#: ../classes/class-wc-qd-invoice-manager.php:198
+#: ../classes/class-wc-qd-credit-manager.php:117
+#: ../classes/class-wc-qd-invoice-manager.php:194
 msgid "Tax amount subject to reverse charge"
 msgstr "Inversión de sujeto pasivo"
+
+#: ../classes/class-wc-qd-credit-manager.php:130
+msgid ""
+"The credit note could not be created on Quaderno. Please check the "
+"WooCommerce logs."
+msgstr ""
+"El abono no pudo ser creado en Quaderno. Por favor, comprueba los logs de "
+"WooCommerce."
 
 #: ../classes/class-wc-qd-integration.php:22
 #, php-format
@@ -98,11 +106,22 @@ msgstr ""
 "Selecciona esta opción si quieres que Quaderno envíe una factura por cada "
 "pedido completado."
 
-#: ../classes/class-wc-qd-integration.php:137
+#: ../classes/class-wc-qd-integration.php:140
+msgid "Require tax ID"
+msgstr "NIF obligatorio"
+
+#: ../classes/class-wc-qd-integration.php:141
+#, php-format
+msgid "Check this if tax ID must be required for all sales in %s."
+msgstr ""
+"Selecciona esta opción si el NIF debe ser obligatorio para todas las ventas "
+"en %s."
+
+#: ../classes/class-wc-qd-integration.php:148
 msgid "Update tax in subscriptions"
 msgstr "Actualizar impuestos en suscripciones"
 
-#: ../classes/class-wc-qd-integration.php:138
+#: ../classes/class-wc-qd-integration.php:149
 msgid ""
 "Check this if you want Quaderno to recalculate tax in your subscriptions if "
 "needed."
@@ -110,18 +129,7 @@ msgstr ""
 "Selecciona esta opción si quieres que Quaderno recalcule los impuestos en "
 "tus suscripciones si fuera necesario."
 
-#: ../classes/class-wc-qd-integration.php:145
-msgid "Require tax ID"
-msgstr "NIF obligatorio"
-
-#: ../classes/class-wc-qd-integration.php:146
-#, php-format
-msgid "Check this if tax ID must be required for all sales in %s."
-msgstr ""
-"Selecciona esta opción si el NIF debe ser obligatorio para todas las ventas "
-"en %s."
-
-#: ../classes/class-wc-qd-integration.php:166
+#: ../classes/class-wc-qd-integration.php:169
 msgid ""
 "<strong>Quaderno</strong> is almost ready &#8211; Please configure your API "
 "keys to start creating automatic invoices."
@@ -129,11 +137,11 @@ msgstr ""
 "<strong>Quaderno</strong> está casi listo &#8211; Por favor configura tus "
 "claves API para empezar a crear facturas automáticas."
 
-#: ../classes/class-wc-qd-integration.php:170 ../woocommerce-quaderno.php:209
+#: ../classes/class-wc-qd-integration.php:173 ../woocommerce-quaderno.php:209
 msgid "Settings"
 msgstr "Configuración"
 
-#: ../classes/class-wc-qd-integration.php:190
+#: ../classes/class-wc-qd-integration.php:193
 #, php-format
 msgid ""
 "Thank you for choosing Quaderno to manage your taxes in WooCommerce! Please "
@@ -144,39 +152,56 @@ msgstr ""
 "es posible, nos gustaría <a href=‘%s’ target=‘_blank’>pedirte una pequeña "
 "reseña</a> para llegar a más propietarios de negocios como el tuyo."
 
-#: ../classes/class-wc-qd-invoice-manager.php:68
+#: ../classes/class-wc-qd-invoice-manager.php:67
 msgid "WooCommerce customer"
 msgstr "Cliente WooCommerce"
 
-#: ../classes/class-wc-qd-order-manager.php:29
-#: ../classes/class-wc-qd-order-manager.php:68
-#: ../classes/class-wc-qd-order-manager.php:83
+#: ../classes/class-wc-qd-invoice-manager.php:209
+msgid ""
+"The invoice could not be created on Quaderno. Please check the WooCommerce "
+"logs."
+msgstr ""
+"La factura no pudo ser creada en Quaderno. Por favor, comprueba los logs de "
+"WooCommerce."
+
+#: ../classes/class-wc-qd-order-manager.php:31
+#: ../classes/class-wc-qd-order-manager.php:70
+#: ../classes/class-wc-qd-order-manager.php:82
 msgid "View Invoice"
 msgstr "Ver factura"
+
+#: ../classes/class-wc-qd-order-manager.php:99
+#: ../classes/class-wc-qd-order-manager.php:118
+#: ../classes/class-wc-qd-tax-id-field.php:53
+#: ../classes/class-wc-qd-tax-id-field.php:96
+#: ../classes/class-wc-qd-tax-id-field.php:138
+#: ../classes/class-wc-qd-tax-id-field.php:153
+msgid "Tax ID"
+msgstr "NIF o NIF-IVA"
 
 #: ../classes/class-wc-qd-status.php:19
 msgid "Quaderno"
 msgstr "Quaderno"
 
-#: ../classes/class-wc-qd-status.php:32
+#: ../classes/class-wc-qd-status.php:36
 msgid "Customer shipping address"
 msgstr "Dirección de envío del cliente"
 
-#: ../classes/class-wc-qd-status.php:33
+#: ../classes/class-wc-qd-status.php:37
 msgid "Customer billing address"
 msgstr "Dirección de facturación del cliente"
 
-#: ../classes/class-wc-qd-status.php:34
+#: ../classes/class-wc-qd-status.php:38
 msgid "Shop base address"
 msgstr "Dirección base de la tienda"
 
-#: ../classes/class-wc-qd-status.php:37
+#: ../classes/class-wc-qd-status.php:41
 msgid "Shipping tax class based on cart items"
 msgstr ""
 "El tipo de impuesto para los gastos de envío depende del contenido del "
 "carrito"
 
-#: ../classes/class-wc-qd-status.php:73
+#: ../classes/class-wc-qd-status.php:82
 msgid ""
 "You must add your base country in the standard tax rates page if you work "
 "with tax included prices."
@@ -184,24 +209,24 @@ msgstr ""
 "Tienes que añadir tu país en la página de impuestos estándar si trabajas con "
 "precios con impuestos incluidos."
 
-#: ../classes/class-wc-qd-status.php:87
+#: ../classes/class-wc-qd-status.php:96
 msgid "Check if API credentials are correct."
 msgstr "Comprobar si las credenciales API son correctas."
 
-#: ../classes/class-wc-qd-status.php:92
+#: ../classes/class-wc-qd-status.php:101
 msgid "Invoices and credit notes will be automatically sent."
 msgstr "Las facturas y los abonos serán enviados automáticamente."
 
-#: ../classes/class-wc-qd-status.php:97
+#: ../classes/class-wc-qd-status.php:106
 msgid "Taxes will be recalculated for subscriptions if needed"
 msgstr ""
 "Los impuestos será recalculados para las suscripciones si fuera necesario"
 
-#: ../classes/class-wc-qd-status.php:102
+#: ../classes/class-wc-qd-status.php:111
 msgid "Local customers have to enter their tax ID."
 msgstr "Los clientes locales tienes que introducir su NIF."
 
-#: ../classes/class-wc-qd-status.php:107
+#: ../classes/class-wc-qd-status.php:116
 msgid ""
 "All customers pay the same price for the same product, no matter where they "
 "are based."
@@ -213,28 +238,21 @@ msgstr ""
 msgid "Quaderno tax code"
 msgstr "Tipo de impuesto en Quaderno"
 
-#: ../classes/class-wc-qd-tax-id-field.php:44
-#: ../classes/class-wc-qd-tax-id-field.php:86
-#: ../classes/class-wc-qd-tax-id-field.php:154
-#: ../classes/class-wc-qd-tax-id-field.php:169
-msgid "Tax ID"
-msgstr "NIF o NIF-IVA"
-
-#: ../classes/class-wc-qd-tax-id-field.php:45
+#: ../classes/class-wc-qd-tax-id-field.php:54
 msgid "VAT number, ABN, or NZBN"
 msgstr "NIF o NIF-IVA"
 
-#: ../classes/class-wc-qd-tax-id-field.php:70
+#: ../classes/class-wc-qd-tax-id-field.php:77
 #, php-format
 msgid "Tax ID %s could not be validated"
 msgstr "El NIF-IVA %s no pudo ser validado"
 
-#: ../classes/class-wc-qd-tax-id-field.php:86
+#: ../classes/class-wc-qd-tax-id-field.php:96
 #, php-format
 msgid "%s is a required field."
 msgstr "%s es un campo obligatorio."
 
-#: ../classes/class-wc-qd-tax-id-field.php:138
+#: ../classes/class-wc-qd-tax-id-field.php:122
 msgid "optional"
 msgstr "opcional"
 
@@ -288,7 +306,7 @@ msgid ""
 "Please install and activate %sWooCommerce%s in order for the WooCommerce "
 "Quaderno extension to work!"
 msgstr ""
-"Por favor instala %sWooCommerce%s para poder usar la extensión de Quaderno "
+"Por favor, instala %sWooCommerce%s para poder usar la extensión de Quaderno "
 "para WooCommerce"
 
 #: ../woocommerce-quaderno.php:116
