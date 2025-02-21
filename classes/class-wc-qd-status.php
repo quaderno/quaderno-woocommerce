@@ -24,6 +24,7 @@ class WC_QD_Status {
     global $woocommerce;
 
     $base_country = $woocommerce->countries->get_base_country();
+    $base_region = $woocommerce->countries->get_base_state();
 
     // Get all the standard tax codes
     $codes = array();
@@ -51,6 +52,11 @@ class WC_QD_Status {
         </th>
       </thead>
         <tbody class="quaderno">
+          <tr>
+            <td data-export-label="Store base">Store base:</td>
+            <td class="help"></td>
+            <td><?php echo $base_country . ' — ' . $base_region; ?></td>
+          </tr>
           <tr>
             <td data-export-label="Tax in prices">Tax in prices:</td>
             <td class="help"></td>
