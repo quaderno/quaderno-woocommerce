@@ -42,7 +42,7 @@ class WC_QD_Checkout_Manager {
 				$tax_manager->add_product_tax_class( $item['id'], $item['product_type'] );
 
 				// Add the new tax rate for this transaction line
-				$tax_manager->add_tax_rate( $item['product_type'], $item['tax_rate'], $item['tax_name'] );
+				$tax_manager->add_tax_rate( $item['product_type'], $item['tax_rate'], $item['tax_name'], $item['additional_tax_rate'], $item['additional_tax_name'] );
 			}
 
 			$tax_rates = $tax_manager->get_tax_rates();

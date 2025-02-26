@@ -156,7 +156,7 @@ class WC_QD_Tax_Manager {
 	 *
 	 * @return bool
 	 */
-	public function add_tax_rate( $tax_class, $rate, $label ) {
+	public function add_tax_rate( $tax_class, $rate, $label, $additional_rate, $additional_label ) {
 		$clean_slug = $this->clean_tax_class( $tax_class );
 
 		if ( ! isset( $this->tax_rates[ $clean_slug ] ) ) {
@@ -168,6 +168,11 @@ class WC_QD_Tax_Manager {
 					'compound' => 'no'
 				)
 			);
+
+			if ( isset( $additional_rate ) ) {
+				$this->tax_rates[$clean_slug][$clean_slug]['rate'] += number_format( floatval( $additional_rate ), 4 );
+        $this->tax_rates[$clean_slug][$clean_slug]['label'] .= '+' . $additional_label;
+			}
 
 			return true;
 		}

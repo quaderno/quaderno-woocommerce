@@ -47,9 +47,11 @@ class WC_QD_Cart_Manager {
 
 				$items[ $cart_key ] = array(
 					'id' => $id,
-					'product_type' => $tax_class,
-					'tax_name' => $tax->name,
-					'tax_rate' => $tax->rate
+					'product_type'				=> $tax_class,
+					'tax_name'						=> $tax->name,
+					'tax_rate'						=> $tax->rate,
+					'additional_tax_name' => $tax->additional_name,
+					'additional_tax_rate' => $tax->additional_rate,
 				);
 			}
 		}
