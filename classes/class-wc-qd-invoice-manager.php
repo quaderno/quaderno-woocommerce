@@ -207,16 +207,6 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
       if ( 'yes' === WC_QD_Integration::$autosend_invoices ) $transaction->deliver();
     } else {
       $order->add_order_note( __( 'The invoice could not be created on Quaderno. Please check the WooCommerce logs.', 'woocommerce-quaderno' ) );
-      $wc_logger = wc_get_logger();
-      $wc_logger->error(
-        'The invoice could not be created', 
-        array( 
-          'source'        => 'Quaderno', 
-          'order_id'      => $order_id,
-          'po_number'     => $po_number,
-          'error_message' => $transaction->errors
-        )
-      );
     }
   }
 

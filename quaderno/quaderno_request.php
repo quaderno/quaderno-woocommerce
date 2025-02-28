@@ -77,12 +77,16 @@ class QuadernoRequest {
 		if ( is_wp_error($this->response) ) {
 			$this->error_message = __( 'There was a problem connecting to the API.', 'woocommerce-quaderno' );
 			$this->response = null;
+
+			$this->track_error( $this->error_message, $this->build_request_url(), $this->request_body );
 			return false;
 		}
 		
 		if ( '299' < $this->response['response']['code'] ) {
 			$this->error_message = $this->response['response']['message'];
 			$this->response = null;
+
+			$this->track_error( $this->error_message, $this->build_request_url(), $this->request_body );
 			return false;
 		}
 
@@ -162,6 +166,18 @@ class QuadernoRequest {
 		$this->request_methods = array( $model, $id );
 		$this->request_endpoint = 'deliver';
 		return $this->exec();
+	}
+
+	private function track_error( $error_message, $url, $params ) {
+		$wc_logger = wc_get_logger();
+		$wc_logger->error(
+        $error_message, 
+        array( 
+          'source'  => 'Quaderno', 
+          'url'			=> $url,
+          'params'  => $params
+        )
+     );
 	}
 
 }
