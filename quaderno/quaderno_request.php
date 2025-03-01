@@ -179,7 +179,7 @@ class QuadernoRequest {
         )
      );
 
-		set_transient( 'quaderno_alert', $error_message, WEEK_IN_SECONDS );
+		set_transient( 'quaderno_error', $error_message, WEEK_IN_SECONDS );
 	}
 
 }

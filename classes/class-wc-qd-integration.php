@@ -45,13 +45,6 @@ class WC_QD_Integration extends WC_Integration {
 		if ( empty( self::$api_token ) || empty( self::$api_url ) ) {
 			add_action( 'admin_notices', array( $this, 'settings_notice' ) );
 		}
-
-		// Show review notice
-		if ( is_super_admin() && ! get_option( 'quaderno_dismiss_review' ) ) {
-			add_action( 'admin_notices', array( $this, 'quaderno_review' ) );
-			add_action( 'admin_footer', array( $this, 'quaderno_review_script' ) );
-			add_action( 'wp_ajax_quaderno_review', array( $this, 'quaderno_dismiss_review' ) );
-		}
 	}
 
 	/**
@@ -173,53 +166,5 @@ class WC_QD_Integration extends WC_Integration {
 					class="button-primary"><?php _e( 'Settings', 'woocommerce-quaderno' ); ?></a></p>
 		</div>
 	<?php
-	}
-
-	/**
-	 * Ask users to leave a review for the plugin on wp.org.
-	 */
- 	public function quaderno_review() {
-		global $wpdb;
-
-		$post_count = $wpdb->get_var( "SELECT count(*) FROM " . $wpdb->prefix . "postmeta WHERE meta_key = '_quaderno_invoice'" );
-		$user_id = get_current_user_id();
-
-		if ( $post_count < 5 ) {
-			return;
-		}
-		?>
-		<div id="quaderno-review" class="notice notice-info is-dismissible">
-    	<p>
-    		<?php echo sprintf(__( "Thank you for choosing Quaderno to manage your taxes in WooCommerce! Please consider <a href='%s' target='_blank'>writing a quick review</a>, so we can reach more business owners like you.", 'woocommerce-quaderno' ), 'https://wordpress.org/support/plugin/woocommerce-quaderno/reviews/?filter=5#new-post'); ?>
-      </p>
-    </div>
-	<?php
-	}
-
-	/**
-	 * Loads the inline script to dismiss the review notice.
-	 */
-	public function quaderno_review_script() {
-		echo
-			"<script>\n" .
-			"jQuery(document).on('click', '#quaderno-review .notice-dismiss', function() {\n" .
-			"\tvar quaderno_review_data = {\n" .
-			"\t\taction: 'quaderno_review',\n" .
-			"\t};\n" .
-			"\tjQuery.post(ajaxurl, quaderno_review_data, function(response) {\n" .
-			"\t\tif (response) {\n" .
-			"\t\t\tconsole.log(response);\n" .
-			"\t\t}\n" .
-			"\t});\n" .
-			"});\n" .
-			"</script>\n";
-	}
-
-	/**
-	 * Disables the notice about leaving a review.
-	 */
-	function quaderno_dismiss_review() {
-		update_option( 'quaderno_dismiss_review', true, false );
-		wp_die();
 	}
 }
