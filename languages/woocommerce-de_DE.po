@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2025-02-21 18:14+0000\n"
-"PO-Revision-Date: 2025-02-21 18:17+0000\n"
+"POT-Creation-Date: 2025-03-01 17:26+0000\n"
+"PO-Revision-Date: 2025-03-01 17:32+0000\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -14,6 +14,34 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__\n"
 "X-Poedit-SearchPath-0: ..\n"
+
+#: ../classes/class-wc-qd-alerts.php:36
+#, php-format
+msgid ""
+"We have identified an issue with your Quaderno integration. For more "
+"details, please visit the <a href='%s'>logs page</a>."
+msgstr ""
+"Wir haben ein Problem mit Ihrer Quaderno-Integration festgestellt. Weitere "
+"Einzelheiten finden Sie auf der <a href=‘%s’>Logs-Seite</a>."
+
+#: ../classes/class-wc-qd-alerts.php:51
+msgid "Thank you for choosing Quaderno to manage your taxes in WooCommerce!"
+msgstr ""
+"Vielen Dank, dass Sie sich für Quaderno zur Verwaltung Ihrer Steuern in "
+"WooCommerce entschieden haben!"
+
+#: ../classes/class-wc-qd-alerts.php:54
+msgid ""
+"We hope you find it valuable. If you enjoy using it, please consider leaving "
+"us a review to help us grow and improve."
+msgstr ""
+"Wir hoffen, dass es Ihnen nützlich ist. Wenn Sie es gerne verwenden, "
+"hinterlassen Sie uns bitte eine Bewertung, damit wir wachsen und uns "
+"verbessern können."
+
+#: ../classes/class-wc-qd-alerts.php:57
+msgid "Leave a Review"
+msgstr "Hinterlassen Sie eine Bewertung"
 
 #: ../classes/class-wc-qd-credit-manager.php:117
 #: ../classes/class-wc-qd-invoice-manager.php:194
@@ -39,12 +67,12 @@ msgstr ""
 "Steuerberichte für Ihren WooCommerce-Shop. %sHinweis: Sie benötigen ein "
 "%sQuaderno-Konto%s, damit diese Erweiterung funktioniert."
 
-#: ../classes/class-wc-qd-integration.php:74
-#: ../classes/class-wc-qd-integration.php:102
+#: ../classes/class-wc-qd-integration.php:67
+#: ../classes/class-wc-qd-integration.php:95
 msgid "Force universal pricing"
 msgstr "Universelle Preisgestaltung erzwingen"
 
-#: ../classes/class-wc-qd-integration.php:75
+#: ../classes/class-wc-qd-integration.php:68
 msgid ""
 "Check this if you want Quaderno to calculate tax in such a way, that the "
 "final price is always the same as the price provided."
@@ -52,7 +80,7 @@ msgstr ""
 "Bitte anklicken, wenn Quaderno die Steuer so berechnen soll, dass der "
 "Endpreis immer dem angegebenen Preis entspricht."
 
-#: ../classes/class-wc-qd-integration.php:82
+#: ../classes/class-wc-qd-integration.php:75
 #, php-format
 msgid ""
 "In order for this option to be available you must set the following options "
@@ -61,68 +89,68 @@ msgstr ""
 "Damit diese Option verfügbar ist, müssen Sie auf der Seite %sMehrwersteuer%s "
 "die folgenden Optionen festlegen:"
 
-#: ../classes/class-wc-qd-integration.php:87
+#: ../classes/class-wc-qd-integration.php:80
 #, php-format
 msgid "Prices entered with tax: %sYes, I will enter prices inclusive of tax%s"
 msgstr ""
 "Preise mit Steuern eingegeben: %sJa, ich gebe die Produktpreise inklusive "
 "Mehrwertsteuer ein%s"
 
-#: ../classes/class-wc-qd-integration.php:91
+#: ../classes/class-wc-qd-integration.php:84
 #, php-format
 msgid "Display prices in the shop: %sIncluding tax%s"
 msgstr "Preise im Shop anzeigen: %sSteuern eingeschlossen%s"
 
-#: ../classes/class-wc-qd-integration.php:96
+#: ../classes/class-wc-qd-integration.php:89
 #, php-format
 msgid "Display prices during cart and checkout: %sIncluding tax%s"
 msgstr ""
 "Preise während Bestell- (Warenkorb) und Bezahlvorgang (Kasse) anzeigen: "
 "%sSteuern eingeschlossen%s"
 
-#: ../classes/class-wc-qd-integration.php:122
+#: ../classes/class-wc-qd-integration.php:115
 msgid "Private key"
 msgstr "Privater Schlüssel"
 
-#: ../classes/class-wc-qd-integration.php:123
+#: ../classes/class-wc-qd-integration.php:116
 msgid "Get your Quaderno private key"
 msgstr "Holen Sie sich Ihren privaten Quaderno-Schlüssel"
 
-#: ../classes/class-wc-qd-integration.php:127
+#: ../classes/class-wc-qd-integration.php:120
 msgid "API URL"
 msgstr "API URL"
 
-#: ../classes/class-wc-qd-integration.php:128
+#: ../classes/class-wc-qd-integration.php:121
 msgid "Get your Quaderno API URL"
 msgstr "Holen Sie sich Ihre Quaderno-API-URL"
 
-#: ../classes/class-wc-qd-integration.php:132
+#: ../classes/class-wc-qd-integration.php:125
 msgid "Send invoices"
 msgstr "Rechnungen versenden"
 
-#: ../classes/class-wc-qd-integration.php:133
+#: ../classes/class-wc-qd-integration.php:126
 msgid ""
 "Check this if you want Quaderno to send an invoice for each completed order."
 msgstr ""
 "Bitte anklicken, wenn Sie möchten, dass Quaderno für jede abgeschlossene "
 "Bestellung eine Rechnung versendet."
 
-#: ../classes/class-wc-qd-integration.php:140
+#: ../classes/class-wc-qd-integration.php:133
 msgid "Require tax ID"
 msgstr "Steuernummer erforderlich"
 
-#: ../classes/class-wc-qd-integration.php:141
+#: ../classes/class-wc-qd-integration.php:134
 #, php-format
 msgid "Check this if tax ID must be required for all sales in %s."
 msgstr ""
 "Bitte anklicken, wenn für alle Verkäufe in %s eine Steuernummer erforderlich "
 "ist."
 
-#: ../classes/class-wc-qd-integration.php:148
+#: ../classes/class-wc-qd-integration.php:141
 msgid "Update tax in subscriptions"
 msgstr "Steuer in Abonnements aktualisieren"
 
-#: ../classes/class-wc-qd-integration.php:149
+#: ../classes/class-wc-qd-integration.php:142
 msgid ""
 "Check this if you want Quaderno to recalculate tax in your subscriptions if "
 "needed."
@@ -130,7 +158,7 @@ msgstr ""
 "Bitte anklicken, wenn Sie möchten, dass Quaderno die Steuern in Ihren "
 "Abonnements bei Bedarf neu berechnet."
 
-#: ../classes/class-wc-qd-integration.php:169
+#: ../classes/class-wc-qd-integration.php:162
 msgid ""
 "<strong>Quaderno</strong> is almost ready &#8211; Please configure your API "
 "keys to start creating automatic invoices."
@@ -138,21 +166,9 @@ msgstr ""
 "<strong>Quaderno</strong> ist fast fertig &#8211; Bitte konfigurieren Sie "
 "Ihre API-Schlüssel, um mit der automatischen Rechnungserstellung zu beginnen."
 
-#: ../classes/class-wc-qd-integration.php:173 ../woocommerce-quaderno.php:209
+#: ../classes/class-wc-qd-integration.php:166 ../woocommerce-quaderno.php:212
 msgid "Settings"
 msgstr "Einstellungen"
-
-#: ../classes/class-wc-qd-integration.php:193
-#, php-format
-msgid ""
-"Thank you for choosing Quaderno to manage your taxes in WooCommerce! Please "
-"consider <a href='%s' target='_blank'>writing a quick review</a>, so we can "
-"reach more business owners like you."
-msgstr ""
-"Vielen Dank, dass Sie sich für Quaderno zur Verwaltung Ihrer Steuern in "
-"WooCommerce entschieden haben! Bitte denken Sie daran, <a href='%s' "
-"target='_blank'>eine kurze Bewertung zu schreiben</a>, damit wir mehr "
-"Geschäftsinhaber wie Sie erreichen können."
 
 #: ../classes/class-wc-qd-invoice-manager.php:67
 msgid "WooCommerce customer"
@@ -316,6 +332,17 @@ msgid ""
 msgstr ""
 "Bitte aktualisieren Sie WooCommerce bis <strong>Version 2.2.9 oder neuer</"
 "strong>, damit das WooCommerce-Quaderno-Plug-in funktioniert!"
+
+#, php-format
+#~ msgid ""
+#~ "Thank you for choosing Quaderno to manage your taxes in WooCommerce! "
+#~ "Please consider <a href='%s' target='_blank'>writing a quick review</a>, "
+#~ "so we can reach more business owners like you."
+#~ msgstr ""
+#~ "Vielen Dank, dass Sie sich für Quaderno zur Verwaltung Ihrer Steuern in "
+#~ "WooCommerce entschieden haben! Bitte denken Sie daran, <a href='%s' "
+#~ "target='_blank'>eine kurze Bewertung zu schreiben</a>, damit wir mehr "
+#~ "Geschäftsinhaber wie Sie erreichen können."
 
 #~ msgid "Autosend receipts"
 #~ msgstr "Rechnungen automatisch senden"

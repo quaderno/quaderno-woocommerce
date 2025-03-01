@@ -43,10 +43,18 @@ class WC_QD_Alerts {
    * Ask users to leave a review for the plugin on wp.org.
    */
   public function quaderno_review() {
+    $review_url = 'https://wordpress.org/support/plugin/woocommerce-quaderno/reviews/#new-post';
+
     ?>
-    <div id="quaderno-review" class="quaderno-notice notice notice-info is-dismissible">
+    <div id="quaderno-review" class="quaderno-notice notice notice-success is-dismissible">
       <p>
-        <?php echo sprintf(__( "Thank you for choosing Quaderno to manage your taxes in WooCommerce! Please consider <a href='%s' target='_blank'>writing a quick review</a>, so we can reach more business owners like you.", 'woocommerce-quaderno' ), 'https://wordpress.org/support/plugin/woocommerce-quaderno/reviews/?filter=5#new-post'); ?>
+        <strong><?php _e( "Thank you for choosing Quaderno to manage your taxes in WooCommerce!", 'woocommerce-quaderno' ); ?></strong>
+      </p>
+      <p>
+        <?php _e( "We hope you find it valuable. If you enjoy using it, please consider leaving us a review to help us grow and improve.", 'woocommerce-quaderno' ); ?>
+      </p>
+      <p>
+        <a href="<?php echo esc_url($review_url) ?>" target="_blank" class="button button-primary"><?php _e('Leave a Review', 'woocommerce-quaderno') ?></a>
       </p>
     </div>
   <?php
