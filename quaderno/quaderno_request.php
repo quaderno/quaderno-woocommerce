@@ -178,6 +178,8 @@ class QuadernoRequest {
           'params'  => $params
         )
      );
+
+		set_transient( 'quaderno_alert', $error_message, WEEK_IN_SECONDS );
 	}
 
 }

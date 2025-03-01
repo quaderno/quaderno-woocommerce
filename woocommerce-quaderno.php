@@ -180,6 +180,9 @@ class WooCommerce_Quaderno {
 			$tax_code_field = new WC_QD_Tax_Code_Field();
 			$tax_code_field->setup();
 
+			// Show alerts
+			$alerts = new WC_QD_Alerts();
+
 			// Setup Order manager
 			$status_page = new WC_QD_Status();
 			$status_page->setup();
