@@ -44,24 +44,28 @@ class WC_QD_Alerts {
    */
   public function quaderno_review() {
     $review_url = 'https://wordpress.org/support/plugin/woocommerce-quaderno/reviews/#new-post';
+    $icon_url = plugin_dir_url(__DIR__) . 'assets/images/quaderno-icon.png';
 
     ?>
-    <div id="quaderno-review" class="quaderno-notice notice notice-success is-dismissible">
-      <p>
-        <strong><?php _e( "Thank you for choosing Quaderno to manage your taxes in WooCommerce!", 'woocommerce-quaderno' ); ?></strong>
-      </p>
-      <p>
-        <?php _e( "We hope you find it valuable. If you enjoy using it, please consider leaving us a review to help us grow and improve.", 'woocommerce-quaderno' ); ?>
-      </p>
-      <p>
-        <a href="<?php echo esc_url($review_url) ?>" target="_blank" class="button button-primary"><?php _e('Leave a Review', 'woocommerce-quaderno') ?></a>
-      </p>
+    <div id="quaderno-review" class="quaderno-notice notice notice-success is-dismissible" style="display:flex; align-items:center;">
+      <img src="<?php echo esc_url($icon_url) ?>" alt="Quaderno Icon" width="90" height="90" style="margin-right: 15px;">
+      <div>
+        <p>
+          <strong><?php _e( "Thank you for choosing Quaderno to manage your taxes in WooCommerce!", 'woocommerce-quaderno' ); ?></strong>
+        </p>
+        <p>
+          <?php _e( "We hope you find it valuable. If you enjoy using it, please consider leaving us a review to help us grow and improve.", 'woocommerce-quaderno' ); ?>
+        </p>
+        <p>
+          <a href="<?php echo esc_url($review_url) ?>" target="_blank" class="button button-primary"><?php _e('Leave a Review', 'woocommerce-quaderno') ?></a>
+        </p>
+      </div>
     </div>
   <?php
   }
 
   public function enqueue_quaderno_alert_script() {
-    wp_enqueue_script( 'quaderno-alert-script', plugin_dir_url(__FILE__) . '../assets/js/alerts.js', array('jquery'), null, true );
+    wp_enqueue_script( 'quaderno-alert-script', plugin_dir_url(__DIR__) . 'assets/js/alerts.js', array(), null, true );
     wp_localize_script( 'quaderno-alert-script', 'quadernoAjax', array(
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
         'nonce'   => wp_create_nonce( 'quaderno_nonce' )
