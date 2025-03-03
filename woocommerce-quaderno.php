@@ -4,7 +4,7 @@
  * Plugin Name: WooCommerce Quaderno
  * Plugin URI: https://wordpress.org/plugins/woocommerce-quaderno/
  * Description:  Automatically calculate tax rates & create instant tax reports for your WooCommerce store.
- * Version: 2.5.0
+ * Version: 2.5.1
  * Author: Quaderno
  * Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce
  * WC requires at least: 3.2.0
@@ -233,29 +233,25 @@ class WooCommerce_Quaderno {
 	 * @since 1.0
 	 */
 	public function enqueue_scripts() {
-		if ( is_checkout() ) {
-			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-
-			wp_enqueue_script(
-				'wc_qd_checkout_js',
-				plugins_url( '/assets/js/checkout' . $suffix . '.js', WooCommerce_Quaderno::get_plugin_file() ),
-				array( 'jquery' )
-			);
+		// do nothing if we are not on the target pages
+		if ( !is_checkout() ) {
+			return;
 		}
+		
+		wp_enqueue_script(
+			'wc_qd_checkout_js',
+			plugins_url( '/assets/js/checkout.js', WooCommerce_Quaderno::get_plugin_file() )
+		);
 	}
 
 	public function enqueue_admin_scripts( $pagehook ) {
-	 
 		// do nothing if we are not on the target pages
 		if ( 'edit.php' != $pagehook ) {
 			return;
 		}
 	 
-	 	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-
 		wp_enqueue_script( 'wc_qd_products_js', 
-			plugins_url( '/assets/js/products' . $suffix . '.js', WooCommerce_Quaderno::get_plugin_file() ), 
-			array( 'jquery' ) 
+			plugins_url( '/assets/js/products.js', WooCommerce_Quaderno::get_plugin_file() )
 		);
 	}
 	
