@@ -1,0 +1,1 @@
+jQuery(function(t){var e=inlineEditPost.edit;inlineEditPost.edit=function(i){e.apply(this,arguments);var a=0;if("object"==typeof i&&(a=parseInt(this.getId(i))),a>0){var n=t("#edit-"+a),s=t("#post-"+a),o=t("#quaderno_tax_class",s).text();t("select.quaderno_tax_class",n).val(o)}}});

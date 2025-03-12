@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: taxes, sales tax, vat, gst, invoices
 Requires at least: 4.6
 Tested up to: 6.7
-Stable tag: 2.5.1
+Stable tag: 2.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,9 +70,6 @@ We offer simple, transaction-based pricing that scales with your business. [Quad
 4. Example of an invoice
 
 == Changelog ==
-
-= 2.5.1 – March 3, 2025 =
-* New: migrate jQuery scripts to vanilla javascript
 
 = 2.5.0 – March 2, 2025 =
 * New: support for Canadian provincial taxes
