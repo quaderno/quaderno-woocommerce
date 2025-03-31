@@ -73,6 +73,7 @@ We offer simple, transaction-based pricing that scales with your business. [Quad
 
 = 2.5.3 – March 31, 2025 =
 * Fix: javascript issue
+* New: use street address to calculate taxes
 
 = 2.5.2 – March 12, 2025 =
 * Fix: javascript issue
