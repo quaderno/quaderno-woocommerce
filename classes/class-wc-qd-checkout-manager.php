@@ -64,7 +64,7 @@ class WC_QD_Checkout_Manager {
     $shipping_city = $cart->get_customer()->get_shipping_city();
 
     // The cart manager
-    $cart_manager = new WC_QD_Cart_Manager( $shipping_country, $shipping_state, $shipping_postcode, $shipping_city, '' );
+    $cart_manager = new WC_QD_Cart_Manager( $shipping_country, $shipping_state, $shipping_postcode, $shipping_city, '', '' );
 
     // Update the taxes in cart based on cart items
     $this->update_taxes_in_cart( $cart_manager->get_items_from_cart() );
@@ -90,21 +90,24 @@ class WC_QD_Checkout_Manager {
 			$state  = WC()->countries->get_base_state();
 			$postcode = WC()->countries->get_base_postcode();
 			$city = WC()->countries->get_base_city();
+      $street = WC()->countries->get_base_address();
 		} elseif ( 'billing' === $tax_based_on ) {
 			$country  = sanitize_text_field( $post_arr['billing_country'] );
 			$state = isset( $post_arr['billing_state'] ) ? sanitize_text_field( $post_arr['billing_state'] ) : null;
 			$postcode = isset( $post_arr['billing_postcode'] ) ? sanitize_text_field( $post_arr['billing_postcode'] ) : null;
 			$city = isset( $post_arr['billing_city'] ) ? sanitize_text_field( $post_arr['billing_city'] ) : null;
+			$street = isset( $post_arr['billing_address_1'] ) ? sanitize_text_field( $post_arr['billing_address_1'] ) : null;
 		} else {
 			$country  = sanitize_text_field( $post_arr['shipping_country'] );
 			$state = isset( $post_arr['shipping_state'] ) ? sanitize_text_field( $post_arr['shipping_state'] ) : null;
 			$postcode = isset( $post_arr['shipping_postcode'] ) ? sanitize_text_field( $post_arr['shipping_postcode'] ) : null;
 			$city = isset( $post_arr['shipping_city'] ) ? sanitize_text_field( $post_arr['shipping_city'] ) : null;
+			$street = isset( $post_arr['shipping_address_1'] ) ? sanitize_text_field( $post_arr['shipping_address_1'] ) : null;
 		}
 		$tax_id = sanitize_text_field( 'billing' === $tax_based_on ? $post_arr['tax_id'] : '' );
 
 		// The cart manager
-		$cart_manager = new WC_QD_Cart_Manager($country, $state, $postcode, $city, $tax_id);
+		$cart_manager = new WC_QD_Cart_Manager($country, $state, $postcode, $city, $street, $tax_id);
 
 		// Update the taxes in cart based on cart items
 		$this->update_taxes_in_cart( $cart_manager->get_items_from_cart() );
@@ -125,21 +128,24 @@ class WC_QD_Checkout_Manager {
 			$state = WC()->countries->get_base_state();
 			$postcode = WC()->countries->get_base_postcode();
 			$city = WC()->countries->get_base_city();
+      $street = WC()->countries->get_base_address();
 		} elseif ( 'billing' === $tax_based_on ) {
 			$country  = sanitize_text_field( $_POST['billing_country'] );
 			$state = sanitize_text_field( $_POST['billing_state'] );
 			$postcode = sanitize_text_field( $_POST['billing_postcode'] );
 			$city = sanitize_text_field( $_POST['billing_city'] );
+			$street = sanitize_text_field( $_POST['billing_address_1'] );
 		} else {
 			$country  = sanitize_text_field( $_POST['shipping_country'] );
 			$state = sanitize_text_field( $_POST['shipping_state'] );
 			$postcode = sanitize_text_field( $_POST['shipping_postcode'] );
 			$city = sanitize_text_field( $_POST['shipping_city'] );
+			$street = sanitize_text_field( $_POST['shipping_address_1'] );
 		}
 		$tax_id = sanitize_text_field( 'billing' === $tax_based_on ? $_POST['tax_id'] : '' );
 
 		// The cart manager
-		$cart_manager = new WC_QD_Cart_Manager($country, $state, $postcode, $city, $tax_id);
+		$cart_manager = new WC_QD_Cart_Manager($country, $state, $postcode, $city, $street, $tax_id);
 
 		// Update the taxes in cart based on cart items
 		$this->update_taxes_in_cart( $cart_manager->get_items_from_cart() );
@@ -172,7 +178,7 @@ class WC_QD_Checkout_Manager {
 				$product_type = WC_QD_Calculate_Tax::get_product_type( $product_id );
 
 				// Calculate taxes
-				$tax = WC_QD_Calculate_Tax::calculate($tax_class, $product_type, $order->get_total(''), get_woocommerce_currency(), $country, $order->get_meta( 'tax_id' ));
+				$tax = WC_QD_Calculate_Tax::calculate($tax_class, $product_type, $order->get_total(''), get_woocommerce_currency(), $country, '', '', '', '', $order->get_meta( 'tax_id' ));
 
 				$tax_manager->add_product_tax_class( $item_id, $tax_class );
 				$tax_manager->add_tax_rate( $tax_class, $tax->rate, $tax->name );

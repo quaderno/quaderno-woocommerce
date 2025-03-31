@@ -22,7 +22,7 @@ jQuery(document).ready( function ( $ ) {
 		$('body').trigger('update_checkout');
 	});
 
-	$('#billing_postcode, #billing_city, #shipping_postcode, #shipping_city, #tax_id').on('input', function () {
+	$('#billing_postcode, #billing_city, #billing_address_1, #shipping_postcode, #shipping_city, #shipping_address_1, #tax_id').on('input', function () {
 		if ($(this).val().length >= 4) {
    		$('body').trigger('update_checkout');
    	}

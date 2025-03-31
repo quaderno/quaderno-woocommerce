@@ -10,13 +10,15 @@ class WC_QD_Cart_Manager {
 	private $region;
 	private $postal_code;
 	private $city;
+	private $street;
 	private $tax_id;
 	
-	public function __construct($country, $region, $postal_code, $city, $tax_id) {
+	public function __construct($country, $region, $postal_code, $city, $street, $tax_id) {
 		$this->country = $country;
 		$this->region = $region;
 		$this->postal_code = $postal_code;
 		$this->city = $city;
+		$this->street = $street;
 		$this->tax_id = $tax_id;
 	}
 
@@ -43,15 +45,15 @@ class WC_QD_Cart_Manager {
 				$product_type = WC_QD_Calculate_Tax::get_product_type( $id );
 
 				// Calculate taxes
-				$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $product_type, WC()->cart->get_total(''), get_woocommerce_currency(), $this->country, $this->region, $this->postal_code, $this->city, $this->tax_id );
+				$tax = WC_QD_Calculate_Tax::calculate( $tax_class, $product_type, WC()->cart->get_total(''), get_woocommerce_currency(), $this->country, $this->region, $this->postal_code, $this->city, $this->street, $this->tax_id );
 
 				$items[ $cart_key ] = array(
 					'id' => $id,
 					'product_type'				=> $tax_class,
 					'tax_name'						=> $tax->name,
 					'tax_rate'						=> $tax->rate,
-					'additional_tax_name' => $tax->additional_name,
-					'additional_tax_rate' => $tax->additional_rate,
+					'additional_tax_name' => $tax->additional_name ?? null,
+					'additional_tax_rate' => $tax->additional_rate ?? null
 				);
 			}
 		}

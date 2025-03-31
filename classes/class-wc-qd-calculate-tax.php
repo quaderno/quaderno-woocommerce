@@ -89,7 +89,7 @@ class WC_QD_Calculate_Tax {
 	 *
 	 * @return Tax
 	 */
-	public static function calculate( $tax_class, $product_type, $amount, $currency, $country, $region = '', $postal_code = '', $city = '', $tax_id = '' ) {
+	public static function calculate( $tax_class, $product_type, $amount, $currency, $country, $region = '', $postal_code = '', $city = '', $street = '', $tax_id = '' ) {
 		global $woocommerce;
 		$cache_tax = true;
 
@@ -102,6 +102,7 @@ class WC_QD_Calculate_Tax {
 			'to_country' => $country,
 			'to_postal_code' => urlencode($postal_code),
 			'to_city' => urlencode($city),
+			'to_street' => urlencode($street),
 			'tax_id' => urlencode($tax_id),
 			'tax_code' => urlencode($tax_class),
 			'product_type' => $product_type,

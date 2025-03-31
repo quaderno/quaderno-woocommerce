@@ -164,7 +164,7 @@ class WC_QD_Transaction_Manager {
     $location = $this->get_tax_location( $order );
 
     // Calculate tax
-    $tax = WC_QD_Calculate_Tax::calculate( $tax_class, $product_type, $order->get_total(), get_woocommerce_currency(), $location['country'], $location['state'], $location['postcode'], $location['city'] );
+    $tax = WC_QD_Calculate_Tax::calculate( $tax_class, $product_type, $order->get_total(), get_woocommerce_currency(), $location['country'], $location['state'], $location['postcode'], $location['city'], $location['street'] );
 
     // Check if tax exempted
     if ( $this->is_reverse_charge( $order ) || $tax_class == 'exempted' ) {
@@ -192,23 +192,27 @@ class WC_QD_Transaction_Manager {
       $state  = WC()->countries->get_base_state();
       $postcode = WC()->countries->get_base_postcode();
       $city = WC()->countries->get_base_city();
+      $street = WC()->countries->get_base_address();
     } elseif ( 'billing' === $tax_based_on ) {
       $country  = $order->get_billing_country();
       $state = $order->get_billing_state();
       $postcode = $order->get_billing_postcode();
       $city = $order->get_billing_city();
+      $street = $order->get_billing_address_1();
     } else {
       $country  = $order->get_shipping_country();
       $state  = $order->get_shipping_state();
       $postcode = $order->get_shipping_postcode();
       $city = $order->get_shipping_city();
+      $street = $order->get_shipping_address_1();
     }
 
     $tax_location = array(
       'country'  => $country,
       'state' => $state,
       'postcode' => $postcode,
-      'city' => $city
+      'city' => $city, 
+      'street' => $street
     );
 
     return apply_filters( 'quaderno_tax_location', $tax_location, $order );
