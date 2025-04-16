@@ -3,8 +3,8 @@ Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&u
 Contributors: polimorfico
 Tags: taxes, sales tax, vat, gst, invoices
 Requires at least: 4.6
-Tested up to: 6.7
-Stable tag: 2.5.3
+Tested up to: 6.8
+Stable tag: 2.5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,10 @@ We offer simple, transaction-based pricing that scales with your business. [Quad
 4. Example of an invoice
 
 == Changelog ==
+
+= 2.5.4 – April 16, 2025 =
+* New: support for WordPress 6.8
+* New: support for WooCommerce 9.8
 
 = 2.5.3 – March 31, 2025 =
 * Fix: javascript issue
