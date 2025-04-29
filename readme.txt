@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: taxes, sales tax, vat, gst, invoices
 Requires at least: 4.6
 Tested up to: 6.8
-Stable tag: 2.5.4
+Stable tag: 2.5.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,9 @@ We offer simple, transaction-based pricing that scales with your business. [Quad
 4. Example of an invoice
 
 == Changelog ==
+
+= 2.5.5 – April 29, 2025 =
+* Fix: reverse-charge checking in subscriptions
 
 = 2.5.4 – April 16, 2025 =
 * New: support for WordPress 6.8
