@@ -87,9 +87,12 @@ class WC_QD_Credit_Manager extends WC_QD_Transaction_Manager {
         'amount' => abs($refund->get_line_total($item, true))
       );
 
-      // Add tax info for line items, fees, and taxable shipping costs
-      if ( !$item->is_type('shipping') || $item->get_total_tax('edit') > 0 ) {
-        $new_item['tax'] = $this->get_tax( $order, $item );
+      // Check if tax is enabled in WooCommerce settings
+      if ( wc_tax_enabled() ) {
+        // Add tax info for line items, fees, and taxable shipping costs
+        if ( !$item->is_type('shipping') || $item->get_total_tax('edit') > 0 ) {
+          $new_item['tax'] = $this->get_tax( $order, $item );
+        }
       }
 
       if ( $item->is_type('line_item') ) {
