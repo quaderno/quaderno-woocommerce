@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: taxes, sales tax, vat, gst, invoices
 Requires at least: 4.6
 Tested up to: 6.8
-Stable tag: 2.5.5
+Stable tag: 2.5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,9 @@ We offer simple, transaction-based pricing that scales with your business. [Quad
 4. Example of an invoice
 
 == Changelog ==
+
+= 2.5.6 – May 12, 2025 =
+* Fix: taxes will be added to invoices only if WooCommerce option has been activated 
 
 = 2.5.5 – April 29, 2025 =
 * Fix: reverse-charge checking in subscriptions
