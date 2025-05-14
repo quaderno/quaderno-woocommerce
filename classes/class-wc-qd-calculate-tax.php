@@ -93,16 +93,19 @@ class WC_QD_Calculate_Tax {
 		global $woocommerce;
 		$cache_tax = true;
 
-		// remove non-word characters from tax ID
+		// remove all spaces from $postal_code
+		$postal_code = str_replace(' ', '', $postal_code);
+
+		// remove non-word characters from $tax_id
 		$tax_id = preg_replace('/\W/', '', $tax_id);
-		
+
 		$params = array(
 			'from_country' => apply_filters( 'quaderno_shipping_country', $woocommerce->countries->get_base_country() ),
 			'from_postal_code' => apply_filters( 'quaderno_shipping_postcode', $woocommerce->countries->get_base_postcode() ),
 			'to_country' => $country,
-			'to_postal_code' => urlencode($postal_code),
-			'to_city' => urlencode($city),
-			'to_street' => urlencode($street),
+			'to_postal_code' => (strlen($postal_code) >= 5) ? urlencode($postal_code) : '',
+			'to_city' => ($country == 'US') ? urlencode($city) : '',
+			'to_street' => ($country == 'US') ? urlencode($street) : '',
 			'tax_id' => urlencode($tax_id),
 			'tax_code' => urlencode($tax_class),
 			'product_type' => $product_type,
