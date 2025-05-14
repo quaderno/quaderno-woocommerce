@@ -27,6 +27,27 @@ class WC_QD_Transaction_Manager {
    * @param $item
    */
   public function get_description( $item ) {
+    $order = $item->get_order();
+    $is_subscription_item = false;
+    $billing_period_start = '';
+    $billing_period_end = '';
+
+    // Check if the item belongs to a subscription
+    if ( function_exists( 'wcs_get_subscriptions_for_order' ) ) {
+      $subscription_ids = wcs_get_subscriptions_for_order( $order->get_id(), array( 'order_type' => 'any' ) );
+      foreach ( $subscription_ids as $subscription_id => $subscription ) {
+        if ( $subscription->has_product( $item->get_product_id() ) ) {
+          $is_subscription_item = true;
+          
+          // Get the start and end of the billing period for the subscription
+          $billing_period_start = $order->get_date_created();
+          $billing_period_end = $subscription->get_date('next_payment');
+          break;
+        }
+      }
+    }
+
+    // Get the item description
     if ( $item->is_type('line_item') ) {
       $variation_id = $item->get_variation_id();
       if( !empty($variation_id) ) {
@@ -39,6 +60,14 @@ class WC_QD_Transaction_Manager {
       $description = esc_html__('Shipping', 'woocommerce-quaderno' );
     } else {
       $description = $item->get_name();
+    }
+
+    // Append subscription info to the description if it's part of a subscription
+    if ( $is_subscription_item && !empty($billing_period_start) && !empty($billing_period_end) ) {
+      $description .= sprintf(' (%s — %s)', 
+        date_i18n(get_option('date_format'), strtotime($billing_period_start)), 
+        date_i18n(get_option('date_format'), strtotime($billing_period_end))
+      );
     }
 
     return apply_filters( 'quaderno_item_description', $description, $item );
