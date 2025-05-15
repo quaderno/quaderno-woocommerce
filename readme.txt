@@ -4,7 +4,7 @@ Contributors: polimorfico
 Tags: taxes, sales tax, vat, gst, invoices
 Requires at least: 4.6
 Tested up to: 6.8
-Stable tag: 2.6.0
+Stable tag: 2.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,10 @@ We offer simple, transaction-based pricing that scales with your business. [Quad
 4. Example of an invoice
 
 == Changelog ==
+
+= 2.6.1 – May 15, 2025 =
+* New: suppport for subscriptions with variations
+* New: use tax ID for tax calculations of shipping orders
 
 = 2.6.0 – May 14, 2025 =
 * New: show billing period on invoices with subscriptions
