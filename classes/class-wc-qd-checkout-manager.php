@@ -104,7 +104,12 @@ class WC_QD_Checkout_Manager {
 			$city = isset( $post_arr['shipping_city'] ) ? sanitize_text_field( $post_arr['shipping_city'] ) : null;
 			$street = isset( $post_arr['shipping_address_1'] ) ? sanitize_text_field( $post_arr['shipping_address_1'] ) : null;
 		}
-		$tax_id = sanitize_text_field( 'base' != $tax_based_on ? $post_arr['tax_id'] : '' );
+
+		// Get the tax ID
+		$tax_id = '';
+		if ('base' != $tax_based_on && isset( $post_arr['tax_id'] )) {
+    	$tax_id = sanitize_text_field( $post_arr['tax_id'] );
+		}
 
 		// The cart manager
 		$cart_manager = new WC_QD_Cart_Manager($country, $state, $postcode, $city, $street, $tax_id);
@@ -142,7 +147,12 @@ class WC_QD_Checkout_Manager {
 			$city = sanitize_text_field( $_POST['shipping_city'] );
 			$street = sanitize_text_field( $_POST['shipping_address_1'] );
 		}
-		$tax_id = sanitize_text_field( 'base' != $tax_based_on ? $_POST['tax_id'] : '' );
+
+		// Get the tax ID
+		$tax_id = '';
+		if ('base' != $tax_based_on && isset( $_POST['tax_id'] )) {
+    	$tax_id = sanitize_text_field( $_POST['tax_id'] );
+		}
 
 		// The cart manager
 		$cart_manager = new WC_QD_Cart_Manager($country, $state, $postcode, $city, $street, $tax_id);
