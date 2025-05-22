@@ -62,24 +62,27 @@ class WC_QD_Tax_Id_Field {
 	 *
 	 * @param $order_id
 	 */
-	public function save_field( $order_id ) {
-    global $woocommerce;
+  public function save_field( $order_id ) {
+    if ( empty( $_POST['tax_id'] ) ) {
+      return; // Early return if 'tax_id' is not set
+    }
 
-		if ( ! empty( $_POST['tax_id'] ) ) {
-      $order = wc_get_order( $order_id );
+    $order = wc_get_order( $order_id );
+    if ( ! $order ) {
+      return; // Early return if order could not be retrieved
+    }
 
-      // Remove non-word characters and save the tax ID in the order
-      $tax_id = preg_replace('/\W/', '', sanitize_text_field( $_POST['tax_id'] ));
-      $order->update_meta_data( 'tax_id', $tax_id );
+    // Remove non-word characters and save the sanitized tax ID in the order
+    $tax_id = preg_replace('/\W/', '', sanitize_text_field( $_POST['tax_id'] ));
+    $order->update_meta_data( 'tax_id', $tax_id );
 
-      // add note if we cannot validate the tax ID
-      if ( false === $this->is_valid( $tax_id, $order->get_billing_country() )) {
-        $order->add_order_note( sprintf( __( 'Tax ID %s could not be validated', 'woocommerce-quaderno' ), $tax_id ) );
-      }
+    // Add a note if the tax ID validation fails
+    if ( false === $this->is_valid( $tax_id, $order->get_billing_country() ) ) {
+       $order->add_order_note( sprintf( __( 'Tax ID %s could not be validated', 'woocommerce-quaderno' ), $tax_id ) );
+    }
 
-      $order->save();
-		}
-	}
+    $order->save(); // Save all changes to the order
+  }
 
   /**
    * Validate the Tax ID field
