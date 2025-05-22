@@ -36,13 +36,16 @@ class WC_QD_Transaction_Manager {
     if ( function_exists( 'wcs_get_subscriptions_for_order' ) ) {
       $subscription_ids = wcs_get_subscriptions_for_order( $order->get_id(), array( 'order_type' => 'any' ) );
       foreach ( $subscription_ids as $subscription_id => $subscription ) {
-        if ( $subscription->has_product( $item->get_product_id() ) ) {
-          $is_subscription_item = true;
+        // Check if the item is a line item, which can have a product ID
+        if ( $item->is_type('line_item') ) {
+          if ( $subscription->has_product( $item->get_product_id() ) ) {
+            $is_subscription_item = true;
           
-          // Get the start and end of the billing period for the subscription
-          $billing_period_start = $order->get_date_created();
-          $billing_period_end = $subscription->get_date('next_payment');
-          break;
+            // Get the start and end of the billing period for the subscription
+            $billing_period_start = $order->get_date_created();
+            $billing_period_end = $subscription->get_date('next_payment');
+            break;
+          }
         }
       }
     }
