@@ -127,8 +127,6 @@ class WC_QD_Credit_Manager extends WC_QD_Transaction_Manager {
       $refund->add_meta_data( '_quaderno_url', $transaction->permalink );
       $refund->add_meta_data( '_quaderno_contact_id', $transaction->contact->id );
       $refund->save();
-
-			if ( 'yes' === WC_QD_Integration::$autosend_invoices ) $transaction->deliver();
 		} else {
       $order->add_order_note( __( 'The credit note could not be created on Quaderno. Please check the WooCommerce logs.', 'woocommerce-quaderno' ) );
     }

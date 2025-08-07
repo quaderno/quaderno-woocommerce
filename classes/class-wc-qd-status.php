@@ -97,11 +97,6 @@ class WC_QD_Status {
             <td><mark class="<?php echo($api_response) ?>"><span class="dashicons dashicons-<?php echo($api_response) ?>"></span></mark></td>
           </tr>
           <tr>
-            <td data-export-label="Autosend invoices">Autosend invoices:</td>
-            <td class="help"><?php echo wc_help_tip( esc_html__( 'Invoices and credit notes will be automatically sent.', 'woocommerce-quaderno' ) ); ?></td>
-            <td><mark class="<?php echo(WC_QD_Integration::$autosend_invoices) ?>"><span class="dashicons dashicons-<?php echo(WC_QD_Integration::$autosend_invoices) ?>"></span></mark></td>
-          </tr>
-          <tr>
             <td data-export-label="Autosend invoices">Update tax in subscriptions:</td>
             <td class="help"><?php echo wc_help_tip( esc_html__( 'Taxes will be recalculated for subscriptions if needed', 'woocommerce-quaderno' ) ); ?></td>
             <td><mark class="<?php echo(WC_QD_Integration::$update_subscription_tax) ?>"><span class="dashicons dashicons-<?php echo(WC_QD_Integration::$update_subscription_tax) ?>"></span></mark></td>
