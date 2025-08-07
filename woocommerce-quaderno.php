@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Plugin Name: WooCommerce Quaderno
+ * Plugin Name: Verifactu Pro
  * Plugin URI: https://wordpress.org/plugins/woocommerce-quaderno/
- * Description:  Automatically calculate tax rates & create instant tax reports for your WooCommerce store.
- * Version: 2.6.2
+ * Description: Automatically issue Verifactu invoices and calculate taxes for your WooCommerce orders.
+ * Version: 1.0.0
  * Author: Quaderno
- * Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce
+ * Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=verifactu
  * WC requires at least: 3.2.0
  * WC tested up to: 9.8.1
  * License: GPL v3

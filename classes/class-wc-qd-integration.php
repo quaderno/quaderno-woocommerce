@@ -19,7 +19,7 @@ class WC_QD_Integration extends WC_Integration {
 	public function __construct() {
 		$this->id                 = 'quaderno';
 		$this->method_title       = 'Quaderno';
-		$this->method_description = sprintf( __( 'Automatically calculate tax rates & create instant tax reports for your WooCommerce store. %sNote: You need a %sQuaderno%s account for this extension to work.', 'woocommerce-quaderno' ), '<br>', '<a href="https://quadernoapp.com/signup?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">', '</a>' );
+		$this->method_description = sprintf( __( 'Automatically calculate tax rates & create instant tax reports for your WooCommerce store. %sNote: You need a %sQuaderno%s account for this extension to work.', 'woocommerce-quaderno' ), '<br>', '<a href="https://quadernoapp.com/signup?utm_source=wordpress&utm_campaign=verifactu" target="_blank">', '</a>' );
 
 		// Load admin form
 		$this->init_form_fields();
@@ -113,12 +113,12 @@ class WC_QD_Integration extends WC_Integration {
 		$this->form_fields = array(
 			'api_token' => array(
 				'title'       => __( 'Private key', 'woocommerce-quaderno' ),
-				'description' => '<a href="https://quadernoapp.com/users/api-keys/?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">' . __( 'Get your Quaderno private key', 'woocommerce-quaderno' ) . '</a>',
+				'description' => '<a href="https://quadernoapp.com/users/api-keys/?utm_source=wordpress&utm_campaign=verifactu" target="_blank">' . __( 'Get your Quaderno private key', 'woocommerce-quaderno' ) . '</a>',
 				'type'        => 'text'
 			),
 			'api_url'  => array(
 				'title'       => __( 'API URL', 'woocommerce-quaderno' ),
-				'description' => '<a href="https://quadernoapp.com/users/api-keys/?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">' . __( 'Get your Quaderno API URL', 'woocommerce-quaderno' ) . '</a>',
+				'description' => '<a href="https://quadernoapp.com/users/api-keys/?utm_source=wordpress&utm_campaign=verifactu" target="_blank">' . __( 'Get your Quaderno API URL', 'woocommerce-quaderno' ) . '</a>',
 				'type'        => 'text'
 			),
 			'autosend_invoices' => array(
