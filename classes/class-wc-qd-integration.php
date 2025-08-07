@@ -15,8 +15,8 @@ class WC_QD_Integration extends WC_Integration {
 	 */
 	public function __construct() {
 		$this->id                 = 'quaderno';
-		$this->method_title       = 'Quaderno';
-		$this->method_description = sprintf( __( 'Automatically calculate tax rates & create instant tax reports for your WooCommerce store. %sNote: You need a %sQuaderno%s account for this extension to work.', 'woocommerce-quaderno' ), '<br>', '<a href="https://quadernoapp.com/signup?utm_source=wordpress&utm_campaign=verifactu" target="_blank">', '</a>' );
+		$this->method_title       = 'Verifactu Pro';
+		$this->method_description = sprintf( __( 'Automatically issue Verifactu invoices and calculate taxes for your WooCommerce orders. %sNote: You need a %sQuaderno%s account for this extension to work.', 'woocommerce-quaderno' ), '<br>', '<a href="https://quadernoapp.com/signup?utm_source=wordpress&utm_campaign=verifactu" target="_blank">', '</a>' );
 
 		// Load admin form
 		$this->init_form_fields();

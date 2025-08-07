@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2025-03-01 17:26+0000\n"
-"PO-Revision-Date: 2025-03-01 17:34+0000\n"
+"POT-Creation-Date: 2025-08-07 22:00+0100\n"
+"PO-Revision-Date: 2025-08-07 22:08+0100\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__\n"
 "X-Poedit-SearchPath-0: ..\n"
@@ -24,13 +24,13 @@ msgstr ""
 "We hebben een probleem met uw Quaderno-integratie geïdentificeerd. Ga voor "
 "meer informatie naar de <a href=‘%s’>logspagina</a>."
 
-#: ../classes/class-wc-qd-alerts.php:51
+#: ../classes/class-wc-qd-alerts.php:54
 msgid "Thank you for choosing Quaderno to manage your taxes in WooCommerce!"
 msgstr ""
 "Bedankt dat u voor Quaderno hebt gekozen om uw belastingen in WooCommerce te "
 "beheren!"
 
-#: ../classes/class-wc-qd-alerts.php:54
+#: ../classes/class-wc-qd-alerts.php:57
 msgid ""
 "We hope you find it valuable. If you enjoy using it, please consider leaving "
 "us a review to help us grow and improve."
@@ -39,16 +39,16 @@ msgstr ""
 "overweeg dan om een ​​review achter te laten om ons te helpen groeien en "
 "verbeteren."
 
-#: ../classes/class-wc-qd-alerts.php:57
+#: ../classes/class-wc-qd-alerts.php:60
 msgid "Leave a Review"
 msgstr "Laat een beoordeling achter"
 
-#: ../classes/class-wc-qd-credit-manager.php:117
-#: ../classes/class-wc-qd-invoice-manager.php:194
+#: ../classes/class-wc-qd-credit-manager.php:120
+#: ../classes/class-wc-qd-invoice-manager.php:197
 msgid "Tax amount subject to reverse charge"
 msgstr "BTW verlegging"
 
-#: ../classes/class-wc-qd-credit-manager.php:130
+#: ../classes/class-wc-qd-credit-manager.php:131
 msgid ""
 "The credit note could not be created on Quaderno. Please check the "
 "WooCommerce logs."
@@ -56,7 +56,7 @@ msgstr ""
 "De creditnota kon niet worden aangemaakt op Quaderno. Controleer de "
 "logboeken van WooCommerce."
 
-#: ../classes/class-wc-qd-integration.php:22
+#: ../classes/class-wc-qd-integration.php:19
 #, php-format
 msgid ""
 "Automatically calculate tax rates & create instant tax reports for your "
@@ -67,96 +67,32 @@ msgstr ""
 "voor uw WooCommerce-winkel. %sOpmerking: je hebt een%sQuaderno% s account "
 "nodig om deze extensie te laten werken."
 
-#: ../classes/class-wc-qd-integration.php:67
-#: ../classes/class-wc-qd-integration.php:95
-msgid "Force universal pricing"
-msgstr "Universele prijzen afdwingen"
-
-#: ../classes/class-wc-qd-integration.php:68
-msgid ""
-"Check this if you want Quaderno to calculate tax in such a way, that the "
-"final price is always the same as the price provided."
-msgstr ""
-"Vink dit aan als u wilt dat Quaderno de belasting op zo’n manier berekent "
-"dat de uiteindelijke prijs altijd hetzelfde is als de opgegeven prijs."
-
-#: ../classes/class-wc-qd-integration.php:75
-#, php-format
-msgid ""
-"In order for this option to be available you must set the following options "
-"on the %sTax Options%s page:"
-msgstr ""
-"Opdat deze optie beschikbaar zou zijn, moet u de volgende opties instellen "
-"op de pagina %sBelastingopties%s:"
-
-#: ../classes/class-wc-qd-integration.php:80
-#, php-format
-msgid "Prices entered with tax: %sYes, I will enter prices inclusive of tax%s"
-msgstr ""
-"Prijzen ingevoerd met belasting: %sJa, ik voer prijzen in inclusief "
-"belasting%s"
-
-#: ../classes/class-wc-qd-integration.php:84
-#, php-format
-msgid "Display prices in the shop: %sIncluding tax%s"
-msgstr "Toon prijzen in de winkel: %sInclusief belasting%s"
-
-#: ../classes/class-wc-qd-integration.php:89
-#, php-format
-msgid "Display prices during cart and checkout: %sIncluding tax%s"
-msgstr ""
-"Laat prijzen zien tijdens de winkelwagen en afrekenen: %sInclusief "
-"belasting%s"
-
-#: ../classes/class-wc-qd-integration.php:115
+#: ../classes/class-wc-qd-integration.php:49
 msgid "Private key"
 msgstr "Private sleutel"
 
-#: ../classes/class-wc-qd-integration.php:116
+#: ../classes/class-wc-qd-integration.php:50
 msgid "Get your Quaderno private key"
 msgstr "Krijg uw Quaderno private sleutel"
 
-#: ../classes/class-wc-qd-integration.php:120
+#: ../classes/class-wc-qd-integration.php:54
 msgid "API URL"
 msgstr "API URL"
 
-#: ../classes/class-wc-qd-integration.php:121
+#: ../classes/class-wc-qd-integration.php:55
 msgid "Get your Quaderno API URL"
 msgstr "Krijg uw Quaderno API URL"
 
-#: ../classes/class-wc-qd-integration.php:125
-msgid "Send invoices"
-msgstr "Facturen sturen"
-
-#: ../classes/class-wc-qd-integration.php:126
-msgid ""
-"Check this if you want Quaderno to send an invoice for each completed order."
-msgstr ""
-"Vink dit aan als u wilt dat Quaderno een factuur stuurt voor elke voltooide "
-"bestelling."
-
-#: ../classes/class-wc-qd-integration.php:133
+#: ../classes/class-wc-qd-integration.php:62
 msgid "Require tax ID"
 msgstr "BTW-nummer vereist"
 
-#: ../classes/class-wc-qd-integration.php:134
+#: ../classes/class-wc-qd-integration.php:63
 #, php-format
 msgid "Check this if tax ID must be required for all sales in %s."
 msgstr "Vink dit aan als btw-nummer vereist is voor alle verkopen in %s."
 
-#: ../classes/class-wc-qd-integration.php:141
-msgid "Update tax in subscriptions"
-msgstr "Belasting in abonnementen bijwerken"
-
-#: ../classes/class-wc-qd-integration.php:142
-msgid ""
-"Check this if you want Quaderno to recalculate tax in your subscriptions if "
-"needed."
-msgstr ""
-"Vink dit aan als u wilt dat Quaderno de belasting in uw abonnementen "
-"herberekent indien nodig."
-
-#: ../classes/class-wc-qd-integration.php:162
+#: ../classes/class-wc-qd-integration.php:78
 msgid ""
 "<strong>Quaderno</strong> is almost ready &#8211; Please configure your API "
 "keys to start creating automatic invoices."
@@ -164,7 +100,7 @@ msgstr ""
 "<strong>Quaderno</strong> is bijna klaar &#8211; Gelieve uw API keys in te "
 "stellen om automatische facturen te generen."
 
-#: ../classes/class-wc-qd-integration.php:166 ../woocommerce-quaderno.php:212
+#: ../classes/class-wc-qd-integration.php:82 ../woocommerce-quaderno.php:212
 msgid "Settings"
 msgstr "Instellingen"
 
@@ -172,7 +108,7 @@ msgstr "Instellingen"
 msgid "WooCommerce customer"
 msgstr "WooCommerce-klant"
 
-#: ../classes/class-wc-qd-invoice-manager.php:209
+#: ../classes/class-wc-qd-invoice-manager.php:210
 msgid ""
 "The invoice could not be created on Quaderno. Please check the WooCommerce "
 "logs."
@@ -189,9 +125,9 @@ msgstr "Bekijk factuur"
 #: ../classes/class-wc-qd-order-manager.php:99
 #: ../classes/class-wc-qd-order-manager.php:118
 #: ../classes/class-wc-qd-tax-id-field.php:53
-#: ../classes/class-wc-qd-tax-id-field.php:96
-#: ../classes/class-wc-qd-tax-id-field.php:138
-#: ../classes/class-wc-qd-tax-id-field.php:153
+#: ../classes/class-wc-qd-tax-id-field.php:99
+#: ../classes/class-wc-qd-tax-id-field.php:141
+#: ../classes/class-wc-qd-tax-id-field.php:156
 msgid "Tax ID"
 msgstr "BTW-nummer"
 
@@ -228,24 +164,8 @@ msgid "Check if API credentials are correct."
 msgstr "Controleer of de API-referenties correct zijn."
 
 #: ../classes/class-wc-qd-status.php:101
-msgid "Invoices and credit notes will be automatically sent."
-msgstr "Facturen en creditnota's worden automatisch verzonden."
-
-#: ../classes/class-wc-qd-status.php:106
-msgid "Taxes will be recalculated for subscriptions if needed"
-msgstr "Belastingen worden indien nodig opnieuw berekend voor abonnementen"
-
-#: ../classes/class-wc-qd-status.php:111
 msgid "Local customers have to enter their tax ID."
 msgstr "Lokale klanten moeten hun fiscaal nummer invoeren."
-
-#: ../classes/class-wc-qd-status.php:116
-msgid ""
-"All customers pay the same price for the same product, no matter where they "
-"are based."
-msgstr ""
-"Alle klanten betalen dezelfde prijs voor hetzelfde product, ongeacht waar "
-"zij gevestigd zijn."
 
 #: ../classes/class-wc-qd-tax-code-field.php:68
 msgid "Quaderno tax code"
@@ -255,17 +175,17 @@ msgstr "Quaderno belastingwetboek"
 msgid "VAT number, ABN, or NZBN"
 msgstr "BTW-nummer"
 
-#: ../classes/class-wc-qd-tax-id-field.php:77
+#: ../classes/class-wc-qd-tax-id-field.php:81
 #, php-format
 msgid "Tax ID %s could not be validated"
 msgstr "BTW-nummer %s kon niet worden gevalideerd"
 
-#: ../classes/class-wc-qd-tax-id-field.php:96
+#: ../classes/class-wc-qd-tax-id-field.php:99
 #, php-format
 msgid "%s is a required field."
 msgstr "%s is een verplicht veld."
 
-#: ../classes/class-wc-qd-tax-id-field.php:122
+#: ../classes/class-wc-qd-tax-id-field.php:125
 msgid "optional"
 msgstr "optionele"
 
@@ -307,7 +227,7 @@ msgstr "De belastingcache is geleegd."
 msgid "All Quaderno data has been deleted."
 msgstr "Alle Quaderno gegevens zijn gewist."
 
-#: ../classes/class-wc-qd-transaction-manager.php:39
+#: ../classes/class-wc-qd-transaction-manager.php:63
 msgid "Shipping"
 msgstr "Verzendkosten"
 
@@ -331,6 +251,74 @@ msgid ""
 msgstr ""
 "Gelieve WooCommerce up te graden naar <strong>versie 2.2.9 of hoger</strong> "
 "om ervoor te zorgen dat de WooCommerce Quaderno plugin werkt!"
+
+#~ msgid "Force universal pricing"
+#~ msgstr "Universele prijzen afdwingen"
+
+#~ msgid ""
+#~ "Check this if you want Quaderno to calculate tax in such a way, that the "
+#~ "final price is always the same as the price provided."
+#~ msgstr ""
+#~ "Vink dit aan als u wilt dat Quaderno de belasting op zo’n manier berekent "
+#~ "dat de uiteindelijke prijs altijd hetzelfde is als de opgegeven prijs."
+
+#, php-format
+#~ msgid ""
+#~ "In order for this option to be available you must set the following "
+#~ "options on the %sTax Options%s page:"
+#~ msgstr ""
+#~ "Opdat deze optie beschikbaar zou zijn, moet u de volgende opties "
+#~ "instellen op de pagina %sBelastingopties%s:"
+
+#, php-format
+#~ msgid ""
+#~ "Prices entered with tax: %sYes, I will enter prices inclusive of tax%s"
+#~ msgstr ""
+#~ "Prijzen ingevoerd met belasting: %sJa, ik voer prijzen in inclusief "
+#~ "belasting%s"
+
+#, php-format
+#~ msgid "Display prices in the shop: %sIncluding tax%s"
+#~ msgstr "Toon prijzen in de winkel: %sInclusief belasting%s"
+
+#, php-format
+#~ msgid "Display prices during cart and checkout: %sIncluding tax%s"
+#~ msgstr ""
+#~ "Laat prijzen zien tijdens de winkelwagen en afrekenen: %sInclusief "
+#~ "belasting%s"
+
+#~ msgid "Send invoices"
+#~ msgstr "Facturen sturen"
+
+#~ msgid ""
+#~ "Check this if you want Quaderno to send an invoice for each completed "
+#~ "order."
+#~ msgstr ""
+#~ "Vink dit aan als u wilt dat Quaderno een factuur stuurt voor elke "
+#~ "voltooide bestelling."
+
+#~ msgid "Update tax in subscriptions"
+#~ msgstr "Belasting in abonnementen bijwerken"
+
+#~ msgid ""
+#~ "Check this if you want Quaderno to recalculate tax in your subscriptions "
+#~ "if needed."
+#~ msgstr ""
+#~ "Vink dit aan als u wilt dat Quaderno de belasting in uw abonnementen "
+#~ "herberekent indien nodig."
+
+#~ msgid "Invoices and credit notes will be automatically sent."
+#~ msgstr "Facturen en creditnota's worden automatisch verzonden."
+
+#~ msgid "Taxes will be recalculated for subscriptions if needed"
+#~ msgstr "Belastingen worden indien nodig opnieuw berekend voor abonnementen"
+
+#~ msgid ""
+#~ "All customers pay the same price for the same product, no matter where "
+#~ "they are based."
+#~ msgstr ""
+#~ "Alle klanten betalen dezelfde prijs voor hetzelfde product, ongeacht waar "
+#~ "zij gevestigd zijn."
 
 #, php-format
 #~ msgid ""

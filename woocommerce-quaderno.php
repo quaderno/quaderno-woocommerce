@@ -7,6 +7,8 @@
  * Version: 1.0.0
  * Author: Quaderno
  * Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=verifactu
+ * Text Domain: woocommerce-quaderno
+ * Domain Path: /languages/
  * WC requires at least: 3.2.0
  * WC tested up to: 9.8.1
  * License: GPL v3
@@ -143,7 +145,7 @@ class WooCommerce_Quaderno {
 		global $invoice_manager, $credit_manager, $order_manager;
 
 		// Load plugin textdomain
-		self::load_textdomain();
+    self::load_textdomain();
 
 		// Setup the autoloader
 		self::setup_autoloader();
@@ -256,27 +258,27 @@ class WooCommerce_Quaderno {
 			array( 'jquery' ) )
 		);
 	}
-	
-	public function load_textdomain() {
-		$lang_dir = plugin_dir_path( self::get_plugin_file() ) . '/languages/';
-		$locale = apply_filters( 'plugin_locale', get_locale(), 'woocommerce-quaderno' );
-		$mofile = sprintf( '%1$s-%2$s.mo', 'woocommerce', $locale );
 
-		/* Setup paths to current locale file */
-		$mofile_global = WP_LANG_DIR . '/woocommerce-quaderno/' . $mofile;
-		$mofile_local = $lang_dir . $mofile;
+  public function load_textdomain() {
+    $lang_dir = plugin_dir_path( self::get_plugin_file() ) . '/languages/';
+    $locale = apply_filters( 'plugin_locale', get_locale(), 'woocommerce-quaderno' );
+    $mofile = sprintf( '%1$s-%2$s.mo', 'woocommerce', $locale );
 
-		if ( file_exists( $mofile_global ) ) {
-			/* Look in global /wp-content/languages/woocommerce-quaderno/ folder */
-			load_textdomain( 'woocommerce-quaderno', $mofile_global );
-		} elseif ( file_exists( $mofile_local ) ) {
-			/* Look in local /wp-content/plugins/woocommerce-quaderno/languages/ folder */
-			load_textdomain( 'woocommerce-quaderno', $mofile_local );
-		} else {
-			/* Load the default language files */
-			load_plugin_textdomain( 'woocommerce-quaderno', false, $lang_dir );
-		}
-	}
+    /* Setup paths to current locale file */
+    $mofile_global = WP_LANG_DIR . '/woocommerce-quaderno/' . $mofile;
+    $mofile_local = $lang_dir . $mofile;
+
+    if ( file_exists( $mofile_global ) ) {
+      /* Look in global /wp-content/languages/woocommerce-quaderno/ folder */
+      load_textdomain( 'woocommerce-quaderno', $mofile_global );
+    } elseif ( file_exists( $mofile_local ) ) {
+      /* Look in local /wp-content/plugins/woocommerce-quaderno/languages/ folder */
+      load_textdomain( 'woocommerce-quaderno', $mofile_local );
+    } else {
+      /* Load the default language files */
+      load_plugin_textdomain( 'woocommerce-quaderno', false, $lang_dir );
+    }
+  }
 
 }
 
