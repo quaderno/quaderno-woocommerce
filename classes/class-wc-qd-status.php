@@ -106,11 +106,6 @@ class WC_QD_Status {
             <td class="help"><?php echo wc_help_tip( esc_html__( 'Local customers have to enter their tax ID.', 'woocommerce-quaderno' ) ); ?></td>
             <td><mark class="<?php echo(WC_QD_Integration::$require_tax_id) ?>"><span class="dashicons dashicons-<?php echo(WC_QD_Integration::$require_tax_id) ?>"></span></mark></td>
           </tr>
-          <tr>
-            <td data-export-label="Universal pricing">Universal pricing:</td>
-            <td class="help"><?php echo wc_help_tip( esc_html__( 'All customers pay the same price for the same product, no matter where they are based.', 'woocommerce-quaderno' ) ); ?></td>
-            <td><mark class="<?php echo(WC_QD_Integration::$universal_pricing) ?>"><span class="dashicons dashicons-<?php echo(WC_QD_Integration::$universal_pricing) ?>"></span></mark></td>
-          </tr>
         </tbody>
     </table>
     <?php
