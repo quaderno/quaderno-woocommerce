@@ -138,14 +138,13 @@ class WC_QD_Calculate_Tax {
 			
 			// we use the WooCommerce tax calculator if the tax rate exists
 			$wc_rate = self::get_wc_rate( $tax_class, $country, $region, $postal_code, $city );
-			if ( !empty( $wc_rate ) ) {
+			if ( !empty( $wc_rate ) && $tax->status !== 'reverse_charge' ) {
 				$tax->name = $wc_rate['label'];
 				$tax->rate = $wc_rate['rate'];
 				$tax->tax_code = 'standard';
 				$tax->country = $country;
 				$tax->region = $region;
 				$tax->city = $city;
-				$tax->status = 'taxable';
 			}
 
 			if ( true === $cache_tax ) {
