@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
   class WC_QD_Order_Manager {
 
    public function setup() {
+    add_action( 'wp_enqueue_scripts', array( $this, 'after_my_orders_js' ), 10, 2);
     add_filter( 'woocommerce_my_account_my_orders_actions', array( $this, 'show_invoice_action' ), 10, 2 );
-    add_action( 'woocommerce_after_account_orders', array( $this, 'after_my_orders_js' ), 10, 2);
     add_action( 'woocommerce_order_details_after_order_table', array( $this, 'show_invoice_button'), 10, 1 );
     add_action( 'woocommerce_order_details_after_customer_address', array( $this, 'show_tax_id'), 10, 2 );
     add_action( 'woocommerce_admin_order_data_after_billing_address', array( $this, 'display_field' ), 10, 1 );
@@ -40,16 +40,15 @@ if ( ! defined( 'ABSPATH' ) ) {
    * Open invoice action in a new tab
    */
   function after_my_orders_js() {
-    $action_slug = 'invoice';
-    ?>
-    <script>
-    jQuery(function($){
-        $('a.<?php echo $action_slug; ?>').each( function(){
-            $(this).attr('target','_blank');
-        })
-    });
-    </script>
-    <?php
+    wp_add_inline_script(
+      'woocommerce', 
+      "jQuery(function($){
+        $('a.invoice').each( function(){
+          $(this).attr('target','_blank');
+          });
+        });",
+        'after' // 'after' means it's added after the script handle it depends on
+      );
   }
 
   /**
@@ -78,9 +77,7 @@ if ( ! defined( 'ABSPATH' ) ) {
    */
   public function display_field( $order ) {
     $permalink = $order->get_meta( '_quaderno_url' );
-    if ( !empty($permalink) ) {
-      echo '<p><a href="' . $permalink . '" target="_blank">' . esc_html__( 'View Invoice', 'woocommerce-quaderno' ) . '</a></p>';
-    }
+    echo '<p><a href="' . esc_url( $permalink ) . '" target="_blank">' . esc_html__( 'View Invoice', 'woocommerce-quaderno' ) . '</a></p>';
   }
 
   /**
@@ -90,14 +87,17 @@ if ( ! defined( 'ABSPATH' ) ) {
    */
   public function show_tax_id( $address_type, $order ) {
     if ( ! $order || ! is_user_logged_in() ) {
-      return;
+        return;
     }
 
     // Show the customer's tax ID
     $tax_id = $order->get_meta( 'tax_id' );
-    if ( !empty($tax_id) ) {
-      echo sprintf('<p class="woocommerce-customer-details--tax-id">%s: %s</p>', esc_html__( 'Tax ID', 'woocommerce-quaderno' ), $tax_id );
-    }
+
+    printf(
+      '<p class="woocommerce-customer-details--tax-id">%s: %s</p>',
+      esc_html__( 'Tax ID', 'woocommerce-quaderno' ),
+      esc_html( $tax_id )
+    );
   }
 
   /**

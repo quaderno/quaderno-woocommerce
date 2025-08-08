@@ -33,7 +33,13 @@ class WC_QD_Alerts {
     ?>
     <div id="quaderno-error" class="quaderno-notice notice notice-error is-dismissible">
       <p>
-        <?php echo sprintf(__( "We have identified an issue with your Quaderno integration. For more details, please visit the <a href='%s'>logs page</a>.", 'woocommerce-quaderno' ), admin_url('admin.php?page=wc-status&tab=logs')); ?>
+        <?php 
+          echo sprintf(
+            /* translators: %s: URL to the WooCommerce status logs page */
+            esc_html__( 'We have identified an issue with your Quaderno integration. For more details, please visit the %s.', 'woocommerce-quaderno' ),
+            '<a href="' . esc_url( admin_url( 'admin.php?page=wc-status&tab=logs' ) ) . '">' . esc_html__( 'logs page', 'woocommerce-quaderno' ) . '</a>'
+          );
+        ?>
       </p>
     </div>
   <?php
@@ -51,13 +57,13 @@ class WC_QD_Alerts {
       <img src="<?php echo esc_url($icon_url) ?>" alt="Quaderno Icon" width="90" height="90" style="margin-right: 15px;">
       <div>
         <p>
-          <strong><?php _e( "Thank you for choosing Quaderno to manage your taxes in WooCommerce!", 'woocommerce-quaderno' ); ?></strong>
+          <strong><?php esc_html_e( "Thank you for choosing Quaderno to manage your taxes in WooCommerce!", 'woocommerce-quaderno' ); ?></strong>
         </p>
         <p>
-          <?php _e( "We hope you find it valuable. If you enjoy using it, please consider leaving us a review to help us grow and improve.", 'woocommerce-quaderno' ); ?>
+          <?php esc_html_e( "We hope you find it valuable. If you enjoy using it, please consider leaving us a review to help us grow and improve.", 'woocommerce-quaderno' ); ?>
         </p>
         <p>
-          <a href="<?php echo esc_url($review_url) ?>" target="_blank" class="button button-primary"><?php _e('Leave a Review', 'woocommerce-quaderno') ?></a>
+          <a href="<?php echo esc_url($review_url) ?>" target="_blank" class="button button-primary"><?php esc_html_e('Leave a Review', 'woocommerce-quaderno') ?></a>
         </p>
       </div>
     </div>

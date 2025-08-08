@@ -2,11 +2,12 @@
 Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce
 Contributors: polimorfico
 Tags: taxes, sales tax, vat, gst, invoices
-Requires at least: 4.6
+Requires at least: 6.7
 Tested up to: 6.8
+Requires PHP: 7.4
 Stable tag: 2.6.2
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Automatically calculate tax rates & create instant tax reports for your WooCommerce store. Setup in less than 5 minutes.
 

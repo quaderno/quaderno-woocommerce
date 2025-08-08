@@ -78,7 +78,8 @@ class WC_QD_Tax_Id_Field {
 
     // Add a note if the tax ID validation fails
     if ( false === $this->is_valid( $tax_id, $order->get_billing_country() ) ) {
-       $order->add_order_note( sprintf( __( 'Tax ID %s could not be validated', 'woocommerce-quaderno' ), $tax_id ) );
+      /* translators: 1: tax ID value */ 
+      $order->add_order_note( sprintf( __( 'Tax ID %s could not be validated', 'woocommerce-quaderno' ), $tax_id ) );
     }
 
     $order->save(); // Save all changes to the order
@@ -96,7 +97,8 @@ class WC_QD_Tax_Id_Field {
     $tax_id = $_POST['tax_id'];
 
     if ( 'yes' === WC_QD_Integration::$require_tax_id && $billing_country == $base_country && empty( $tax_id ) ) {
-      $errors->add( 'required-field', sprintf( __( '%s is a required field.', 'woocommerce' ), '<strong>' . esc_html__( 'Tax ID', 'woocommerce-quaderno' ) . '</strong>' ));
+      /* translators: 1: field name */ 
+      $errors->add( 'required-field', sprintf( __( '%s is a required field.', 'woocommerce-quaderno' ), '<strong>' . esc_html__( 'Tax ID', 'woocommerce-quaderno' ) . '</strong>' ));
     }
   }
 
@@ -122,7 +124,7 @@ class WC_QD_Tax_Id_Field {
    */
   public function remove_checkout_optional_text( $field, $key, $args, $value ) {
     if( is_checkout() && ! is_wc_endpoint_url() && 'yes' === WC_QD_Integration::$require_tax_id ) {
-      $optional = '&nbsp;<span class="optional">(' . esc_html__( 'optional', 'woocommerce' ) . ')</span>';
+      $optional = '&nbsp;<span class="optional">(' . esc_html__( 'optional', 'woocommerce-quaderno' ) . ')</span>';
       $field = str_replace( $optional, '', $field );
     }
     return $field;

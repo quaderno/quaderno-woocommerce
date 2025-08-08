@@ -19,7 +19,12 @@ class WC_QD_Integration extends WC_Integration {
 	public function __construct() {
 		$this->id                 = 'quaderno';
 		$this->method_title       = 'Quaderno';
-		$this->method_description = sprintf( __( 'Automatically calculate tax rates & create instant tax reports for your WooCommerce store. %sNote: You need a %sQuaderno%s account for this extension to work.', 'woocommerce-quaderno' ), '<br>', '<a href="https://quadernoapp.com/signup?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">', '</a>' );
+    
+    $this->method_description = sprintf(
+      /* translators: %s: Link to the Quaderno signup page */
+      wp_kses_post( 'Automatically calculate tax rates & create instant tax reports for your WooCommerce store. <br>Note: You need a %s for this extension to work.' ),
+      '<a href="' . esc_url( 'https://quadernoapp.com/signup?utm_source=wordpress&utm_campaign=woocommerce' ) . '">' . esc_html__( 'Quaderno account', 'woocommerce-quaderno' ) . '</a>'
+    );
 
 		// Load admin form
 		$this->init_form_fields();
@@ -72,21 +77,22 @@ class WC_QD_Integration extends WC_Integration {
 			);
 		} else {
 			// Build the description of what conditions must be met for this option to be enabled
-			$setting_description = sprintf( __( 'In order for this option to be available you must set the following options on the %sTax Options%s page:', 'woocommerce-quaderno' ), '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=tax' ) . '">', '</a>' );
+	    /* translators: 1: url */ 
+			$setting_description = sprintf( __( 'In order for this option to be available you must set the following options on the <a href="%s">Tax Options</a> page:', 'woocommerce-quaderno' ), admin_url( 'admin.php?page=wc-settings&tab=tax' ) );
 			
 			$setting_description .= '<ol>';
 			
 			if ( $woocommerce_prices_include_tax == false ){
-				$setting_description .= '<li><span>' . sprintf( __( 'Prices entered with tax: %sYes, I will enter prices inclusive of tax%s', 'woocommerce' ), '<strong>', '</strong>' ) . '</span></li>';
+				$setting_description .= '<li><span>' . sprintf( __( 'Prices entered with tax: <strong>Yes, I will enter prices inclusive of tax</strong>', 'woocommerce-quaderno' ) ) . '</span></li>';
 			}	
 
 			if ( $woocommerce_tax_display_shop == false ) {
-				$setting_description .= '<li><span>' . sprintf( __( 'Display prices in the shop: %sIncluding tax%s', 'woocommerce' ), '<strong>', '</strong>' ) . '</span></li>';
+				$setting_description .= '<li><span>' . sprintf( __( 'Display prices in the shop: <strong>Including tax</strong>', 'woocommerce-quaderno' ) ) . '</span></li>';
 			}
 
 			if ( $woocommerce_tax_display_cart == false ) 
 			{
-				$setting_description .= '<li><span>' . sprintf( __( 'Display prices during cart and checkout: %sIncluding tax%s', 'woocommerce' ), '<strong>', '</strong>' ) . '</span></li>';
+				$setting_description .= '<li><span>' . sprintf( __( 'Display prices during cart and checkout: <strong>Including tax</strong>', 'woocommerce-quaderno' ) ) . '</span></li>';
 			}
 			
 			$setting_description .= '</ol>';
@@ -131,6 +137,7 @@ class WC_QD_Integration extends WC_Integration {
 		if ( in_array( $base_country, WC_QD_Tax_Id_Field::COUNTRIES ) ) {
 			$this->form_fields[ 'require_tax_id' ] = array(
 				'title'       => __( 'Require tax ID', 'woocommerce-quaderno' ),
+				/* translators: 1: shop's country */ 
 				'description' => sprintf(__( 'Check this if tax ID must be required for all sales in %s.', 'woocommerce-quaderno' ), $woocommerce->countries->countries[ $base_country ]),
 				'type'        => 'checkbox'
 			);
@@ -154,17 +161,30 @@ class WC_QD_Integration extends WC_Integration {
 	 * Settings prompt
 	 */
 	public function settings_notice() {
-		if ( ! empty( $_GET['tab'] ) && 'integration' === $_GET['tab'] ) {
-			return;
-		}
-		?>
-		<div id="message" class="updated woocommerce-message">
-			<p><?php _e( '<strong>Quaderno</strong> is almost ready &#8211; Please configure your API keys to start creating automatic invoices.', 'woocommerce-quaderno' ); ?></p>
+    $current_tab = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : '';
 
-			<p class="submit"><a
-					href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=integration&section=quaderno' ); ?>"
-					class="button-primary"><?php _e( 'Settings', 'woocommerce-quaderno' ); ?></a></p>
-		</div>
-	<?php
+    if ( 'integration' === $current_tab ) {
+       return;
+    }
+    ?>
+    <div id="message" class="updated woocommerce-message">
+        <p>
+            <?php
+            printf(
+                /* translators: %s: Strong tag for 'Quaderno' */
+                wp_kses_post( '<strong>%s</strong> is almost ready &#8211; Please configure your API keys to start creating automatic invoices.' ),
+                esc_html__( 'Quaderno', 'woocommerce-quaderno' )
+            );
+            ?>
+        </p>
+
+        <p class="submit">
+            <a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=integration&section=quaderno' ) ); ?>"
+               class="button-primary">
+                <?php esc_html_e( 'Settings', 'woocommerce-quaderno' ); ?>
+            </a>
+        </p>
+    </div>
+    <?php
 	}
 }

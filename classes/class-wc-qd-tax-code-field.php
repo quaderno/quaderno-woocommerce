@@ -78,12 +78,11 @@ class WC_QD_Tax_Code_Field {
   /**
    * Save the Quaderno tax code in the product metadata box
    */
-  public function quaderno_save_fields( $id, $post ){
-   
-    if( isset( $_POST['_quaderno_tax_code'] ) ) {
-      update_post_meta( $id, '_quaderno_tax_code', $_POST['_quaderno_tax_code'] );
-    } 
-   
+  public function quaderno_save_fields( $id, $post ) {
+    if ( isset( $_POST['_quaderno_tax_code'] ) ) {
+        $tax_code = sanitize_text_field( wp_unslash( $_POST['_quaderno_tax_code'] ) );
+        update_post_meta( $id, '_quaderno_tax_code', $tax_code );
+    }
   }
 
   /**
@@ -98,7 +97,7 @@ class WC_QD_Tax_Code_Field {
         <select class="quaderno_tax_code" name="_quaderno_tax_code">
         <?php
           foreach( self::TAX_CODES as $key => $value ) {
-            echo "<option value='$key'>$value</option>";
+            printf( '<option value="%s">%s</option>', esc_attr( $key ), esc_html( $value ) );
           }
         ?>
         </select>
@@ -128,9 +127,13 @@ class WC_QD_Tax_Code_Field {
     switch( $column_name ) :
       case 'name': {
         ?>
-        <div class="hidden quaderno_tax_code_inline" id="quaderno_tax_code_inline_<?php echo $post_id; ?>">
-            <div id="quaderno_tax_code"><?php echo get_post_meta($post_id, '_quaderno_tax_code', true); ?></div>
+
+        <div class="hidden quaderno_tax_code_inline" id="quaderno_tax_code_inline_<?php echo esc_attr( $post_id ); ?>">
+          <div class="quaderno_tax_code_content">
+            <?php echo esc_html( get_post_meta( $post_id, '_quaderno_tax_code', true ) ); ?>
+          </div>
         </div>
+
       <?php
         break;
       }

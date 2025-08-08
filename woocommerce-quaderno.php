@@ -7,6 +7,8 @@
  * Version: 2.6.2
  * Author: Quaderno
  * Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce
+ * Text Domain: woocommerce-quaderno
+ * Domain Path: /languages/
  * WC requires at least: 3.2.0
  * WC tested up to: 9.8.1
  * License: GPL v3
@@ -97,11 +99,22 @@ class WooCommerce_Quaderno {
 	 * @access public
 	 */
 	public function notice_activate_wc() {
-		?>
-		<div class="error">
-			<p><?php printf( __( 'Please install and activate %sWooCommerce%s in order for the WooCommerce Quaderno extension to work!', 'woocommerce-quaderno' ), '<a href="' . admin_url( 'plugin-install.php?tab=search&s=WooCommerce&plugin-search-input=Search+Plugins' ) . '">', '</a>' ); ?></p>
-		</div>
-	<?php
+    ?>
+    <div class="error">
+        <p>
+            <?php
+            // The URL for the plugin install page.
+            $install_wc_url = admin_url( 'plugin-install.php?tab=search&s=WooCommerce&plugin-search-input=Search+Plugins' );
+
+            printf(
+                /* translators: %s: WooCommerce plugin install URL */
+                esc_html__( 'Please install and activate %s in order for the WooCommerce Quaderno extension to work', 'woocommerce-quaderno' ),
+                '<a href="' . esc_url( $install_wc_url ) . '">WooCommerce</a>'
+            );
+            ?>
+        </p>
+    </div>
+    <?php
 	}
 
 	/**
@@ -113,7 +126,7 @@ class WooCommerce_Quaderno {
 	public function notice_version_wc() {
 		?>
 		<div class="error">
-			<p><?php _e( 'Please update WooCommerce to <strong>version 2.2.9 or higher</strong> in order for the WooCommerce Quaderno extension to work!', 'woocommerce-quaderno' ); ?></p>
+			<p><?php esc_html_e( 'Please update WooCommerce to version 3.2 or higher in order for the WooCommerce Quaderno extension to work!', 'woocommerce-quaderno' ); ?></p>
 		</div>
 	<?php
 	}
@@ -141,9 +154,6 @@ class WooCommerce_Quaderno {
 	private function init() {
 
 		global $invoice_manager, $credit_manager, $order_manager;
-
-		// Load plugin textdomain
-		self::load_textdomain();
 
 		// Setup the autoloader
 		self::setup_autoloader();
@@ -256,28 +266,6 @@ class WooCommerce_Quaderno {
 			array( 'jquery' ) )
 		);
 	}
-	
-	public function load_textdomain() {
-		$lang_dir = plugin_dir_path( self::get_plugin_file() ) . '/languages/';
-		$locale = apply_filters( 'plugin_locale', get_locale(), 'woocommerce-quaderno' );
-		$mofile = sprintf( '%1$s-%2$s.mo', 'woocommerce', $locale );
-
-		/* Setup paths to current locale file */
-		$mofile_global = WP_LANG_DIR . '/woocommerce-quaderno/' . $mofile;
-		$mofile_local = $lang_dir . $mofile;
-
-		if ( file_exists( $mofile_global ) ) {
-			/* Look in global /wp-content/languages/woocommerce-quaderno/ folder */
-			load_textdomain( 'woocommerce-quaderno', $mofile_global );
-		} elseif ( file_exists( $mofile_local ) ) {
-			/* Look in local /wp-content/plugins/woocommerce-quaderno/languages/ folder */
-			load_textdomain( 'woocommerce-quaderno', $mofile_local );
-		} else {
-			/* Load the default language files */
-			load_plugin_textdomain( 'woocommerce-quaderno', false, $lang_dir );
-		}
-	}
-
 }
 
 // Deactivation code
@@ -285,11 +273,15 @@ function woocommerce_quaderno_deactivate() {
 	global $wpdb;
  
  	// delete all transients
-  $sql = 'DELETE FROM ' . $wpdb->options . ' WHERE option_name LIKE "_transient_quaderno_tax_%"';
-  $wpdb->query($sql);
+  $wpdb->query( $wpdb->prepare(
+    "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s",
+    $wpdb->esc_like( '_transient_quaderno_tax_' ) . '%'
+  ) );
 
-  $sql = 'DELETE FROM ' . $wpdb->options . ' WHERE option_name LIKE "%_vat_number_%"';
-  $wpdb->query($sql);
+  $wpdb->query( $wpdb->prepare(
+    "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s",
+    '%' . $wpdb->esc_like( '_vat_number_' ) . '%'
+  ) );
 }
 register_deactivation_hook( __FILE__, 'woocommerce_quaderno_deactivate' );
 

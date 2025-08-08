@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2025-03-01 17:26+0000\n"
-"PO-Revision-Date: 2025-03-03 18:09+0000\n"
+"POT-Creation-Date: 2025-08-08 13:58+0100\n"
+"PO-Revision-Date: 2025-08-08 13:59+0100\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: Quaderno <support@quaderno.io>\n"
 "Language: es_ES\n"
@@ -10,45 +10,31 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../classes/class-wc-qd-alerts.php:36
+#: ../classes/class-wc-qd-alerts.php:39
 #, php-format
 msgid ""
 "We have identified an issue with your Quaderno integration. For more "
-"details, please visit the <a href='%s'>logs page</a>."
+"details, please visit the %s."
 msgstr ""
 "Hemos encontrado un problema en tu integración con Quaderno. Para más "
-"detalles, vista la <a href=‘%s’>página de logs</a>."
+"detalles, visita la %s."
 
-#: ../classes/class-wc-qd-alerts.php:51
-msgid "Thank you for choosing Quaderno to manage your taxes in WooCommerce!"
-msgstr ""
-"¡Muchas gracias por elegir Quaderno para gestionar tus impuestos en "
-"WooCommerce!"
+#: ../classes/class-wc-qd-alerts.php:40
+msgid "logs page"
+msgstr "página de logs"
 
-#: ../classes/class-wc-qd-alerts.php:54
-msgid ""
-"We hope you find it valuable. If you enjoy using it, please consider leaving "
-"us a review to help us grow and improve."
-msgstr ""
-"Esperamos que te esté gustando. Si es así, te agradeceríamos que nos dejaras "
-"una reseña para ayudarnos a crecer y mejorar."
-
-#: ../classes/class-wc-qd-alerts.php:57
-msgid "Leave a Review"
-msgstr "Dejar una reseña"
-
-#: ../classes/class-wc-qd-credit-manager.php:117
-#: ../classes/class-wc-qd-invoice-manager.php:194
+#: ../classes/class-wc-qd-credit-manager.php:120
+#: ../classes/class-wc-qd-invoice-manager.php:197
 msgid "Tax amount subject to reverse charge"
 msgstr "Inversión de sujeto pasivo"
 
-#: ../classes/class-wc-qd-credit-manager.php:130
+#: ../classes/class-wc-qd-credit-manager.php:133
 msgid ""
 "The credit note could not be created on Quaderno. Please check the "
 "WooCommerce logs."
@@ -56,23 +42,16 @@ msgstr ""
 "El abono no pudo ser creado en Quaderno. Por favor, comprueba los logs de "
 "WooCommerce."
 
-#: ../classes/class-wc-qd-integration.php:22
-#, php-format
-msgid ""
-"Automatically calculate tax rates & create instant tax reports for your "
-"WooCommerce store. %sNote: You need a %sQuaderno%s account for this "
-"extension to work."
-msgstr ""
-"Calcula impuestos automáticamente y crea informes de impuestos al instante "
-"para tu tienda WooCommerce. %sNota: Necesitas una %scuenta Quaderno%s para "
-"que esta extensión funcione."
+#: ../classes/class-wc-qd-integration.php:26
+msgid "Quaderno account"
+msgstr "cuenta Quaderno"
 
-#: ../classes/class-wc-qd-integration.php:67
-#: ../classes/class-wc-qd-integration.php:95
+#: ../classes/class-wc-qd-integration.php:72
+#: ../classes/class-wc-qd-integration.php:101
 msgid "Force universal pricing"
 msgstr "Forzar precio universal"
 
-#: ../classes/class-wc-qd-integration.php:68
+#: ../classes/class-wc-qd-integration.php:73
 msgid ""
 "Check this if you want Quaderno to calculate tax in such a way, that the "
 "final price is always the same as the price provided."
@@ -80,75 +59,75 @@ msgstr ""
 "Selecciona esta opción si quieres que Quaderno calcule los impuestos de tal "
 "forma que el precio final siempre sea el mismo."
 
-#: ../classes/class-wc-qd-integration.php:75
+#: ../classes/class-wc-qd-integration.php:81
 #, php-format
 msgid ""
 "In order for this option to be available you must set the following options "
-"on the %sTax Options%s page:"
+"on the <a href=\"%s\">Tax Options</a> page:"
 msgstr ""
 "Para que esta opción esté disponible, debes configurar las siguientes "
-"opciones en la página %sImpuesto%s:"
+"opciones en la página <a href=\"%s\">Impuesto</a>:"
 
-#: ../classes/class-wc-qd-integration.php:80
-#, php-format
-msgid "Prices entered with tax: %sYes, I will enter prices inclusive of tax%s"
+#: ../classes/class-wc-qd-integration.php:86
+msgid ""
+"Prices entered with tax: <strong>Yes, I will enter prices inclusive of tax</"
+"strong>"
 msgstr ""
-"Precios con impuestos incluidos: %sSí, voy a introducir los precios con "
-"impuestos incluidos%s"
+"Precios con impuestos incluidos: <strong>Sí, voy a introducir los precios "
+"con impuestos incluido</strong>"
 
-#: ../classes/class-wc-qd-integration.php:84
-#, php-format
-msgid "Display prices in the shop: %sIncluding tax%s"
-msgstr "Mostrar precios en la tienda: %sIVA incluido%s"
+#: ../classes/class-wc-qd-integration.php:90
+msgid "Display prices in the shop: <strong>Including tax</strong>"
+msgstr "Mostrar precios en la tienda: <strong>IVA incluido</strong>"
 
-#: ../classes/class-wc-qd-integration.php:89
-#, php-format
-msgid "Display prices during cart and checkout: %sIncluding tax%s"
-msgstr "Mostrar precios en el carrito y en el pago: %sIVA incluido%s"
+#: ../classes/class-wc-qd-integration.php:95
+msgid "Display prices during cart and checkout: <strong>Including tax</strong>"
+msgstr ""
+"Mostrar precios en el carrito y en el pago: <string>IVA incluido</strong>"
 
-#: ../classes/class-wc-qd-integration.php:115
+#: ../classes/class-wc-qd-integration.php:121
 msgid "Private key"
 msgstr "Clave privada"
 
-#: ../classes/class-wc-qd-integration.php:116
+#: ../classes/class-wc-qd-integration.php:122
 msgid "Get your Quaderno private key"
 msgstr "Obtén tu clave privada en Quaderno"
 
-#: ../classes/class-wc-qd-integration.php:120
+#: ../classes/class-wc-qd-integration.php:126
 msgid "API URL"
 msgstr "API URL"
 
-#: ../classes/class-wc-qd-integration.php:121
+#: ../classes/class-wc-qd-integration.php:127
 msgid "Get your Quaderno API URL"
 msgstr "Obtén tu API URL en Quaderno"
 
-#: ../classes/class-wc-qd-integration.php:125
+#: ../classes/class-wc-qd-integration.php:131
 msgid "Send invoices"
 msgstr "Enviar facturas"
 
-#: ../classes/class-wc-qd-integration.php:126
+#: ../classes/class-wc-qd-integration.php:132
 msgid ""
 "Check this if you want Quaderno to send an invoice for each completed order."
 msgstr ""
 "Selecciona esta opción si quieres que Quaderno envíe una factura por cada "
 "pedido completado."
 
-#: ../classes/class-wc-qd-integration.php:133
+#: ../classes/class-wc-qd-integration.php:139
 msgid "Require tax ID"
 msgstr "NIF obligatorio"
 
-#: ../classes/class-wc-qd-integration.php:134
+#: ../classes/class-wc-qd-integration.php:141
 #, php-format
 msgid "Check this if tax ID must be required for all sales in %s."
 msgstr ""
 "Selecciona esta opción si el NIF debe ser obligatorio para todas las ventas "
 "en %s."
 
-#: ../classes/class-wc-qd-integration.php:141
+#: ../classes/class-wc-qd-integration.php:148
 msgid "Update tax in subscriptions"
 msgstr "Actualizar impuestos en suscripciones"
 
-#: ../classes/class-wc-qd-integration.php:142
+#: ../classes/class-wc-qd-integration.php:149
 msgid ""
 "Check this if you want Quaderno to recalculate tax in your subscriptions if "
 "needed."
@@ -156,23 +135,16 @@ msgstr ""
 "Selecciona esta opción si quieres que Quaderno recalcule los impuestos en "
 "tus suscripciones si fuera necesario."
 
-#: ../classes/class-wc-qd-integration.php:162
-msgid ""
-"<strong>Quaderno</strong> is almost ready &#8211; Please configure your API "
-"keys to start creating automatic invoices."
-msgstr ""
-"<strong>Quaderno</strong> está casi listo &#8211; Por favor configura tus "
-"claves API para empezar a crear facturas automáticas."
-
-#: ../classes/class-wc-qd-integration.php:166 ../woocommerce-quaderno.php:212
-msgid "Settings"
-msgstr "Configuración"
+#: ../classes/class-wc-qd-integration.php:176
+#: ../classes/class-wc-qd-status.php:19
+msgid "Quaderno"
+msgstr "Quaderno"
 
 #: ../classes/class-wc-qd-invoice-manager.php:67
 msgid "WooCommerce customer"
 msgstr "Cliente WooCommerce"
 
-#: ../classes/class-wc-qd-invoice-manager.php:209
+#: ../classes/class-wc-qd-invoice-manager.php:212
 msgid ""
 "The invoice could not be created on Quaderno. Please check the WooCommerce "
 "logs."
@@ -181,23 +153,19 @@ msgstr ""
 "WooCommerce."
 
 #: ../classes/class-wc-qd-order-manager.php:31
-#: ../classes/class-wc-qd-order-manager.php:70
-#: ../classes/class-wc-qd-order-manager.php:82
+#: ../classes/class-wc-qd-order-manager.php:69
+#: ../classes/class-wc-qd-order-manager.php:80
 msgid "View Invoice"
 msgstr "Ver factura"
 
-#: ../classes/class-wc-qd-order-manager.php:99
+#: ../classes/class-wc-qd-order-manager.php:98
 #: ../classes/class-wc-qd-order-manager.php:118
 #: ../classes/class-wc-qd-tax-id-field.php:53
-#: ../classes/class-wc-qd-tax-id-field.php:96
-#: ../classes/class-wc-qd-tax-id-field.php:138
-#: ../classes/class-wc-qd-tax-id-field.php:153
+#: ../classes/class-wc-qd-tax-id-field.php:101
+#: ../classes/class-wc-qd-tax-id-field.php:143
+#: ../classes/class-wc-qd-tax-id-field.php:158
 msgid "Tax ID"
 msgstr "NIF o NIF-IVA"
-
-#: ../classes/class-wc-qd-status.php:19
-msgid "Quaderno"
-msgstr "Quaderno"
 
 #: ../classes/class-wc-qd-status.php:36
 msgid "Customer shipping address"
@@ -217,38 +185,13 @@ msgstr ""
 "El tipo de impuesto para los gastos de envío depende del contenido del "
 "carrito"
 
-#: ../classes/class-wc-qd-status.php:82
+#: ../classes/class-wc-qd-status.php:84
 msgid ""
 "You must add your base country in the standard tax rates page if you work "
 "with tax included prices."
 msgstr ""
 "Tienes que añadir tu país en la página de impuestos estándar si trabajas con "
 "precios con impuestos incluidos."
-
-#: ../classes/class-wc-qd-status.php:96
-msgid "Check if API credentials are correct."
-msgstr "Comprobar si las credenciales API son correctas."
-
-#: ../classes/class-wc-qd-status.php:101
-msgid "Invoices and credit notes will be automatically sent."
-msgstr "Las facturas y los abonos serán enviados automáticamente."
-
-#: ../classes/class-wc-qd-status.php:106
-msgid "Taxes will be recalculated for subscriptions if needed"
-msgstr ""
-"Los impuestos será recalculados para las suscripciones si fuera necesario"
-
-#: ../classes/class-wc-qd-status.php:111
-msgid "Local customers have to enter their tax ID."
-msgstr "Los clientes locales tienes que introducir su NIF."
-
-#: ../classes/class-wc-qd-status.php:116
-msgid ""
-"All customers pay the same price for the same product, no matter where they "
-"are based."
-msgstr ""
-"Todos los clientes pagan el mismo precio por el mismo producto, sin importar "
-"dónde están radicados."
 
 #: ../classes/class-wc-qd-tax-code-field.php:68
 msgid "Quaderno tax code"
@@ -258,17 +201,17 @@ msgstr "Tipo de impuesto en Quaderno"
 msgid "VAT number, ABN, or NZBN"
 msgstr "NIF o NIF-IVA"
 
-#: ../classes/class-wc-qd-tax-id-field.php:77
+#: ../classes/class-wc-qd-tax-id-field.php:82
 #, php-format
 msgid "Tax ID %s could not be validated"
 msgstr "El NIF-IVA %s no pudo ser validado"
 
-#: ../classes/class-wc-qd-tax-id-field.php:96
+#: ../classes/class-wc-qd-tax-id-field.php:101
 #, php-format
 msgid "%s is a required field."
 msgstr "%s es un campo obligatorio."
 
-#: ../classes/class-wc-qd-tax-id-field.php:122
+#: ../classes/class-wc-qd-tax-id-field.php:127
 msgid "optional"
 msgstr "opcional"
 
@@ -300,15 +243,15 @@ msgstr ""
 "Esta herramienta borrará todos los datos creados por Quaderno. Utilízala si "
 "vas a conectar tu tienda de WooCommerce a una nueva cuenta de Quaderno."
 
-#: ../classes/class-wc-qd-tools.php:55
+#: ../classes/class-wc-qd-tools.php:60
 msgid "The tax cache has been emptied."
 msgstr "La caché de impuestos ha sido borrada."
 
-#: ../classes/class-wc-qd-tools.php:68
+#: ../classes/class-wc-qd-tools.php:77
 msgid "All Quaderno data has been deleted."
 msgstr "Todos los datos de Quaderno han sido borrados."
 
-#: ../classes/class-wc-qd-transaction-manager.php:39
+#: ../classes/class-wc-qd-transaction-manager.php:63
 msgid "Shipping"
 msgstr "Gastos de envío"
 
@@ -316,22 +259,80 @@ msgstr "Gastos de envío"
 msgid "There was a problem connecting to the API."
 msgstr "Hubo un problema al conectar con la API."
 
-#: ../woocommerce-quaderno.php:102
+#: ../woocommerce-quaderno.php:111
 #, php-format
 msgid ""
-"Please install and activate %sWooCommerce%s in order for the WooCommerce "
-"Quaderno extension to work!"
+"Please install and activate %s in order for the WooCommerce Quaderno "
+"extension to work"
 msgstr ""
-"Por favor, instala %sWooCommerce%s para poder usar la extensión de Quaderno "
-"para WooCommerce"
+"Por favor, instala y activa %s para que el plugin WooCommerce Quaderno "
+"funcione"
 
-#: ../woocommerce-quaderno.php:116
-msgid ""
-"Please update WooCommerce to <strong>version 2.2.9 or higher</strong> in "
-"order for the WooCommerce Quaderno extension to work!"
-msgstr ""
-"¡Por favor actualiza tu instalación de WooCommerce a la <strong>versión "
-"2.2.9 o superior</strong> para poder usar este plugin!"
+#: ../woocommerce-quaderno.php:222
+msgid "Settings"
+msgstr "Configuración"
+
+#~ msgid "WooCommerce"
+#~ msgstr "WooCommerce"
+
+#, php-format
+#~ msgid ""
+#~ "Automatically calculate tax rates & create instant tax reports for your "
+#~ "WooCommerce store. <br>Note: You need a <a href=\"%s\">Quaderno</a> "
+#~ "account for this extension to work."
+#~ msgstr ""
+#~ "Calcula impuestos automáticamente y crea informes de impuestos al "
+#~ "instante para tu tienda WooCommerce. <br>Nota: Necesitas una cuenta <a "
+#~ "href=\"%s\">Quaderno</a> para que esta extensión funcione."
+
+#~ msgid "Thank you for choosing Quaderno to manage your taxes in WooCommerce!"
+#~ msgstr ""
+#~ "¡Muchas gracias por elegir Quaderno para gestionar tus impuestos en "
+#~ "WooCommerce!"
+
+#~ msgid ""
+#~ "We hope you find it valuable. If you enjoy using it, please consider "
+#~ "leaving us a review to help us grow and improve."
+#~ msgstr ""
+#~ "Esperamos que te esté gustando. Si es así, te agradeceríamos que nos "
+#~ "dejaras una reseña para ayudarnos a crecer y mejorar."
+
+#~ msgid "Leave a Review"
+#~ msgstr "Dejar una reseña"
+
+#~ msgid ""
+#~ "<strong>Quaderno</strong> is almost ready &#8211; Please configure your "
+#~ "API keys to start creating automatic invoices."
+#~ msgstr ""
+#~ "<strong>Quaderno</strong> está casi listo &#8211; Por favor configura tus "
+#~ "claves API para empezar a crear facturas automáticas."
+
+#~ msgid "Check if API credentials are correct."
+#~ msgstr "Comprobar si las credenciales API son correctas."
+
+#~ msgid "Invoices and credit notes will be automatically sent."
+#~ msgstr "Las facturas y los abonos serán enviados automáticamente."
+
+#~ msgid "Taxes will be recalculated for subscriptions if needed"
+#~ msgstr ""
+#~ "Los impuestos será recalculados para las suscripciones si fuera necesario"
+
+#~ msgid "Local customers have to enter their tax ID."
+#~ msgstr "Los clientes locales tienes que introducir su NIF."
+
+#~ msgid ""
+#~ "All customers pay the same price for the same product, no matter where "
+#~ "they are based."
+#~ msgstr ""
+#~ "Todos los clientes pagan el mismo precio por el mismo producto, sin "
+#~ "importar dónde están radicados."
+
+#~ msgid ""
+#~ "Please update WooCommerce to <strong>version 2.2.9 or higher</strong> in "
+#~ "order for the WooCommerce Quaderno extension to work!"
+#~ msgstr ""
+#~ "¡Por favor actualiza tu instalación de WooCommerce a la <strong>versión "
+#~ "2.2.9 o superior</strong> para poder usar este plugin!"
 
 #, php-format
 #~ msgid ""
