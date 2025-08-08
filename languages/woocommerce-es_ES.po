@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2025-08-08 13:58+0100\n"
-"PO-Revision-Date: 2025-08-08 13:59+0100\n"
+"POT-Creation-Date: 2025-08-08 18:13+0100\n"
+"PO-Revision-Date: 2025-08-08 18:14+0100\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: Quaderno <support@quaderno.io>\n"
 "Language: es_ES\n"
@@ -34,7 +34,7 @@ msgstr "página de logs"
 msgid "Tax amount subject to reverse charge"
 msgstr "Inversión de sujeto pasivo"
 
-#: ../classes/class-wc-qd-credit-manager.php:133
+#: ../classes/class-wc-qd-credit-manager.php:131
 msgid ""
 "The credit note could not be created on Quaderno. Please check the "
 "WooCommerce logs."
@@ -42,100 +42,39 @@ msgstr ""
 "El abono no pudo ser creado en Quaderno. Por favor, comprueba los logs de "
 "WooCommerce."
 
-#: ../classes/class-wc-qd-integration.php:26
-msgid "Quaderno account"
-msgstr "cuenta Quaderno"
-
-#: ../classes/class-wc-qd-integration.php:72
-#: ../classes/class-wc-qd-integration.php:101
-msgid "Force universal pricing"
-msgstr "Forzar precio universal"
-
-#: ../classes/class-wc-qd-integration.php:73
-msgid ""
-"Check this if you want Quaderno to calculate tax in such a way, that the "
-"final price is always the same as the price provided."
+#: ../classes/class-wc-qd-integration.php:19
+msgid "Simplify tax calculations and invoicing for your WooCommerce store."
 msgstr ""
-"Selecciona esta opción si quieres que Quaderno calcule los impuestos de tal "
-"forma que el precio final siempre sea el mismo."
+"Simplifica el cálculo de impuestos y la facturación de tu tienda WooCommerce."
 
-#: ../classes/class-wc-qd-integration.php:81
-#, php-format
-msgid ""
-"In order for this option to be available you must set the following options "
-"on the <a href=\"%s\">Tax Options</a> page:"
-msgstr ""
-"Para que esta opción esté disponible, debes configurar las siguientes "
-"opciones en la página <a href=\"%s\">Impuesto</a>:"
-
-#: ../classes/class-wc-qd-integration.php:86
-msgid ""
-"Prices entered with tax: <strong>Yes, I will enter prices inclusive of tax</"
-"strong>"
-msgstr ""
-"Precios con impuestos incluidos: <strong>Sí, voy a introducir los precios "
-"con impuestos incluido</strong>"
-
-#: ../classes/class-wc-qd-integration.php:90
-msgid "Display prices in the shop: <strong>Including tax</strong>"
-msgstr "Mostrar precios en la tienda: <strong>IVA incluido</strong>"
-
-#: ../classes/class-wc-qd-integration.php:95
-msgid "Display prices during cart and checkout: <strong>Including tax</strong>"
-msgstr ""
-"Mostrar precios en el carrito y en el pago: <string>IVA incluido</strong>"
-
-#: ../classes/class-wc-qd-integration.php:121
+#: ../classes/class-wc-qd-integration.php:57
 msgid "Private key"
 msgstr "Clave privada"
 
-#: ../classes/class-wc-qd-integration.php:122
+#: ../classes/class-wc-qd-integration.php:58
 msgid "Get your Quaderno private key"
 msgstr "Obtén tu clave privada en Quaderno"
 
-#: ../classes/class-wc-qd-integration.php:126
+#: ../classes/class-wc-qd-integration.php:62
 msgid "API URL"
 msgstr "API URL"
 
-#: ../classes/class-wc-qd-integration.php:127
+#: ../classes/class-wc-qd-integration.php:63
 msgid "Get your Quaderno API URL"
 msgstr "Obtén tu API URL en Quaderno"
 
-#: ../classes/class-wc-qd-integration.php:131
-msgid "Send invoices"
-msgstr "Enviar facturas"
-
-#: ../classes/class-wc-qd-integration.php:132
-msgid ""
-"Check this if you want Quaderno to send an invoice for each completed order."
-msgstr ""
-"Selecciona esta opción si quieres que Quaderno envíe una factura por cada "
-"pedido completado."
-
-#: ../classes/class-wc-qd-integration.php:139
+#: ../classes/class-wc-qd-integration.php:70
 msgid "Require tax ID"
 msgstr "NIF obligatorio"
 
-#: ../classes/class-wc-qd-integration.php:141
+#: ../classes/class-wc-qd-integration.php:72
 #, php-format
 msgid "Check this if tax ID must be required for all sales in %s."
 msgstr ""
 "Selecciona esta opción si el NIF debe ser obligatorio para todas las ventas "
 "en %s."
 
-#: ../classes/class-wc-qd-integration.php:148
-msgid "Update tax in subscriptions"
-msgstr "Actualizar impuestos en suscripciones"
-
-#: ../classes/class-wc-qd-integration.php:149
-msgid ""
-"Check this if you want Quaderno to recalculate tax in your subscriptions if "
-"needed."
-msgstr ""
-"Selecciona esta opción si quieres que Quaderno recalcule los impuestos en "
-"tus suscripciones si fuera necesario."
-
-#: ../classes/class-wc-qd-integration.php:176
+#: ../classes/class-wc-qd-integration.php:94
 #: ../classes/class-wc-qd-status.php:19
 msgid "Quaderno"
 msgstr "Quaderno"
@@ -144,7 +83,7 @@ msgstr "Quaderno"
 msgid "WooCommerce customer"
 msgstr "Cliente WooCommerce"
 
-#: ../classes/class-wc-qd-invoice-manager.php:212
+#: ../classes/class-wc-qd-invoice-manager.php:210
 msgid ""
 "The invoice could not be created on Quaderno. Please check the WooCommerce "
 "logs."
@@ -271,6 +210,62 @@ msgstr ""
 #: ../woocommerce-quaderno.php:222
 msgid "Settings"
 msgstr "Configuración"
+
+#~ msgid "Quaderno account"
+#~ msgstr "cuenta Quaderno"
+
+#~ msgid "Force universal pricing"
+#~ msgstr "Forzar precio universal"
+
+#~ msgid ""
+#~ "Check this if you want Quaderno to calculate tax in such a way, that the "
+#~ "final price is always the same as the price provided."
+#~ msgstr ""
+#~ "Selecciona esta opción si quieres que Quaderno calcule los impuestos de "
+#~ "tal forma que el precio final siempre sea el mismo."
+
+#, php-format
+#~ msgid ""
+#~ "In order for this option to be available you must set the following "
+#~ "options on the <a href=\"%s\">Tax Options</a> page:"
+#~ msgstr ""
+#~ "Para que esta opción esté disponible, debes configurar las siguientes "
+#~ "opciones en la página <a href=\"%s\">Impuesto</a>:"
+
+#~ msgid ""
+#~ "Prices entered with tax: <strong>Yes, I will enter prices inclusive of "
+#~ "tax</strong>"
+#~ msgstr ""
+#~ "Precios con impuestos incluidos: <strong>Sí, voy a introducir los precios "
+#~ "con impuestos incluido</strong>"
+
+#~ msgid "Display prices in the shop: <strong>Including tax</strong>"
+#~ msgstr "Mostrar precios en la tienda: <strong>IVA incluido</strong>"
+
+#~ msgid ""
+#~ "Display prices during cart and checkout: <strong>Including tax</strong>"
+#~ msgstr ""
+#~ "Mostrar precios en el carrito y en el pago: <string>IVA incluido</strong>"
+
+#~ msgid "Send invoices"
+#~ msgstr "Enviar facturas"
+
+#~ msgid ""
+#~ "Check this if you want Quaderno to send an invoice for each completed "
+#~ "order."
+#~ msgstr ""
+#~ "Selecciona esta opción si quieres que Quaderno envíe una factura por cada "
+#~ "pedido completado."
+
+#~ msgid "Update tax in subscriptions"
+#~ msgstr "Actualizar impuestos en suscripciones"
+
+#~ msgid ""
+#~ "Check this if you want Quaderno to recalculate tax in your subscriptions "
+#~ "if needed."
+#~ msgstr ""
+#~ "Selecciona esta opción si quieres que Quaderno recalcule los impuestos en "
+#~ "tus suscripciones si fuera necesario."
 
 #~ msgid "WooCommerce"
 #~ msgstr "WooCommerce"
