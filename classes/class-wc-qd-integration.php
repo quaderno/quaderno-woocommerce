@@ -8,7 +8,6 @@ class WC_QD_Integration extends WC_Integration {
 
 	public static $api_token = null;
 	public static $api_url = null;
-	public static $autosend_invoices = null;
 	public static $update_subscription_tax = null;
 	public static $require_tax_id = null;
 	public static $universal_pricing = null;
@@ -34,7 +33,6 @@ class WC_QD_Integration extends WC_Integration {
 
 		self::$api_token = $this->get_option( 'api_token' );
 		self::$api_url = $this->get_option( 'api_url' );
-		self::$autosend_invoices = $this->get_option( 'autosend_invoices' );
 		self::$update_subscription_tax = $this->get_option( 'update_subscription_tax', 'no' );
 		self::$require_tax_id = $this->get_option( 'require_tax_id' );
 		self::$universal_pricing = $this->get_option( 'universal_pricing', 'no' );
@@ -126,11 +124,6 @@ class WC_QD_Integration extends WC_Integration {
 				'title'       => __( 'API URL', 'woocommerce-quaderno' ),
 				'description' => '<a href="https://quadernoapp.com/users/api-keys/?utm_source=wordpress&utm_campaign=woocommerce" target="_blank">' . __( 'Get your Quaderno API URL', 'woocommerce-quaderno' ) . '</a>',
 				'type'        => 'text'
-			),
-			'autosend_invoices' => array(
-				'title'       => __( 'Send invoices', 'woocommerce-quaderno' ),
-				'description' => __( 'Check this if you want Quaderno to send an invoice for each completed order.', 'woocommerce-quaderno' ),
-				'type'        => 'checkbox'
 			)
 		);
 

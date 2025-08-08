@@ -206,8 +206,6 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
       $order->save();
 
       update_user_meta( $order->get_user_id(), '_quaderno_contact', $transaction->contact->id );
-
-      if ( 'yes' === WC_QD_Integration::$autosend_invoices ) $transaction->deliver();
     } else {
       $order->add_order_note( __( 'The invoice could not be created on Quaderno. Please check the WooCommerce logs.', 'woocommerce-quaderno' ) );
     }

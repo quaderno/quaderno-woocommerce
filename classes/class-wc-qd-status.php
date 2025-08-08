@@ -100,10 +100,6 @@ class WC_QD_Status {
           <td><mark class="<?php echo esc_attr( $api_response ); ?>"><span class="dashicons dashicons-<?php echo esc_attr( $api_response ); ?>"></span></mark></td>
         </tr>
         <tr>
-          <td data-export-label="Autosend invoices">Autosend invoices:</td>
-          <td><mark class="<?php echo esc_attr( WC_QD_Integration::$autosend_invoices ); ?>"><span class="dashicons dashicons-<?php echo esc_attr( WC_QD_Integration::$autosend_invoices ); ?>"></span></mark></td>
-        </tr>
-        <tr>
           <td data-export-label="Update tax in subscriptions">Update tax in subscriptions:</td>
           <td><mark class="<?php echo esc_attr( WC_QD_Integration::$update_subscription_tax ); ?>"><span class="dashicons dashicons-<?php echo esc_attr( WC_QD_Integration::$update_subscription_tax ); ?>"></span></mark></td>
         </tr>
