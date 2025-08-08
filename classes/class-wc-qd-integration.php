@@ -8,7 +8,6 @@ class WC_QD_Integration extends WC_Integration {
 
 	public static $api_token = null;
 	public static $api_url = null;
-	public static $update_subscription_tax = null;
 	public static $require_tax_id = null;
 	public static $universal_pricing = null;
 
@@ -33,7 +32,6 @@ class WC_QD_Integration extends WC_Integration {
 
 		self::$api_token = $this->get_option( 'api_token' );
 		self::$api_url = $this->get_option( 'api_url' );
-		self::$update_subscription_tax = $this->get_option( 'update_subscription_tax', 'no' );
 		self::$require_tax_id = $this->get_option( 'require_tax_id' );
 		self::$universal_pricing = $this->get_option( 'universal_pricing', 'no' );
 
@@ -132,14 +130,6 @@ class WC_QD_Integration extends WC_Integration {
 				'title'       => __( 'Require tax ID', 'woocommerce-quaderno' ),
 				/* translators: 1: shop's country */ 
 				'description' => sprintf(__( 'Check this if tax ID must be required for all sales in %s.', 'woocommerce-quaderno' ), $woocommerce->countries->countries[ $base_country ]),
-				'type'        => 'checkbox'
-			);
-		}
-
-		if ( is_plugin_active ( 'woocommerce-subscriptions/woocommerce-subscriptions.php' ) ) {
-			$this->form_fields[ 'update_subscription_tax' ] = array(
-				'title'       => __( 'Update tax in subscriptions', 'woocommerce-quaderno' ),
-				'description' => __( 'Check this if you want Quaderno to recalculate tax in your subscriptions if needed.', 'woocommerce-quaderno' ),
 				'type'        => 'checkbox'
 			);
 		}

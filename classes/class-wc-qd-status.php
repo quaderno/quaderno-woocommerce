@@ -100,10 +100,6 @@ class WC_QD_Status {
           <td><mark class="<?php echo esc_attr( $api_response ); ?>"><span class="dashicons dashicons-<?php echo esc_attr( $api_response ); ?>"></span></mark></td>
         </tr>
         <tr>
-          <td data-export-label="Update tax in subscriptions">Update tax in subscriptions:</td>
-          <td><mark class="<?php echo esc_attr( WC_QD_Integration::$update_subscription_tax ); ?>"><span class="dashicons dashicons-<?php echo esc_attr( WC_QD_Integration::$update_subscription_tax ); ?>"></span></mark></td>
-        </tr>
-        <tr>
           <td data-export-label="Require tax ID">Require tax ID in <?php echo esc_html( $woocommerce->countries->countries[ $base_country ] ); ?>:</td>
           <td><mark class="<?php echo esc_attr( WC_QD_Integration::$require_tax_id ); ?>"><span class="dashicons dashicons-<?php echo esc_attr( WC_QD_Integration::$require_tax_id ); ?>"></span></mark></td>
         </tr>

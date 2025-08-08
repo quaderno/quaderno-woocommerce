@@ -11,7 +11,9 @@ class WC_QD_Subscription_Manager extends WC_QD_Transaction_Manager {
    * @since 2.1
    */
   public function setup() {
-    add_filter( 'wcs_new_order_created', array( $this, 'recalculate_taxes' ), 10, 4 );
+    if ( is_plugin_active ( 'woocommerce-subscriptions/woocommerce-subscriptions.php' ) ) {
+      add_filter( 'wcs_new_order_created', array( $this, 'recalculate_taxes' ), 10, 4 );
+    }
   }
 
   /**
@@ -23,7 +25,7 @@ class WC_QD_Subscription_Manager extends WC_QD_Transaction_Manager {
    * @param $order
    */
   public function recalculate_taxes( $new_order, $subscription, $type ) {
-    if ( !wc_tax_enabled() || 'yes' != WC_QD_Integration::$update_subscription_tax || $new_order->get_total_tax('edit') > 0 ) {
+    if ( !wc_tax_enabled() || $new_order->get_total_tax('edit') > 0 ) {
       return $new_order;
     }
 
