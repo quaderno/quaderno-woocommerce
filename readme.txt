@@ -9,7 +9,7 @@ Stable tag: 2.7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Automate your WooCommerce taxes and invoicing worldwide! The Quaderno plugin calculates real-time sales tax and VAT, issues compliant invoices & credit notes, and provides instant tax reports – ensuring your business stays compliant with global tax laws.
+Automate WooCommerce taxes and invoicing. Quaderno calculates sales tax, issues compliant invoices, and provides instant reports to keep your business compliant.
 
 == Description ==
 
