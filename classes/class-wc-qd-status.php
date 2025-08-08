@@ -103,10 +103,6 @@ class WC_QD_Status {
           <td data-export-label="Require tax ID">Require tax ID in <?php echo esc_html( $woocommerce->countries->countries[ $base_country ] ); ?>:</td>
           <td><mark class="<?php echo esc_attr( WC_QD_Integration::$require_tax_id ); ?>"><span class="dashicons dashicons-<?php echo esc_attr( WC_QD_Integration::$require_tax_id ); ?>"></span></mark></td>
         </tr>
-        <tr>
-          <td data-export-label="Universal pricing">Universal pricing:</td>
-          <td><mark class="<?php echo esc_attr( WC_QD_Integration::$universal_pricing ); ?>"><span class="dashicons dashicons-<?php echo esc_attr( WC_QD_Integration::$universal_pricing ); ?>"></span></mark></td>
-        </tr>
       </tbody>
     </table>
     <?php
