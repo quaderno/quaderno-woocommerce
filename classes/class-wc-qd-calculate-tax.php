@@ -125,7 +125,7 @@ class WC_QD_Calculate_Tax {
 
 			// fallback if there's any error in the tax calculator
 			if ( !is_object( $tax ) ) {
-				$tax = (object) ['name' => 'VAT', 'rate' => 0, 'tax_code' => 'standard', 'country' => $country];
+				$tax = (object) ['name' => 'VAT', 'rate' => 0, 'tax_code' => 'standard', 'country' => $country, 'status' => 'taxable'];
 				$cache_tax = false; // we do not cache the tax calculations in this case
 			}
 			
@@ -138,7 +138,7 @@ class WC_QD_Calculate_Tax {
 			
 			// we use the WooCommerce tax calculator if the tax rate exists
 			$wc_rate = self::get_wc_rate( $tax_class, $country, $region, $postal_code, $city );
-			if ( !empty( $wc_rate ) && $tax->status !== 'reverse_charge' ) {
+			if ( !empty( $wc_rate ) && ($tax->status ?? null) !== 'reverse_charge' ) {
 				$tax->name = $wc_rate['label'];
 				$tax->rate = $wc_rate['rate'];
 				$tax->tax_code = 'standard';

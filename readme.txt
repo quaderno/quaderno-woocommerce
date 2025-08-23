@@ -1,13 +1,10 @@
 === WooCommerce Quaderno – Simply tax calculations and invoicing ===
-Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce
 Contributors: polimorfico
 Tags: taxes, sales tax, vat, gst, invoices
-Requires at least: 6.7
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.7.0
+Stable tag: 2.7.1
 License: GPLv3
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Automate WooCommerce taxes and invoicing. Quaderno calculates sales tax, issues compliant invoices, and provides instant reports to keep your business compliant.
 
@@ -71,6 +68,9 @@ Manual installation method requires downloading the WooCommerce Quaderno plugin 
 
 
 == Changelog ==
+
+= 2.7.1 – Aug 23, 2025 =
+* Fix: warning message when tax status is not present
 
 = 2.7.0 – Aug 8, 2025 =
 * New: autosend invoices if the autosend preference is active in Quaderno
