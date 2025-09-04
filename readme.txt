@@ -1,47 +1,48 @@
-=== WooCommerce Quaderno – Simply tax calculations and invoicing ===
+=== Quaderno: Global Tax & Invoicing Automation for WooCommerce ===
 Contributors: polimorfico
-Tags: taxes, sales tax, vat, gst, invoices
+Tags: sales tax, vat, gst, verifactu, ticketbai
 Tested up to: 6.8
 Requires PHP: 7.4
 Stable tag: 2.7.1
 License: GPLv3
 
-Automate WooCommerce taxes and invoicing. Quaderno calculates sales tax, issues compliant invoices, and provides instant reports to keep your business compliant.
+Automate global tax calculations and compliant invoicing for WooCommerce. Handle sales tax, VAT, GST worldwide with instant reports.
 
 == Description ==
 
-Running a WooCommerce store means navigating a complex world of sales tax, VAT, and GST. The Quaderno plugin for WooCommerce takes the headache out of global tax compliance, allowing you to focus on growing your business, not tax spreadsheets.
+Transform tax complexity into seamless growth with automated global tax compliance. The Quaderno plugin eliminates manual tax calculations and invoice generation, ensuring your WooCommerce store stays compliant across all markets while you focus on scaling your business.
+
+Selling globally shouldn't mean drowning in tax paperwork. Quaderno handles the intricate web of international sales tax, VAT, and GST regulations automatically, so you can concentrate on what matters most: growing your business.
 
 https://www.youtube.com/watch?v=NyWw4Dye2ag
 
 = How it works =
 
-Quaderno automatically calculates the correct tax on every sale, then generates and delivers tax-compliant invoices and credit notes, no matter where your customers are located. 
-
-Our robust system ensures every transaction adheres to the **latest local and international tax rules** for WooCommerce sellers, covering all types of regulations worldwide, including complex areas like US sales tax, EU VAT, and Canadian GST.
+Quaderno works behind the scenes to automatically calculate precise taxes for every sale and generate compliant invoices and credit notes, regardless of your customer's location. Our intelligent system continuously updates with the latest tax regulations, seamlessly handling complex requirements including US sales tax, EU VAT, Canadian GST, and mandatory e-invoicing systems like Verifactu and TicketBAI.
 
 = Key Benefits & Features = 
 
-* **Global Tax Compliance, Simplified**: Effortlessly comply with ever-changing local tax laws in countries around the world. Rest easy knowing your business is always in line with regulations.
-* **Proactive Tax Nexus Notifications**: Get instant alerts when you become liable for taxes by surpassing a tax registration or US economic nexus threshold. We'll also notify you when a tax rate changes in any region where you sell, so you always know when and what to charge.
+* **Effortless Global Tax Compliance**: Effortlessly comply with ever-changing local tax laws in countries around the world. Rest easy knowing your business is always in line with regulations.
+* **Proactive Tax Notifications**: Get instant alerts when you become liable for taxes by surpassing a tax registration threshold worldwide. We'll also notify you when a tax rate changes in any region where you sell.
 * **Real-Time, Accurate Tax Calculation**: Our intelligent database instantly identifies the precise tax rate and amount based on your product and your customer's exact location, ensuring accuracy every time.
 * **Instant, Comprehensive Tax Reports**: Generate all the vital information you need for your tax returns at a glance. Quaderno's intuitive dashboard provides immediate, actionable insights into your tax obligations.
-* **Automated Invoicing & Credit Notes**: Say goodbye to manual work! Professionally crafted invoices and credit notes are automatically generated and sent for every order, available in multiple languages and currencies to match your global customer base.
-* **Customer Self-Service**: Empower your customers to download their invoices and credit notes directly from their WooCommerce orders page. This hands-free solution reduces customer service inquiries and improves their experience.
-* **Unified Financial Dashboard**: Gain a complete overview of all your revenue sources and critical business data in one centralized, easy-to-use Quaderno dashboard.
-
+* **Automated E-invoicing & Credit Notes**: Ditch the manual work. Professionally crafted invoices and credit notes are automatically generated and sent for every order, available in multiple languages and currencies. We also provide support for legally compliant e-invoicing and e-reporting systems, including Verifactu/VERI*FACTU and TicketBAI.
+* **Worldwide Registration & Filing Service**: Simplify your tax obligations from end to end. We offer a comprehensive service to handle your tax registration and filing, wherever you do business.
+* **Customer Self-Service**: Empower your customers to download their invoices and credit notes directly from their WooCommerce orders page, reducing customer service inquiries and improving their experience.
 
 == Frequently Asked Questions ==
 
-== How does Quaderno automatically handle taxes for my WooCommerce sales? ==
-Once our plugin is successfully [connected to your WooCommerce store](https://support.quaderno.io/article/500-connecting-woocommerce/?utm_source=wordpress&utm_campaign=woocommerce), Quaderno works behind the scenes. It automatically identifies the correct tax rate for each transaction based on your product and your customer's location, adding it directly into the checkout process. It's truly set-and-forget tax calculation!
+= How does Quaderno automatically handle taxes for my WooCommerce sales? =
+After [connecting to your WooCommerce store](https://support.quaderno.io/article/500-connecting-woocommerce/?utm_source=wordpress&utm_campaign=woocommerce), Quaderno runs automatically in the background. It instantly identifies the correct tax rate for each transaction based on your products and customer location, seamlessly integrating into your checkout process. It's truly set-and-forget tax automation.
 
-== Can I use Quaderno with other e-commerce platforms besides WooCommerce? ==
-Absolutely! Quaderno is designed to centralize your tax and invoicing for multiple sales channels. In addition to WooCommerce, you can easily integrate popular platforms like Amazon FBA and Shopify, allowing you to manage all your sales data, tax calculations, and compliance reporting from one unified dashboard.
+= Does Quaderno support e-invoicing and e-reporting formats? =
+Absolutely. Quaderno ensures compliance with global e-invoicing regulations, automatically supporting legally mandated systems including Spain's **Verifactu/VERI*FACTU** and **TicketBAI**. Your invoices are automatically formatted and submitted to tax authorities in the required format, eliminating manual compliance work while keeping your business fully compliant.
 
-== What are the pricing options for Quaderno? ==
-We believe in straightforward, scalable pricing that grows with your business. Quaderno offers simple, transaction-based plans designed to fit your needs, with pricing starting from just $29 per month. You can explore all our flexible [pricing plans here](https://www.quaderno.io/pricing/?utm_source=wordpress&utm_campaign=woocommerce).
+= Can I use Quaderno with other e-commerce platforms besides WooCommerce? =
+Yes! Quaderno centralizes tax and invoicing across multiple sales channels. Beyond WooCommerce, you can integrate with platforms like Amazon FBA and Shopify, managing all your sales data, tax calculations, and compliance reporting from a single unified dashboard.
 
+= What are the pricing options for Quaderno? =
+Quaderno offers transparent, transaction-based pricing that scales with your business. Plans start at just $29 per month with no hidden fees. View all available [pricing plans here](https://www.quaderno.io/pricing/?utm_source=wordpress&utm_campaign=woocommerce).
 
 == Installation ==
 
