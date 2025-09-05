@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Plugin Name: Quaderno: Tax management and invoicing for WooCommerce
+ * Plugin Name: Quaderno for WooCommerce
  * Plugin URI: https://wordpress.org/plugins/woocommerce-quaderno/
  * Description:  Automatically calculate tax rates & generate automatic invoices for your WooCommerce store.
- * Version: 2.7.1
+ * Version: 2.7.2
  * Author: Quaderno
  * Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce
  * WC requires at least: 3.2.0
