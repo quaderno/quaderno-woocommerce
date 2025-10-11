@@ -4,7 +4,7 @@
  * Plugin Name: Quaderno for WooCommerce
  * Plugin URI: https://wordpress.org/plugins/woocommerce-quaderno/
  * Description:  Automatically calculate tax rates & generate automatic invoices for your WooCommerce store.
- * Version: 2.7.4
+ * Version: 2.7.5
  * Author: Quaderno
  * Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce
  * WC requires at least: 3.2.0
@@ -33,13 +33,6 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
-}
-
-/**
- * Required functions
- */
-if ( ! function_exists( 'woothemes_queue_update' ) ) {
-	require_once( plugin_dir_path( __FILE__ ) . '/woo-includes/woo-functions.php' );
 }
 
 /**
@@ -83,10 +76,8 @@ class WooCommerce_Quaderno {
 	 * @since  1.0
 	 */
 	private function __construct() {
-		// Check if WC is activated
-		if ( ! WC_Dependencies::woocommerce_active_check() ) {
-			add_action( 'admin_notices', array( $this, 'notice_activate_wc' ) );
-		} elseif ( version_compare( WC_VERSION, '2.3', '<' ) ) {
+		// Check Woo version
+		if ( version_compare( WC_VERSION, '3.2', '<' ) ) {
 			add_action( 'admin_notices', array( $this, 'notice_version_wc' ) );
 		} else {
 			$this->init();
