@@ -1,0 +1,560 @@
+*** Quaderno for WooCommerce Changelog ***
+
+2025-11-04 - version 2.7.6
+* New changelog for WooCommerce Extensions directory
+
+2025-10-11 - version 2.7.5
+* Fix - error in plugin activation
+
+2025-10-10 - version 2.7.4
+* Update images
+
+2025-10-10 - version 2.7.3
+* Update - remove obsolete code
+
+2025-09-04 - version 2.7.2
+* Update - README content
+
+2025-08-23 - version 2.7.1
+* Fix - warning message when tax status is not present
+
+2025-08-08 - version 2.7.0
+* New - autosend invoices if the autosend preference is active in Quaderno
+* New - recalculate taxes for all subscriptions with no taxes if necessary
+* New - remove the function to activate universal pricing
+* New - improve security
+
+2025-05-22 - version 2.6.2
+* Fix - error when tax ID is not set
+* Fix - error when a subscription contains shipping items
+
+2025-05-15 - version 2.6.1
+* New - suppport for subscriptions with variations
+* New - use tax ID for tax calculations of shipping orders
+
+2025-05-14 - version 2.6.0
+* New - show billing period on invoices with subscriptions
+* Fix - remove unnecessary calls to tax calculation API
+
+2025-05-12 - version 2.5.6
+* Fix - taxes will be added to invoices only if WooCommerce option has been activated 
+
+2025-04-29 - version 2.5.5
+* Fix - reverse-charge checking in subscriptions
+
+2025-04-16 - version 2.5.4
+* New - support for WordPress 6.8
+* New - support for WooCommerce 9.8
+
+2025-03-31 - version 2.5.3
+* Fix - javascript issue
+* New - use street address to calculate taxes
+
+2025-03-12 - version 2.5.2
+* Fix - javascript issue
+
+2025-03-03 - version 2.5.1
+* New - migrate jQuery scripts to vanilla javascript
+
+2025-03-02 - version 2.5.0
+* New - support for Canadian provincial taxes
+* New - show admin notice when an error is detected
+
+2025-02-21 - version 2.4.1
+* New - send error messages to WooCommerce logs
+
+2025-01-31 - version 2.4.0
+* New - do not cache tax rate if the validation service is down
+* New - Support for WooCommerce 9.6
+
+2025-01-08 - version 2.3.5
+* New - use the function get_order_number instead of using the order ID
+
+2024-12-19 - version 2.3.4
+* New - prioritize the quaderno_invoices_skip filter
+
+2024-12-15 - version 2.3.3
+* Fix - error in caching tax ID validations
+
+2024-12-02 - version 2.3.2
+* Fix - error in validating some tax IDs
+
+2024-11-14 - version 2.3.1
+* New - Support for WordPress 6.7
+
+2024-10-25 - version 2.3.0
+* New - show the customer tax ID on the order email
+* New - show the customer tax ID on the order details page
+
+2024-10-21 - version 2.2.8
+* Fix - businesses must pay local taxes for standard services
+
+2024-09-17 - version 2.2.7
+* New - Support for WordPress 6.6
+
+2024-07-9 - version 2.2.6
+* New - Show incompatibility with Cart and Checkout Blocks
+
+2024-05-14 - version 2.2.5
+* New - Hide the Tax ID field when the customer selected Turkey
+
+2024-04-2 - version 2.2.3
+* New - Support for WordPress 6.5
+
+2024-02-19 - version 2.2.2
+* Fix - The item tax class is not used for the shipping tax class when is needed
+
+2023-12-28 - version 2.2.1
+* Fix - Tax ID is marked as mandatory in checkout form when the related required option is selected in Quaderno settings
+* New - Show the "subscriptions update" option only when the WooCommmerce Subscriptions plugin is active
+* New - Show all the standard tax rates in the Quaderno status page
+
+2023-08-25 - version 2.2.0
+* New - compatibility with HPOS
+
+2023-08-15 - version 2.1.24
+* Fix - compatibility with FOX – Currency Switcher Professional for WooCommerce (formely WOOCS)
+
+2023-08-9 - version 2.1.23
+* New - Support for WordPress 6.3
+
+2023-07-31 - version 2.1.22
+* Fix - use standard payment processors
+
+2023-06-27 - version 2.1.21
+* Fix - region is not send to Quaderno when WooCommerce tax calculator is used
+
+2023-04-16 - version 2.1.20
+* Fix - minor error in tax calculations on the cart page
+* New - invoices are not shown in the order detail page if the autosend option is not selected
+
+2023-03-30 - version 2.1.19
+* New - Support for WordPress 6.2
+
+2023-03-23 - version 2.1.18
+* Update - Show taxes in cart only if tax calculations are enabled
+* Update - Use another filter to show taxes in cart
+
+2023-03-20 - version 2.1.17
+* Fix - warning in cart page when tax_id parameter not set
+
+2023-03-15 - version 2.1.16
+* New - we now calculate taxes in the shopping cart
+
+2023-01-30 - version 2.1.15
+* New - Support FunnelKit payment method
+
+2022-11-02 - version 2.1.14
+* New - Support for WordPress 6.0
+
+2022-10-10 - version 2.1.13
+* Fix - problem when the order state has not been set
+
+2022-10-04 - version 2.1.12
+* Fix - tags of product variants are not sent to Quaderno
+
+2022-09-22 - version 2.1.11
+* Update - readme content
+
+2022-08-31 - version 2.1.10
+* Fix - use the variation SKU if exists
+
+2022-08-31 - version 2.1.9
+* Fix - we cannot recalculate subtotal for shipping item in subscriptions
+
+2022-07-11 - version 2.1.8
+* Fix - tax ID is not saved in programatically created orders
+
+2022-06-8 - version 2.1.7
+* Fix - ignore reverse-charge subscriptions in renewal
+* Fix - error in subscriptions renewals with multiple items
+* New - add subscription renewal option to status page
+
+2022-05-25 - version 2.1.6
+* New - identify new payment methods
+* New - Support for WordPress 6.0
+
+2022-05-2 - version 2.1.5
+* New - recalculate taxes for existent subscriptions if needed
+
+2022-04-19 - version 2.1.4
+* New - do not cache tax calculations when Quaderno tax calculator fails
+
+2022-04-12 - version 2.1.3
+* Fix - calculate legacy tax class at variation level
+
+2022-04-1 - version 2.1.2
+* New - fallback when Quaderno tax calculator fails
+* Fix - remove call to old function
+
+2022-03-14 - version 2.1.1
+* Fix - some taxes are separated on final invoices
+
+2022-03-5 - version 2.1.0
+* Fix - Issue in tax calculation for product variants
+* New - Tools to delete tax cache and Quaderno data
+
+2022-02-21 - version 2.0.0
+* New - Products can be assigned to a particular Quaderno tax code
+* New - Support for WooCommerce 6.2
+
+2021-01-27 - version 1.23.12
+* New - Support for WordPress 5.9
+
+2021-12-23 - version 1.23.11
+* Fix - New WooCommerce PayPal plugin introduced a new payment method
+
+2021-12-20 - version 1.23.10
+* Update - unknow products are classified as goods
+* New - Support for WooCommerce 6.0
+
+2021-November-14 - version 1.23.9
+* Update - delete tax ids validations from cache
+* Update - do not cache tax ids when validation service is down
+
+2021-08-30 - version 1.23.8
+* Update - send shipping address to Quaderno only if it exists
+* New - Support for WooCommerce 5.6
+* New - Support for WordPress 5.8
+
+2021-04-26 - version 1.23.7
+* New - Hooks to customize item descriptions, payment methods, tax rates, and tax locations.
+
+2021-04-22 - version 1.23.6
+* New - Hooks to customize PO number and notes fields
+
+2021-04-15 - version 1.23.5
+* New - Support for Braintree
+
+2021-04-7 - version 1.23.4
+* Fix - Create invoices with 0% tax rate when there are no taxes
+* Fix - Cannot deliver receipts
+
+2021-03-22 - version 1.23.3
+* New - Track new payment methods
+
+2021-03-20 - version 1.23.2
+* New - Use the customer processor data only if the customer is registered
+* New - Add Quaderno status page to improve our customer support
+* New - Use the new Tax API to validate tax ids and calculate tax rates
+
+2021-03-18 - version 1.23.1
+* Fix - Problem with evidence creation
+
+2021-03-17 - version 1.23.0
+* New - Add new hook to skip invoices and credit notes 
+* New - Use new Quaderno Transactions API
+
+2021-03-11 - version 1.22.5
+* New - Support for WooCommerce 5.1
+* New - Support for WordPress 5.7
+
+2021-02-17 - version 1.22.4
+* Fix - Error in tax calculations for custom tax classes
+
+= 1.22.3 – 02 10, 20201 =
+* Fix - Quaderno is creating invoice for $0 orders
+
+2021-02-9 - version 1.22.2
+* New - Show variation description on invoices
+
+2021-02-4 - version 1.22.1
+* Fix - Location evidence are not stored in Quaderno
+
+2020-12-21 - version 1.22.0
+* New - Support for new UK VAT after Brexit, including VAT calculation for overseas goods sold to UK customers under £135
+
+2020-12-9 - version 1.21.21
+* New - Support for WordPress 5.6
+
+2020-12-3 - version 1.21.20
+* Fix - Do not calculate taxes for tax exempted products
+
+2020-12-2 - version 1.21.19
+* Fix - Wrong tax class for subscription variations
+
+2020-November-27 - version 1.21.18
+* Fix - Support subscriptions variations
+
+2020-10-7 - version 1.21.17
+* New - WC tested up to 4.5.2
+
+2020-10-6 - version 1.21.16
+* Fix - Error in shipping tax calculations
+
+2020-09-28 - version 1.21.15
+* Fix - Remove tax from shipping costs if they're exempted
+
+2020-09-20 - version 1.21.14
+* New - Option to clear tax cache
+* New - Tax id can be required only in certain countries
+
+2020-08-27 - version 1.21.13
+* Fix - Tax region is not sending when using custom taxes
+
+2020-08-20 - version 1.21.12
+* Fix - Default location is not used in the cart
+
+2020-08-11 - version 1.21.11
+* New - Support for WordPress 5.5
+* New - Support for WooCommerce 4.3
+
+2020-07-15 - version 1.21.10
+* New - Re-validate the customer's tax id if the completed order doesn't have the custom file "is_vat_exempted"
+
+2020-06-16 - version 1.21.9
+* Fix - VAT numbers are validated when the field is empty
+
+2020-06-12 - version 1.21.8
+* New - Support WooCommerce 4.2
+* New - Support multiple stores with the same order numbers
+
+2020-04-02 - version 1.21.7
+* New - Support WordPress 5.4
+
+2020-03-30 - version 1.21.6
+* Update - Identify payments via PayPal Express
+
+2020-03-19 - version 1.21.5
+* New - Allow users to remove actions from invoice, credit, and order managers.
+
+2020-03-18 - version 1.21.4
+* New - Support WooCommerce 4.0
+
+2020-03-02 - version 1.21.3
+* Update - Recurring customer can store their Tax ID in their billing details
+* Update - Quaderno invoices are always opened in a new tab
+
+2020-02-21 - version 1.21.2
+* Update - Better management of tax IDs
+* Update - Add an order note when tax IDs cannot be validated
+* Fix - issue credit note for receipts
+
+2020-02-05 - version 1.21.1
+* Update - remove non-word characters from tax ID
+
+2019-12-27 - version 1.21.0
+* New - option to force universal pricing
+
+2019-12-10 - version 1.20.3
+* Update plugin description
+
+2019-12-10 - version 1.20.2
+* Fix - tax calculation is wrong for product variations
+* Fix - error in tax calculations for shipping in particular cases
+* New - remove tax name when taxes are not applied
+
+2019-12-10 - version 1.20.1
+* Remove: Support for secondary tax rates
+
+2019-11-26 - version 1.20.0
+* New - Support for provincial sales tax in Canada
+* New - WordPress 5.3 compatibility
+
+2019-11-13 - versiom 1.19.0
+* New - Support WooCommerce 3.8
+* New - Option to require tax ID in local sales
+
+2019-10-21 - version 1.18.3
+* Fix - contact ID must updated
+
+2019-10-18 - version 1.18.2
+* Fix - stored VAT numbers are not being used in recurring invoices
+
+2019-10-17 - version 1.18.1
+* New - tax ID is always optional
+* New - receipt threshold field is no longer necessary 
+
+2019-10-16 - version 1.18.0
+* Update - create a new contact in Quaderno if the customer changes their name
+* New - the checkout form supports any tax ID
+
+2019-10-02 - version 1.17.7
+* Update - only use VAT number if exists
+
+2019-09-25 - version 1.17.6
+* Update - use original name for fees
+* Update - add receipts threshold
+
+2019-09-23 - version 1.17.5
+* Update - always send customer billing address
+* Update - user WordPress current_time function 
+
+2019-08-27 - version 1.17.4
+* Fix - error in VAT validation for existent customers
+
+2019-08-25 - version 1.17.3
+* Fix - reverse charge is not applied in tax inclusive receipts
+
+2019-07-25 - version 1.17.2
+* New - require Tax ID only in particular countries
+
+2019-07-24 - version 1.17.1
+* New - use city to calculate taxes
+
+2019-07-19 - version 1.17.0
+* New - send shipping address to Quadernp
+* New - send US tax codes to Quaderno
+
+2019-06-26 - version 1.16.1
+* New - send payment ids to Quaderno
+
+2019-04-12 - version 1.15.12
+* Fix - Invoices are not created when products do not exist
+
+2019-04-05 - version 1.15.11
+* Fix - Don't validate VAT number when customer is based in shop's country
+
+2019-03-18 - version 1.15.10
+* Fix - Stop Chrome to autocomplete VAT numbers
+
+2019-03-08 - version 1.15.9
+* Update - Send products SKUs to Quaderno
+* Update - Link refunds with invoices
+* Update - Send order URL to Quaderno
+
+2019-02-26 - version 1.15.8
+* Tested with WordPress 5.1
+
+2019-01-08 - version 1.15.7
+* Update - simplify settings
+
+2018-12-12 - version 1.15.6
+= 1.15.6 - 12 12, 2018 =
+* Update - use a default name when customer's first name is not present
+
+2018-11-15 - version 1.15.5
+* Update - delete transients when plugin is deactivated
+
+2018-11-02 - version 1.15.4
+* Fix - VAT number is displayed when customer lives in the shop country
+
+2018-10-24 - version 1.15.3
+* Update - Add reverse charge note when VAT number is present
+
+2018-10-02 - version 1.15.2
+* Fix - Cannot mixed different tax classes in the same cart
+
+2018-09-18 - version 1.15.1
+* Fix - Use billing state to calculate tax rates
+
+2018-09-14 - version 1.15.0
+* Update - Use Quaderno tax calculator as fallback for non-digital products
+* Update - Show region name on invoices
+* Update - Send tax county, state and transaction type to Quaderno
+* Update - Refactoring credit note creation
+
+2018-09-07 - version 1.14.4
+* Fix - Problem in tax calculation for non-digital products
+
+2018-08-30 - version 1.14.3
+* Fix - Discounts are not calculated right when using bundles 
+
+2018-08-23 - version 1.14.2
+* Fix - Non-admin users can see the review request
+
+2018-08-16 - version 1.14.1
+* Fix - Shipping based taxes are wrong
+
+2018-08-08 - version 1.14.0
+* New - Calculate tax for non-digital products
+
+2018-08-08 - version 1.13.1
+* Fix - customers are duplicated
+
+2018-07-25 - version 1.13.0
+* New - allow custmers to download invoices from "my account"
+* New - allow admins to view invoices from order details page
+
+2018-07-08 - version 1.12.0
+* New - store Tax ID and VAT numbers in customers' profile
+
+2018-07-03 - version 1.11.7
+* Fix - use table preffix to show the review notice
+* New - translate review notice
+
+2018-07-02 - version 1.11.6
+* New - use singleton pattern for WooCommerce_Quaderno
+
+2018-07-02 - version 1.11.5
+* New - improve tax id validation
+
+2018-06-11 - version 1.11.4
+* New - Support WooCommerce 3.4.2
+* New - Ask for plugin review
+
+2018-06-10 - version 1.11.0
+* New - Use translations from wordpress.org
+* New - Admins can show/hide the Tax ID field
+
+2018-06-09 - version 1.10.0
+= 1.10 =
+* New - Support for WooCommerce Payment Gateway Based Fees
+* New - Collect Tax ID for customers in Slovakia
+* New - Use a new default payment method
+
+2018-05-09 - version 1.9.0
+* New - Valid VAT numbers during checkout
+* New - Send receipts only to local customers
+* New - Use the WC_Geolocation function
+* Fix - Get shipping total
+* Fix - Require Tax ID only when purchase overrides threshold
+* New - Update Quaderno API version
+* Fix - Error in shipping taxes
+* New - Record billing phone
+* Fix - Use tax incl prices for shipping costs
+* New - Add discounts to invoices
+* New - Show Tax ID as mandatory when necessary
+
+2018-04-09 - version 1.8.0
+* New - Collect Tax ID for customers in Spain, Belgium, Germany, and Italy
+* New - Translations to German, Dutch, and French
+* New - WordPress 4.7 compatibility
+* New - Register shipping costs
+* Fix - Unit price is not correct when ordering more than 1 product
+* New - Manage tax rates for physical products and shipping
+* New - Do not issue invoices for free orders
+* Fix - Syntax error for PHP version under 5.4
+* New - WordPress 4.8 compatibility
+* New - Improve to geoplugin service
+* Fix - Minor bugs
+
+2018-03-09 - version 1.7.0
+* New - Send sales receipts
+* New - Track transaction ID
+
+2018-02-09 - version 1.6.0
+* Update - Invoices and credits generation
+* New - Stop base taxes being taken off when dealing with out of base locations
+
+2018-01-09 - version 1.5.0
+= 1.5.0 =
+* New - Validate EU VAT Numbers
+* New - Compatibility with Sequential Order Numbers Pro
+* New - Track different payment methods on Quaderno
+* Update - Hide VAT Number field when customer is based in the store country
+* Fix - javascript was not updated
+
+2017-12-09 - version 1.4.0
+* Refactoring code
+* Fix - issue in sending documents
+* Fix - issue when postal code contains whitespaces
+* Update - Update descriptions
+
+2017-11-09 - version 1.3.0
+* New - Send credit notes for WooCommerce refunds
+* Update - Use wp_remote_request instead of curl
+* Minor fixes to improve security
+
+2017-10-09 - version 1.2.0
+* New - Tag invoices from WooCommerce
+* Fix - Unit price calculation
+
+2017-09-29 - version 1.1.0
+* New - Integration with WooCommerce Currency Switcher
+* Fix - Typo and test on Wordpress 4.3
+
+2017-09-09 - version 1.0.0
+* First version
+* New - Show generic tax name when no taxes apply
+

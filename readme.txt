@@ -3,7 +3,7 @@ Contributors: polimorfico
 Tags: sales tax, vat, gst, verifactu, ticketbai
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.7.5
+Stable tag: 2.7.6
 License: GPLv3
 
 Automate global tax calculations and compliant invoicing for WooCommerce. Handle sales tax, VAT, GST worldwide with instant reports.
@@ -69,6 +69,9 @@ Manual installation method requires downloading the WooCommerce Quaderno plugin 
 
 
 == Changelog ==
+
+= 2.7.6 – Nov 4, 2025 =
+* New changelog file 
 
 = 2.7.5 – Oct 11, 2025 =
 * Fix: error in plugin activation
@@ -272,15 +275,15 @@ Manual installation method requires downloading the WooCommerce Quaderno plugin 
 * Fix: New WooCommerce PayPal plugin introduced a new payment method
 
 = 1.23.10 – December 20, 2021 =
-* Improvement: unknow products are classified as goods
+* Update: unknow products are classified as goods
 * New: Support for WooCommerce 6.0
 
 = 1.23.9 – November 14, 2021 =
-* Improvement: delete tax ids validations from cache
-* Improvement: do not cache tax ids when validation service is down
+* Update: delete tax ids validations from cache
+* Update: do not cache tax ids when validation service is down
 
 = 1.23.8 – August 30, 2021 =
-* Improvement: send shipping address to Quaderno only if it exists
+* Update: send shipping address to Quaderno only if it exists
 * New: Support for WooCommerce 5.6
 * New: Support for WordPress 5.8
 
@@ -380,7 +383,7 @@ Manual installation method requires downloading the WooCommerce Quaderno plugin 
 * New: Support WordPress 5.4
 
 = 1.21.6 – March 30, 2020 =
-* Improvement: Identify payments via PayPal Express
+* Update: Identify payments via PayPal Express
 
 = 1.21.5 – March 19, 2020 =
 * New: Allow users to remove actions from invoice, credit, and order managers.
@@ -389,16 +392,16 @@ Manual installation method requires downloading the WooCommerce Quaderno plugin 
 * New: Support WooCommerce 4.0
 
 = 1.21.3 – March 2, 2020 =
-* Improvement: Recurring customer can store their Tax ID in their billing details
-* Improvement: Quaderno invoices are always opened in a new tab
+* Update: Recurring customer can store their Tax ID in their billing details
+* Update: Quaderno invoices are always opened in a new tab
 
 = 1.21.2 – February 21, 2020 =
-* Improvement: Better management of tax IDs
-* Improvement: Add an order note when tax IDs cannot be validated
+* Update: Better management of tax IDs
+* Update: Add an order note when tax IDs cannot be validated
 * Fix: issue credit note for receipts
 
 = 1.21.1 – February 5, 2020 =
-* Improvement: remove non-word characters from tax ID
+* Update: remove non-word characters from tax ID
 
 = 1.21.0 – December 27, 2019 =
 * New: option to force universal pricing
@@ -433,19 +436,19 @@ Manual installation method requires downloading the WooCommerce Quaderno plugin 
 * New: receipt threshold field is no longer necessary 
 
 = 1.18.0 - October 16, 2019 =
-* Improvement: create a new contact in Quaderno if the customer changes their name
+* Update: create a new contact in Quaderno if the customer changes their name
 * New: the checkout form supports any tax ID
 
 = 1.17.7 - October 2, 2019 =
-* Improvement: only use VAT number if exists
+* Update: only use VAT number if exists
 
 = 1.17.6 - September 25, 2019 =
-* Improvement: use original name for fees
-* Improvement: add receipts threshold
+* Update: use original name for fees
+* Update: add receipts threshold
 
 = 1.17.5 - September 23, 2019 =
-* Improvement: always send customer billing address
-* Improvement: user WordPress current_time function 
+* Update: always send customer billing address
+* Update: user WordPress current_time function 
 
 = 1.17.4 - August 27, 2019 =
 * Fix: error in VAT validation for existent customers
@@ -476,27 +479,27 @@ Manual installation method requires downloading the WooCommerce Quaderno plugin 
 * Fix: Stop Chrome to autocomplete VAT numbers
 
 = 1.15.9 - March 8, 2019 =
-* Improvement: Send products SKUs to Quaderno
-* Improvement: Link refunds with invoices
-* Improvement: Send order URL to Quaderno
+* Update: Send products SKUs to Quaderno
+* Update: Link refunds with invoices
+* Update: Send order URL to Quaderno
 
 = 1.15.8 - February 26, 2019 =
 * Tested with WordPress 5.1
 
 = 1.15.7 - January 8, 2019 =
-* Improvement: simplify settings
+* Update: simplify settings
 
 = 1.15.6 - December 12, 2018 =
-* Improvement: use a default name when customer's first name is not present
+* Update: use a default name when customer's first name is not present
 
 = 1.15.5 - November 15, 2018 =
-* Improvement: delete transients when plugin is deactivated
+* Update: delete transients when plugin is deactivated
 
 = 1.15.4 - November 2, 2018 =
 * Fix: VAT number is displayed when customer lives in the shop country
 
 = 1.15.3 - October 24, 2018 =
-* Improvement: Add reverse charge note when VAT number is present
+* Update: Add reverse charge note when VAT number is present
 
 = 1.15.2 - October 2, 2018 =
 * Fix: Cannot mixed different tax classes in the same cart
@@ -505,10 +508,10 @@ Manual installation method requires downloading the WooCommerce Quaderno plugin 
 * Fix: Use billing state to calculate tax rates
 
 = 1.15.0 - September 14, 2018 =
-* Improvement: Use Quaderno tax calculator as fallback for non-digital products
-* Improvement: Show region name on invoices
-* Improvement: Send tax county, state and transaction type to Quaderno
-* Improvement: Refactoring credit note creation
+* Update: Use Quaderno tax calculator as fallback for non-digital products
+* Update: Show region name on invoices
+* Update: Send tax county, state and transaction type to Quaderno
+* Update: Refactoring credit note creation
 
 = 1.14.4 - September 7, 2018 =
 * Fix: Problem in tax calculation for non-digital products
@@ -589,14 +592,14 @@ Manual installation method requires downloading the WooCommerce Quaderno plugin 
 * New: Track transaction ID
 
 = 1.6 =
-* Improvement: Invoices and credits generation
+* Update: Invoices and credits generation
 * New: Stop base taxes being taken off when dealing with out of base locations
 
 = 1.5.2 =
 * Fix: javascript was not updated
 
 = 1.5.1 =
-* Improvement: Hide VAT Number field when customer is based in the store country
+* Update: Hide VAT Number field when customer is based in the store country
 
 = 1.5.0 =
 * New: Validate EU VAT Numbers
@@ -609,13 +612,13 @@ Manual installation method requires downloading the WooCommerce Quaderno plugin 
 = 1.4.0 =
 * Refactoring code
 * Fix: issue in sending documents
-* Improvement: Update descriptions
+* Update: Update descriptions
 
 = 1.3.2 =
 * Minor fixes to improve security
 
 = 1.3.1 =
-* Improvement: Use wp_remote_request instead of curl
+* Update: Use wp_remote_request instead of curl
 
 = 1.3.0 =
 * New: Send credit notes for WooCommerce refunds
@@ -637,6 +640,3 @@ Manual installation method requires downloading the WooCommerce Quaderno plugin 
 
 = 1.0.0 =
 * First version
-
-
-
