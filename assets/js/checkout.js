@@ -17,4 +17,14 @@ jQuery(document).ready( function ( $ ) {
 		}
 	});
 	$('#billing_country').trigger('change');
+
+	// Recalculate taxes when the users enters a tax ID
+	var tax_id_update_timer;
+	$('#tax_id').on('input', function () {
+    clearTimeout(tax_id_update_timer);
+
+    tax_id_update_timer = setTimeout(function() {
+      $('body').trigger('update_checkout');
+    }, 500);
+	});
 });
