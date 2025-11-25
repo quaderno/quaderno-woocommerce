@@ -1,6 +1,9 @@
 *** Quaderno for WooCommerce Changelog ***
 
-2025-11-13 - version
+2025-11-25 - version 2.7.9
+* New: publish changelog file in WordPress
+
+2025-11-13 - version 2.7.8
 * Fix: issue with tax ID validation
 
 2025-11-12 - version 2.7.7
