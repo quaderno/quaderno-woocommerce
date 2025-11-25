@@ -19,6 +19,60 @@ jobs:
       #     npm install
       #     npm run build
 
+      - name: Sync Changelog to Readme
+        run: |
+          # Extract everything after the "== Changelog ==" section in readme.txt
+          readme_before=$(sed -n '1,/^== Changelog ==$/p' readme.txt)
+
+          # Convert changelog.txt format to readme.txt format
+          # Skip the header line and convert format from "YYYY-MM-DD - version X.Y.Z" to "= X.Y.Z – Mon DD, YYYY ="
+          changelog_content=$(awk '
+            NR == 1 { next }  # Skip header
+            /^[0-9]{4}-/ {
+              # Parse date and version
+              split($1, date, "-")
+              year = date[1]
+              month = date[2]
+              day = date[3]
+
+              # Convert month number to abbreviation
+              months = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec"
+              split(months, month_arr, " ")
+              month_name = month_arr[int(month[1])]
+
+              # Extract version (word after "version")
+              for (i = 1; i <= NF; i++) {
+                if ($i == "version") {
+                  version = $(i+1)
+                  break
+                }
+              }
+
+              # Extract description (everything after version number)
+              desc_start = index($0, version) + length(version)
+              description = substr($0, desc_start + 1)
+
+              # Print in readme format
+              printf "\n= %s – %s %s, %s =\n", version, month_name, int(day), year
+              print description
+              next
+            }
+            /^\*/ {
+              # Bullet points remain the same
+              print $0
+            }
+            /^$/ {
+              # Empty lines remain the same
+              print ""
+            }
+          ' changelog.txt)
+
+          # Combine readme header with converted changelog
+          {
+            echo "$readme_before"
+            echo "$changelog_content"
+          } > readme.txt
+
       - name: WordPress Plugin Deploy
         id: deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
