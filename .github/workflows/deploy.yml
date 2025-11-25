@@ -1,0 +1,35 @@
+name: Deploy to WordPress.org
+
+# Triggers the workflow when a new Git tag is pushed (e.g., v1.0.0)
+on:
+  push:
+    tags:
+      - '*' # Run for any tag push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 💡 OPTIONAL: Run Build Step (e.g., if you use NPM/Composer to compile assets)
+      # - name: Build Assets
+      #   run: |
+      #     npm install
+      #     npm run build
+
+      - name: WordPress Plugin Deploy
+        id: deploy
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        with:
+          # The slug (directory name) of your plugin on WordPress.org
+          # Defaults to your GitHub repository name if omitted
+          slug: woocommerce-quaderno
+          # Environment variables are mapped to the secrets you set up
+          svn-username: ${{ secrets.SVN_USERNAME }}
+          svn-password: ${{ secrets.SVN_PASSWORD }}
+          
+          # This tells the action where your plugin files are located 
+          # If you built your plugin into a 'dist' folder, use: build-dir: 'dist'
+          # Otherwise, omit this to use the repo root.
