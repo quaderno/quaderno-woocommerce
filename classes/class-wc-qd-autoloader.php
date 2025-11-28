@@ -47,18 +47,34 @@ class WC_QD_Autoloader {
 			// String to lower
 			$class_name = strtolower( $class_name );
 
+			// Remove the prefix for file name construction
+			$class_suffix = str_ireplace( self::PREFIX, '', $class_name );
+
+			// Validate class name contains only allowed characters (alphanumeric and underscores)
+			if ( ! preg_match( '/^[a-z0-9_]+$/', $class_suffix ) ) {
+				return;
+			}
+
 			// Format file name
-			$file_name = 'class-' . $this->file_prefix . str_ireplace( '_', '-', str_ireplace( self::PREFIX, '', $class_name ) ) . '.php';
+			$file_name = 'class-' . $this->file_prefix . str_replace( '_', '-', $class_suffix ) . '.php';
 
 			// Setup the file path
 			$file_path = $this->path;
 
-			if ( strpos( $class_name, 'wc_QD_request' ) === 0 ) {
+			if ( strpos( $class_name, 'wc_qd_request' ) === 0 ) {
 				$file_path .= 'requests/';
 			}
 
 			// Append file name to class path
 			$file_path .= $file_name;
+
+			// Validate the file path is within the expected directory (prevent path traversal)
+			$real_path = realpath( $file_path );
+			$real_base_path = realpath( $this->path );
+
+			if ( false === $real_path || false === $real_base_path || 0 !== strpos( $real_path, $real_base_path ) ) {
+				return;
+			}
 
 			// Check & load file
 			if ( file_exists( $file_path ) ) {

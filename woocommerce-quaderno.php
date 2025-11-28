@@ -4,9 +4,11 @@
  * Plugin Name: Quaderno for WooCommerce
  * Plugin URI: https://wordpress.org/plugins/woocommerce-quaderno/
  * Description:  Automatically calculate tax rates & generate automatic invoices for your WooCommerce store.
- * Version: 2.7.9
+ * Version: 2.7.10
  * Author: Quaderno
  * Author URI: https://quaderno.io/integrations/woocommerce/?utm_source=wordpress&utm_campaign=woocommerce
+ * Requires at least: 5.0
+ * Requires PHP: 7.4
  * WC requires at least: 3.2.0
  * WC tested up to: 9.8.1
  * License: GPL v3
@@ -145,8 +147,6 @@ class WooCommerce_Quaderno {
 	 */
 	private function init() {
 
-		global $invoice_manager, $credit_manager, $order_manager;
-
 		// Setup the autoloader
 		self::setup_autoloader();
 
@@ -263,9 +263,9 @@ class WooCommerce_Quaderno {
 }
 
 // Deactivation code
-function woocommerce_quaderno_deactivate() {
+function wc_qd_deactivate() {
 	global $wpdb;
- 
+
  	// delete all transients
   $wpdb->query( $wpdb->prepare(
     "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s",
@@ -277,14 +277,14 @@ function woocommerce_quaderno_deactivate() {
     '%' . $wpdb->esc_like( '_vat_number_' ) . '%'
   ) );
 }
-register_deactivation_hook( __FILE__, 'woocommerce_quaderno_deactivate' );
+register_deactivation_hook( __FILE__, 'wc_qd_deactivate' );
 
 
 // The 'main' function
-function __woocommerce_quaderno_main() {
+function wc_qd_main() {
 	WooCommerce_Quaderno::get_instance();
 }
-add_action( 'plugins_loaded', '__woocommerce_quaderno_main' );
+add_action( 'plugins_loaded', 'wc_qd_main' );
 
 // compatibility with HPOS
 add_action( 'before_woocommerce_init', function() {

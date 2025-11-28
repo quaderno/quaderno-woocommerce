@@ -1,5 +1,8 @@
 *** Quaderno for WooCommerce Changelog ***
 
+2025-11-28 - version 2.7.10
+* Fix: errors detected by Plugin Check
+
 2025-11-25 - version 2.7.9
 * New: publish changelog file in WordPress
 

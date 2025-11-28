@@ -114,8 +114,8 @@ class WC_QD_Tax_Code_Field {
     $product_id = $product->get_id();
 
     if ( isset( $_REQUEST['_quaderno_tax_code'] ) ) {
-      $customFieldDemo = trim(esc_attr( $_REQUEST['_quaderno_tax_code'] ));
-      update_post_meta( $product_id, '_quaderno_tax_code', wc_clean( $customFieldDemo ) );
+      $tax_code = sanitize_text_field( wp_unslash( $_REQUEST['_quaderno_tax_code'] ) );
+      update_post_meta( $product_id, '_quaderno_tax_code', $tax_code );
     }
   }
 

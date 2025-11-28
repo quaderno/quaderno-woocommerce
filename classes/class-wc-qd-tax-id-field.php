@@ -94,10 +94,10 @@ class WC_QD_Tax_Id_Field {
     global $woocommerce;
     $billing_country = WC()->customer->get_billing_country();
     $base_country = $woocommerce->countries->get_base_country();
-    $tax_id = $_POST['tax_id'];
+    $tax_id = isset( $_POST['tax_id'] ) ? sanitize_text_field( wp_unslash( $_POST['tax_id'] ) ) : '';
 
     if ( 'yes' === WC_QD_Integration::$require_tax_id && $billing_country == $base_country && empty( $tax_id ) ) {
-      /* translators: 1: field name */ 
+      /* translators: 1: field name */
       $errors->add( 'required-field', sprintf( __( '%s is a required field.', 'woocommerce-quaderno' ), '<strong>' . esc_html__( 'Tax ID', 'woocommerce-quaderno' ) . '</strong>' ));
     }
   }

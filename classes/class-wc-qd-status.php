@@ -81,7 +81,7 @@ class WC_QD_Status {
           <td data-export-label="Display prices">Standard tax rates:</td>
           <td class="help"><?php
           if ( get_option( 'woocommerce_prices_include_tax' ) == 'yes' ) {
-            echo esc_html( wc_help_tip( __( 'You must add your base country in the standard tax rates page if you work with tax included prices.', 'woocommerce-quaderno' ) ) );
+            echo wc_help_tip( __( 'You must add your base country in the standard tax rates page if you work with tax included prices.', 'woocommerce-quaderno' ) );
           }
           ?></td>
         <td><?php echo esc_html( implode( ', ', (array) $codes ) ); ?></td>
