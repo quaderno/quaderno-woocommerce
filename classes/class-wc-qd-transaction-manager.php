@@ -111,6 +111,7 @@ class WC_QD_Transaction_Manager {
       case 'myredsys':
       case 'redsys_gw':
       case 'fkwcs_stripe':
+      case 'pos_card':
         $method = 'credit_card';
         break;
       case 'gocardless':
