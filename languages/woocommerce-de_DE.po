@@ -74,6 +74,18 @@ msgstr ""
 "Bitte anklicken, wenn für alle Verkäufe in %s eine Steuernummer erforderlich "
 "ist."
 
+#: ../classes/class-wc-qd-integration.php:84
+msgid "Private key is required."
+msgstr "Der private Schlüssel ist erforderlich."
+
+#: ../classes/class-wc-qd-integration.php:96
+msgid "API URL is required."
+msgstr "Die API-URL ist erforderlich."
+
+#: ../classes/class-wc-qd-integration.php:126
+msgid "Invalid API credentials. Please check your private key and API URL."
+msgstr "Ungültige API-Anmeldeinformationen. Bitte überprüfen Sie Ihren privaten Schlüssel und die API-URL."
+
 #: ../classes/class-wc-qd-integration.php:94
 #: ../classes/class-wc-qd-status.php:19
 msgid "Quaderno"

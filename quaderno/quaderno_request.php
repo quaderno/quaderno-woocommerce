@@ -21,6 +21,7 @@ class QuadernoRequest {
 	private $content_type = 'application/json';
 	private $api_url = 'https://quadernoapp.com/api/v1/';
 	private $api_version = '20241028';
+	private $plugin_version = '2.7.11';
 	private $request_methods = null;
 	private $request_endpoint = null;
 	private $request_body = null;
@@ -59,7 +60,8 @@ class QuadernoRequest {
   	  'headers' => array(
   	    'Authorization' => 'Basic ' . base64_encode( $this->username . ':' . $this->password ),
   	    'Content-Type' => $this->content_type,
-  	    'Accept' => 'application/json; api_version=' . $this->api_version
+  	    'Accept' => 'application/json; api_version=' . $this->api_version,
+  	    'User-Agent' => 'woocommerce-quaderno/' . $this->plugin_version
   	  ),
   	  'timeout' => 70,
       'sslverify' => false

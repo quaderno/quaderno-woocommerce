@@ -74,6 +74,18 @@ msgstr ""
 "Cochez cette case si le numéro de TVA doit être requis pour toutes les "
 "ventes en %s."
 
+#: ../classes/class-wc-qd-integration.php:84
+msgid "Private key is required."
+msgstr "La clé privée est obligatoire."
+
+#: ../classes/class-wc-qd-integration.php:96
+msgid "API URL is required."
+msgstr "L'URL de l'API est obligatoire."
+
+#: ../classes/class-wc-qd-integration.php:126
+msgid "Invalid API credentials. Please check your private key and API URL."
+msgstr "Identifiants API invalides. Veuillez vérifier votre clé privée et l'URL de l'API."
+
 #: ../classes/class-wc-qd-integration.php:94
 #: ../classes/class-wc-qd-status.php:19
 msgid "Quaderno"

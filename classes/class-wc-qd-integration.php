@@ -76,6 +76,63 @@ class WC_QD_Integration extends WC_Integration {
 	}
 
 	/**
+	 * Validate settings fields
+	 */
+	public function validate_api_token_field( $key, $value ) {
+		if ( empty( $value ) ) {
+			WC_Admin_Settings::add_error(
+				__( 'Private key is required.', 'woocommerce-quaderno' )
+			);
+		}
+		return $value;
+	}
+
+	/**
+	 * Validate API URL field
+	 */
+	public function validate_api_url_field( $key, $value ) {
+		if ( empty( $value ) ) {
+			WC_Admin_Settings::add_error(
+				__( 'API URL is required.', 'woocommerce-quaderno' )
+			);
+		}
+		return $value;
+	}
+
+	/**
+	 * Process admin options and validate API credentials
+	 */
+	public function process_admin_options() {
+		$saved = parent::process_admin_options();
+
+		// If settings were saved successfully, validate the API credentials
+		if ( $saved ) {
+			$api_token = $this->get_option( 'api_token' );
+			$api_url = $this->get_option( 'api_url' );
+
+			// Only validate if both API token and URL are provided
+			if ( ! empty( $api_token ) && ! empty( $api_url ) ) {
+				// Update the static properties so QuadernoRequest can use them
+				self::$api_token = $api_token;
+				self::$api_url = $api_url;
+
+				// Perform the ping request
+				$request = new QuadernoRequest();
+				$ping_result = $request->ping();
+
+				if ( ! $ping_result ) {
+					// Ping failed - show error message
+					WC_Admin_Settings::add_error(
+						__( 'Invalid API credentials. Please check your private key and API URL.', 'woocommerce-quaderno' )
+					);
+				} 
+			}
+		}
+
+		return $saved;
+	}
+
+	/**
 	 * Settings prompt
 	 */
 	public function settings_notice() {

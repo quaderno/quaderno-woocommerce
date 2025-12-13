@@ -74,6 +74,18 @@ msgstr ""
 "Selecciona esta opción si el NIF debe ser obligatorio para todas las ventas "
 "en %s."
 
+#: ../classes/class-wc-qd-integration.php:84
+msgid "Private key is required."
+msgstr "La clave privada es obligatoria."
+
+#: ../classes/class-wc-qd-integration.php:96
+msgid "API URL is required."
+msgstr "La API URL es obligatoria."
+
+#: ../classes/class-wc-qd-integration.php:126
+msgid "Invalid API credentials. Please check your private key and API URL."
+msgstr "Credenciales de API inválidas. Por favor, comprueba tu clave privada y API URL."
+
 #: ../classes/class-wc-qd-integration.php:94
 #: ../classes/class-wc-qd-status.php:19
 msgid "Quaderno"
