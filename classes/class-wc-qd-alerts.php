@@ -11,11 +11,6 @@ class WC_QD_Alerts {
   public function __construct() {
     global $wpdb;
 
-    // Show error notice
-    if ( get_transient( 'quaderno_error' ) ) {
-      add_action( 'admin_notices', array( $this, 'quaderno_error' ) );
-    }
-
     // Show review notice
     $post_count = $wpdb->get_var( "SELECT count(*) FROM " . $wpdb->prefix . "postmeta WHERE meta_key = '_quaderno_invoice'" );
     if ( $post_count > 10 && ! get_option( 'quaderno_dismiss_review' ) ) {
@@ -24,25 +19,6 @@ class WC_QD_Alerts {
 
     add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_quaderno_alert_script' ) );
     add_action( 'wp_ajax_dismiss_quaderno_alert', array( $this, 'dismiss_quaderno_alert' ) );
-  }
-
-  /**
-   * Show users an alert if an integration error has been detected
-   */
-  public function quaderno_error() {
-    ?>
-    <div id="quaderno-error" class="quaderno-notice notice notice-error is-dismissible">
-      <p>
-        <?php 
-          echo sprintf(
-            /* translators: %s: URL to the WooCommerce status logs page */
-            esc_html__( 'We have identified an issue with your Quaderno integration. For more details, please visit the %s.', 'woocommerce-quaderno' ),
-            '<a href="' . esc_url( admin_url( 'admin.php?page=wc-status&tab=logs' ) ) . '">' . esc_html__( 'logs page', 'woocommerce-quaderno' ) . '</a>'
-          );
-        ?>
-      </p>
-    </div>
-  <?php
   }
 
   /**
