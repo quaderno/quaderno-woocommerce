@@ -28,8 +28,15 @@ class WC_QD_Status {
 
     // Get all the standard tax codes
     $codes = array();
+    $base_country_in_rates = false;
+    $has_non_base_country_rates = false;
     foreach( WC_TAX::get_rates_for_tax_class('') as $key => $rate ) {
       array_unshift( $codes, WC_TAX::get_rate_code( $key ) . ' => ' . round($rate->tax_rate, 2) . '%' );
+      if ( $rate->tax_rate_country === $base_country ) {
+        $base_country_in_rates = true;
+      } else {
+        $has_non_base_country_rates = true;
+      }
     }
 
     $tax_calculation_options = array(
@@ -58,9 +65,24 @@ class WC_QD_Status {
           <td><?php echo esc_html( $base_country ) . ' — ' . esc_html( $base_region ); ?></td>
         </tr>
         <tr>
+          <td data-export-label="Store base">Enable taxes:</td>
+          <td class="help"></td>
+          <td><?php 
+            echo esc_html( ucfirst( get_option( 'woocommerce_calc_taxes' ) ) ); 
+            if ( get_option( 'woocommerce_calc_taxes' ) == 'no' ) {
+              echo '&nbsp;<mark class="error" title="' . esc_attr__( 'You must enable the tax calculations in WooCommerce > Settings > General.', 'woocommerce-quaderno' ) . '"><span class="dashicons dashicons-warning"></span></mark>';
+            }
+          ?></td>
+        </tr>
+        <tr>
           <td data-export-label="Tax in prices">Tax in prices:</td>
           <td class="help"></td>
-          <td><?php echo esc_html( get_option( 'woocommerce_prices_include_tax' ) == 'yes' ? 'Included' : 'Excluded' ); ?></td>
+          <td><?php 
+            echo esc_html( get_option( 'woocommerce_prices_include_tax' ) == 'yes' ? 'Included' : 'Excluded' ); 
+            if ( get_option( 'woocommerce_prices_include_tax' ) == 'yes' && ! $base_country_in_rates ) {
+              echo '&nbsp;<mark class="error" title="' . esc_attr__( 'You must add your base country in the standard tax rates page if you work with tax excluded prices.', 'woocommerce-quaderno' ) . '"><span class="dashicons dashicons-warning"></span></mark>';
+            }
+          ?></td>
         </tr>
         <tr>
           <td data-export-label="Tax calculations based on">Tax calculations based on:</td>
@@ -79,12 +101,13 @@ class WC_QD_Status {
         </tr>
         <tr>
           <td data-export-label="Display prices">Standard tax rates:</td>
-          <td class="help"><?php
-          if ( get_option( 'woocommerce_prices_include_tax' ) == 'yes' ) {
-            echo wc_help_tip( __( 'You must add your base country in the standard tax rates page if you work with tax included prices.', 'woocommerce-quaderno' ) );
+          <td class="help"></td>
+        <td><?php
+          echo esc_html( implode( ', ', (array) $codes ) );
+          if ( $has_non_base_country_rates ) {
+            echo '&nbsp;<mark class="error" title="' . esc_attr__( 'You have standard tax rates for locations other than your base country. Please remove them to avoid overwriting Quaderno tax calculations.', 'woocommerce-quaderno' ) . '"><span class="dashicons dashicons-warning"></span></mark>';
           }
-          ?></td>
-        <td><?php echo esc_html( implode( ', ', (array) $codes ) ); ?></td>
+        ?></td>
       </tr>
     </tbody>
     </table>
@@ -97,7 +120,13 @@ class WC_QD_Status {
       <tbody class="quaderno">
         <tr>
           <td data-export-label="API URL">API credentials:</td>
-          <td><mark class="<?php echo esc_attr( $api_response ); ?>"><span class="dashicons dashicons-<?php echo esc_attr( $api_response ); ?>"></span></mark></td>
+          <td><?php
+          if ( $api_response == 'yes' ) {
+            echo '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>';
+          } else {
+            echo '<mark class="error" title="' . esc_attr__( 'Invalid API credentials. Please check your API key and URL in WooCommerce > Settings > Integration > Quaderno.', 'woocommerce-quaderno' ) . '"><span class="dashicons dashicons-warning"></span></mark>';
+          }
+          ?></td>
         </tr>
         <tr>
           <td data-export-label="Require tax ID">Require tax ID in <?php echo esc_html( $woocommerce->countries->countries[ $base_country ] ); ?>:</td>
