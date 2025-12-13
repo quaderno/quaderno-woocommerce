@@ -1,5 +1,10 @@
 *** Quaderno for WooCommerce Changelog ***
 
+2025-12-13 - version 2.7.11
+* New: improve status page with validation warnings
+* New: track new payment method
+* Update: translations
+
 2025-11-28 - version 2.7.10
 * Fix: errors detected by Plugin Check
 
