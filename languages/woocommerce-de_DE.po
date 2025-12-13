@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2025-08-08 18:13+0100\n"
-"PO-Revision-Date: 2025-08-08 18:15+0100\n"
+"POT-Creation-Date: 2025-12-13 13:58+0000\n"
+"PO-Revision-Date: 2025-12-13 13:59+0000\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__\n"
 "X-Poedit-SearchPath-0: ..\n"
@@ -106,29 +106,21 @@ msgstr "Rechnung anzeigen"
 msgid "Tax ID"
 msgstr "Steuernummer"
 
-#: ../classes/class-wc-qd-status.php:36
+#: ../classes/class-wc-qd-status.php:43
 msgid "Customer shipping address"
 msgstr "Lieferadresse des Kunden"
 
-#: ../classes/class-wc-qd-status.php:37
+#: ../classes/class-wc-qd-status.php:44
 msgid "Customer billing address"
 msgstr "Rechnungsadresse des Kunden"
 
-#: ../classes/class-wc-qd-status.php:38
+#: ../classes/class-wc-qd-status.php:45
 msgid "Shop base address"
 msgstr "Adresse der Geschäftsbasis"
 
-#: ../classes/class-wc-qd-status.php:41
+#: ../classes/class-wc-qd-status.php:48
 msgid "Shipping tax class based on cart items"
 msgstr "Versandsteuerklasse auf Basis der Warenkorbartikel"
-
-#: ../classes/class-wc-qd-status.php:84
-msgid ""
-"You must add your base country in the standard tax rates page if you work "
-"with tax included prices."
-msgstr ""
-"Sie müssen Ihr Basisland auf der Seite mit den Standardsteuersätzen "
-"hinzufügen, wenn Sie mit Preisen inklusive Steuer arbeiten."
 
 #: ../classes/class-wc-qd-tax-code-field.php:68
 msgid "Quaderno tax code"
@@ -197,7 +189,7 @@ msgstr "Versandkosten"
 msgid "There was a problem connecting to the API."
 msgstr "Bei der Verbindung mit der API ist ein Problem aufgetreten."
 
-#: ../woocommerce-quaderno.php:111
+#: ../woocommerce-quaderno.php:105
 #, php-format
 msgid ""
 "Please install and activate %s in order for the WooCommerce Quaderno "
@@ -206,9 +198,44 @@ msgstr ""
 "Bitte installieren und aktivieren Sie %s, damit das WooCommerce-Quaderno-"
 "Plug-in funktioniert"
 
-#: ../woocommerce-quaderno.php:222
+#: ../woocommerce-quaderno.php:214
 msgid "Settings"
 msgstr "Einstellungen"
+
+#~ msgid ""
+#~ "You must enable the tax calculations in WooCommerce > Settings > General."
+#~ msgstr ""
+#~ "Sie müssen die Steuerberechnung unter WooCommerce > Einstellungen > "
+#~ "Allgemein aktivieren."
+
+#~ msgid ""
+#~ "You must add your base country in the standard tax rates page if you work "
+#~ "with tax excluded prices."
+#~ msgstr ""
+#~ "Sie müssen Ihr Basisland auf der Seite mit den Standardsteuersätzen "
+#~ "hinzufügen, wenn Sie mit Preisen ohne Steuer arbeiten."
+
+#~ msgid ""
+#~ "You must add your base country in the standard tax rates page if you work "
+#~ "with tax included prices."
+#~ msgstr ""
+#~ "Sie müssen Ihr Basisland auf der Seite mit den Standardsteuersätzen "
+#~ "hinzufügen, wenn Sie mit Preisen inklusive Steuer arbeiten."
+
+#~ msgid ""
+#~ "You have standard tax rates for locations other than your base country. "
+#~ "Please remove them to avoid overwriting Quaderno tax calculations."
+#~ msgstr ""
+#~ "Sie haben Standardsteuersätze für andere Länder als Ihr Basisland. Bitte "
+#~ "entfernen Sie diese, um ein Überschreiben der Quaderno-Steuerberechnungen "
+#~ "zu vermeiden."
+
+#~ msgid ""
+#~ "Invalid API credentials. Please check your API key and URL in WooCommerce "
+#~ "> Settings > Integration > Quaderno."
+#~ msgstr ""
+#~ "Ungültige API-Anmeldedaten. Bitte überprüfen Sie Ihren API-Schlüssel und "
+#~ "die URL unter WooCommerce > Einstellungen > Integration > Quaderno."
 
 #~ msgid "Quaderno account"
 #~ msgstr "Quaderno-Konto"

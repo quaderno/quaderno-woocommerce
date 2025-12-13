@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2025-08-08 18:13+0100\n"
+"POT-Creation-Date: 2025-12-13 14:01+0000\n"
 "PO-Revision-Date: 2018-07-03 20:09-0000\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: \n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__\n"
 "X-Poedit-SearchPath-0: ..\n"
@@ -97,26 +97,20 @@ msgstr ""
 msgid "Tax ID"
 msgstr ""
 
-#: ../classes/class-wc-qd-status.php:36
+#: ../classes/class-wc-qd-status.php:43
 msgid "Customer shipping address"
 msgstr ""
 
-#: ../classes/class-wc-qd-status.php:37
+#: ../classes/class-wc-qd-status.php:44
 msgid "Customer billing address"
 msgstr ""
 
-#: ../classes/class-wc-qd-status.php:38
+#: ../classes/class-wc-qd-status.php:45
 msgid "Shop base address"
 msgstr ""
 
-#: ../classes/class-wc-qd-status.php:41
+#: ../classes/class-wc-qd-status.php:48
 msgid "Shipping tax class based on cart items"
-msgstr ""
-
-#: ../classes/class-wc-qd-status.php:84
-msgid ""
-"You must add your base country in the standard tax rates page if you work "
-"with tax included prices."
 msgstr ""
 
 #: ../classes/class-wc-qd-tax-code-field.php:68
@@ -183,13 +177,13 @@ msgstr ""
 msgid "There was a problem connecting to the API."
 msgstr ""
 
-#: ../woocommerce-quaderno.php:111
+#: ../woocommerce-quaderno.php:105
 #, php-format
 msgid ""
 "Please install and activate %s in order for the WooCommerce Quaderno "
 "extension to work"
 msgstr ""
 
-#: ../woocommerce-quaderno.php:222
+#: ../woocommerce-quaderno.php:214
 msgid "Settings"
 msgstr ""
