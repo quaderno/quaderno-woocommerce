@@ -136,6 +136,26 @@ msgstr ""
 "El tipo de impuesto para los gastos de envío depende del contenido del "
 "carrito"
 
+#: ../classes/class-wc-qd-status.php:55
+msgid "Unknown"
+msgstr "Desconocido"
+
+#: ../classes/class-wc-qd-status.php:60
+msgid "Checkout Block"
+msgstr "Checkout en bloques"
+
+#: ../classes/class-wc-qd-status.php:63
+msgid "Classic Checkout"
+msgstr "Checkout clásico"
+
+#: ../classes/class-wc-qd-status.php:143
+msgid ""
+"The Checkout Block is not fully supported. Please use the Classic Checkout "
+"for the best compatibility with Quaderno."
+msgstr ""
+"El Checkout en bloques no es totalmente compatible. Por favor, utiliza el "
+"Checkout clásico para obtener la mejor compatibilidad con Quaderno."
+
 #: ../classes/class-wc-qd-tax-code-field.php:68
 msgid "Quaderno tax code"
 msgstr "Tipo de impuesto en Quaderno"

@@ -132,7 +132,27 @@ msgstr "Adresse de base du magasin"
 
 #: ../classes/class-wc-qd-status.php:48
 msgid "Shipping tax class based on cart items"
-msgstr "Classe de taxe d’expédition basée sur les articles du panier"
+msgstr "Classe de taxe d'expédition basée sur les articles du panier"
+
+#: ../classes/class-wc-qd-status.php:55
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: ../classes/class-wc-qd-status.php:60
+msgid "Checkout Block"
+msgstr "Bloc de Commande"
+
+#: ../classes/class-wc-qd-status.php:63
+msgid "Classic Checkout"
+msgstr "Commande Classique"
+
+#: ../classes/class-wc-qd-status.php:143
+msgid ""
+"The Checkout Block is not fully supported. Please use the Classic Checkout "
+"for the best compatibility with Quaderno."
+msgstr ""
+"Le Bloc de Commande n'est pas entièrement pris en charge. Veuillez utiliser "
+"la Commande Classique pour une meilleure compatibilité avec Quaderno."
 
 #: ../classes/class-wc-qd-tax-code-field.php:68
 msgid "Quaderno tax code"

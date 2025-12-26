@@ -49,7 +49,21 @@ class WC_QD_Status {
 
     $request = new QuadernoRequest();
     $api_response = $request->ping() ? 'yes' : 'no';
-    
+
+    // Check if the store is using the new checkout block or classic checkout
+    $checkout_page_id = wc_get_page_id( 'checkout' );
+    $checkout_type = __( 'Unknown', 'woocommerce-quaderno' );
+    $is_checkout_block = false;
+
+    if ( $checkout_page_id ) {
+      if ( has_block( 'woocommerce/checkout', $checkout_page_id ) ) {
+        $checkout_type = __( 'Checkout Block', 'woocommerce-quaderno' );
+        $is_checkout_block = true;
+      } elseif ( has_block( 'woocommerce/classic-shortcode', $checkout_page_id ) ) {
+        $checkout_type = __( 'Classic Checkout', 'woocommerce-quaderno' );
+      } 
+    }
+
     ?>
     <p>Please copy and paste this information in your ticket when contacting support:</p>
     <table class="wc_status_table wc_status_table--quaderno widefat" cellspacing="0">
@@ -113,13 +127,14 @@ class WC_QD_Status {
     </table>
     <table class="wc_status_table wc_status_table--quaderno widefat" cellspacing="0">
       <thead>
-        <th colspan="2" data-export-label="API Settings">
+        <th colspan="23" data-export-label="API Settings">
           <h2>Plugin Settings</h2>
         </th>
       </thead>
       <tbody class="quaderno">
         <tr>
           <td data-export-label="API URL">API credentials:</td>
+          <td class="help"></td>
           <td><?php
           if ( $api_response == 'yes' ) {
             echo '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>';
@@ -130,7 +145,18 @@ class WC_QD_Status {
         </tr>
         <tr>
           <td data-export-label="Require tax ID">Require tax ID in <?php echo esc_html( $woocommerce->countries->countries[ $base_country ] ); ?>:</td>
+          <td class="help"></td>
           <td><mark class="<?php echo esc_attr( WC_QD_Integration::$require_tax_id ); ?>"><span class="dashicons dashicons-<?php echo esc_attr( WC_QD_Integration::$require_tax_id ); ?>"></span></mark></td>
+        </tr>
+        <tr>
+          <td data-export-label="Checkout type">Checkout type:</td>
+          <td class="help"></td>
+          <td><?php
+            echo esc_html( $checkout_type );
+            if ( $is_checkout_block ) {
+              echo '&nbsp;<mark class="error" title="' . esc_attr__( 'The Checkout Block is not fully supported. Please use the Classic Checkout for the best compatibility with Quaderno.', 'woocommerce-quaderno' ) . '"><span class="dashicons dashicons-warning"></span></mark>';
+            }
+          ?></td>
         </tr>
       </tbody>
     </table>
