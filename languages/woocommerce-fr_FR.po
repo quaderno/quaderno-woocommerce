@@ -154,6 +154,42 @@ msgstr ""
 "Le Bloc de Commande n'est pas entièrement pris en charge. Veuillez utiliser "
 "la Commande Classique pour une meilleure compatibilité avec Quaderno."
 
+#: ../classes/class-wc-qd-tools.php:16
+msgid "Quaderno - Clear tax cache"
+msgstr "Quaderno - Vider le cache des taxes"
+
+#: ../classes/class-wc-qd-tools.php:33
+msgid "Quaderno - Clear all data"
+msgstr "Quaderno - Effacer toutes les données"
+
+#: ../classes/class-wc-qd-tools.php:50
+msgid "Quaderno - Send orders"
+msgstr "Quaderno - Envoyer les commandes"
+
+#: ../classes/class-wc-qd-tools.php:55
+msgid ""
+"This tool will send all completed orders from the last 15 days that don't "
+"have invoices to Quaderno."
+msgstr ""
+"Cet outil enverra à Quaderno toutes les commandes terminées des 15 derniers "
+"jours qui n'ont pas de factures."
+
+#: ../classes/class-wc-qd-tools.php:129
+msgid "%d order sent to Quaderno."
+msgid_plural "%d orders sent to Quaderno."
+msgstr[0] "%d commande envoyée à Quaderno."
+msgstr[1] "%d commandes envoyées à Quaderno."
+
+#: ../classes/class-wc-qd-tools.php:138
+msgid "%d order skipped."
+msgid_plural "%d orders skipped."
+msgstr[0] "%d commande ignorée."
+msgstr[1] "%d commandes ignorées."
+
+#: ../classes/class-wc-qd-tools.php:144
+msgid "No orders found to send to Quaderno."
+msgstr "Aucune commande trouvée à envoyer à Quaderno."
+
 #: ../classes/class-wc-qd-tax-code-field.php:68
 msgid "Quaderno tax code"
 msgstr "Quaderno code des impôts"
