@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2025-12-13 13:58+0000\n"
-"PO-Revision-Date: 2025-12-13 13:59+0000\n"
+"POT-Creation-Date: 2025-12-26 19:35+0000\n"
+"PO-Revision-Date: 2025-12-26 19:37+0000\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -14,19 +14,6 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__\n"
 "X-Poedit-SearchPath-0: ..\n"
-
-#: ../classes/class-wc-qd-alerts.php:39
-#, php-format
-msgid ""
-"We have identified an issue with your Quaderno integration. For more "
-"details, please visit the %s."
-msgstr ""
-"Wir haben ein Problem mit Ihrer Quaderno-Integration festgestellt. Weitere "
-"Einzelheiten finden Sie auf der %s."
-
-#: ../classes/class-wc-qd-alerts.php:40
-msgid "logs page"
-msgstr "Logs-Seite"
 
 #: ../classes/class-wc-qd-credit-manager.php:120
 #: ../classes/class-wc-qd-invoice-manager.php:197
@@ -84,9 +71,11 @@ msgstr "Die API-URL ist erforderlich."
 
 #: ../classes/class-wc-qd-integration.php:126
 msgid "Invalid API credentials. Please check your private key and API URL."
-msgstr "Ungültige API-Anmeldeinformationen. Bitte überprüfen Sie Ihren privaten Schlüssel und die API-URL."
+msgstr ""
+"Ungültige API-Anmeldeinformationen. Bitte überprüfen Sie Ihren privaten "
+"Schlüssel und die API-URL."
 
-#: ../classes/class-wc-qd-integration.php:94
+#: ../classes/class-wc-qd-integration.php:151
 #: ../classes/class-wc-qd-status.php:19
 msgid "Quaderno"
 msgstr "Quaderno"
@@ -146,50 +135,6 @@ msgstr "Checkout-Block"
 msgid "Classic Checkout"
 msgstr "Klassischer Checkout"
 
-#: ../classes/class-wc-qd-status.php:143
-msgid ""
-"The Checkout Block is not fully supported. Please use the Classic Checkout "
-"for the best compatibility with Quaderno."
-msgstr ""
-"Der Checkout-Block wird nicht vollständig unterstützt. Bitte verwenden Sie "
-"den klassischen Checkout für die beste Kompatibilität mit Quaderno."
-
-#: ../classes/class-wc-qd-tools.php:16
-msgid "Quaderno - Clear tax cache"
-msgstr "Quaderno - Steuer-Cache leeren"
-
-#: ../classes/class-wc-qd-tools.php:33
-msgid "Quaderno - Clear all data"
-msgstr "Quaderno - Alle Daten löschen"
-
-#: ../classes/class-wc-qd-tools.php:50
-msgid "Quaderno - Send orders"
-msgstr "Quaderno - Bestellungen senden"
-
-#: ../classes/class-wc-qd-tools.php:55
-msgid ""
-"This tool will send all completed orders from the last 15 days that don't "
-"have invoices to Quaderno."
-msgstr ""
-"Dieses Tool sendet alle abgeschlossenen Bestellungen der letzten 15 Tage, "
-"die noch keine Rechnung haben, an Quaderno."
-
-#: ../classes/class-wc-qd-tools.php:129
-msgid "%d order sent to Quaderno."
-msgid_plural "%d orders sent to Quaderno."
-msgstr[0] "%d Bestellung an Quaderno gesendet."
-msgstr[1] "%d Bestellungen an Quaderno gesendet."
-
-#: ../classes/class-wc-qd-tools.php:138
-msgid "%d order skipped."
-msgid_plural "%d orders skipped."
-msgstr[0] "%d Bestellung übersprungen."
-msgstr[1] "%d Bestellungen übersprungen."
-
-#: ../classes/class-wc-qd-tools.php:144
-msgid "No orders found to send to Quaderno."
-msgstr "Keine Bestellungen zum Senden an Quaderno gefunden."
-
 #: ../classes/class-wc-qd-tax-code-field.php:68
 msgid "Quaderno tax code"
 msgstr "Quaderno Steuergesetzbuch"
@@ -212,27 +157,28 @@ msgstr "%s ist ein Pflichtfeld."
 msgid "optional"
 msgstr "optional"
 
-#: ../classes/class-wc-qd-tools.php:15
-msgid "Clear tax cache"
-msgstr "Steuer-Cache löschen"
+#: ../classes/class-wc-qd-tools.php:16
+msgid "Quaderno - Clear tax cache"
+msgstr "Quaderno - Steuer-Cache leeren"
 
-#: ../classes/class-wc-qd-tools.php:16 ../classes/class-wc-qd-tools.php:33
+#: ../classes/class-wc-qd-tools.php:17 ../classes/class-wc-qd-tools.php:34
 msgid "Clear"
 msgstr "Löschen"
 
-#: ../classes/class-wc-qd-tools.php:19 ../classes/class-wc-qd-tools.php:36
+#: ../classes/class-wc-qd-tools.php:20 ../classes/class-wc-qd-tools.php:37
+#: ../classes/class-wc-qd-tools.php:54
 msgid "Note:"
 msgstr "Notiz:"
 
-#: ../classes/class-wc-qd-tools.php:20
+#: ../classes/class-wc-qd-tools.php:21
 msgid "This tool will empty the tax cache created by Quaderno."
 msgstr "Dieses Tool leert den von Quaderno angelegten Steuer-Cache."
 
-#: ../classes/class-wc-qd-tools.php:32
-msgid "Clear Quaderno data"
-msgstr "Quaderno-Daten löschen"
+#: ../classes/class-wc-qd-tools.php:33
+msgid "Quaderno - Clear all data"
+msgstr "Quaderno - Alle Daten löschen"
 
-#: ../classes/class-wc-qd-tools.php:37
+#: ../classes/class-wc-qd-tools.php:38
 msgid ""
 "This tool will clear all data created by Quaderno. Use this if you are going "
 "to connect your WooCommerce store to a new Quaderno account."
@@ -241,19 +187,39 @@ msgstr ""
 "Verwenden Sie dieses Tool, wenn Sie Ihren WooCommerce-Shop mit einem neuen "
 "Quaderno-Konto verbinden möchten."
 
-#: ../classes/class-wc-qd-tools.php:60
+#: ../classes/class-wc-qd-tools.php:50
+msgid "Quaderno - Send orders"
+msgstr "Quaderno - Bestellungen senden"
+
+#: ../classes/class-wc-qd-tools.php:51
+msgid "Send"
+msgstr "Senden"
+
+#: ../classes/class-wc-qd-tools.php:55
+msgid ""
+"This tool will send all completed orders from the last 15 days that don't "
+"have invoices to Quaderno."
+msgstr ""
+"Dieses Tool sendet alle abgeschlossenen Bestellungen der letzten 15 Tage, "
+"die noch keine Rechnung haben, an Quaderno."
+
+#: ../classes/class-wc-qd-tools.php:78
 msgid "The tax cache has been emptied."
 msgstr "Der Steuer-Cache wurde geleert."
 
-#: ../classes/class-wc-qd-tools.php:77
+#: ../classes/class-wc-qd-tools.php:95
 msgid "All Quaderno data has been deleted."
 msgstr "Alle Quaderno-Daten wurden gelöscht."
+
+#: ../classes/class-wc-qd-tools.php:162
+msgid "No orders found to send to Quaderno."
+msgstr "Keine Bestellungen zum Senden an Quaderno gefunden."
 
 #: ../classes/class-wc-qd-transaction-manager.php:63
 msgid "Shipping"
 msgstr "Versandkosten"
 
-#: ../quaderno/quaderno_request.php:78
+#: ../quaderno/quaderno_request.php:80
 msgid "There was a problem connecting to the API."
 msgstr "Bei der Verbindung mit der API ist ein Problem aufgetreten."
 
@@ -269,6 +235,40 @@ msgstr ""
 #: ../woocommerce-quaderno.php:214
 msgid "Settings"
 msgstr "Einstellungen"
+
+#, php-format
+#~ msgid ""
+#~ "We have identified an issue with your Quaderno integration. For more "
+#~ "details, please visit the %s."
+#~ msgstr ""
+#~ "Wir haben ein Problem mit Ihrer Quaderno-Integration festgestellt. "
+#~ "Weitere Einzelheiten finden Sie auf der %s."
+
+#~ msgid "logs page"
+#~ msgstr "Logs-Seite"
+
+#~ msgid ""
+#~ "The Checkout Block is not fully supported. Please use the Classic "
+#~ "Checkout for the best compatibility with Quaderno."
+#~ msgstr ""
+#~ "Der Checkout-Block wird nicht vollständig unterstützt. Bitte verwenden "
+#~ "Sie den klassischen Checkout für die beste Kompatibilität mit Quaderno."
+
+#~ msgid "%d order sent to Quaderno."
+#~ msgid_plural "%d orders sent to Quaderno."
+#~ msgstr[0] "%d Bestellung an Quaderno gesendet."
+#~ msgstr[1] "%d Bestellungen an Quaderno gesendet."
+
+#~ msgid "%d order skipped."
+#~ msgid_plural "%d orders skipped."
+#~ msgstr[0] "%d Bestellung übersprungen."
+#~ msgstr[1] "%d Bestellungen übersprungen."
+
+#~ msgid "Clear tax cache"
+#~ msgstr "Steuer-Cache löschen"
+
+#~ msgid "Clear Quaderno data"
+#~ msgstr "Quaderno-Daten löschen"
 
 #~ msgid ""
 #~ "You must enable the tax calculations in WooCommerce > Settings > General."
