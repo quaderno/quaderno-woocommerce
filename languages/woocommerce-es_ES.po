@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2025-12-26 19:35+0000\n"
-"PO-Revision-Date: 2025-12-26 19:36+0000\n"
+"POT-Creation-Date: 2025-12-27 13:22+0000\n"
+"PO-Revision-Date: 2025-12-27 13:22+0000\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: Quaderno <support@quaderno.io>\n"
 "Language: es_ES\n"
@@ -34,51 +34,69 @@ msgid "Simplify tax calculations and invoicing for your WooCommerce store."
 msgstr ""
 "Simplifica el cálculo de impuestos y la facturación de tu tienda WooCommerce."
 
-#: ../classes/class-wc-qd-integration.php:57
+#: ../classes/class-wc-qd-integration.php:58
 msgid "Private key"
 msgstr "Clave privada"
 
-#: ../classes/class-wc-qd-integration.php:58
+#: ../classes/class-wc-qd-integration.php:59
 msgid "Get your Quaderno private key"
 msgstr "Obtén tu clave privada en Quaderno"
 
-#: ../classes/class-wc-qd-integration.php:62
+#: ../classes/class-wc-qd-integration.php:63
 msgid "API URL"
 msgstr "API URL"
 
-#: ../classes/class-wc-qd-integration.php:63
+#: ../classes/class-wc-qd-integration.php:64
 msgid "Get your Quaderno API URL"
 msgstr "Obtén tu API URL en Quaderno"
 
-#: ../classes/class-wc-qd-integration.php:70
+#: ../classes/class-wc-qd-integration.php:71
 msgid "Require tax ID"
 msgstr "NIF obligatorio"
 
-#: ../classes/class-wc-qd-integration.php:72
+#: ../classes/class-wc-qd-integration.php:73
 #, php-format
 msgid "Check this if tax ID must be required for all sales in %s."
 msgstr ""
 "Selecciona esta opción si el NIF debe ser obligatorio para todas las ventas "
 "en %s."
 
-#: ../classes/class-wc-qd-integration.php:84
+#: ../classes/class-wc-qd-integration.php:85
 msgid "Private key is required."
 msgstr "La clave privada es obligatoria."
 
-#: ../classes/class-wc-qd-integration.php:96
+#: ../classes/class-wc-qd-integration.php:97
 msgid "API URL is required."
 msgstr "La API URL es obligatoria."
 
-#: ../classes/class-wc-qd-integration.php:126
+#: ../classes/class-wc-qd-integration.php:127
 msgid "Invalid API credentials. Please check your private key and API URL."
 msgstr ""
 "Credenciales de API inválidas. Por favor, comprueba tu clave privada y API "
 "URL."
 
-#: ../classes/class-wc-qd-integration.php:151
+#: ../classes/class-wc-qd-integration.php:152
 #: ../classes/class-wc-qd-status.php:19
 msgid "Quaderno"
 msgstr "Quaderno"
+
+#: ../classes/class-wc-qd-integration.php:203
+#, php-format
+msgid ""
+"You must enable the tax calculations in <a href=\"%s\">WooCommerce &gt; "
+"Settings &gt; General</a>."
+msgstr ""
+"Debes activar el cálculo de impuestos en <a href=\"%s\">WooCommerce &gt; "
+"Ajustes &gt; General</a>."
+
+#: ../classes/class-wc-qd-integration.php:229
+#, php-format
+msgid ""
+"You must add your base country in the <a href=\"%s\">standard tax rates "
+"page</a> if you work with tax included prices."
+msgstr ""
+"Debes añadir tu país base en la <a href=\"%s\">página de tipos impositivos "
+"estándar</a> si trabajas con precios con impuestos incluidos."
 
 #: ../classes/class-wc-qd-invoice-manager.php:67
 msgid "WooCommerce customer"
@@ -237,6 +255,13 @@ msgstr ""
 msgid "Settings"
 msgstr "Configuración"
 
+#~ msgid ""
+#~ "The Checkout Block is not fully supported. Please use the Classic "
+#~ "Checkout for the best compatibility with Quaderno."
+#~ msgstr ""
+#~ "El Checkout en bloques no es totalmente compatible. Por favor, utiliza el "
+#~ "Checkout clásico para obtener la mejor compatibilidad con Quaderno."
+
 #, php-format
 #~ msgid ""
 #~ "We have identified an issue with your Quaderno integration. For more "
@@ -247,13 +272,6 @@ msgstr "Configuración"
 
 #~ msgid "logs page"
 #~ msgstr "página de logs"
-
-#~ msgid ""
-#~ "The Checkout Block is not fully supported. Please use the Classic "
-#~ "Checkout for the best compatibility with Quaderno."
-#~ msgstr ""
-#~ "El Checkout en bloques no es totalmente compatible. Por favor, utiliza el "
-#~ "Checkout clásico para obtener la mejor compatibilidad con Quaderno."
 
 #~ msgid "%d order sent to Quaderno."
 #~ msgid_plural "%d orders sent to Quaderno."

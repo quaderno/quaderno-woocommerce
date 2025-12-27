@@ -31,6 +31,7 @@ class WC_QD_Integration extends WC_Integration {
 		// Hooks
 		add_action( 'plugins_loaded', array( $this, 'init' ) );
 		add_action( 'woocommerce_update_options_integration_quaderno', array( $this, 'process_admin_options' ) );
+		add_action( 'admin_notices', array( $this, 'integration_warnings' ) );
 
     /* 
     We keep this section for compatibility with previous versions of this plugin 
@@ -161,5 +162,78 @@ class WC_QD_Integration extends WC_Integration {
         </p>
     </div>
     <?php
+	}
+
+	/**
+	 * Show integration warnings
+	 */
+	public function integration_warnings() {
+		// Only show on the integration settings page
+		$current_tab = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : '';
+		$current_section = isset( $_GET['section'] ) ? sanitize_key( wp_unslash( $_GET['section'] ) ) : '';
+
+		if ( 'integration' !== $current_tab || 'quaderno' !== $current_section ) {
+			return;
+		}
+
+		global $woocommerce;
+
+		// Check 1: Checkout block warning
+		$checkout_page_id = wc_get_page_id( 'checkout' );
+		if ( $checkout_page_id && has_block( 'woocommerce/checkout', $checkout_page_id ) ) {
+			?>
+			<div class="notice notice-error">
+				<p>
+					<?php
+					esc_html_e( 'The Checkout Block is not fully supported. Please use the Classic Checkout for the best compatibility with Quaderno.', 'woocommerce-quaderno' );
+					?>
+				</p>
+			</div>
+			<?php
+		}
+
+		// Check 2: Tax calculation not enabled
+		if ( get_option( 'woocommerce_calc_taxes' ) == 'no' ) {
+			?>
+			<div class="notice notice-error">
+				<p>
+					<?php
+					printf(
+						/* translators: %s: Link to WooCommerce settings */
+						wp_kses_post( __( 'You must enable the tax calculations in <a href="%s">WooCommerce &gt; Settings &gt; General</a>.', 'woocommerce-quaderno' ) ),
+						esc_url( admin_url( 'admin.php?page=wc-settings' ) )
+					);
+					?>
+				</p>
+			</div>
+			<?php
+		} elseif ( get_option( 'woocommerce_prices_include_tax' ) == 'yes' ) {
+			$base_country = $woocommerce->countries->get_base_country();
+			$base_country_in_rates = false;
+
+			// Check 3: Tax-included prices without base country in tax rates
+			foreach( WC_TAX::get_rates_for_tax_class('') as $key => $rate ) {
+				if ( $rate->tax_rate_country === $base_country ) {
+					$base_country_in_rates = true;
+					break;
+				}
+			}
+
+			if ( !$base_country_in_rates ) {
+				?>
+				<div class="notice notice-error">
+					<p>
+						<?php
+						printf(
+							/* translators: %s: Link to tax rates page */
+							wp_kses_post( __( 'You must add your base country in the <a href="%s">standard tax rates page</a> if you work with tax included prices.', 'woocommerce-quaderno' ) ),
+							esc_url( admin_url( 'admin.php?page=wc-settings&tab=tax&section=standard' ) )
+						);
+						?>
+					</p>
+				</div>
+				<?php
+			}
+		}
 	}
 }

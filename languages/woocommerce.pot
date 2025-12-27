@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
-"POT-Creation-Date: 2025-12-26 19:35+0000\n"
+"POT-Creation-Date: 2025-12-27 13:22+0000\n"
 "PO-Revision-Date: 2018-07-03 20:09-0000\n"
 "Last-Translator: support@quaderno.io\n"
 "Language-Team: \n"
@@ -31,46 +31,60 @@ msgstr ""
 msgid "Simplify tax calculations and invoicing for your WooCommerce store."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:57
+#: ../classes/class-wc-qd-integration.php:58
 msgid "Private key"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:58
+#: ../classes/class-wc-qd-integration.php:59
 msgid "Get your Quaderno private key"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:62
+#: ../classes/class-wc-qd-integration.php:63
 msgid "API URL"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:63
+#: ../classes/class-wc-qd-integration.php:64
 msgid "Get your Quaderno API URL"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:70
+#: ../classes/class-wc-qd-integration.php:71
 msgid "Require tax ID"
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:72
+#: ../classes/class-wc-qd-integration.php:73
 #, php-format
 msgid "Check this if tax ID must be required for all sales in %s."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:84
+#: ../classes/class-wc-qd-integration.php:85
 msgid "Private key is required."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:96
+#: ../classes/class-wc-qd-integration.php:97
 msgid "API URL is required."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:126
+#: ../classes/class-wc-qd-integration.php:127
 msgid "Invalid API credentials. Please check your private key and API URL."
 msgstr ""
 
-#: ../classes/class-wc-qd-integration.php:151
+#: ../classes/class-wc-qd-integration.php:152
 #: ../classes/class-wc-qd-status.php:19
 msgid "Quaderno"
+msgstr ""
+
+#: ../classes/class-wc-qd-integration.php:203
+#, php-format
+msgid ""
+"You must enable the tax calculations in <a href=\"%s\">WooCommerce &gt; "
+"Settings &gt; General</a>."
+msgstr ""
+
+#: ../classes/class-wc-qd-integration.php:229
+#, php-format
+msgid ""
+"You must add your base country in the <a href=\"%s\">standard tax rates "
+"page</a> if you work with tax included prices."
 msgstr ""
 
 #: ../classes/class-wc-qd-invoice-manager.php:67
