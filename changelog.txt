@@ -1,9 +1,16 @@
 *** Quaderno for WooCommerce Changelog ***
 
+2025-12-27 - version 2.7.12
+* New - add validation warnings to integration settings page
+* New - add tool to send recent orders to Quaderno
+* New - add "Quaderno -" prefix to all tools for better identification
+* New - detect checkout type (Block vs Classic) in status page
+* Update - translations
+
 2025-12-13 - version 2.7.11
-* New: improve status page with validation warnings
-* New: track new payment method
-* Update: translations
+* New - improve status page with validation warnings
+* New - track new payment method
+* Update - translations
 
 2025-11-28 - version 2.7.10
 * Fix: errors detected by Plugin Check

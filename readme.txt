@@ -3,7 +3,7 @@ Contributors: polimorfico
 Tags: sales tax, vat, gst, verifactu, ticketbai
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.7.11
+Stable tag: 2.7.12
 License: GPLv3
 
 Automate global tax calculations and compliant invoicing for WooCommerce. Handle sales tax, VAT, GST worldwide with instant reports.
@@ -69,6 +69,13 @@ Manual installation method requires downloading the WooCommerce Quaderno plugin 
 
 
 == Changelog ==
+
+= 2.7.12 – Dec 27, 2025 =
+* New: add validation warnings to integration settings page
+* New: add tool to send recent orders to Quaderno
+* New: add "Quaderno -" prefix to all tools for better identification
+* New: detect checkout type (Block vs Classic) in status page
+* Update: translations
 
 = 2.7.11 – Dec 13, 2025 =
 * New: improve status page with validation warnings
