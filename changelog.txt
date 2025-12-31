@@ -1,5 +1,8 @@
 *** Quaderno for WooCommerce Changelog ***
 
+2025-12-31 - version 2.7.13
+* Update - improve code efficiency in invoice manager class
+
 2025-12-27 - version 2.7.12
 * New - add validation warnings to integration settings page
 * New - add tool to send recent orders to Quaderno
