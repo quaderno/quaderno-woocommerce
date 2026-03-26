@@ -83,6 +83,12 @@ class WC_QD_Tax_Id_Field {
     }
 
     $order->save(); // Save all changes to the order
+
+    // Save the tax ID to the user's account for future checkouts
+    $user_id = $order->get_customer_id();
+    if ( $user_id ) {
+      update_user_meta( $user_id, 'billing_tax_id', $tax_id );
+    }
   }
 
   /**

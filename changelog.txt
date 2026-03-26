@@ -1,5 +1,8 @@
 *** Quaderno for WooCommerce Changelog ***
 
+2026-03-26 - version 2.7.14
+* Update - tax ID entered at checkout is now saved to the customer's account for future use
+
 2025-12-31 - version 2.7.13
 * Update - improve code efficiency in invoice manager class
 
