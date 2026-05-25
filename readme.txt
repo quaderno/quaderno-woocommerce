@@ -1,9 +1,9 @@
 === Quaderno: Global Tax & Invoicing Automation for WooCommerce ===
 Contributors: polimorfico
 Tags: sales tax, vat, gst, verifactu, ticketbai
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 2.7.14
+Stable tag: 2.7.15
 License: GPLv3
 
 Automate global tax calculations and compliant invoicing for WooCommerce. Handle sales tax, VAT, GST worldwide with instant reports.
@@ -69,6 +69,9 @@ Manual installation method requires downloading the WooCommerce Quaderno plugin 
 
 
 == Changelog ==
+
+= 2.7.15 – May 25, 2026 =
+* New: Support for WordPress 7.0
 
 = 2.7.14 – Mar 26, 2026 =
 * Update: tax ID entered at checkout is now saved to the customer's account for future use
