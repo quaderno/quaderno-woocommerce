@@ -1,5 +1,8 @@
 *** Quaderno for WooCommerce Changelog ***
 
+2026-06-30 - version 2.7.16
+* Fix - subscription renewal invoices showed the wrong billing period end date
+
 2026-05-25 - version 2.7.15
 * New - Support for WordPress 7.0
 

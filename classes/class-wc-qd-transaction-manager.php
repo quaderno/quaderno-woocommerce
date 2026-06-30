@@ -43,7 +43,7 @@ class WC_QD_Transaction_Manager {
           
             // Get the start and end of the billing period for the subscription
             $billing_period_start = $order->get_date_created();
-            $billing_period_end = $subscription->get_date('next_payment');
+            $billing_period_end = $subscription->calculate_date( 'next_payment' );
             break;
           }
         }
