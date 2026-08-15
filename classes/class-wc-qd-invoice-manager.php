@@ -74,9 +74,10 @@ class WC_QD_Invoice_Manager extends WC_QD_Transaction_Manager {
     $states = WC()->countries->get_states( $country );
     $full_state = ( !in_array( $country, array('US', 'CA') ) && isset( $states[ $state ] ) ) ? $states[ $state ] : $state;
 
-    $tax_id = $order->get_meta( 'vat_number' );
-    if ( empty( $tax_id )) {
-      $tax_id = $order->get_meta( 'tax_id' );
+    $tax_id = $order->get_meta( 'vat_number' ) ?: $order->get_meta( 'tax_id' );
+    $is_domestic = $country === WC()->countries->get_base_country();
+    if ( ! $is_domestic && ! $this->is_reverse_charge( $order ) ) {
+      $tax_id = '';
     }
 
     $transaction_params['customer'] = array(
