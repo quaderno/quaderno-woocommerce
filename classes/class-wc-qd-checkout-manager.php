@@ -10,10 +10,8 @@ class WC_QD_Checkout_Manager {
 	 * Setup the class
 	 */
 	public function setup() {
-		// Update the taxes on the cart page
-		if ( is_cart() ) {
-   	 add_action( 'woocommerce_before_calculate_totals', array( $this, 'update_taxes_on_cart_view' ), 10, 1 );
-  	}
+		// Update the taxes whenever cart totals are recalculated (cart page, checkout AJAX, PayPal create-order AJAX, etc.)
+		add_action( 'woocommerce_before_calculate_totals', array( $this, 'update_taxes_on_cart_view' ), 10, 1 );
 
 		// Update the taxes on the checkout page whenever the order review template part is refreshed
 		add_action( 'woocommerce_checkout_update_order_review', array( $this, 'update_taxes_on_update_order_review' ), 10, 1 );
