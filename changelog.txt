@@ -1,5 +1,12 @@
 *** Quaderno for WooCommerce Changelog ***
 
+2026-08-15 - version 2.7.17
+* Fix - tax ID excluded from cross-border invoices unless reverse charge applies
+* Fix - redundant tax API call during checkout AJAX order review update
+* Fix - reverse charge status reset when WooCommerce recalculated totals on form submission
+* Fix - PHP 8.2 deprecation notice for dynamic property in WC_QD_Tax_Manager
+* New - Support for WordPress 7.1
+
 2026-06-30 - version 2.7.16
 * Fix - subscription renewal invoices showed the wrong billing period end date
 
