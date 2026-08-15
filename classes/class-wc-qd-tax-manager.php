@@ -16,6 +16,11 @@ class WC_QD_Tax_Manager {
 	 */
 	private $product_to_tax_class = array();
 
+	/**
+	 * @var array Maps original quaderno rate keys to their generated numeric rate IDs
+	 */
+	private $unique_rate_id = array();
+
 	public function __construct() {
 		$this->setup();
 	}
