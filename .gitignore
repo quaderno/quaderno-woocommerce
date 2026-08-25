@@ -1,1 +1,3 @@
 release.sh
+vendor/
+.phpunit.cache/

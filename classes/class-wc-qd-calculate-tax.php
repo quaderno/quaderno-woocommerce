@@ -157,6 +157,11 @@ class WC_QD_Calculate_Tax {
       WC()->customer->set_is_vat_exempt( $tax->status == 'reverse_charge' );
     }
 
+    // remember the tax ID so it can be attached to orders placed through checkouts that never post our field
+    if ( ! empty( $tax_id ) && isset( WC()->session ) ) {
+      WC()->session->set( 'quaderno_tax_id', array( 'value' => $tax_id, 'country' => $country ) );
+    }
+
 		return $tax;
 	}
 

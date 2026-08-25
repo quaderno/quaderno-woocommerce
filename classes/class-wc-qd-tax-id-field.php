@@ -16,6 +16,7 @@ class WC_QD_Tax_Id_Field {
 	public function setup() {
 		add_action( 'woocommerce_after_checkout_billing_form', array( $this, 'print_field' ) );
 		add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'save_field' ) );
+		add_action( 'woocommerce_new_order', array( $this, 'save_tax_id_from_session' ) );
     add_action( 'woocommerce_after_checkout_validation', array( $this, 'validate_field' ), 10, 2 );
 
     add_filter( 'woocommerce_form_field', array( $this, 'remove_checkout_optional_text'), 10, 4 );
@@ -89,6 +90,36 @@ class WC_QD_Tax_Id_Field {
     if ( $user_id ) {
       update_user_meta( $user_id, 'billing_tax_id', $tax_id );
     }
+  }
+
+  /**
+   * Save the Tax ID from the session for checkouts that never post our field
+   *
+   * @param $order_id
+   */
+  public function save_tax_id_from_session( $order_id ) {
+    if ( ! isset( WC()->session ) ) {
+      return;
+    }
+
+    $stored = WC()->session->get( 'quaderno_tax_id' );
+    if ( empty( $stored['value'] ) ) {
+      return;
+    }
+
+    $order = wc_get_order( $order_id );
+    if ( ! $order || ! empty( $order->get_meta( 'tax_id' ) ) || ! empty( $order->get_meta( 'vat_number' ) ) ) {
+      return;
+    }
+
+    // only trust the session when it was calculated for the country this order is going to
+    $country = $order->get_shipping_country() ?: $order->get_billing_country();
+    if ( empty( $stored['country'] ) || $stored['country'] !== $country ) {
+      return;
+    }
+
+    $order->update_meta_data( 'tax_id', $stored['value'] );
+    $order->save();
   }
 
   /**

@@ -6,6 +6,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WC_QD_Transaction_Manager {
 
+  /**
+   * @var array Reverse charge status per order, so we ask the API once per order
+   */
+  private $reverse_charge_status = array();
+
   public function is_digital( $order ) {
     $result = false;
     $items = $order->get_items();
@@ -252,12 +257,61 @@ class WC_QD_Transaction_Manager {
   }
 
   /**
-   * Check if an order is tax reverse-charged
+   * Get the tax ID the buyer entered for an order
+   *
+   * @param $order
+   */
+  public function get_customer_tax_id( $order ) {
+    return $order->get_meta( 'vat_number' ) ?: $order->get_meta( 'tax_id' );
+  }
+
+  /**
+   * Check if an order is tax reverse-charged, falling back to the order's tax ID when WooCommerce has reset its own exempt flag
    *
    * @param $order
    */
   public function is_reverse_charge( $order ) {
-    return 'yes' === $order->get_meta( 'is_vat_exempt' );
+    if ( 'yes' === $order->get_meta( 'is_vat_exempt' ) ) {
+      return true;
+    }
+
+    return $this->tax_id_is_reverse_charged( $order );
+  }
+
+  /**
+   * Ask the tax calculator whether the order's tax ID makes the sale reverse-charged
+   *
+   * @param $order
+   */
+  private function tax_id_is_reverse_charged( $order ) {
+    $tax_id = $this->get_customer_tax_id( $order );
+    if ( empty( $tax_id ) ) {
+      return false;
+    }
+
+    $order_id = $order->get_id();
+    if ( isset( $this->reverse_charge_status[ $order_id ] ) ) {
+      return $this->reverse_charge_status[ $order_id ];
+    }
+
+    $tax_class = 'standard';
+    $product_type = 'good';
+    foreach ( $order->get_items() as $item ) {
+      if ( $item->is_type( 'line_item' ) ) {
+        $product_id = $item->get_variation_id() ?: $item->get_product_id();
+        $tax_class = WC_QD_Calculate_Tax::get_tax_class( $product_id );
+        $product_type = WC_QD_Calculate_Tax::get_product_type( $product_id );
+        break;
+      }
+    }
+
+    $location = $this->get_tax_location( $order );
+
+    $tax = WC_QD_Calculate_Tax::calculate( $tax_class, $product_type, $order->get_total(), get_woocommerce_currency(), $location['country'], $location['state'], $location['postcode'], $location['city'], $location['street'], $tax_id );
+
+    $this->reverse_charge_status[ $order_id ] = ( ( $tax->status ?? null ) === 'reverse_charge' );
+
+    return $this->reverse_charge_status[ $order_id ];
   }
 
 }

@@ -10,3 +10,7 @@ package.json
 package-lock.json
 .distignore
 .gitignore
+/tests
+/vendor
+phpunit.xml
+.phpunit.cache
