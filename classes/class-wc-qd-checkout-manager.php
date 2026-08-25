@@ -18,9 +18,6 @@ class WC_QD_Checkout_Manager {
 
 		// Update the taxes in the checkout process when the checkout is processed
 		add_action( 'woocommerce_checkout_process', array( $this, 'update_taxes_on_check_process' ), 10 );
-
-		// Update the taxes when the line taxes are calculated in the admin
-		add_filter( 'woocommerce_ajax_calc_line_taxes', array( $this, 'update_taxes_on_calc_line_taxes' ), 10, 3 );
 	}
 
 	/**
@@ -165,45 +162,6 @@ class WC_QD_Checkout_Manager {
 
 		// Update the taxes in the cart based on cart items
 		$this->update_taxes_in_cart( $cart_manager->get_items_from_cart() );
-	}
-
-	/**
-	 * Update the taxes when the line taxes are calculated in the admin
-	 *
-	 * @param array $items
-	 * @param int $order_id
-	 * @param String $country
-	 *
-	 * @return array
-	 */
-	public function update_taxes_on_calc_line_taxes( $items, $order_id, $country ) {
-		// Check for items
-		if ( isset( $items['order_item_id'] ) ) {
-			$tax_manager = new WC_QD_Tax_Manager();
-
-			// Get the order
-			$order = wc_get_order( $order_id );
-
-			// Loop through items
-			foreach ( $items['order_item_id'] as $item_id ) {
-				// Get the product ID
-				$product_id = $order->get_item_meta( $item_id, '_product_id', true );
-
-				// Get the tax class and the product type
-				$tax_class = WC_QD_Calculate_Tax::get_tax_class( $product_id );
-				$product_type = WC_QD_Calculate_Tax::get_product_type( $product_id );
-
-				// Calculate taxes
-				$tax = WC_QD_Calculate_Tax::calculate($tax_class, $product_type, $order->get_total(''), get_woocommerce_currency(), $country, '', '', '', '', $order->get_meta( 'tax_id' ));
-
-				$tax_manager->add_product_tax_class( $item_id, $tax_class );
-				$tax_manager->add_tax_rate( $tax_class, $tax->rate, $tax->name );
-				$items['order_item_tax_class'][ $item_id ] = $tax_manager->clean_tax_class( $tax_class );
-			}
-
-		}
-
-		return $items;
 	}
 
 }

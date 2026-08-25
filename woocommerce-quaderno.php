@@ -158,6 +158,10 @@ class WooCommerce_Quaderno {
   		// Setup the Checkout VAT stuff
   		$checkout_vat = new WC_QD_Checkout_Manager();
   		$checkout_vat->setup();
+
+  		// Keep the recorded tax when an order is recalculated outside the checkout
+  		$order_tax_guard = new WC_QD_Order_Tax_Guard();
+  		$order_tax_guard->setup();
     }
 
 		// Setup Invoice manager
