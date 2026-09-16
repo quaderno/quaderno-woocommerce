@@ -63,8 +63,15 @@ class WC_QD_Tax_Id_Field {
 	 * @param $order_id
 	 */
   public function save_field( $order_id ) {
-    if ( empty( $_POST['tax_id'] ) ) {
-      return; // Early return if 'tax_id' is not set
+    $tax_id_raw = '';
+    if ( ! empty( $_POST['tax_id'] ) ) {
+      $tax_id_raw = $_POST['tax_id'];
+    } elseif ( WC()->session ) {
+      $tax_id_raw = WC()->session->get( 'quaderno_tax_id', '' );
+    }
+
+    if ( empty( $tax_id_raw ) ) {
+      return;
     }
 
     $order = wc_get_order( $order_id );
@@ -73,7 +80,7 @@ class WC_QD_Tax_Id_Field {
     }
 
     // Remove non-word characters and save the sanitized tax ID in the order
-    $tax_id = preg_replace('/\W/', '', sanitize_text_field( $_POST['tax_id'] ));
+    $tax_id = preg_replace('/\W/', '', sanitize_text_field( $tax_id_raw ));
     $order->update_meta_data( 'tax_id', $tax_id );
 
     // Add a note if the tax ID validation fails
@@ -83,6 +90,11 @@ class WC_QD_Tax_Id_Field {
     }
 
     $order->save(); // Save all changes to the order
+
+    // Clear the session value now that it's been persisted to the order
+    if ( WC()->session ) {
+      WC()->session->set( 'quaderno_tax_id', '' );
+    }
 
     // Save the tax ID to the user's account for future checkouts
     $user_id = $order->get_customer_id();

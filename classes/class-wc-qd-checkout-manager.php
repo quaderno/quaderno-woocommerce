@@ -67,7 +67,14 @@ class WC_QD_Checkout_Manager {
     $shipping_city = $cart->get_customer()->get_shipping_city();
 
     $tax_based_on = get_option( 'woocommerce_tax_based_on' );
-    $tax_id = ( 'base' !== $tax_based_on && isset( $_POST['tax_id'] ) ) ? sanitize_text_field( $_POST['tax_id'] ) : '';
+    $tax_id = '';
+    if ( 'base' !== $tax_based_on ) {
+      if ( isset( $_POST['tax_id'] ) ) {
+        $tax_id = sanitize_text_field( $_POST['tax_id'] );
+      } elseif ( WC()->session ) {
+        $tax_id = WC()->session->get( 'quaderno_tax_id', '' );
+      }
+    }
 
     // The cart manager
     $cart_manager = new WC_QD_Cart_Manager( $shipping_country, $shipping_state, $shipping_postcode, $shipping_city, '', $tax_id );
@@ -115,6 +122,12 @@ class WC_QD_Checkout_Manager {
 		$tax_id = '';
 		if ('base' != $tax_based_on && isset( $post_arr['tax_id'] )) {
     	$tax_id = sanitize_text_field( $post_arr['tax_id'] );
+		}
+
+		// Persist the tax ID in the session so gateway AJAX calls that trigger cart
+		// recalculation without POST data can still access it
+		if ( WC()->session ) {
+			WC()->session->set( 'quaderno_tax_id', $tax_id );
 		}
 
 		// The cart manager
