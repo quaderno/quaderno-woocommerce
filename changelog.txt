@@ -1,5 +1,8 @@
 *** Quaderno for WooCommerce Changelog ***
 
+2026-09-16 - version 2.7.18
+* Fix - tax ID not saved on orders placed through payment gateways with intermediate AJAX calls (e.g. PayPal PPCP)
+
 2026-08-15 - version 2.7.17
 * Fix - tax ID excluded from cross-border invoices unless reverse charge applies
 * Fix - redundant tax API call during checkout AJAX order review update

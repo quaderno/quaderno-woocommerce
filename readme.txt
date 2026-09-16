@@ -3,7 +3,7 @@ Contributors: polimorfico
 Tags: sales tax, vat, gst, verifactu, ticketbai
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.7.17
+Stable tag: 2.7.18
 License: GPLv3
 
 Automate global tax calculations and compliant invoicing for WooCommerce. Handle sales tax, VAT, GST worldwide with instant reports.
@@ -69,6 +69,9 @@ Manual installation method requires downloading the WooCommerce Quaderno plugin 
 
 
 == Changelog ==
+
+= 2.7.18 – Sep 16, 2026 =
+* Fix: tax ID not saved on orders placed through payment gateways with intermediate AJAX calls (e.g. PayPal PPCP)
 
 = 2.7.17 – Aug 15, 2026 =
 * Fix: tax ID excluded from cross-border invoices unless reverse charge applies
