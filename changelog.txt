@@ -1,5 +1,8 @@
 *** Quaderno for WooCommerce Changelog ***
 
+2026-09-18 - version 2.7.19
+* New - Support for WooCommerce 11.1
+
 2026-09-16 - version 2.7.18
 * Fix - tax ID not saved on orders placed through payment gateways with intermediate AJAX calls (e.g. PayPal PPCP)
 
